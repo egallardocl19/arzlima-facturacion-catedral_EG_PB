@@ -1,0 +1,106 @@
+<?php
+       
+    $rutalocal='../ticketcat/report/reporte_ticket.php';
+    $rutalocal2='../ticketcat/report/reporte_ticket_excel.php';
+    $rutaserver='../report/reporte_ticket.php';
+    $rutaserver2='../report/reporte_ticket_excel.php';
+?> 
+
+   
+    <div class="modal fade bs-example-modal-lg-reporteticket" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-mg">
+            <div class="modal-content"> 
+                <div class="modal-header bg-<?php echo $colorheder ?> text-white" >
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center"><strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Tickets Emitidos</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal form-label-left input_mask" method="post" id="addreporte_propi" name="addreporte_propi" target="_blank">
+                        <div id="resultreportepropi"></div>
+                        
+                        <div class="form-group">
+
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-tag" aria-hidden="true"></i> Dni / Ruc: <span class="required"></span></label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="dni" name="dni" data-size="5" style="max-width: 100%!important;" >
+                                <option value="0">--Seleccione Cliente--</option>  
+                                <?php foreach($dni as $p):?>
+                                        <option value="<?php echo $p['dni']; ?>"><?php echo $p['dni'].' - '.$p['nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Estado Ticket:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="estado_ticket" name="estado_ticket" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="0">--Seleccione Estado--</option>  
+                                    <?php foreach($estado_ticket as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Tipo Ticket:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_ticket" name="tipo_ticket" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="0">--Seleccione Tipo Ticket--</option>  
+                                    <?php foreach($tipo_ticket as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['clase_ticket'].' - '.$p['nombre'].' - '.$p['tipo_moneda'].$p['importe']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Inicio:<span class="required"></span>
+                                </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="date" name="fecha_inicio" class="form-control" placeholder="Fecha Inicio" >
+                                </div>
+
+                            </div>   
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Fin:<span class="required"></span>
+                                </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="date" name="fecha_fin" class="form-control" placeholder="Fecha Inicio" value="<?php echo $fecha;?>" >
+                                </div>
+
+                            </div>   
+
+                            </div>
+                        
+                        <div class="ln_solid"></div>
+                           
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
+                            
+                            <button class="btn btn-success" name="export" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
+                         
+                            </div>
+                        </div>    
+                        </form>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"> </i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /Modal -->
+    <script language="javascript" src="js/jquery-3.1.1.min.js"></script>
+    

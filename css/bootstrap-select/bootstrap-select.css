@@ -1,0 +1,10 @@
+.bootstrap-select .dropdown-menu{
+  max-width: 100%!important;
+
+}
+.bootstrap-select .dropdown-menu li a span.text {
+display: inline-block;
+white-space: normal;
+word-wrap: break-word;
+max-width: 100%;
+}
