@@ -84,7 +84,7 @@
                         <?php
                     
                             include("modal/mantenimiento_recibos.php");
-                            //include("modal/new_recibos_antiguos_impresion.php");?php echo mysqli_num_rows($info0) 
+                            include("modal/new_registroconcar.php");
 
                             ?>
 
@@ -117,19 +117,18 @@
                                                 
                                             </div>
                                         </form> 
-
-                                        <!-- <form class="form-horizontal" role="form" id="ingresos">
+                                        <?php
+                                               if ($permiso_editar==1){
+                                        ?>
+                                        <form class="form-horizontal" role="form" id="ingresos">
                                             <div class="modal-footer">
-                                            <button type="button" class="btn btn-dark"><i class="glyphicon glyphicon-bell"></i> PENDIENTE: <?php echo mysqli_num_rows($info1) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="fa fa-money"></i> PAGADO: <?php echo mysqli_num_rows($info2) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="glyphicon glyphicon-ban-circle"></i> ANULADO: <?php echo mysqli_num_rows($info3) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="fa fa-braille"></i> FRACCIONADO: <?php echo mysqli_num_rows($info4) ?></button>
-
                                                 
-    
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-registroconcar"><i class="glyphicon glyphicon-file"></i> Plantilla Concar</button>
                                             </div>
-                                        </form>                       -->
-                                           
+                                        </form>   
+                                        <?php
+                                            }
+                                        ?>
                                                                 <!-- end form search -->
                                         <div class="x_content">
                                             <div class="table-responsive">
@@ -173,6 +172,30 @@
     
     event.preventDefault();
     })
+
+     // success
+     $("#save_data_registroconcar").click(function () {
+ $( "#addregistroconcar" ).submit(function( event ) {
+    $('#save_data_registroconcar').attr("disabled", true);
+  var parametros = $(this).serialize();
+      $.ajax({
+             type: "POST",
+             url: "action/addregistro_concar.php",
+             data: parametros,
+              beforeSend: function(objeto){
+                 $("#result1").show();
+                 $("#result1").html("Mensaje: Cargando...");
+               },
+             success: function(datos){
+             $("#result1").html(datos);
+             $('#save_data_registroconcar').attr("disabled", false);
+             //load(1);
+             //$("#save_data").hide();
+           }
+     });
+   event.preventDefault();
+ })
+})
 
        function limpiarFormulario() {
         document.getElementById("add").reset();
