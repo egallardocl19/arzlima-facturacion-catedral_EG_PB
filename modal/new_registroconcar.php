@@ -1,17 +1,23 @@
 <?php
-    $rutalocal='../syscatedral/report/reporte_concar_venta.php';
-    $rutalocal2='../syscatedral/report/reporte_concar_venta_excel.php';
-    $rutaserver='../report/reporte_concar_venta.php';
-    $rutaserver2='../report/reporte_concar_venta_excel.php';
-
+  
     $Anio = date("Y"); 
     $Mes = date("m"); 
-    $colorheder="info"; //COLOR  CABECERA MODAL
-?> 
 
-    <!--<div>  Modal 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-addrecibo"><i class="fa fa-plus-circle"></i> Agregar Contrato</button>
-    </div>-->
+    $permiso_token =mysqli_query($con,"CALL permisos('$id','$key1','$tok1');");
+    if (!$permiso_token||mysqli_num_rows($permiso_token)!=0){
+        
+    ?>
+    <div> <!-- Modal -->
+        <button type="button" id="agregar" class="btn btn-primary" data-toggle="modal" 
+        data-target=".bs-example-modal-lg-registroconcar"  onclick="limpiarFormulario()"><i class="fa fa-plus-circle"></i> Agregar <?php echo  $titulo?></button>
+    </div>
+    <?php
+    }
+    $permiso_token->close();  
+    $con->next_result();
+    ?>
+
+   
     <div class="modal fade bs-example-modal-lg-registroconcar" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lm">
             <div class="modal-content"> 
@@ -26,46 +32,29 @@
                         
                         <div class="form-group">
                         
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha:<span class="required"></span>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> F. Inicio:<span class="required"></span>
                                 </label>
-                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input type="date" id="fecha" name="fecha" class="form-control" placeholder="Fecha Inicio" >
                                 </div>
 
                             </div>   
-
-                            <!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-suitcase" aria-hidden="true"></i> Año: <span class="required"></span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> F. Fin:<span class="required"></span>
+                                </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="number" id="anio" name="anio" step="any" class="form-control" placeholder="0000" >
+                                <input type="date" id="fecha2" name="fecha2" class="form-control" placeholder="Fecha Inicio" >
+                                </div>
+
+                            </div>  
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-5 col-sm-5 col-xs-12"><i class="fa fa-inbox" aria-hidden="true"></i> Último N° Comprobante: <span class="required"></span></label>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                <input type="text" id="n_comprobante" name="n_comprobante" class="form-control" placeholder="Último N° Comprobante"  maxlength="10" >
                                 </div>
                             </div>
-
-                           
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><i class="fa fa-tag" aria-hidden="true"></i> Mes:
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="mes" name="mes" data-size="5" style="max-width: 100%!important;" >
-                                <option value="" >-- Selecciona Mes --</option>
-                                        <option value="01"  >Enero</option>
-                                        <option value="02"  >Febrero</option>  
-                                        <option value="03"  >Marzo</option>  
-                                        <option value="04"  >Abril</option>  
-                                        <option value="05"  >Mayo</option>  
-                                        <option value="06"  >Junio</option>  
-                                        <option value="07"  >Julio</option>  
-                                        <option value="08"  >Agosto</option>  
-                                        <option value="09"  >Septiembre</option>  
-                                        <option value="10"  >Octubre</option>  
-                                        <option value="11"  >Noviembre</option>  
-                                        <option value="12"  >Diciembre</option>  
-                                </select>
-                                </div>
-                            </div> -->
-                            
-                        
 
                         </div>
 
@@ -73,18 +62,16 @@
 
                         <div class="ln_solid"></div>
                         <div class="form-group">
-                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <button id="save_data_registroconcar" type="submit" class="btn btn-primary" ><i class="fa fa-file-pdf-o"> </i> Generar Registros</button>
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4">
+                            <button id="save_data_registroconcar" type="submit" class="btn btn-success" ></button>
                             
-                            <button class="btn btn-success" name="export2" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
-                         
                             </div>
                         </div>    
                     </form>
                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"> </i> Cerrar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiarFormulario()"><i class="glyphicon glyphicon-remove"> </i> Cerrar</button>
                 </div>
             </div>
         </div>

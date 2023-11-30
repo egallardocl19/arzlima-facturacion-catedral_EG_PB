@@ -67,7 +67,7 @@
         $total_pages = ceil($numrows/$per_page);
         $reload = './expences.php';
 		//consulta principal para obtener los datos
-        $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,tt.nombre,tm.signo,format(t.monto_total,2) as importe,
+        $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.cantidad,t.hora,t.dni,tt.nombre,tm.signo,format(t.monto_total,2) as importe,
         (select nombre from estado_ticket where id=t.idestado_ticket) as estado FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
@@ -80,6 +80,7 @@
                         <th class="column-title">Ticket </th>
                         <th class="column-title">Fecha Ingreso </th>
                         <th class="column-title">Hora Ingreso </th>
+                        <th class="column-title">N° Ticket </th>
                         <th class="column-title">DNI </th>
                         <th class="column-title">Tipo Ticket </th>
                         <!-- <th class="column-title">Monto </th> -->
@@ -94,6 +95,7 @@
                             $id=$r['id'];//
                             $serie=$r['serie'];//
                             $numero=$r['numero'];//
+                            $cantidad=$r['cantidad'];//
                             $fecha=$r['fecha'];//
                             $dni=$r['dni'];//
                             $nombre=$r['nombre'];//
@@ -120,19 +122,13 @@
                              
                     <tr class="even pointer">
 
-                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $serie."-".$numero;?></td>
-                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $fecha; ?></td>
-                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $hora; ?></td>
-                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $dni; ?></td>
-                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $nombre; ?></td>
-                        <!-- <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $signo." ".$importe; ?></td> -->
-                      
+                        <td><?php echo $serie."-".$numero;?></td>
+                        <td><?php echo $fecha; ?></td>
+                        <td><?php echo $hora; ?></td>
+                        <td><?php echo $cantidad; ?></td>
+                        <td><?php echo $dni; ?></td>
+                        <td><?php echo $nombre; ?></td>
+                        
                        
 
                         

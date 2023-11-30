@@ -84,7 +84,7 @@
                         <?php
                     
                             include("modal/mantenimiento_recibos.php");
-                            include("modal/new_registroconcar.php");
+                            
 
                             ?>
 
@@ -117,18 +117,7 @@
                                                 
                                             </div>
                                         </form> 
-                                        <?php
-                                               if ($permiso_editar==1){
-                                        ?>
-                                        <form class="form-horizontal" role="form" id="ingresos">
-                                            <div class="modal-footer">
-                                                
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-registroconcar"><i class="glyphicon glyphicon-file"></i> Plantilla Concar</button>
-                                            </div>
-                                        </form>   
-                                        <?php
-                                            }
-                                        ?>
+                                        
                                                                 <!-- end form search -->
                                         <div class="x_content">
                                             <div class="table-responsive">
@@ -152,7 +141,9 @@
 <script type="text/javascript" src="js/VentanaCentrada.js"></script>
 
 <script>
+   
 
+   
     $( "#add" ).submit(function( event ) {
     var parametros = $(this).serialize();
         $.ajax({
@@ -173,30 +164,7 @@
     event.preventDefault();
     })
 
-     // success
-     $("#save_data_registroconcar").click(function () {
- $( "#addregistroconcar" ).submit(function( event ) {
-    $('#save_data_registroconcar').attr("disabled", true);
-  var parametros = $(this).serialize();
-      $.ajax({
-             type: "POST",
-             url: "action/addregistro_concar.php",
-             data: parametros,
-              beforeSend: function(objeto){
-                 $("#result1").show();
-                 $("#result1").html("Mensaje: Cargando...");
-               },
-             success: function(datos){
-             $("#result1").html(datos);
-             $('#save_data_registroconcar').attr("disabled", false);
-             //load(1);
-             //$("#save_data").hide();
-           }
-     });
-   event.preventDefault();
- })
-})
-
+       
        function limpiarFormulario() {
         document.getElementById("add").reset();
         $('#idclase').val(0).addClass("selectpicker").selectpicker('refresh'); 
@@ -244,10 +212,6 @@
             $("#valor_mantenimiento").val(1);  
             }
            
-            //$("#observaciones").prop("readonly",false);
-             //$("#importe").prop("readonly",false);
-             //$("#arbitrios").prop("readonly",false);
-             //$("#anio").prop("readonly",false);
              $("#result").hide();
              $("#n_pago").prop("readonly",true);
              document.getElementById("recibo_contable").style.display = "none";

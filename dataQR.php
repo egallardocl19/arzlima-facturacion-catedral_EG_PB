@@ -15,10 +15,24 @@ if (!empty($totalTicket)) {
 	if ($DataTicket['idestado_registro'] !='2') {
 		
 	//Si existe el Ticket se inserta en el registro
+	
+	$contador_ingreso=mysqli_query($con,"SELECT count(id) as contador FROM ticket_control WHERE CONCAT(serie,'-',numero)='$datoqr'");
+		//if (!$contador_ingreso||mysqli_num_rows($contador_ingreso)!=0){
+			if ($row = mysqli_fetch_array($contador_ingreso)){
+				if ($row['contador']==0){
+					$contador=1; 
+				}else{
+					$contador=$row['contador']+1; 
+				}
+				
+			}
+		//}else{
+		//	$contador= "1";
+		//}
 
 	$sql2="INSERT INTO ticket_control 
 	(SELECT 0,serie,numero,'$created_at',(SELECT DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 HOUR), '%H:%i:%S' )),
-	dni,nombre,direccion,cantidad,monto_total,idestado_ticket,idestado_registro,idtipo_ticket,idestado_dato,observaciones,$user_id,'$created_at',2,null,2,null 
+	dni,nombre,direccion,$contador,monto_total,idestado_ticket,idestado_registro,idtipo_ticket,idestado_dato,observaciones,$user_id,'$created_at',2,null,2,null 
 	FROM ticket WHERE CONCAT(serie,'-',numero)='$datoqr')";
 	$query_new_insert = mysqli_query($con,$sql2);
 

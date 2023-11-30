@@ -8,11 +8,11 @@
 	header("Expires: 0");
 
 	$output = "";
-
-	$fecha = $_POST['fecha'];
+	$fecha = $_GET['variable1'];
+	//$fecha = $_POST['fecha'];
 	
 
-	if(ISSET($_POST['export2'])){
+	if(ISSET($_GET['variable1'])){
 		$output .="
 
 			<table border='1'>
