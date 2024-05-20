@@ -5,6 +5,7 @@ $(document).ready(function(){
 function load(page){
 	var q= $("#q").val();
 	
+	
 	$("#loader").fadeIn('slow');
 	$.ajax({
 		url:'./ajax/recibos_control.php?action=ajax&page='+page+'&q='+q,
@@ -16,6 +17,8 @@ function load(page){
 			$('#loader').html('');
 		}
 	})
+
+
 
 	
 

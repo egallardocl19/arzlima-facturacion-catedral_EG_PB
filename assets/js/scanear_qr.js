@@ -74,7 +74,7 @@ function tick() {
         initial_code_result = false;
         setTimeout(function(){
           initial_code_result = true;
-        },1000); //tiempo refresh
+        },6000);
       }else{
         //console.log('codigo detectado en blanco');
       }

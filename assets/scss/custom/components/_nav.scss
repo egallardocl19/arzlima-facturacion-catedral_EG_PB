@@ -1,0 +1,81 @@
+// 
+// _nav.scss
+// 
+
+.nav-tabs,
+.nav-pills {
+    >li {
+        >a {
+            color: var(--#{$prefix}body-color);
+            font-weight: $font-weight-medium;
+        }
+    }
+}
+
+.nav-pills {
+    >a {
+        color: var(--#{$prefix}body-color);  
+        font-weight: $font-weight-medium;
+    }
+}
+
+
+.nav-tabs-custom {
+    border-bottom: 1px solid var(--#{$prefix}border-color);
+
+    .nav-item {
+        position: relative;
+        color: $dark;
+
+        .nav-link {
+            border: none;
+
+            &::after {
+                content: "";
+                background: rgba(var(--bs-primary-rgb), 1);
+                height: 1px;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                bottom: -1px;
+                transition: all 250ms ease 0s;
+                transform: scale(0);
+            }
+
+            &.active {
+                color: rgba(var(--bs-primary-rgb), 1);
+
+                &:after {
+                    transform: scale(1);
+                }
+            }
+
+        }
+    }
+
+    &.card-header-tabs {
+        border-bottom: none;
+        
+        .nav-link {
+            padding: $card-cap-padding-y $nav-link-padding-x;
+            font-weight: $font-weight-medium;
+        }
+    }
+}
+
+
+// vertical nav
+
+.vertical-nav {
+    .nav {
+        .nav-link {
+            padding: 24px 16px;
+            text-align: center;
+            margin-bottom: 8px;
+
+            .nav-icon {
+                font-size: 24px;
+            }
+        }
+    }
+}

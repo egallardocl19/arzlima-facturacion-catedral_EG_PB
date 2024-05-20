@@ -39,7 +39,7 @@
                             <div class="mb-4" id="output" hidden>
                                 <div id="outputMessage">Aún no se ha detectado código QR</div>
                                 <div hidden>
-                                <b>Código:</b> <span id="outputData"></span>
+                                <span id="outputData"></span>
                                 </div>
                             </div>
                             </div>
@@ -64,6 +64,7 @@
                         </div>
                         
                     </form>
+                
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiarFormulario()"><i class="glyphicon glyphicon-remove"> </i> Cerrar</button>

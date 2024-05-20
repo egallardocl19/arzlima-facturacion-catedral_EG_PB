@@ -2,14 +2,37 @@
      $rutalocal='../inmuebles/report/recibo_arrendamiento.php';
      $rutaserver='../report/recibo_arrendamiento.php';
 
-    $permiso_token =mysqli_query($con,"CALL permisos('$id','$key1','$tok1');");
+    $permiso_token =mysqli_query($con,"CALL permisos('$id','$key1','$tok1');"); 
     if (!$permiso_token||mysqli_num_rows($permiso_token)!=0){
         
     ?>
-    <div> <!-- Modal -->
+ <!-- Modal --> 
+    <!-- <div>
         <button type="button" id="agregar" class="btn btn-primary" data-toggle="modal" 
         data-target=".bs-example-modal-lg-add"  onclick="limpiarFormulario()"><i class="fa fa-plus-circle"></i> Agregar <?php echo  $titulo?></button>
-    </div>
+    </div> -->
+
+    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="tile-stats" style="background-color:#FFE69A"> 
+                         
+                          <a data-toggle="modal" data-target=".bs-example-modal-lg-reporterecibosarrendamiento" >
+                          <img src="images/ticket3.png" style="width:350%"></div>
+                          <a href="recibos.php?key1=2"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
+                          <a href="recibos.php?key1=2"><h3 style="color:#777E96">Ticket Nacionales</h3></a>
+                        
+                                            
+                        </div>
+                    </div>
+
+                    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="tile-stats" style="background-color:#FFE69A">
+                        <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
+                        
+                          <a href="recibos.php?key1=2"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
+                          <a href="recibos.php?key1=2"><h3 style="color:#777E96">Ticket Extranjeros</h3></a>
+                        </div>
+                    </div>
+    
     <?php
     }
     $permiso_token->close();  
@@ -171,8 +194,7 @@
                            
                             
                         </div>
-                       
-                       
+                 
                         <!--------------------------------------------------------------------------------->
                         <div class="ln_solid"></div>
                         <div id="result"></div>

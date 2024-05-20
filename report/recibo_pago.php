@@ -12,16 +12,23 @@ while ($row=$resultado->fetch_assoc()) {
 	 		$serie = $row['serie'];
 	 		$numero = $row['numero'];
 	 		$fecha = $row['fecha'];
+            $hora = $row['hora'];
+            $iduser_add = $row['iduser_add'];
 	 		$dni = $row['dni'];
-	 		$nombre = $row['nombre'];
+            $nombre = $row['nombre'];
+            $cantidad = $row['cantidad_total'];
 	 		$signo = $row['signo'];
-	 		$importe = $row['importe'];
             $monto_total = $row['monto_total'];
-            $cantidad = $row['cantidad'];
+            $clase = $row['clase'];
             $estado = $row['estado'];
             $tipo_pago = $row['tipo_pago'];
 		
 	 }	
+$resultado->close();  
+$con->next_result();
+$consulta_detalle="call recibo_ticket_detalle($v1)";
+$resultado_detalle=$con->query($consulta_detalle);
+
 class PDF extends FPDF
 {
 	
@@ -52,8 +59,10 @@ function Header()
 // Pie de página
 function Footer()
 {
+   
     // Posición: a 1,5 cm del final
-    $this->SetY(-15);
+    $this->SetY(-23);
+    $this->MultiCell(80,4,utf8_decode('EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.'),'','C',false);
     // Arial italic 8
     $this->SetFont('Arial','I',8);
     // Número de página
@@ -72,37 +81,43 @@ $pdf->AddPage();
 
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(0,2,'',0,1,'D',0);
-$pdf->Cell(80,6,utf8_decode(' Nº TICKET'),1,1,'C',0);
+$pdf->SetFillColor(00,00,00);//Fondo verde de celda
+$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+$pdf->Cell(80,6,utf8_decode(' Nº TICKET'),1,1,'C',TRUE);
+$pdf->SetTextColor(00,00,00);  // Establece el color del texto (en este caso es blanco)
 $pdf->Cell(80,6,$serie."-".$numero,1,1,'C',0);
 //$pdf->Cell(143,10,'',0,0,'D',0);
 
  $pdf->Ln(4);
  $pdf->SetFont('Arial','B',10);
- $pdf->Cell(40,5,'FECHA: '.$fecha,0,1,'D',0);
- $pdf->Cell(40,5,'TIPO TICKET: '.utf8_decode($nombre),0,1,'D',0);
+ $pdf->Cell(40,5,'FECHA: '.$fecha,0,0,'D',0);
+ $pdf->Cell(40,5,'HORA: '.$hora,0,1,'D',0);
+ $pdf->Cell(45,5,'TICKET: '.utf8_decode($clase),0,0,'D',0);
+ $pdf->Cell(45,5,'CAJERO: '.utf8_decode($iduser_add),0,1,'D',0);
  $pdf->SetFont('Arial','B',10);
- $pdf->Cell(40,5,'P.UNIT: '.$signo.$importe,0,1,'D',0);
- $pdf->Cell(40,5,'CANT: '.$cantidad,0,1,'D',0);
- $pdf->SetFont('Arial','B',14);
- $pdf->Cell(40,5,'TOTAL: '.$signo.$monto_total,0,1,'D',0);
- $pdf->Ln(5);
- $pdf->SetFont('Arial','B',10);
-$pdf->Cell(40,5,'DNI: '.$dni,0,1,'D',0);
-// $pdf->Cell(40,5,'COSTO TOTAL: '.$costo_total.' Soles',0,1,'D',0);
-$pdf->SetDrawColor(188,188,188); //COLOR
-$pdf->Line(0,100,100,100);//INSERTAR LINEA
-$pdf->Ln(4);
-$pdf->SetFont('Arial','B',10);
-if($estado=="PAGADO"){
-$nombre_estado="CANCELADO";
-}else{
-    $nombre_estado="";  
-}
-$pdf->Cell(80,3,$nombre_estado,0,1,'C',0);
-$pdf->Cell(80,3,'---------------------------',0,1,'C',0);
-$pdf->Cell(80,3,$tipo_pago,0,1,'C',0);
-$pdf->Ln(5);
-// Llamando a la libreria PHPQRCODE
+
+ if($cantidad==0){
+    $nombre_cantidad="POR DEFINIR";
+    }else{
+    $nombre_cantidad=$cantidad;  
+    }
+    $pdf->Ln(62);
+     $pdf->SetFillColor(00,00,00);//Fondo verde de celda
+	 $pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+	 $pdf->Cell(35,6,utf8_decode('TIPO'),1,0,'C',TRUE);
+	 $pdf->Cell(15,6,utf8_decode('CANT.'),1,0,'C',TRUE);
+	 $pdf->Cell(15,6,utf8_decode('P.UNIT'),1,0,'C',TRUE);
+	 $pdf->Cell(15,6,utf8_decode('TOTAL'),1,1,'C',TRUE);
+
+  while ($row=$resultado_detalle->fetch_assoc()) {
+    $pdf->SetFillColor(37,67,120);//Fondo verde de celda
+ 	$pdf->SetTextColor(00,00,00);  // Establece el color del texto (en este caso es blanco)
+    $pdf->Cell(35,5,substr(utf8_decode($row['nombre']),0,19),1,0,'C',0);
+    $pdf->Cell(15,5,utf8_decode($row['cantidad']),1,0,'C',0);
+    $pdf->Cell(15,5,utf8_decode($row['moneda']).$row['importe'],1,0,'C',0);
+    $pdf->Cell(15,5,utf8_decode($row['moneda']).$row['total'],1,1,'C',0);
+  }  
+  // Llamando a la libreria PHPQRCODE
 include('../phpqrcode/qrlib.php'); 
 // Ingresamos el contenido de nuestro Código QR
 $contenido = $serie."-".$numero;
@@ -110,10 +125,40 @@ $contenido = $serie."-".$numero;
 QRcode::png($contenido,"resultado.png",QR_ECLEVEL_L,10,2);
 // Impresión de la imagen en el navegador listo para usarla
 //echo "<div><img src='resultado.png'/></div>";
-$pdf->Image('resultado.png', 20, 120, 60, 60);
-$pdf->Image('../images/profiles/catedral1.png',11, 185, 80, 80);
-$pdf->Ln(142);
-$pdf->MultiCell(80,4,utf8_decode('EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.'),'','C',false);
+$pdf->Image('resultado.png', 20, 79, 60, 60);
+
+$pdf->Ln(2);
+$pdf->SetTextColor(00,00,00);  // Establece el color del texto (en este caso es blanco)
+ $pdf->SetFont('Arial','B',14);
+ if($monto_total==0){
+    $nombre_monto="POR DEFINIR";
+    }else{
+    $nombre_monto=$signo.$monto_total;  
+    }
+//$pdf->Cell(20);
+ $pdf->Cell(80,5,'TOTAL: '.$nombre_monto,0,1,'C',0);
+ $pdf->Ln(2);
+ $pdf->SetFont('Arial','B',10);
+$pdf->Cell(40,5,'DNI: '.$dni.' - '.$nombre,0,1,'D',0);
+// $pdf->Cell(40,5,'COSTO TOTAL: '.$costo_total.' Soles',0,1,'D',0);
+$pdf->SetDrawColor(188,188,188); //COLOR
+$pdf->Line(0,100,100,100);//INSERTAR LINEA
+$pdf->Ln(1);
+$pdf->SetFont('Arial','B',10);
+if($estado=="PAGADO"){
+    $nombre_estado="CANCELADO";
+}else if($estado=="ANULADO"){
+    $nombre_estado="ANULADO";  
+}else {
+    $nombre_estado="";  
+}
+$pdf->Cell(80,3,'***'.$nombre_estado.'***',0,1,'C',0);
+$pdf->Cell(80,3,'---------------------------',0,1,'C',0);
+$pdf->Cell(80,3,$tipo_pago,0,1,'C',0);
+$pdf->Ln(6);
+
+$pdf->Image('../images/profiles/catedral1.png',11, 195, 80, 80);
+$pdf->Ln(128);
 $pdf->Output();
 ?>
 

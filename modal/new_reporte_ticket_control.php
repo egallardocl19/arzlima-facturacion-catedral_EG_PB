@@ -1,7 +1,7 @@
 <?php
        
-    $rutalocal='../ticketcat/report/reporte_ticket_control.php';
-    $rutalocal2='../ticketcat/report/reporte_ticket_control_excel.php';
+    $rutalocal='../syscatedral/report/reporte_ticket_control.php';
+    $rutalocal2='../syscatedral/report/reporte_ticket_control_excel.php';
     $rutaserver='../report/reporte_ticket_control.php';
     $rutaserver2='../report/reporte_ticket_control_excel.php';
 ?> 
@@ -86,9 +86,9 @@
                            
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
+                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutalocal ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
                             
-                            <button class="btn btn-success" name="export2" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
+                            <button class="btn btn-success" name="export2" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
                          
                             </div>
                         </div>    

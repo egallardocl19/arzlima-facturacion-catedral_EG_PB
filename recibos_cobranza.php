@@ -28,7 +28,7 @@
     $colorheder="info"; //COLOR  CABECERA MODAL
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
-    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1");
+    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id=6");
     
     //$tipo_venta=mysqli_query($con, "SELECT * FROM tipo_venta where idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
@@ -105,7 +105,7 @@
                                                     <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Inquilino - Contrato - Fecha" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Fecha" ><!--//onkeyup='load(1);'-->
                                                     </div>
                                                   
                                                         <div class="col-mg-3 col-sm-3 col-xs-12">
@@ -189,6 +189,19 @@
                             });   
         }
 
+        function buscarcobranza() {
+        //document.getElementById("add").reset();
+        //$('#idticket').val(0).addClass("selectpicker").selectpicker('refresh'); 
+        //$('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');                 
+        condicion=$("#fecha").val(); 
+        //condicion = 1;
+                            caso = "4";
+                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
+                                $("#monto_total_ticket").val(data);      
+                                    
+                            });   
+        }
+
                 
 </script>
 <!-- CAMPO POR DEFAULT AL INICIAR BOTON AGREGAR -->
@@ -233,7 +246,48 @@
            
             
             
-                   
+        //OBTENER DATOS PARA IMPRIMIR RECIBO
+         function obtener_datos(id_cod){
+            var titulo = '<?=$titulo?>';
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-search" aria-hidden="true"></i> '+titulo+'</strong>';
+            //  var tipo_recibo = $("#tipo_recibo"+id_cod).val();  //
+            //  var codigo_recibo = $("#codigo_recibo"+id_cod).val();//    
+            //  var precio = $("#precio"+id_cod).val();    //
+            //  var arbitrios = $("#arbitrios"+id_cod).val();  //  
+            //  var total = $("#total"+id_cod).val();    //
+            //  var anio = $("#anio"+id_cod).val();//
+            //  var mes = $("#mes"+id_cod).val();//
+            //  var fecha_recibo = $("#fecha_recibo"+id_cod).val();//
+            //  var fecha_vencimiento = $("#fecha_vencimiento"+id_cod).val();//
+            //  var inquilino = $("#inquilino"+id_cod).val();//
+            //  var inmueble = $("#inmueble"+id_cod).val();   //
+            //  var tipo_moneda = $("#tipo_moneda"+id_cod).val();    //
+            //  var observacion = $("#observacion"+id_cod).val();//
+
+            //  $("#codigo").val(id_cod); 
+            //  $('#tipo_recibo').val(tipo_recibo).addClass("selectpicker").selectpicker('refresh');
+            //  $("#codigo_recibo").val(codigo_recibo); 
+            //  $("#anio").val(anio);
+            //  $('#mes').val(mes).addClass("selectpicker").selectpicker('refresh');
+             
+            //  $("#fecha_inicio").val(fecha_recibo);
+            //  $("#fecha_vencimiento").val(fecha_vencimiento);
+           
+           
+            //  $("#arbitrios").val(arbitrios);   
+            //  document.getElementById('monto_total').innerHTML= total;                                                  
+            //  $("#observaciones").val(observacion);
+            //  $("#observaciones").prop("readonly",true);
+            //  $("#importe").prop("readonly",true);
+            //  $("#arbitrios").prop("readonly",true);
+            //  $("#anio").prop("readonly",true);
+            //  $("#valor_mantenimiento").val(0);  
+            //  $("#result").hide();
+           
+             document.getElementById("nuevo").style.display = "none";
+             document.getElementById("save_data").style.display = "none";
+            
+         }    
 </script> 
 
 

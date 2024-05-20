@@ -7,7 +7,7 @@
 
     //KEY
     if (empty($_GET['key1'])){
-        $key1='1';
+        $key1='1'; 
     }else{
         $key1=$_GET['key1'];
     }
@@ -26,20 +26,21 @@
     //Variables
     $estado_pago =mysqli_query($con, "SELECT * from estado_pago where id=1");
     $colorheder="info"; //COLOR  CABECERA MODAL
+    $colortipo1="#F9E8C2";
+    $colortipo2="#FAD7D7";
+    $colortipo3="#ECFAD7";
+    $colortipo4="#D7F9FA";
+    $colortipo5="#D7E8FA";
+    $colortipo6="#E4D7FA";
+    $colortipo7="#FAD7F8";
+
+    $tamaniocampo="-lg";
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
-    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1");
-    $clase=mysqli_query($con, "SELECT * FROM clase_ticket where idestado_dato=1");
-    //$tipo_venta=mysqli_query($con, "SELECT * FROM tipo_venta where idestado_dato=1");
-    $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
+    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 AND id in(4,5)"); 
 
-    //Conteos 
-    //$info0=mysqli_query($con, "select * from recibos WHERE tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //TOTAL
-    //$info1=mysqli_query($con, "select * from recibos WHERE idestado_recibo=1 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PENDIENTE
-    //$info2=mysqli_query($con, "select * from recibos WHERE idestado_recibo=2 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PAGADO
-    //$info3=mysqli_query($con, "select * from recibos WHERE idestado_recibo=3 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //ANULADO
-    //$info4=mysqli_query($con, "select * from recibos WHERE idestado_recibo=4 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //FRACCIONADO
-                               
+    $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
+             
     //PERMISOS
       $submenu =mysqli_query($con,"CALL submenu('$id','0','$key1');");
       if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -83,14 +84,14 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <?php
                     
-                            include("modal/mantenimiento_recibos.php");
+                            include("modal/mantenimiento_recibos_caja.php");
                             
 
                             ?>
 
-                            <div class="x_panel">
+                        <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : </h2>
+                                <h2><?php echo $titulo; ?> : Nacionales </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -105,7 +106,7 @@
                                                     <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Inquilino - Contrato - Fecha" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Fecha" ><!--//onkeyup='load(1);'-->
                                                     </div>
                                                   
                                                         <div class="col-mg-3 col-sm-3 col-xs-12">
@@ -129,7 +130,53 @@
                                         </div>                            
                                                                
                             </div> 
-                    </div>
+                        </div>
+
+                        
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><?php echo $titulo; ?> : Internacionales</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                    </div>
+                                        <!-- form search -->
+                                        <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                            <!--<div class="form-group">-->
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+                                                    <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
+
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="Código Recibo - Fecha" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+                                                  
+                                                        <div class="col-mg-3 col-sm-3 col-xs-12">
+                                                            <button type="button" class="btn btn-warning" onclick='load2(1);'>
+                                                                <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                <span id="loader"></span>
+                                                        </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </form> 
+                                        
+                                                                <!-- end form search -->
+                                        <div class="x_content">
+                                            <div class="table-responsive">
+                                                <!-- ajax -->
+                                                <div id="resultados2"></div><!--Carga los datos ajax -->
+                                                <div class='outer_div2'></div><!-- Carga los datos ajax -->
+                                                <!-- /ajax -->
+                                            </div>
+                                        </div>                            
+                                                               
+                            </div> 
+                        </div>
+
+                        
                 </div>
             </div>
         </div>
@@ -141,8 +188,6 @@
 <script type="text/javascript" src="js/VentanaCentrada.js"></script>
 
 <script>
-   
-
    
     $( "#add" ).submit(function( event ) {
     var parametros = $(this).serialize();
@@ -157,7 +202,9 @@
                 success: function(datos){
                 $("#result").html(datos);
                 $('#save_data').attr("disabled", false);
+                document.getElementById("nuevo").style.display = "block";
                 load(1);
+                load2(1);
             }
         });
     
@@ -167,26 +214,39 @@
        
        function limpiarFormulario() {
         document.getElementById("add").reset();
-        $('#idclase').val(0).addClass("selectpicker").selectpicker('refresh'); 
-        condicion = $('#idclase').val();
-        $.post("includes/getRecibo_html.php", { caso: 1, condicion: condicion}, function(data){
-        $("#idtipo").html(data).addClass("selectpicker").selectpicker('refresh');              
-        }); 
-        $.post("includes/getRecibo_html.php", { caso: 2, condicion: condicion}, function(data){
-        $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');              
-        }); 
-        $('#cantidad').val(1)
+     
         $('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');         
         $("#n_pago").prop("readonly",true);
         
         $("#result").hide(); 
+        document.getElementById("nuevo").style.display = "none";
         }
 
-                
+       
+       
+                    
 </script>
 <!-- CAMPO POR DEFAULT AL INICIAR BOTON AGREGAR -->
 <script language="javascript">
-   
+        var suma_monto=0;
+        var suma_monto1=0;
+        var suma_monto2=0;
+        var suma_monto3=0;
+        var suma_monto4=0;
+        var suma_monto5=0;
+        var suma_monto6=0;
+        var suma_monto7=0;
+        var importe1=0;
+        var importe2=0;
+        var importe3=0;
+        var importe4=0;
+        var importe5=0;
+        var importe6=0;
+        var importe7=0;
+         var clase1 = 1; //clas1
+         var clase2 = 2; //clas2
+         
+  
             document.getElementById('q').addEventListener('focus', function(){
                 document.onkeydown = function(e){
                     var ev = document.all ? window.event : e;
@@ -198,27 +258,427 @@
 
             })
            
-            document.getElementById('agregar').addEventListener('click', function(){
-            var titulo = '<?=$titulo?>';
-            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar '+titulo+'</strong>';
-            
+            document.getElementById('agregar1').addEventListener('click', function(){
+            document.getElementById("gp3").style.display = "block";
+            document.getElementById("gp4").style.display = "block";
+            document.getElementById("gp5").style.display = "block";
+            document.getElementById("gp6").style.display = "block";
+            document.getElementById("nuevo").style.display = "none";
+            //document.getElementById("gp7").style.display = "block";
+            // document.getElementById("ln3").style.display = "block";
+            // document.getElementById("ln4").style.display = "block";
+            document.getElementById("ln7").style.display = "block";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Nacional</strong>';
             var permiso_crear = '<?=$permiso_crear?>';
-            if (permiso_crear == 1){
-            document.getElementById("save_data").style.display = "block";
-            document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
-            document.getElementById("nuevo").style.display = "block";
-            document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
-            $("#codigo").val(0);    
-            $("#valor_mantenimiento").val(1);  
-            }
-           
-             $("#result").hide();
-             $("#n_pago").prop("readonly",true);
-             document.getElementById("recibo_contable").style.display = "none";
-             document.getElementById("detalle_notas").style.display = "none";
+                if (permiso_crear == 1){
+                document.getElementById("save_data").style.display = "block";
+                document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
+                
+                document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
+                $("#codigo").val(0);   
+                $("#valor_mantenimiento").val(1); 
+                $("#clase").val(clase1);  
+                }
+
+                limpiarFormulario();
+                $("#result").hide();
+                $("#n_pago").prop("readonly",true);
+                reset_montos();
+                
+               //LLENADO DE DATA
+                $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase1, tipo:1}, function(data){
+                $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');  
+                });
+              
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:1}, function(data){
+                $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh'); 
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                        importe1=data;
+                    });          
+                });
+
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:2}, function(data){
+                $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');              
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                        importe2=data;
+                    }); 
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:3}, function(data){
+                $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');            
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                        importe3=data;
+                    });   
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:4}, function(data){
+                $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');            
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                        importe4=data;
+                    });   
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:9}, function(data){
+                $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                        importe5=data;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:12}, function(data){
+                $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                        importe6=data;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:10}, function(data){
+                $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                        importe7=data;
+                    });             
+                });
             }); 
+
+            document.getElementById('agregar2').addEventListener('click', function(){
+            document.getElementById("gp3").style.display = "none";
+            document.getElementById("gp4").style.display = "none";
+            document.getElementById("gp5").style.display = "none";
+            document.getElementById("gp6").style.display = "none";
+            document.getElementById("nuevo").style.display = "none";
+            //document.getElementById("gp7").style.display = "none";
+            // document.getElementById("ln3").style.display = "none";
+            // document.getElementById("ln4").style.display = "none";
+            document.getElementById("ln7").style.display = "none";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Extranjeros</strong>';
+            var permiso_crear = '<?=$permiso_crear?>';
+                if (permiso_crear == 1){
+                document.getElementById("save_data").style.display = "block";
+                document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
+                
+                document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
+                $("#codigo").val(0);   
+                $("#valor_mantenimiento").val(1);  
+                $("#clase").val(clase2);  
+                }
+                limpiarFormulario();
+                $("#result").hide();
+                $("#n_pago").prop("readonly",true);
+                reset_montos();
+               
+                //LLENADO DE DATA
+                $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase2, tipo:1}, function(data){
+                $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');     
+                });
+
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:5}, function(data){
+                $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');     
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                        importe1=data;
+                    });              
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:6}, function(data){
+                $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');    
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                        importe2=data;
+                    });           
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                        importe3=0;
+                    });               
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');   
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                        importe4=0;
+                    });            
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh'); 
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                        importe5=0;
+                    });                
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                        importe6=0;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:11}, function(data){
+                $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                        importe7=data;
+                    });             
+                });
+
+            }); 
+
            
-            
+           
+    </script> 
+    <script language="javascript">
+    function reset_montos() {
+            suma_monto=0;
+            suma_monto1=0;
+            suma_monto2=0;
+            suma_monto3=0;
+            suma_monto4=0;
+            suma_monto5=0;
+            suma_monto6=0;
+            suma_monto7=0;
+            importe1=0;
+            importe2=0;
+            importe3=0;
+            importe4=0;
+            importe5=0;
+            importe6=0;
+            importe7=0;
+    }
+    </script> 
+    <script language="javascript">
+    function cal1() {
+           $importe1=importe1;
+           $cantidad1=$("#cantidad1").val();
+                       
+                       if ($cantidad1==''){
+                          $cantidad1=0;
+                       
+                       }else{
+                          $cantidad1=parseFloat($cantidad1);
+                       }
+                       if ($importe1==''){
+                          $importe1=0;
+                       }else{
+                          $importe1=parseFloat($importe1);
+                       }
+                       $valor_total1=($importe1*$cantidad1);
+                       suma_monto1= $valor_total1;                 
+                       $("#monto_total1").val($valor_total1.toFixed(2));
+                      suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                      $("#monto_totalx").val(suma_monto.toFixed(2));
+          
+    }
+    function cal2() {
+        $importe2=importe2;
+         $cantidad2=$("#cantidad2").val();
+                         
+                          if ($cantidad2==''){
+                             $cantidad2=0;
+                            
+                          }else{
+                             $cantidad2=parseFloat($cantidad2);
+                          }
+                          if ($importe2==''){
+                             $importe2=0;
+                          }else{
+                             $importe2=parseFloat($importe2);
+                          }
+                          $valor_total2=($importe2*$cantidad2);
+                          suma_monto2= $valor_total2;      
+                          $("#monto_total2").val($valor_total2.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal3() {
+        $importe3=importe3;
+        $cantidad3=$("#cantidad3").val();
+                        
+                          if ($cantidad3==''){
+                             $cantidad3=0;
+                          }else{
+                             $cantidad3=parseFloat($cantidad3);
+                          }
+                          if ($importe3==''){
+                             $importe3=0;
+                          }else{
+                             $importe3=parseFloat($importe3);
+                          }
+                          $valor_total3=($importe3*$cantidad3);
+                          suma_monto3= $valor_total3; 
+                          $("#monto_total3").val($valor_total3.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal4() {
+        $importe4=importe4;
+         $cantidad4=$("#cantidad4").val();
+                        
+                          if ($cantidad4==''){
+                             $cantidad4=0;
+                          }else{
+                             $cantidad4=parseFloat($cantidad4);
+                          }
+                          if ($importe4==''){
+                             $importe4=0;
+                          }else{
+                             $importe4=parseFloat($importe4);
+                          }
+                          $valor_total4=($importe4*$cantidad4);
+                          suma_monto4= $valor_total4; 
+                          $("#monto_total4").val($valor_total4.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal5() {
+        $importe5=importe5;
+        $cantidad5=$("#cantidad5").val();
+                      
+                          if ($cantidad5==''){
+                             $cantidad5=0;
+                          }else{
+                             $cantidad5=parseFloat($cantidad5);
+                          }
+                          if ($importe5==''){
+                             $importe5=0;
+                          }else{
+                             $importe5=parseFloat($importe5);
+                          }
+                          $valor_total5=($importe5*$cantidad5);
+                          suma_monto5= $valor_total5; 
+                          $("#monto_total5").val($valor_total5.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal6() {
+        $importe6=importe6;
+         $cantidad6=$("#cantidad6").val();
+                      
+                          if ($cantidad6==''){
+                             $cantidad6=0;
+                          }else{
+                             $cantidad6=parseFloat($cantidad6);
+                          }
+                          if ($importe6==''){
+                             $importe6=0;
+                          }else{
+                             $importe6=parseFloat($importe6);
+                          }
+                          $valor_total6=($importe6*$cantidad6);
+                          suma_monto6= $valor_total6; 
+                          $("#monto_total6").val($valor_total6.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal7() {
+       $importe7=importe7;
+         $cantidad7=$("#cantidad7").val();
+                      
+                          if ($cantidad7==''){
+                             $cantidad7=0;
+                          }else{
+                             $cantidad7=parseFloat($cantidad7);
+                          }
+                          if ($importe7==''){
+                             $importe7=0;
+                          }else{
+                             $importe7=parseFloat($importe7);
+                          }
+                          $valor_total7=($importe7*$cantidad7);
+                          suma_monto7= $valor_total7; 
+                          $("#monto_total7").val($valor_total7.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    </script> 
+
+    <script language="javascript">
+    function incrementar1() {
+        var inputCantidad = document.getElementById("cantidad1");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+       cal1();
+    }
+    function incrementar2() {
+        var inputCantidad = document.getElementById("cantidad2");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal2();     
+    }
+    function incrementar3() {
+        var inputCantidad = document.getElementById("cantidad3");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal3();             
+    }
+    function incrementar4() {
+        var inputCantidad = document.getElementById("cantidad4");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal4();            
+    }
+    function incrementar5() {
+        var inputCantidad = document.getElementById("cantidad5");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal5(); 
+    }
+    function incrementar6() {
+        var inputCantidad = document.getElementById("cantidad6");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal6(); 
+    }
+    function incrementar7() {
+        var inputCantidad = document.getElementById("cantidad7");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal7(); 
+    }
+
+    function decrementar1() {
+        var inputCantidad = document.getElementById("cantidad1");
+         if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+        cal1();
+    }
+    function decrementar2() {
+        var inputCantidad = document.getElementById("cantidad2");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+       cal2();
+    }
+    function decrementar3() {
+        var inputCantidad = document.getElementById("cantidad3");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+        cal3();
+    }
+    function decrementar4() {
+        var inputCantidad = document.getElementById("cantidad4");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+        cal4();
+    }
+    function decrementar5() {
+        var inputCantidad = document.getElementById("cantidad5");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+         cal5();
+    }
+    function decrementar6() {
+        var inputCantidad = document.getElementById("cantidad6");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+         cal6();
+    }
+    function decrementar7() {
+        var inputCantidad = document.getElementById("cantidad7");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+         cal7();
+    }
             
                    
 </script> 

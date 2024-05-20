@@ -24,7 +24,14 @@ $cadena_script="call recibo_pago($codigo)";
 		$consulta=$cadena_script;
 		$resultado=$con->query($consulta);
 
+		
+		$con->next_result();
+$cadena_script2="call recibo_pago_detalle($codigo)";
 
+		$consulta2=$cadena_script2;
+		$resultado2=$con->query($consulta2);
+
+		
 class PDF extends FPDF
 {	
 // Cabecera de página
@@ -76,7 +83,7 @@ if ($codigo!="") {
 			$pdf->Cell(150,5,utf8_decode('_________________________________________________________________________________________________'),0,1,'D',0);
 			$pdf->SetFont('Arial','I',10); 
 			$pdf->Ln(2);
-			$pdf->Cell(40,6,utf8_decode('Fecha:           ').utf8_decode($row['fecha']),0,0,'D',0);
+			$pdf->Cell(40,6,utf8_decode('Fecha:           ').utf8_decode($row['fecha_recibo']),0,0,'D',0);
 			$pdf->Cell(115);
 			$pdf->SetTextColor(251,4,4); //COLOR
 			$pdf->SetFont('Arial','B',10); 
@@ -100,18 +107,20 @@ if ($codigo!="") {
 			$pdf->Cell(38,6,utf8_decode('P. Sub Total'),1,1,'C',TRUE);
 			$pdf->SetTextColor(0,0,0); //COLOR
 			$pdf->SetFont('Arial','I',10); 
+			$importe_total=0;
 			//$pdf->Cell(6);
-			$pdf->Cell(20,6,utf8_decode($row['cantidad']),0,0,'C',0);
+			while ($row2=$resultado2->fetch_assoc()) {
+			$pdf->Cell(20,6,utf8_decode($row2['cantidad']),0,0,'C',0);
 			$pdf->Cell(3);
-			$pdf->Cell(20,6,utf8_decode('UNIDAD'),0,0,'C',0);
-			//$pdf->Cell(15);
-			$pdf->Cell(72,6,utf8_decode($row['tipo_recibo'])." DE ENTRADA",0,0,'D',0);
-			//$periodo_recibo=$row['mes'];
-			//$anio_recibo=$row['anio'];
+			$pdf->Cell(20,6,utf8_decode('Ticket'),0,0,'C',0);
+			$pdf->Cell(72,6,utf8_decode($row2['nombre']),0,0,'D',0);
 			$pdf->Cell(8);
-			$pdf->Cell(38,6,$row['moneda'].utf8_decode(number_format($row['importe_unitario'],2)),0,0,'D',0);
-			$pdf->Cell(38,6,$row['moneda'].utf8_decode(number_format($row['importe'],2)),0,1,'D',0);
-			$importe_total=$row['importe'];
+			$pdf->Cell(38,6,$row2['moneda'].utf8_decode(number_format($row2['importe'],2)),0,0,'D',0);
+			$pdf->Cell(38,6,$row2['moneda'].utf8_decode(number_format($row2['total'],2)),0,1,'D',0);
+			$importe_total=$importe_total+$row2['total'];
+			}
+
+			
 		
 			$pdf->Cell(150,6,utf8_decode('_________________________________________________________________________________________________'),0,1,'D',0);
 			$pdf->SetFont('Arial','B',10); 
@@ -123,13 +132,6 @@ if ($codigo!="") {
 			$pdf->Cell(38,6,'          '.$row['moneda'].utf8_decode(number_format($importe_total,2)),1,1,'D',0);
 			$pdf->SetFont('Arial','B',10); 
 			$pdf->Cell(112);
-			//$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-			//$pdf->Cell(40,6,utf8_decode('IGV:'),1,0,'D',TRUE);
-			//$pdf->SetTextColor(0,0,0); //COLOR
-			//$pdf->SetFont('Arial','I',10); 
-			//$pdf->Cell(38,6,'          '.$row['moneda'].utf8_decode(number_format(0,2)),1,1,'D',0);
-			//$pdf->SetFont('Arial','B',10); 
-			//$pdf->Cell(112);
 			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
 			$pdf->Cell(40,6,utf8_decode('IMPORTE TOTAL:'),1,0,'D',TRUE);
 			$pdf->SetTextColor(0,0,0); //COLOR
@@ -143,9 +145,6 @@ if ($codigo!="") {
 			//$pdf->Cell(38,6,utf8_decode('Valor Unitario'),1,1,'C',0);
 			$pdf->Cell(160,4,utf8_decode('ADVERTENCIA: EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.'),1,1,'C',0);
 
-			//$estado_recibo_validar=$row['estado_recibo'];
-			//$fecha_cobranza_validar=$row['fecha_cobranza'];
-			//if($estado_recibo_validar==2){
 			//SELLO DE CANCELADO BCP
 			$pdf->Ln(15);
 			$pdf->SetTextColor(0,0,0); //COLOR
@@ -160,8 +159,8 @@ if ($codigo!="") {
 			$pdf->Cell(38,4,'CANCELADO',0,1,'C',0);
 			$pdf->SetFont('Arial','',10); 
 			//if($fecha_cobranza_validar!= null){
-				$dia_cobranza_validar=date("d", strtotime($row['fecha']));
-				$mes_cobranza_validar=date("m", strtotime($row['fecha']));
+				$dia_cobranza_validar=date("d", strtotime($row['fecha_cobranza']));
+				$mes_cobranza_validar=date("m", strtotime($row['fecha_cobranza']));
 				$nombremes='';
 				if ($mes_cobranza_validar=='01'){
 					$nombremes='ENERO';
@@ -190,7 +189,7 @@ if ($codigo!="") {
 				}else {
 					$nombremes='';
 				}
-				$anio_cobranza_validar=date("Y", strtotime($row['fecha']));
+				$anio_cobranza_validar=date("Y", strtotime($row['fecha_cobranza']));
 				$pdf->Cell(120); 
 				$pdf->Cell(38,4,'El '.$dia_cobranza_validar.' de '.$nombremes.' del '.$anio_cobranza_validar,0,1,'C',0);
 				//$pdf->SetDrawColor(188,188,188); //COLOR

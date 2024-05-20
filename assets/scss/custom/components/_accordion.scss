@@ -1,0 +1,20 @@
+//
+// accordion.scss
+//
+.accordion-button {
+    background-color: var(--#{$prefix}card-bg);
+    &::after{
+        background-image: none !important;
+        content: "\f0415";
+        font-family: "Material Design Icons";
+        font-size: 20px;
+        width: auto;
+        height: auto;
+    }
+    &:not(.collapsed)::after{
+        background-image: none !important;
+        content: "\f0374";
+        font-family: "Material Design Icons";
+        font-size: 20px;
+    }
+}

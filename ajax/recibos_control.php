@@ -40,11 +40,11 @@
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
         
          $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha','t.dni');//Columnas de busqueda  
-         $sTable = "ticket_control t, tipos_ticket tt, tipo_moneda tm";
-         $sWhere = "WHERE t.idtipo_ticket=tt.id and tt.idtipo_moneda=tm.id ";
+         $sTable = "ticket_control t, clase_ticket tt, tipo_moneda tm";
+         $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id ";
         if ( $_GET['q'] != "" ) 
         {
-            $sWhere = "WHERE t.idtipo_ticket=tt.id and tt.idtipo_moneda=tm.id and  (";
+            $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
@@ -67,7 +67,7 @@
         $total_pages = ceil($numrows/$per_page);
         $reload = './expences.php';
 		//consulta principal para obtener los datos
-        $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.cantidad,t.hora,t.dni,tt.nombre,tm.signo,format(t.monto_total,2) as importe,
+        $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.cantidad_total,t.hora,t.dni,tt.nombre,tm.signo,format(t.monto_total,2) as importe,
         (select nombre from estado_ticket where id=t.idestado_ticket) as estado FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
@@ -80,9 +80,8 @@
                         <th class="column-title">Ticket </th>
                         <th class="column-title">Fecha Ingreso </th>
                         <th class="column-title">Hora Ingreso </th>
-                        <th class="column-title">N° Ticket </th>
-                        <th class="column-title">DNI </th>
-                        <th class="column-title">Tipo Ticket </th>
+                        <th class="column-title">Cant. </th>
+                        <th class="column-title">Clase </th>
                         <!-- <th class="column-title">Monto </th> -->
                         
 						
@@ -95,7 +94,7 @@
                             $id=$r['id'];//
                             $serie=$r['serie'];//
                             $numero=$r['numero'];//
-                            $cantidad=$r['cantidad'];//
+                            $cantidad=$r['cantidad_total'];//
                             $fecha=$r['fecha'];//
                             $dni=$r['dni'];//
                             $nombre=$r['nombre'];//
@@ -126,7 +125,6 @@
                         <td><?php echo $fecha; ?></td>
                         <td><?php echo $hora; ?></td>
                         <td><?php echo $cantidad; ?></td>
-                        <td><?php echo $dni; ?></td>
                         <td><?php echo $nombre; ?></td>
                         
                        

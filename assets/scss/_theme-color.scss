@@ -1,0 +1,58 @@
+
+// Red
+[data-theme-mode="red"] {
+
+    $primary:          #ff7784;
+
+    --#{$prefix}primary:                    #{$primary} !important;
+    --#{$prefix}primary-rgb:                #{to-rgb($primary)} !important;
+    --#{$prefix}primary-text-emphasis:      #{shade-color($primary, 60%)} !important;
+    --#{$prefix}primary-bg-subtle:          #{rgba($primary, 0.08)} !important;
+    --#{$prefix}primary-border-subtle:      #{tint-color($primary, 60%)} !important;
+
+    $danger:            #34c38f;
+
+    --#{$prefix}danger: #{$danger} !important;
+    --#{$prefix}danger-rgb: #{to-rgb($danger)} !important;
+    --#{$prefix}danger-text-emphasis: #{shade-color($danger, 60%)} !important;
+    --#{$prefix}danger-bg-subtle: #{rgba($danger, 0.08)} !important;
+    --#{$prefix}danger-border-subtle: #{tint-color($danger, 60%)} !important;
+
+    $success:            #23d7e1;
+
+    --#{$prefix}success: #{$success} !important;
+    --#{$prefix}success-rgb: #{to-rgb($success)} !important;
+    --#{$prefix}success-text-emphasis: #{shade-color($success, 60%)} !important;
+    --#{$prefix}success-bg-subtle: #{rgba($success, 0.08)} !important;
+    --#{$prefix}success-border-subtle: #{tint-color($success, 60%)} !important;
+
+}
+
+
+// purple
+[data-theme-mode="purple"] {
+
+    $primary: #6951ce;
+
+    --#{$prefix}primary: #{$primary} !important;
+    --#{$prefix}primary-rgb: #{to-rgb($primary)} !important;
+    --#{$prefix}primary-text-emphasis: #{shade-color($primary, 60%)} !important;
+    --#{$prefix}primary-bg-subtle: #{rgba($primary, 0.08)} !important;
+    --#{$prefix}primary-border-subtle: #{tint-color($primary, 60%)} !important;
+
+    $danger: #34c38f;
+    
+    --#{$prefix}danger: #{$danger} !important;
+    --#{$prefix}danger-rgb: #{to-rgb($danger)} !important;
+    --#{$prefix}danger-text-emphasis: #{shade-color($danger, 60%)} !important;
+    --#{$prefix}danger-bg-subtle: #{rgba($danger, 0.08)} !important;
+    --#{$prefix}danger-border-subtle: #{tint-color($danger, 60%)} !important;
+
+    $success: #f04d80;
+
+    --#{$prefix}success: #{$success} !important;
+    --#{$prefix}success-rgb: #{to-rgb($success)} !important;
+    --#{$prefix}success-text-emphasis: #{shade-color($success, 60%)} !important;
+    --#{$prefix}success-bg-subtle: #{rgba($success, 0.08)} !important;
+    --#{$prefix}success-border-subtle: #{tint-color($success, 60%)} !important;
+}

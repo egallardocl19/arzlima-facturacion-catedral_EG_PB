@@ -1,0 +1,27 @@
+// 
+// _carousel.scss
+// 
+
+
+.carousel-indicators-rounded {
+    button{
+        width: 10px !important;
+        height: 10px !important;
+        border-radius: 50% !important;
+    }
+}
+
+.carousel-indicators.auth-carousel{
+    button{
+        width: 3rem !important;
+        height: 3rem !important;
+        margin: 0px 8px;
+    }
+}
+
+// dark
+[data-bs-theme="dark"]{
+    .carousel-control-prev-icon,.carousel-control-next-icon{
+        filter: invert(0) grayscale(0) !important;
+    }
+} 

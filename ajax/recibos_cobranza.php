@@ -68,7 +68,7 @@
         $reload = './expences.php';
 		//consulta principal para obtener los datos
         $sql="SELECT c.id,c.n_cobranza,c.fecha,c.idticket,concat(t.serie,'-',t.numero) as ticket,
-        (select signo from tipo_moneda where id=(select idtipo_moneda from tipos_ticket where id=t.idtipo_ticket)) as moneda ,
+        (select signo from tipo_moneda where id=t.idtipo_moneda) as moneda ,
         c.importe,c.idformapago,f.nombre as nombre_pago,c.n_deposito,c.n_referencia  FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
@@ -138,8 +138,13 @@
                                               
                         <td ><span class="pull-right">
                         <a href="report/recibo_pago_concretado.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
-                        <!-- <a href="#" class='btn btn-primary' title='Ver Recibo' onclick="obtener_datos('<?php echo $id_cod;?>'); carga_recibo_contable('<?php echo $tipo_recibo.$codigo_recibo;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a> -->
-                      
+                        <?php  
+                        if ($idformapago==6){
+                        ?>
+                        <a href="#" class='btn btn-info' title='Ver Recibo' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a>
+                        <?php 
+                            } 
+                        ?>
                         
                     </tr>
                 <?php

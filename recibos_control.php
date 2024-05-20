@@ -106,7 +106,7 @@
                                                     <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Inquilino - Contrato - Fecha" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo" ><!--//onkeyup='load(1);'-->
                                                     </div>
                                                   
                                                         <div class="col-mg-3 col-sm-3 col-xs-12">
@@ -118,18 +118,6 @@
                                                 
                                             </div>
                                         </form> 
-
-                                        <!-- <form class="form-horizontal" role="form" id="ingresos">
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-dark"><i class="glyphicon glyphicon-bell"></i> PENDIENTE: <?php echo mysqli_num_rows($info1) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="fa fa-money"></i> PAGADO: <?php echo mysqli_num_rows($info2) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="glyphicon glyphicon-ban-circle"></i> ANULADO: <?php echo mysqli_num_rows($info3) ?></button>
-                                            <button type="button" class="btn btn-dark"><i class="fa fa-braille"></i> FRACCIONADO: <?php echo mysqli_num_rows($info4) ?></button>
-
-                                                
-    
-                                            </div>
-                                        </form>                       -->
                                            
                                                                 <!-- end form search -->
                                         <div class="x_content">
@@ -151,6 +139,7 @@
 <?php include "footer.php" ?>
 
 <script type="text/javascript" src="js/recibos_control.js"></script>
+
 <script type="text/javascript" src="js/VentanaCentrada.js"></script>
 
 

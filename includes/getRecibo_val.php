@@ -60,5 +60,57 @@
         echo $val,'-',$val2,'-',$val3,'-',$val4,'-',$val5,'-',$val6,'-',$val7;
     }
 
-    
+    if ($caso=="3"){
+        $importe=mysqli_query($con,"SELECT importe as importe,format(importe,2) as importe2 FROM tipos_ticket where id=$condicion");
+
+        if (!$importe||mysqli_num_rows($importe)!=0){
+            while($rowM = $importe->fetch_assoc())
+                {
+                $val=$rowM['importe'];
+                
+                }
+        }else{
+            $val= "0";
+           
+        }
+
+        echo $val;
+    }
+
+    if ($caso=="4"){
+        if ($condicion!=""){
+                $importe=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=6 and fecha='$condicion'");
+                while($rowM = $importe->fetch_assoc())
+                {
+                $validar_importe=$rowM['importe'];
+                }
+
+                if ($validar_importe > 0){
+                    $val= "0";     
+                }else{
+
+                    $importe2=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=4 and fecha='$condicion'");
+                    while($rowM = $importe2->fetch_assoc())
+                    {
+                    $validar_importe2=$rowM['importe'];
+               
+                    }
+
+                    if ($validar_importe2 > 0){
+                       $val= $validar_importe2;
+                    }else{
+                        $val= "0";
+                               
+                    }    
+                   
+                    
+                }
+                
+                
+        }else{
+                $val= "0";
+                    
+        }
+        echo $val;
+    }
 ?>		

@@ -1,0 +1,104 @@
+//
+// apexcharts.scss
+//
+.apex-charts {
+    min-height: 10px !important;
+    text {
+        font-family: $font-family-base !important;
+        fill: var(--#{$prefix}gray-300);
+    }
+    .apexcharts-canvas {
+        margin: 0 auto;
+    }
+}
+
+.apexcharts-gridline line {
+    stroke: var(--#{$prefix}border-color) !important;
+}
+
+.apexcharts-tooltip-title,
+.apexcharts-tooltip-text {
+    font-family: $font-family-base !important;
+}
+
+.apexcharts-tooltip {
+    border: 1px solid var(--#{$prefix}border-color) !important;
+    background-color: var(--#{$prefix}white) !important;
+    box-shadow: $box-shadow !important;
+    * {
+        font-family: $font-family-base !important;
+        color: var(--#{$prefix}text-muted) !important;
+    }
+
+    .apexcharts-tooltip-title {
+        background-color: rgba(var(--#{$prefix}light-rgb), 0.75) !important;
+        border-bottom: 1px solid var(--#{$prefix}border-color) !important;
+    }
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark {
+    * {
+        color: $white !important;
+    }
+}
+
+.apexcharts-gridline line {
+    stroke: var(--#{$prefix}border-color);
+}
+
+.apexcharts-legend-series {
+    font-weight: $font-weight-medium;
+}
+
+.apexcharts-gridline {
+    pointer-events: none;
+    stroke: $apex-grid-color;
+}
+
+.apexcharts-radialbar-track.apexcharts-track {
+    path {
+        stroke: var(--#{$prefix}gray-300);
+    }
+}
+
+.apexcharts-legend-text {
+    color: var(--#{$prefix}gray-500) !important;
+    font-family: $font-family-base !important;
+    font-size: 13px !important;
+}
+
+.apexcharts-pie-label {
+    fill: $white !important;
+}
+
+.apexcharts-yaxis,
+.apexcharts-xaxis {
+    text {
+        font-family: $font-family-base !important;
+        fill: var(--#{$prefix}gray-500);
+    }
+}
+
+.apexcharts-treemap-rect,
+.apexcharts-heatmap-rect,
+.apexcharts-pie-area {
+    stroke: var(--#{$prefix}border-color) !important;
+}
+
+
+// .apexcharts-grid-borders{
+//     .apexcharts-gridline{
+//         stroke: var(--#{$prefix}border-color) !important;
+//     }
+// }
+
+
+.apexcharts-grid-borders{
+    line{
+        stroke: var(--#{$prefix}border-color) !important;
+    }
+
+    .apexcharts-gridline{
+        stroke: transparent !important;
+    }
+}

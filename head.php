@@ -87,12 +87,13 @@
             <div class="main_container">
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
-						
+                    <div class="mb-4 mb-md-5 text-center">
                         <div class="navbar nav_title" style="border: 0;">
-                          <a href="#" class="site_title"><i class="fa fa-university"></i> <span>MUSEO</span></a>
+                          <a href="#" class="site_title">
+                          <span>SIGAC</span><img src="images/profiles/logo_ticket.png" alt="" height="28"></a>
 							
                         </div>
-						
+						</div>
                         <div class="clearfix"></div>
 
                             <!-- menu profile quick info -->

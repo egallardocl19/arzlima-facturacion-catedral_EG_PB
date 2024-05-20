@@ -5,7 +5,8 @@
 					<?php
 					$mes_actualx = date("m"); 
                     $anio_actualx=date("Y"); 
-					$TicketData=mysqli_query($con, "select * from ticket");
+					$TicketData=mysqli_query($con, "select * from ticket where idclase_ticket=1");
+                    $TicketData1=mysqli_query($con, "select * from ticket where idclase_ticket=2");
 					$TicketData2=mysqli_query($con, "select * from ticket_control");
                     $TicketData3=mysqli_query($con, "select * from user");
                     $TicketData4=mysqli_query($con, "select * from user where id=$codigo");

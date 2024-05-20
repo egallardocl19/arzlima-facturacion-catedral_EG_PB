@@ -1,0 +1,149 @@
+//
+// root.scss
+//
+
+@mixin color-mode($mode: light, $root: false) {
+    @if $color-mode-type == "media-query" {
+        @if $root ==true {
+            @media (prefers-color-scheme: $mode) {
+                :root {
+                    @content;
+                }
+            }
+        } @else {
+            @media (prefers-color-scheme: $mode) {
+                @content;
+            }
+        }
+    } @else {
+        [data-bs-theme="#{$mode}"] {
+            @content;
+        }
+    }
+}
+
+//theme-light
+:root,
+[data-bs-theme="light"] {
+    --#{$prefix}header-bg:                                      #{$white};
+    --#{$prefix}header-item-color:                              #555b6d;
+    --#{$prefix}header-item-sub-color:                          #{$text-muted};
+
+    --#{$prefix}header-box-shadow:                             `0 0.2rem 0.5rem rgba(18,38,63,0.3);
+
+
+    // Horizontal Topnavbar
+    --#{$prefix}topnav-bg:                                      #fbfaff;
+    --#{$prefix}topnav-item-color:                              #{$gray-400};
+    --#{$prefix}topnav-item-color-active:                       #{$white};
+
+    --#{$prefix}boxed-body-bg:                                  #f0f0f0;
+    --#{$prefix}menu-item-color:                                #545a6d;
+    --#{$prefix}menu-item-active-color:                         rgba(var(--bs-primary-rgb), 1);
+
+    --#{$prefix}input-bg:                                      #{$white};
+
+    --#{$prefix}sidebar-bg:                                     #ffffff;
+    --#{$prefix}sidebar-menu-item-color:                        #545a6d;
+    --#{$prefix}sidebar-menu-sub-item-color:                    #545a6d;
+    --#{$prefix}sidebar-menu-item-icon-color:                   #545a6d;
+    --#{$prefix}sidebar-menu-item-hover-color:                  rgba(var(--bs-primary-rgb), 1);
+    --#{$prefix}sidebar-menu-item-active-color:                 rgba(var(--bs-primary-rgb), 1);
+    --#{$prefix}sidebar-menu-item-active-bg-color:              #f3f8fb;
+    --#{$prefix}sidebar-menu-item-active-bg-color-dark:         #293552;
+    --#{$prefix}sidebar-alert:                                  rgba(81,86,190,0.1);
+    
+
+    [data-sidebar="dark"]{
+        --#{$prefix}sidebar-dark-bg:                            #2C302E; //2c313a
+        --#{$prefix}sidebar-dark-menu-item-color:               #99a4b1;
+        --#{$prefix}sidebar-dark-menu-sub-item-color:           #858d98;
+        --#{$prefix}sidebar-dark-menu-item-icon-color:          #858d98;
+        --#{$prefix}sidebar-dark-menu-item-hover-color:         #ffffff;
+        --#{$prefix}sidebar-dark-menu-item-active-color:        #ffffff;
+    }
+    
+    [data-topbar="dark"] {
+        --#{$prefix}header-bg-dark:                             var(--bs-primary);
+        --#{$prefix}header-item-color-dark:                     #{$gray-200};
+        --#{$prefix}topbar-search-bg:                           rgba(243,243,249,.1);
+    }
+
+    [data-topbar="light"]{
+        --#{$prefix}header-bg:                                  #{$white};
+        --#{$prefix}topbar-search-bg:                           #{$gray-200};
+    }
+}
+
+//Theme Dark
+@if $enable-dark-mode {
+    @include color-mode(dark, true) {
+        --#{$prefix}light:                                  #{$light-dark};
+        --#{$prefix}light-rgb:                              #{to-rgb($light-dark)};
+        --#{$prefix}dark:                                   #{$gray-200};
+        --#{$prefix}dark-rgb:                               #{to-rgb($gray-200)};
+
+        --#{$prefix}topnav-bg:                              #232a30;
+        --#{$prefix}topnav-item-color:                      #{$gray-400};
+        --#{$prefix}topnav-item-color-active:               #{$white};
+        --#{$prefix}menu-item-color:                        #99a4b1;
+        --#{$prefix}menu-item-active-color:                 #ffffff;
+
+        --#{$prefix}boxed-body-bg:                          #3b403d;
+        --#{$prefix}apex-grid-color:                        #293037;
+        --#{$prefix}header-box-shadow:                      0 0.2rem 0.5rem rgba(18,38,63,0.8);
+
+        --#{$prefix}input-bg:                               #293037;
+
+        --#{$prefix}sidebar-bg:                             #242a30; //2c313a
+        --#{$prefix}sidebar-menu-item-color:                #99a4b1;
+        --#{$prefix}sidebar-menu-sub-item-color:            #858d98;
+        --#{$prefix}sidebar-menu-item-icon-color:           #858d98;
+        --#{$prefix}sidebar-menu-item-hover-color:          #ffffff;
+        --#{$prefix}sidebar-menu-item-active-color:         #ffffff;
+
+        .table-light {
+            --#{$prefix}table-color:                       #{lighten($light-dark, 100%)};
+            --#{$prefix}table-bg:                          var(--#{$prefix}light);
+            --#{$prefix}table-border-color:                var(--#{$prefix}border-color);
+            --#{$prefix}table-striped-bg:                  var(--#{$prefix}light);
+            --#{$prefix}table-striped-color:               #{lighten($light-dark, 100%)};
+            --#{$prefix}table-active-bg:                   var(--#{$prefix}light);
+            --#{$prefix}table-active-color:                #{lighten($light-dark, 100%)};
+            --#{$prefix}table-hover-bg:                    var(--#{$prefix}light);
+            --#{$prefix}table-hover-color:                 #{lighten($light-dark, 100%)};
+        }
+
+
+
+
+        [data-sidebar="dark"]{
+            --#{$prefix}sidebar-dark-bg:                            #242a30; //2c313a
+            --#{$prefix}sidebar-dark-menu-item-color:               #99a4b1;
+            --#{$prefix}sidebar-dark-menu-sub-item-color:           #858d98;
+            --#{$prefix}sidebar-dark-menu-item-icon-color:          #858d98;
+            --#{$prefix}sidebar-dark-menu-item-hover-color:         #ffffff;
+            --#{$prefix}sidebar-dark-menu-item-active-color:        #ffffff;
+        }
+        
+        [data-topbar="dark"] {
+            --#{$prefix}header-bg-dark:                             #282f36;
+            --#{$prefix}header-item-color-dark:                     #e9ecef;
+            --#{$prefix}topbar-search-bg:                           #2f373f;
+        }
+
+        [data-topbar="light"] {
+            --#{$prefix}header-bg:                             #{$white};
+            --#{$prefix}header-item-color:                     #555b6d;
+            --#{$prefix}header-item-color-dark:                #474747;
+            --#{$prefix}topbar-search-bg:                      #efeff3;
+        }
+
+        // topbar
+        --#{$prefix}header-bg:                                      #313533;
+        --#{$prefix}header-item-color:                              #e9ecef;
+        --#{$prefix}header-item-color:                              rgba($white .05);
+        --#{$prefix}topbar-search-bg:                               #2f373f;
+        
+    }
+}

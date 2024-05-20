@@ -30,19 +30,23 @@
                     <div class="form-group">  
 
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12"><i class="fa fa-child" aria-hidden="true"></i> Ticket:</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Cobranza:</label>
                                 
-                                <div class="col-md-10 col-sm-10 col-xs-12">
+                                <div class="col-md-7 col-sm-7 col-xs-12">
 
-                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idticket" name="idticket" data-size="5" style="max-width: 100%!important;" >
+                                    <!-- <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idticket" name="idticket" data-size="5" style="max-width: 100%!important;" >
                                     <option value="">-- Seleccionar Ticket--</option> 
                                  
-                                    </select>
-                                
+                                    </select> -->
+                                    <input type="date" id="fecha" name="fecha" class="form-control" placeholder="Fecha Hasta" >
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-12 form-group">
+                               
+                                        <button id="buscar" type="button" class="btn btn-primary" onclick="buscarcobranza()">Buscar</button> 
                                 </div>
                             </div>
 
-
+<!-- 
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha:<span class="required"></span>
                                 </label>
@@ -71,16 +75,16 @@
                                 <div class="col-md-10 col-sm-10 col-xs-12">
                                 <input type="text"  id="direccion" name="direccion" class="form-control"  placeholder="Dirección" maxlength="11">
                                 </div>
-                            </div>
+                            </div> -->
 
                            
 
                      
 
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> Moneda:</label>
+                                <label class="control-label col-md-6 col-sm-6 col-xs-12"><i class="fa fa-money" aria-hidden="true"></i> Moneda:</label>
                                 
-                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_moneda" name="tipo_moneda" data-size="5" style="max-width: 100%!important;" >
                                     
@@ -94,7 +98,7 @@
                             </div>
 
                            
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-money" aria-hidden="true"></i> Costo: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input type="text" id="importe" name="importe"  class="form-control" placeholder="0.00" disabled>
@@ -105,11 +109,11 @@
                                 <div class="col-md-7 col-sm-7 col-xs-12">
                                 <input type="text" id="cantidad" name="cantidad" class="form-control" placeholder="0" >
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Monto Total: </label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label class="control-label col-md-6 col-sm-6 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Monto Total: </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                
                                 <!-- <label  id="monto_total_ticket" name="monto_total_ticket" style="font-size: x-large" ></label> -->
                                 <input type="text" id="monto_total_ticket" name="monto_total_ticket"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
@@ -120,7 +124,7 @@
 
                            
                             
-                        </div>
+                         </div>
                         <!--------------------------------------------------------------------------------->
                         <div class="form-group" id="detalle_notas">  
                             <div class="ln_solid"></div> 
@@ -132,13 +136,20 @@
                                 <div class="x_panel">
                                     <div class="x_content">
                                         <div class="table-responsive">
-                                            <div class="form-group">  
-                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> Tipo Pago:</label>
+                                            <div class="form-group">
                                                 
-                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> F.Deposito:</label>
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                <input type="date" id="fecha2" name="fecha2" class="form-control" placeholder="Fecha Hasta" >
+                                                </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"> T.Pago:</label>
+                                                
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
 
-                                                        <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
+                                                        <select  class="form-control"   id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
                                                         
                                                         <?php foreach($forma_pago as $p):?>
                                                             <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
@@ -149,28 +160,23 @@
                                                 
                                                 </div>
 
-                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"> N° Pago: </label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> N° Operación: </label>
                                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" >
+                                                    <input type="text" id="n_operacion" name="n_operacion"  class="form-control" placeholder="0000000000" >
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°Deposi: </label>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="n_deposito" name="n_deposito"  class="form-control" placeholder="0000000000" >
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                                     <label class="control-label col-md-4 col-sm-4 col-xs-12"> Banco: </label>
                                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="banco" name="banco"  class="form-control" placeholder="0000000000" >
+                                                    <input type="text" id="banco" name="banco"  class="form-control" value="BCP" readonly="true" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                                     <label class="control-label col-md-4 col-sm-4 col-xs-12"> Cuenta: </label>
                                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="cuenta" name="cuenta"  class="form-control" placeholder="0000000000" >
+                                                    <input type="text" id="cuenta" name="cuenta"  class="form-control" value="999-999-999-999" readonly="true" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">

@@ -4,6 +4,7 @@
 	
 	$condicion = $_POST['condicion'];
     $caso = $_POST['caso'];
+    $tipo = $_POST['tipo'];
 
     if ($caso=="1"){
         if ($condicion!=""){
@@ -60,6 +61,44 @@
             echo $html;
         }else{
             $html= "<option value=''>-- Seleccionar Ticket--</option>";
+            echo $html;
+            }
+
+        
+    }
+    
+    if ($caso=="4"){
+        if ($condicion!=""){
+            $tipo =mysqli_query($con, "SELECT tt.id,tt.nombre,tm.signo,format(tt.importe,2) as importe FROM tipos_ticket tt, tipo_moneda tm 
+            where tt.idtipo_moneda=tm.id and tt.idclase_ticket=$condicion and tt.id=$tipo and  tt.idestado_dato=1 order by tt.importe desc");
+
+
+            while($rowM = $tipo->fetch_assoc())
+            {
+                $html= "<option value='".$rowM['id']."'>".$rowM['nombre']."   -   ".$rowM['signo'].$rowM['importe']."</option>";  
+            } 
+            echo $html;
+        }else{
+            $html= "<option value=''>-- Seleccionar Tipo Ticket --</option>";
+            echo $html;
+            }
+
+        
+    }
+
+    if ($caso=="5"){
+        if ($condicion!=""){
+            $tipo =mysqli_query($con, "SELECT rs.abrev as abrev,ct.id as id FROM recibos_serial rs, clase_ticket ct 
+            where rs.abrev=ct.idrecibos_serial and  rs.activo=1 and ct.id=$condicion");
+
+
+            while($rowM = $tipo->fetch_assoc())
+            {
+                $html= "<option value='".$rowM['id']."'>".$rowM['abrev']."</option>";  
+            } 
+            echo $html;
+        }else{
+            $html= "<option value=''>-- Seleccionar Clase Ticket --</option>";
             echo $html;
             }
 
