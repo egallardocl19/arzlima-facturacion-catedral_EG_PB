@@ -352,8 +352,9 @@
                            </div> 
                            <div class="ln_solid" id="ln7"></div>
                             <!-- ###################################################### -->
-
+                            
                             <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                            <div class="form-group" >
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"> Tipo Pago:</label>
                                 
                                 <div class="col-md-8 col-sm-8 col-xs-12">
@@ -368,14 +369,15 @@
                                 </div>
                                 
                             </div>
-
+                            </div>
                             <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                            <div class="form-group" >
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"> N° Pago: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
                                 </div>
                             </div>
-
+                            </div>
                            
                             
                         </div>

@@ -90,7 +90,7 @@
                     <div class="mb-4 mb-md-5 text-center">
                         <div class="navbar nav_title" style="border: 0;">
                           <a href="#" class="site_title">
-                          <span>SIGAC</span><img src="images/profiles/logo_ticket.png" alt="" height="28"></a>
+                          <span>SIGAC</span><img src="images/profiles/ico.png" alt="" height="28"></a>
 							
                         </div>
 						</div>

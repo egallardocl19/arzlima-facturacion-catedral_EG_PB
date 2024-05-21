@@ -1,11 +1,11 @@
 <?php
 include("config/config.php");
 session_start();
-$datoqr = $_REQUEST['datoqr']; //Igual al id del Alumno
+$datoqr = $_REQUEST['datoqr']; //Igual al id 
 
 $sqlBuscarTicket = ("SELECT * FROM ticket WHERE idestado_ticket<>3 and CONCAT(serie,'-',numero)='$datoqr'");
 $queryTicket = mysqli_query($con, $sqlBuscarTicket);
-$totalTicket = mysqli_num_rows($queryTicket); //cantidad de Alumno 1 o 0
+$totalTicket = mysqli_num_rows($queryTicket); //cantidad  1 o 0
 $DataTicket  = mysqli_fetch_array($queryTicket);
 $created_at=date("Y-m-d");
 $user_id=$_SESSION['user_id'];

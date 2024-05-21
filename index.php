@@ -49,7 +49,7 @@ include "config/config.php";
                         <div class="d-flex flex-column h-50">
                         <div class="mb-4 mb-md-5 text-center">
                                 <a href="index.php" class="d-block auth-logo">
-                                    <img src="images/profiles/logo_ticket.png" alt="" height="28"> <span class="logo-txt">SIGAC</span>
+                                    <img src="images/profiles/ico.png" alt="" height="28"> <span class="logo-txt">SIGAC</span>
                                 </a>
                             </div>
                         
