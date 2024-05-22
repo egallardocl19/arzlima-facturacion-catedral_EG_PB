@@ -16,7 +16,7 @@
                         <div class="tile-stats" style="background-color:#FFE69A"> 
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
-                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket Nacionales</h3></a>           
+                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket General</h3></a>           
                         </div>
                     </div>
 
@@ -25,7 +25,7 @@
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                         
                         <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
-                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket Extranjeros</h3></a>
+                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket Promocional</h3></a>
                         </div>
                     </div>
 
@@ -58,45 +58,7 @@
                     <input type="hidden" id="clase" name="clase">
                     <div class="form-group">  
 
-                            <div class="form-group">  
-                                <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                <div class="form-group"> 
-                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> :<span class="required"></span>
-                                    </label>
-                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="<?php echo $fechahoy;?>" readonly="true" >
-                                    </div>
-                                    </div>  
-                                </div>  
-
-                                <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                <div class="form-group"> 
-                                <label class="control-label col-md-5 col-sm-5 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Total:</label>
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                <input type="text" id="monto_totalx" name="monto_totalx"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
-                                </div>
-                                 </div>  
-                                 </div>  
-
-                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                 <div class="form-group"> 
-                                <label class="control-label col-md-3 col-sm-2 col-xs-12"> Serie:</label>
-                                
-                                <div class="col-md-9 col-sm-10 col-xs-12">
-
-                                    <select class="form-control"  id="serie" name="serie" data-size="5" style="max-width: 100%!important;" >
-                                
-                                    <!-- <?php foreach($serie1 as $p):?>
-                                        <option value="<?php echo $p['abrev']; ?>"><?php echo $p['abrev'];  ?></option>
-                                        <?php endforeach; ?> -->
-                                    </select>
-                                
-                                </div>
-                                </div>  
-                            </div>
-
-                            </div>
-                            <div class="ln_solid"></div>
+                            
                             <!-- ###################################################### -->
                             <div class="form-group" id="gp1">  
                             
@@ -211,7 +173,7 @@
                            <!-- <div class="ln_solid" id="ln3"></div> -->
                             <!-- ###################################################### -->
                             <div class="form-group" id="gp4"> 
-                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
                                    <select class="form-control" id="idtipo4" name="idtipo4" data-size="5" style="max-width: 100%!important;" >
@@ -221,7 +183,7 @@
                            </div>
                            </div>
 
-                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
                            <div class="form-group" > 
                                 <div class="col-md-3 col-sm-4 col-xs-4">
                                 <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar4()" style="font-weight: bold; font-size:20px;">+</button>
@@ -235,7 +197,7 @@
                            </div>
                            </div>
 
-                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
                                <input type="text" id="monto_total4" name="monto_total4"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
@@ -317,7 +279,7 @@
                            </div> 
                             <!-- ###################################################### -->
                             <div class="form-group" id="gp7"> 
-                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
+                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
                                    <select class="form-control " id="idtipo7" name="idtipo7" data-size="5" style="max-width: 100%!important;" >
@@ -327,7 +289,7 @@
                            </div>
                            </div>
 
-                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
+                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
                            <div class="form-group" > 
                                 <div class="col-md-3 col-sm-4 col-xs-4">
                                 <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar7()" style="font-weight: bold; font-size:20px;">+</button>
@@ -341,7 +303,7 @@
                            </div>
                            </div>
 
-                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo7 ?>">
+                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
                                <input type="text" id="monto_total7" name="monto_total7"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
@@ -350,8 +312,84 @@
                            </div>  
 
                            </div> 
-                           <div class="ln_solid" id="ln7"></div>
+                        
+
+                           <!-- ###################################################### -->
+                           <div class="form-group" id="gp8"> 
+                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="form-group" > 
+                               <div class="col-md-12 col-sm-12 col-xs-12">
+                                   <select class="form-control " id="idtipo8" name="idtipo8" data-size="5" style="max-width: 100%!important;" >
+                                    
+                                    </select>
+                               </div>
+                           </div>
+                           </div>
+
+                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="form-group" > 
+                                <div class="col-md-3 col-sm-4 col-xs-4">
+                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar8()" style="font-weight: bold; font-size:20px;">+</button>
+                                </div> 
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="text" id="cantidad8" name="cantidad8"  class="form-control" style="font-weight: bold; font-size:20px;" value=0 readonly="true">
+                                </div>
+                               <div class="col-md-2 col-sm-4 col-xs-1">
+                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="decrementar8()" style="font-weight: bold; font-size:20px;">-</button>    
+                                </div>
+                           </div>
+                           </div>
+
+                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
+                           <div class="form-group" > 
+                               <div class="col-md-12 col-sm-12 col-xs-12">
+                               <input type="text" id="monto_total8" name="monto_total8"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
+                               </div>
+                           </div>  
+                           </div>  
+
+                           </div> 
+                           <div class="ln_solid" id="ln8"></div>
                             <!-- ###################################################### -->
+                            <div class="form-group">  
+                                <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                <div class="form-group"> 
+                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> :<span class="required"></span>
+                                    </label>
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="<?php echo $fechahoy;?>" readonly="true" >
+                                    </div>
+                                    </div>  
+                                </div>  
+
+                                <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                <div class="form-group"> 
+                                <label class="control-label col-md-5 col-sm-5 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Total:</label>
+                                <div class="col-md-7 col-sm-7 col-xs-12">
+                                <input type="text" id="monto_totalx" name="monto_totalx"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
+                                </div>
+                                 </div>  
+                                 </div>  
+
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                    <div class="form-group"> 
+                                        <label class="control-label col-md-3 col-sm-2 col-xs-12"> Serie:</label>
+                                    
+                                        <div class="col-md-9 col-sm-10 col-xs-12">
+
+                                            <select class="form-control"  id="serie" name="serie" data-size="5" style="max-width: 100%!important;" >
+                                        
+                                            <!-- <?php foreach($serie1 as $p):?>
+                                                <option value="<?php echo $p['abrev']; ?>"><?php echo $p['abrev'];  ?></option>
+                                                <?php endforeach; ?> -->
+                                            </select>
+                                        
+                                        </div>
+                                    </div>  
+                                </div>
+
+                            </div>
+                            
                             
                             <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
                             <div class="form-group" >

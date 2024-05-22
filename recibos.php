@@ -91,7 +91,7 @@
 
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : Nacionales </h2>
+                                <h2><?php echo $titulo; ?> : General </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -135,7 +135,7 @@
                         
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : Internacionales</h2>
+                                <h2><?php echo $titulo; ?> : Promocional</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -236,6 +236,7 @@
         var suma_monto5=0;
         var suma_monto6=0;
         var suma_monto7=0;
+        var suma_monto8=0;
         var importe1=0;
         var importe2=0;
         var importe3=0;
@@ -243,6 +244,7 @@
         var importe5=0;
         var importe6=0;
         var importe7=0;
+        var importe8=0;
          var clase1 = 1; //clas1
          var clase2 = 2; //clas2
          
@@ -263,12 +265,14 @@
             document.getElementById("gp4").style.display = "block";
             document.getElementById("gp5").style.display = "block";
             document.getElementById("gp6").style.display = "block";
+            document.getElementById("gp7").style.display = "block";
+            document.getElementById("gp8").style.display = "block";
             document.getElementById("nuevo").style.display = "none";
             //document.getElementById("gp7").style.display = "block";
             // document.getElementById("ln3").style.display = "block";
             // document.getElementById("ln4").style.display = "block";
-            document.getElementById("ln7").style.display = "block";
-            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Nacional</strong>';
+            document.getElementById("ln8").style.display = "block";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket General</strong>';
             var permiso_crear = '<?=$permiso_crear?>';
                 if (permiso_crear == 1){
                 document.getElementById("save_data").style.display = "block";
@@ -327,10 +331,16 @@
                         importe6=data;
                     });             
                 });
-                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:10}, function(data){
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:5}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
                         importe7=data;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:6}, function(data){
+                $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                        importe8=data;
                     });             
                 });
             }); 
@@ -340,12 +350,14 @@
             document.getElementById("gp4").style.display = "none";
             document.getElementById("gp5").style.display = "none";
             document.getElementById("gp6").style.display = "none";
+            document.getElementById("gp7").style.display = "none";
+            document.getElementById("gp8").style.display = "none";
             document.getElementById("nuevo").style.display = "none";
             //document.getElementById("gp7").style.display = "none";
             // document.getElementById("ln3").style.display = "none";
             // document.getElementById("ln4").style.display = "none";
-            document.getElementById("ln7").style.display = "none";
-            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Extranjeros</strong>';
+            //document.getElementById("ln7").style.display = "none";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Promocional</strong>';
             var permiso_crear = '<?=$permiso_crear?>';
                 if (permiso_crear == 1){
                 document.getElementById("save_data").style.display = "block";
@@ -366,13 +378,13 @@
                 $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');     
                 });
 
-                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:5}, function(data){
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:10}, function(data){
                 $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');     
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
                         importe1=data;
                     });              
                 });
-                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:6}, function(data){
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:11}, function(data){
                 $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');    
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
                         importe2=data;
@@ -402,10 +414,16 @@
                         importe6=0;
                     });             
                 });
-                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:11}, function(data){
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
                         importe7=data;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
+                        importe8=data;
                     });             
                 });
 
@@ -424,6 +442,7 @@
             suma_monto5=0;
             suma_monto6=0;
             suma_monto7=0;
+            suma_monto8=0;
             importe1=0;
             importe2=0;
             importe3=0;
@@ -431,6 +450,7 @@
             importe5=0;
             importe6=0;
             importe7=0;
+            importe8=0;
     }
     </script> 
     <script language="javascript">
@@ -452,7 +472,7 @@
                        $valor_total1=($importe1*$cantidad1);
                        suma_monto1= $valor_total1;                 
                        $("#monto_total1").val($valor_total1.toFixed(2));
-                      suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                      suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                       $("#monto_totalx").val(suma_monto.toFixed(2));
           
     }
@@ -474,7 +494,7 @@
                           $valor_total2=($importe2*$cantidad2);
                           suma_monto2= $valor_total2;      
                           $("#monto_total2").val($valor_total2.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     function cal3() {
@@ -494,7 +514,7 @@
                           $valor_total3=($importe3*$cantidad3);
                           suma_monto3= $valor_total3; 
                           $("#monto_total3").val($valor_total3.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     function cal4() {
@@ -514,7 +534,7 @@
                           $valor_total4=($importe4*$cantidad4);
                           suma_monto4= $valor_total4; 
                           $("#monto_total4").val($valor_total4.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     function cal5() {
@@ -534,7 +554,7 @@
                           $valor_total5=($importe5*$cantidad5);
                           suma_monto5= $valor_total5; 
                           $("#monto_total5").val($valor_total5.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     function cal6() {
@@ -554,7 +574,7 @@
                           $valor_total6=($importe6*$cantidad6);
                           suma_monto6= $valor_total6; 
                           $("#monto_total6").val($valor_total6.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     function cal7() {
@@ -574,7 +594,27 @@
                           $valor_total7=($importe7*$cantidad7);
                           suma_monto7= $valor_total7; 
                           $("#monto_total7").val($valor_total7.toFixed(2));
-                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7;
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
+                         $("#monto_totalx").val(suma_monto.toFixed(2));
+    }
+    function cal8() {
+       $importe8=importe8;
+         $cantidad8=$("#cantidad8").val();
+                      
+                          if ($cantidad8==''){
+                             $cantidad8=0;
+                          }else{
+                             $cantidad8=parseFloat($cantidad8);
+                          }
+                          if ($importe8==''){
+                             $importe8=0;
+                          }else{
+                             $importe8=parseFloat($importe8);
+                          }
+                          $valor_total8=($importe8*$cantidad8);
+                          suma_monto8= $valor_total8; 
+                          $("#monto_total8").val($valor_total8.toFixed(2));
+                         suma_monto=suma_monto1+suma_monto2+suma_monto3+suma_monto4+suma_monto5+suma_monto6+suma_monto7+suma_monto8;
                          $("#monto_totalx").val(suma_monto.toFixed(2));
     }
     </script> 
@@ -614,6 +654,11 @@
         var inputCantidad = document.getElementById("cantidad7");
         inputCantidad.value = parseInt(inputCantidad.value) + 1;
         cal7(); 
+    }
+    function incrementar8() {
+        var inputCantidad = document.getElementById("cantidad8");
+        inputCantidad.value = parseInt(inputCantidad.value) + 1;
+        cal8(); 
     }
 
     function decrementar1() {
@@ -678,6 +723,15 @@
              inputCantidad.value = parseInt(inputCantidad.value) - 1;
          }
          cal7();
+    }
+    function decrementar8() {
+        var inputCantidad = document.getElementById("cantidad8");
+        if ((parseInt(inputCantidad.value) - 1)<0){
+             inputCantidad.value==0;
+         }else{
+             inputCantidad.value = parseInt(inputCantidad.value) - 1;
+         }
+         cal8();
     }
             
                    

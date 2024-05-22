@@ -159,10 +159,28 @@
 				$monto_total7=number_format($_POST["monto_total7"],0);
 			}
 		}
+		if (empty($_POST['idtipo8'])){
+			$idtipo8=0;
+			$cantidad8=0;
+			$monto_total8=0;
+		}else{
+			$idtipo8 = $_POST["idtipo8"];
+			if (empty($_POST['cantidad8'])){
+				$cantidad8=0;
+			}else{
+				$cantidad8=$_POST['cantidad8'];
+			}
+		
+			if (empty($_POST['monto_total8'])){
+				$monto_total8=0;
+			}else{
+				$monto_total8=number_format($_POST["monto_total8"],0);
+			}
+		}
 
 		$tipo_pago = $_POST["tipo_pago"];
 		$n_pago = $_POST["n_pago"];
-		$cantidad_total=$cantidad1+$cantidad2+$cantidad3+$cantidad4+$cantidad5+$cantidad6+$cantidad7;
+		$cantidad_total=$cantidad1+$cantidad2+$cantidad3+$cantidad4+$cantidad5+$cantidad6+$cantidad7+$cantidad8;
 		$clase= $_POST["clase"];
 
 		$user_id=$_SESSION['user_id'];  
@@ -172,7 +190,7 @@
 		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_recibo($codigo,$valor_mantenimiento,'$serie','$numero',$submod,
 		'$fecha_inicio',$monto_totalx,$cantidad_total,$clase,'$dni','$razon_social','$direccion',$idtipo1,$cantidad1,$monto_total1,$idtipo2,$cantidad2,$monto_total2,
 		$idtipo3,$cantidad3,$monto_total3,$idtipo4,$cantidad4,$monto_total4,$idtipo5,$cantidad5,$monto_total5,$idtipo6,$cantidad6,$monto_total6,$idtipo7,$cantidad7,$monto_total7,
-		$tipo_pago,'$n_pago',$user_id,'$fecha_add',@resultado,@resultado1,@ticket1);");
+		$idtipo8,$cantidad8,$monto_total8,$tipo_pago,'$n_pago',$user_id,'$fecha_add',@resultado,@resultado1,@ticket1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1,@ticket1 AS tick1");
 		
 		while($row = $resultado->fetch_assoc())
