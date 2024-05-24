@@ -137,7 +137,7 @@
                         
                                               
                         <td ><span class="pull-right">
-                        <a href="report/recibo_pago.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
+                        <a href="report/recibo_pago2.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
                         <?php  
                          $date_actual=date("Y-m-d");
                          if ($date_actual==$fecha){

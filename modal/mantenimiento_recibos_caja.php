@@ -11,16 +11,25 @@
         <button type="button" id="agregar" class="btn btn-primary" data-toggle="modal" 
         data-target=".bs-example-modal-lg-add"  onclick="limpiarFormulario()"><i class="fa fa-plus-circle"></i> Agregar <?php echo  $titulo?></button>
     </div> -->
+                    <?php 
+                          if ( $key1==2){
 
-                    <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar1">
+                          ?>
+                    <div class="animated flipInY col-lg-4 col-md-12 col-sm-6 col-xs-12" id="agregar1">
                         <div class="tile-stats" style="background-color:#FFE69A"> 
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket General</h3></a>           
                         </div>
                     </div>
+                    <?php 
+                        }
+                        ?>
+                <?php 
+                          if ( $key1==70){
 
-                    <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar2">
+                          ?>
+                     <div class="animated flipInY col-lg-4 col-md-12 col-sm-6 col-xs-12" id="agregar2">
                         <div class="tile-stats" style="background-color:#FFE69A">
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                         
@@ -28,8 +37,10 @@
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket Promocional</h3></a>
                         </div>
                     </div>
-
-                    <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar2">
+                    <?php 
+                        }
+                        ?>
+                   <!-- <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar2">
                         <div class="tile-stats" style="background-color:#FFE69A">
                         <div class="icon"><img src="images/shop.png" style="width:350%"></div>
                         
@@ -37,12 +48,12 @@
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja2" ><h3 style="color:#777E96">Ticket Productos</h3></a>
                         </div>
                     </div>
-    
+     -->
     <?php
     }
     $permiso_token->close();  
     $con->next_result();
-    ?>
+    ?> 
     <div class="modal fade bs-example-modal-lg-add-caja" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

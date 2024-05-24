@@ -151,7 +151,7 @@
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-cubes"></i></div>
                           <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
-                          <a href="<?php echo  $ruta_envio?>"><h3>Ticket</h3></a>
+                          <a href="<?php echo  $ruta_envio?>"><h3>Ticket Generales</h3></a>
                         </div>
                     </div>
                         <?php 
@@ -165,6 +165,41 @@
                     
                     $con->next_result();
                         ?>
+                        <?php 
+                  $submenu =mysqli_query($con,"CALL submenu('$id','0','70');");
+                 if (!$submenu||mysqli_num_rows($submenu)!=0){
+                    $submenu->close();
+                    $con->next_result();
+                          $permisos =mysqli_query($con,"CALL permisos('$id','70','0');");
+                         
+                          if (!$permisos||mysqli_num_rows($permisos)!=0){
+                          
+                              while ($row_sub=$permisos->fetch_assoc()) { 
+                                 $idsubmodulo= $row_sub['idsubmodulo'];
+                                  
+                              }
+                              $ruta_envio='recibos.php?key1='.$idsubmodulo;
+                             
+                          ?>
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats">
+                          <div class="icon"><i class="fa fa-cubes"></i></div>
+                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
+                          <a href="<?php echo  $ruta_envio?>"><h3>Ticket Promocionales</h3></a>
+                        </div>
+                    </div>
+                        <?php 
+                      
+                         
+                        }
+                        $permisos->close(); 
+                        $con->next_result();
+                         
+                    }
+                    
+                    $con->next_result();
+                        ?>
+                        
                     <?php 
                       $submenu =mysqli_query($con,"CALL submenu('$id','0','64');");
                       if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -224,7 +259,35 @@
                     }
                     $con->next_result();
                     ?>
-                  
+                  <?php 
+                      $submenu =mysqli_query($con,"CALL submenu('$id','0','66');");
+                      if (!$submenu||mysqli_num_rows($submenu)!=0){
+                         $submenu->close();
+                         $con->next_result();
+                          $permisos =mysqli_query($con,"CALL permisos('$id','66','0');");
+                          if (!$permisos||mysqli_num_rows($permisos)!=0){
+                              while ($row_sub=$permisos->fetch_assoc()) { 
+                                 $idsubmodulo= $row_sub['idsubmodulo'];
+                                 
+                              }
+                              $ruta_envio='registros_concar.php?key1='.$idsubmodulo;
+                          
+                          ?>
+					<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="tile-stats">
+                          <div class="icon"><i class="fa fa-child"></i></div>
+                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData5) ?></div></a>
+                          <a href="<?php echo  $ruta_envio?>"><h3>ConcarSQL</h3></a>
+                        </div>
+                    </div>
+                    <?php 
+                    
+                    }
+                    $permisos->close(); 
+                    $con->next_result();
+                    }
+                    $con->next_result();
+                    ?>
                     <?php 
                      $submenu =mysqli_query($con,"CALL submenu('$id','0','6');");
                      if (!$submenu||mysqli_num_rows($submenu)!=0){

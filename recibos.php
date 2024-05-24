@@ -88,10 +88,13 @@
                             
 
                             ?>
+                        <?php 
+                          if ( $key1==2){
 
+                          ?>
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : General </h2>
+                                <h2><?php echo $titulo; ?> :  </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -131,11 +134,17 @@
                                                                
                             </div> 
                         </div>
+                        <?php 
+                        }
+                        ?>
 
-                        
+                        <?php 
+                          if ( $key1==70){
+
+                          ?>
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : Promocional</h2>
+                                <h2><?php echo $titulo; ?> : </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -175,6 +184,9 @@
                                                                
                             </div> 
                         </div>
+                        <?php 
+                        }
+                        ?>
 
                         
                 </div>
@@ -223,7 +235,7 @@
         }
 
        
-       
+        
                     
 </script>
 <!-- CAMPO POR DEFAULT AL INICIAR BOTON AGREGAR -->
@@ -247,19 +259,11 @@
         var importe8=0;
          var clase1 = 1; //clas1
          var clase2 = 2; //clas2
+         var filt = '<?=$key1?>';
          
-  
-            document.getElementById('q').addEventListener('focus', function(){
-                document.onkeydown = function(e){
-                    var ev = document.all ? window.event : e;
-                    if(ev.keyCode==13) {
-                      load(1);
-
-                    }
-                }
-
-            })
-           
+        
+          
+         if (filt == 2){
             document.getElementById('agregar1').addEventListener('click', function(){
             document.getElementById("gp3").style.display = "block";
             document.getElementById("gp4").style.display = "block";
@@ -344,7 +348,8 @@
                     });             
                 });
             }); 
-
+        }
+        if (filt == 70){
             document.getElementById('agregar2').addEventListener('click', function(){
             document.getElementById("gp3").style.display = "none";
             document.getElementById("gp4").style.display = "none";
@@ -428,7 +433,7 @@
                 });
 
             }); 
-
+        }
            
            
     </script> 
@@ -451,6 +456,7 @@
             importe6=0;
             importe7=0;
             importe8=0;
+            
     }
     </script> 
     <script language="javascript">
@@ -734,7 +740,16 @@
          cal8();
     }
             
-                   
+    document.getElementById('q').addEventListener('focus', function(){
+                document.onkeydown = function(e){
+                    var ev = document.all ? window.event : e;
+                    if(ev.keyCode==13) {
+                      load(1);
+
+                    }
+                }
+
+            })          
 </script> 
 
 
