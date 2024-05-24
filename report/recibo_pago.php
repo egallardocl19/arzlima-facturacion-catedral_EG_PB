@@ -1,9 +1,12 @@
 
 <?php
-require('../fpdf/fpdf.php');
+require('../fpdf/pdf_js.php');
 //include "../service/config/config.php";//Contiene funcion que conecta a la base de datos
 include "../config/config.php";//Contiene funcion que conecta a la base de datos
 include "../head2.php";
+
+
+
 
 $v1 = $_GET['variable1'];
 $consulta="call recibo_ticket($v1)";
@@ -70,7 +73,26 @@ function Footer()
 }
 }
 
+class PDF_AutoPrint extends PDF_JavaScript
+{
+	function AutoPrint($printer='')
+	{
+		// Open the print dialog
+		if($printer)
+		{
+			$printer = str_replace('\\', '\\\\', $printer);
+			$script = "var pp = getPrintParams();";
+			$script .= "pp.interactive = pp.constants.interactionLevel.full;";
+			$script .= "pp.printerName = '$printer'";
+			$script .= "print(pp);";
+		}
+		else
+			$script = 'print(true);';
+		$this->IncludeJS($script);
+	}
+}
 
+$pdf = new PDF_AutoPrint();
 //$pdf = new PDF();
 //$pdf = new PDF('P', 'mm', array(100,150)); //DIMENSION TIKET
 $pdf = new PDF('P', 'mm', array(100,300)); //DIMENSION BOLETA
@@ -159,6 +181,12 @@ $pdf->Ln(6);
 
 $pdf->Image('../images/profiles/catedral1.png',11, 195, 80, 80);
 $pdf->Ln(128);
-$pdf->Output();
+$pdf->AutoPrint(true);
+//$pdf->Output();
+$pdf->Output('I','recibo'.$serie."-".$numero.'.pdf');
+
+
+//readfile($rutaArchivo);
+
 ?>
 

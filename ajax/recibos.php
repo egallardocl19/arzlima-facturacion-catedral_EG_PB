@@ -57,7 +57,7 @@
         //pagination variables
 		
         $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-        $per_page = 5; //how much records you want to show
+        $per_page = 10; //how much records you want to show
         $adjacents  = 4; //gap between pages after number of adjacents
         $offset = ($page - 1) * $per_page;
         //Count the total number of row in your table*/
@@ -137,7 +137,7 @@
                         
                                               
                         <td ><span class="pull-right">
-                        <a href="report/recibo_pago.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
+                        <a href="report/recibo_pago2.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
                         <?php  
                         $date_actual=date("Y-m-d");
                         if ($date_actual==$fecha){
