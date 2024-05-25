@@ -218,41 +218,7 @@
 
                            </div> 
                            <!-- <div class="ln_solid" id="ln4"></div> -->
-                           <!-- ###################################################### -->
-                           <div class="form-group" id="gp5"> 
-                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
-                           <div class="form-group" > 
-                               <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control " id="idtipo5" name="idtipo5" data-size="5" style="max-width: 100%!important;" >
-                                    
-                                    </select>
-                               </div>
-                           </div>
-                           </div>
-
-                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
-                           <div class="form-group" > 
-                                <div class="col-md-3 col-sm-4 col-xs-4">
-                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar5()" style="font-weight: bold; font-size:20px;">+</button>
-                                </div> 
-                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="text" id="cantidad5" name="cantidad5"  class="form-control" style="font-weight: bold; font-size:20px;" value=0 readonly="true">
-                                </div>
-                               <div class="col-md-2 col-sm-4 col-xs-1">
-                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="decrementar5()" style="font-weight: bold; font-size:20px;">-</button>    
-                                </div>
-                           </div>
-                           </div>
-
-                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
-                           <div class="form-group" > 
-                               <div class="col-md-12 col-sm-12 col-xs-12">
-                               <input type="text" id="monto_total5" name="monto_total5"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
-                               </div>
-                           </div>  
-                           </div>  
-
-                           </div> 
+                           
                             <!-- ###################################################### -->
                             <div class="form-group" id="gp6"> 
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo6 ?>">
@@ -360,6 +326,42 @@
                            </div>  
 
                            </div> 
+                          
+                           <!-- ###################################################### -->
+                           <div class="form-group" id="gp5"> 
+                           <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
+                           <div class="form-group" > 
+                               <div class="col-md-12 col-sm-12 col-xs-12">
+                                   <select class="form-control " id="idtipo5" name="idtipo5" data-size="5" style="max-width: 100%!important;" >
+                                    
+                                    </select>
+                               </div>
+                           </div>
+                           </div>
+
+                           <div class="col-md-4 col-sm-8 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
+                           <div class="form-group" > 
+                                <div class="col-md-3 col-sm-4 col-xs-4">
+                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar5()" style="font-weight: bold; font-size:20px;">+</button>
+                                </div> 
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="text" id="cantidad5" name="cantidad5"  class="form-control" style="font-weight: bold; font-size:20px;" value=0 readonly="true">
+                                </div>
+                               <div class="col-md-2 col-sm-4 col-xs-1">
+                                <button type="button" class="btn btn-primary btn-circle btn-md" onclick="decrementar5()" style="font-weight: bold; font-size:20px;">-</button>    
+                                </div>
+                           </div>
+                           </div>
+
+                           <div class="col-md-2 col-sm-4 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo5 ?>">
+                           <div class="form-group" > 
+                               <div class="col-md-12 col-sm-12 col-xs-12">
+                               <input type="text" id="monto_total5" name="monto_total5"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
+                               </div>
+                           </div>  
+                           </div>  
+
+                           </div> 
                            <div class="ln_solid" id="ln8"></div>
                             <!-- ###################################################### -->
                             <div class="form-group">  
@@ -402,9 +404,9 @@
                             </div>
                             
                             
-                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
                             <div class="form-group" >
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> Tipo Pago:</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> Pago:</label>
                                 
                                 <div class="col-md-8 col-sm-8 col-xs-12">
 
@@ -419,11 +421,23 @@
                                 
                             </div>
                             </div>
-                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
                             <div class="form-group" >
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> N° Pago: </label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°: </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                 <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                            <div class="form-group" >
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12"> Cal: </label>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" id="monto_ingresado" name="monto_ingresado"  style="color:blue; font-weight: bold; font-size:20px;" class="form-control" placeholder="0" maxlength="6">
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" id="monto_devolver" name="monto_devolver"  style="color:black; font-weight: bold; font-size:20px;" class="form-control" readonly="true">
                                 </div>
                             </div>
                             </div>
@@ -442,7 +456,7 @@
                                     </div>
                                     
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                        <button id="nuevo" type="button" class="btn<?php echo $tamaniocampo ?> btn-warning" onclick="limpiarFormulario()"></button> 
+                                        <button id="nuevo" type="button" class="btn<?php echo $tamaniocampo ?> btn-warning" onclick="limpiarFormulario();"></button> 
                                     </div>
                                 </div>
                         </div>    
@@ -494,20 +508,31 @@
  
    
    
+ <script language="javascript">
+        $(document).ready(function(){
+            let input = document.getElementById('monto_ingresado');
+            input.addEventListener('focus', function(){
+               document.onkeyup    = function(e){
+                        $monto_cobrar=$("#monto_totalx").val();
+                        $monto_ingresado=$("#monto_ingresado").val();
+                          if ($monto_ingresado==''){
+                             $monto_ingresado=0;
+                             $("#monto_devolver").val('');
+                          }else{
+                             $monto_ingresado=parseFloat($monto_ingresado);
+                             $valor_monto=($monto_ingresado-$monto_cobrar);
+                         $("#monto_devolver").val($valor_monto);
+                          }
+                        //  if ($importe1==''){
+                        //     $importe1=0;
+                        //  }else{
+                        //     $importe1=parseFloat($importe1);
+                        //  }
+                         
+                        // document.getElementById('monto_total_ticket').innerHTML=$valor_total.toFixed(2); 
 
-<!-- <script language="javascript">
-                $(document).ready(function(){
-                    $("#idclase").change(function () {
-                        $("#idclase option:selected").each(function () {
-                            condicion = $(this).val();
-                            $.post("includes/getRecibo_html.php", { caso: 1, condicion: condicion}, function(data){
-                            $("#idtipo").html(data).addClass("selectpicker").selectpicker('refresh');              
-                            }); 
-                            $.post("includes/getRecibo_html.php", { caso: 2, condicion: condicion}, function(data){
-                            $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');              
-                            }); 
+                }
 
-                        });
-                    })
-                });      
-    </script>  -->
+            })
+        })          
+</script> 

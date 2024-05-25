@@ -4,31 +4,29 @@ require('../fpdf/fpdf.php');
 include "../config/config.php";//Contiene funcion que conecta a la base de datos
 include "../head2.php";
 
-$dni = 0;
-$estado_ticket = 0;
+//$dni = 0;
+$tipo_pago = 0;
 $tipo_ticket = 0;
 $fecha1 = "";
 $fecha2 = "";
 
-$dni = $_POST['dni'];
-$estado_ticket = $_POST['estado_ticket'];
+//$dni = $_POST['dni'];
+//$estado_ticket = $_POST['estado_ticket'];
 $tipo_ticket = $_POST['tipo_ticket'];
+$tipo_pago = $_POST['tipo_pago'];
 $fecha1 = $_POST['fecha_inicio'];
 $fecha2 = $_POST['fecha_fin'];
 
 
-if($dni!='0'){
-	$where=" and t.dni=".$dni."";
+
+
+if($tipo_ticket!='0'){
+	$where=" and t.idclase_ticket=".$tipo_ticket."";
 }else{
 	$where="";
 }
-if($estado_ticket!='0'){
-	$where.=" and t.idestado_ticket=".$estado_ticket."";
-}else{
-	$where.="";
-}
-if($tipo_ticket!='0'){
-	$where.=" and t.idtipo_ticket=".$tipo_ticket."";
+if($tipo_pago!='0'){
+	$where.=" and c.idformapago=".$tipo_pago."";
 }else{
 	$where.="";
 }
@@ -55,16 +53,16 @@ class PDF extends FPDF
 function Header()
 {
 	include "../config/configreport.php";//Contiene funcion que conecta a la base de datos
-	$dni = $_POST['dni'];
-	$estado_ticket = $_POST['estado_ticket'];
+	//$dni = $_POST['dni'];
+	$tipo_pago = $_POST['tipo_pago'];
 	$tipo_ticket = $_POST['tipo_ticket'];
 	$fecha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
 	$nombre_clase ="";
-	$nombre_estado ="";
+	$nombre_pago ="";
 
 	if ($tipo_ticket>0) {
-		$consulta2="SELECT nombre from clase_ticket where id=(select idclase_ticket from tipos_ticket where id='$tipo_ticket')";
+		$consulta2="SELECT nombre from clase_ticket where id='$tipo_ticket'";
 		$resultado2=$con->query($consulta2);
 		while ($row=$resultado2->fetch_assoc()) {
 			$nombre_clase=utf8_decode($row['nombre']);
@@ -74,14 +72,14 @@ function Header()
 		$nombre_clase="TODOS";
 	}
 
-	if ($estado_ticket>0) {
-		$consulta3="SELECT nombre from estado_ticket where id='$estado_ticket'";
+	if ($tipo_pago>0) {
+		$consulta3="SELECT nombre from formapago where id='$tipo_pago'";
 		$resultado3=$con->query($consulta3);
 		while ($row=$resultado3->fetch_assoc()) {
-			$nombre_estado=utf8_decode($row['nombre']);
+			$nombre_pago=utf8_decode($row['nombre']);
 		}	
 	}else{
-			$nombre_estado="TODOS";
+			$nombre_pago="TODOS";
 	}
 	
 
@@ -104,22 +102,24 @@ function Header()
 
     $this->SetFont('Arial','B',12);
 
-    $this->Cell(125);
+    $this->Cell(50);
 
-    $this->Cell(30,10,'REPORTE DE TICKET - '.$nombre_clase,0,0,'C');
+    $this->Cell(100,10,'REPORTE TICKET - '.$nombre_clase,0,0,'C');
 	$this->SetFont('Arial','B',8);
-	$this->Cell(220,10,'Fecha: '.$fecha,0,1,'C');
+	$this->Cell(58,10,'Fecha: '.$fecha,0,1,'C');
 	$this->SetFont('Arial','B',9);
-	$this->Cell(108);
+	$this->Cell(50);
 	$this->SetTextColor(37,67,120);
-	$this->Cell(20,5,utf8_decode('FECHA INICIO: ').$fecha1,0,0,'C');
-	$this->Cell(70,5,'FECHA FIN: '.$fecha2,0,0,'C');
+	$this->Cell(97,5,utf8_decode('FECHA INICIO: ').$fecha1,0,0,'C');
+	$this->Cell(61,5,'Hora: '.$time,0,1,'C');
+	$this->Cell(59);
+	$this->Cell(80,5,'FECHA FIN:       '.$fecha2,0,0,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);
-	$this->Cell(134,5,'Hora: '.$time,0,1,'C');
+	
 	$this->Cell(125);
 	$this->SetTextColor(37,67,120);
-	$this->Cell(30,5,utf8_decode('ESTADO TICKET: ').$nombre_estado,0,1,'C');
+	$this->Cell(30,5,utf8_decode('FORMA PAGO: ').$nombre_pago,0,1,'C');
 	
 	
 
@@ -129,19 +129,15 @@ function Header()
 
 	$this->SetFillColor(37,67,120);//Fondo verde de celda
 	$this->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$this->Cell(10,6,utf8_decode('SERIE'),1,0,'C',TRUE);
-	$this->Cell(16,6,utf8_decode('NUMERO'),1,0,'C',TRUE);
-	$this->Cell(18,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
-	$this->Cell(12,6,utf8_decode('HORA'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('CLIENTE'),1,0,'C',TRUE);
-	$this->Cell(60,6,utf8_decode('NOMBRE'),1,0,'C',TRUE);
-	$this->Cell(35,6,utf8_decode('CLASE'),1,0,'C',TRUE);
-	$this->Cell(37,6,utf8_decode('TIPO'),1,0,'C',TRUE); 
-	$this->Cell(10,6,utf8_decode('CANT'),1,0,'C',TRUE);
-	$this->Cell(12,6,utf8_decode('USADO'),1,0,'C',TRUE);
-	$this->Cell(12,6,utf8_decode('P.UNIT'),1,0,'C',TRUE);
-	$this->Cell(18,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('ESTADO'),1,1,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('SERIE'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('NUMERO'),1,0,'C',TRUE);
+	$this->Cell(30,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('HORA'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('PERSONAS'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
+	$this->Cell(22,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE); 
+	$this->Cell(20,6,utf8_decode('CAJERO'),1,1,'C',TRUE); 
 }
 // Pie de página
 function Footer()
@@ -151,55 +147,46 @@ function Footer()
     // Arial italic 8
     $this->SetFont('Arial','B',8);
     // Número de página
-    $this->Cell(280,5,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
+    $this->Cell(200,5,utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
 }
 }
-$pdf = new PDF('L', 'mm', 'A4'); //DIMENSION BOLETA
+$pdf = new PDF('P', 'mm', 'A4'); //DIMENSION BOLETA
 $pdf -> AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',8);
-$suma_precio_soles=0;
-$suma_arbitrios_soles=0;
-$suma_adelanto_soles=0;
-$suma_pendiente_soles=0;
-$suma_importe_soles=0;
+$suma_cantidad=0;
+$suma_totales=0;
+$moneda='';
+
 
 	while ($row=$resultado->fetch_assoc()) {
 		
 			$pdf->SetFillColor(255, 255, 255);
-			$pdf->Cell(10,5,utf8_decode($row['serie']),0,0,'C',0);
-			$pdf->Cell(16,5,utf8_decode($row['numero']),0,0,'C',0);
-			$pdf->Cell(18,5,utf8_decode($row['fecha']),0,0,'C',0);
-			$pdf->Cell(12,5,utf8_decode($row['hora']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['dni']),0,0,'C',0);
-			$pdf->Cell(60,5,substr(utf8_decode($row['nombre']),0,35),0,0,'C',0);
-			$pdf->Cell(35,5,utf8_decode($row['clase']),0,0,'D',0);
-			$pdf->Cell(37,5,substr(utf8_decode($row['tipo_ticket']),0,25),0,0,'C',0);
-			$pdf->Cell(10,5,utf8_decode($row['cantidad']),0,0,'C',0);
-			$pdf->Cell(12,5,utf8_decode($row['control']),0,0,'C',0);
-			$pdf->Cell(12,5,$row['moneda'].number_format(utf8_decode($row['importe']),2),0,0,'C',0);
-			$pdf->Cell(18,5,$row['moneda'].number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['estado']),0,1,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['serie']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['numero']),0,0,'C',0);
+			$pdf->Cell(30,5,utf8_decode($row['fecha']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['hora']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['cantidad_total']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
+			$pdf->Cell(20,5,number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
+			$pdf->Cell(22,5,utf8_decode($row['nombre_pago']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['cajero']),0,1,'C',0);
 
-			$moneda=$row['moneda'];
-			$suma_precio_soles=$suma_precio_soles+$row['cantidad'];
-			$suma_adelanto_soles=$suma_adelanto_soles+$row['control'];
-			$suma_arbitrios_soles=$suma_arbitrios_soles+$row['importe'];
-			$suma_importe_soles=$suma_importe_soles+$row['monto_total'];
+			$moneda=$row['signo_moneda'];
+			$suma_cantidad=$suma_cantidad+$row['cantidad_total'];
+			$suma_totales=$suma_totales+$row['monto_total'];
 			
 	}
 			$pdf->Ln(5);
 			$pdf->SetFont('Arial','',9);
-			$pdf->Cell(170);
+			$pdf->Cell(40);
 			$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
 			$pdf->Cell(40,5,utf8_decode('Totales.:'),1,0,'C',TRUE);
 			$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
 			//$pdf->Cell(20);
-			$pdf->Cell(10,5,$suma_precio_soles,1,0,'C',0);
-			$pdf->Cell(12,5,$suma_adelanto_soles,1,0,'C',0);
-			$pdf->Cell(24,5,$moneda.number_format($suma_arbitrios_soles,2),1,0,'C',0);
-			$pdf->Cell(24,5,$moneda.number_format($suma_importe_soles,2),1,1,'C',0);
+			$pdf->Cell(40,5,'Personas: '.$suma_cantidad,1,0,'C',0);
+			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales,2),1,1,'C',0);
 	
 			
 

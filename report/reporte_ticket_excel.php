@@ -6,20 +6,25 @@
 	header("Expires: 0");
 
 	$output = "";
-	$dni = 0;
-	$estado_ticket = 0;
+	//$dni = 0;
+	$tipo_pago = 0;
 	$tipo_ticket = 0;
 	$fecha1 = "";
 	$fecha2 = "";
-	$dni = $_POST['dni'];
-	$estado_ticket = $_POST['estado_ticket'];
+
+	//$dni = $_POST['dni'];
+	//$estado_ticket = $_POST['estado_ticket'];
 	$tipo_ticket = $_POST['tipo_ticket'];
+	$tipo_pago = $_POST['tipo_pago'];
 	$fecha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
+
+
 	
 
+
 	if ($tipo_ticket>0) {
-		$consulta2="SELECT nombre from clase_ticket where id=(select idclase_ticket from tipos_ticket where id='$tipo_ticket')";
+		$consulta2="SELECT nombre from clase_ticket where id='$tipo_ticket'";
 		$resultado2=$con->query($consulta2);
 		while ($row=$resultado2->fetch_assoc()) {
 			$nombre_clase=utf8_decode($row['nombre']);
@@ -35,40 +40,31 @@
 				<thead>
 					<tr style='height:40px;'>
 						
-						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='13' >REPORTE DE TICKET - ".$nombre_clase."</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='10' >REPORTE DE TICKET - ".$nombre_clase."</th>
 						
 					</tr>
 					<tr >
-						
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO TICKET</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>SERIE</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>NUMERO</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>FECHA DE EMISION</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>HORA</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>CLIENTE</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>NOMBRE</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>CLASE</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>CANT</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>USADO</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>PRECIO UNITARIO</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>PERSONAS</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>MONEDA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TOTAL</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>ESTADO</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO PAGO</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
 					</tr>
 				<tbody>
 		";
-		
-		if($dni!='0'){
-			$where=" and t.dni=".$dni."";
+
+		if($tipo_ticket!='0'){
+			$where=" and t.idclase_ticket=".$tipo_ticket."";
 		}else{
 			$where="";
 		}
-		if($estado_ticket!='0'){
-			$where.=" and t.idestado_ticket=".$estado_ticket."";
-		}else{
-			$where.="";
-		}
-		if($tipo_ticket!='0'){
-			$where.=" and t.idtipo_ticket=".$tipo_ticket."";
+		if($tipo_pago!='0'){
+			$where.=" and c.idformapago=".$tipo_pago."";
 		}else{
 			$where.="";
 		}
@@ -82,29 +78,25 @@
 		}else{
 			$where.="";
 		}
-
 		$cadena_script00="call reporte_ticket('1','$where')";
-
+		$style='mso-number-format:"@";';
 
 			$query = mysqli_query($con, $cadena_script00) or die(mysqli_errno());
 						while($fetch = mysqli_fetch_array($query)){
 							
 							$output .= "
 										<tr>
-											
-											<td><b>".utf8_decode($fetch['serie'])."</b></td>
-											<td>".utf8_decode($fetch['numero'])."</td>
+											<td><b>".utf8_decode($fetch['clase_ticket'])."</b></td>
+											<td style='".$style."'><b>".utf8_decode($fetch['serie'])."</b></td>
+											<td style='".$style."'>".utf8_decode($fetch['numero'])."</td>
 											<td>".utf8_decode($fetch['fecha'])."</td>
 											<td>".utf8_decode($fetch['hora'])."</td>
-											<td>".utf8_decode($fetch['dni'])."</td>
-											<td>".utf8_decode($fetch['nombre'])."</td>
-											<td>".utf8_decode($fetch['clase'])."</td>
-											<td>".utf8_decode($fetch['tipo_ticket'])."</td>
-											<td>".utf8_decode($fetch['cantidad'])."</td>
-											<td>".utf8_decode($fetch['control'])."</td>
-											<td>".$fetch['importe']."</td>
-											<td>".$fetch['monto_total']."</td>
-											<td>".utf8_decode($fetch['estado'])."</td>
+											<td>".utf8_decode($fetch['cantidad_total'])."</td>
+											<td>".utf8_decode($fetch['nombre_moneda'])."</td>
+											<td>".utf8_decode($fetch['monto_total'])."</td>
+											<td>".utf8_decode($fetch['nombre_pago'])."</td>
+											<td>".utf8_decode($fetch['cajero'])."</td>
+							
 										</tr>
 							";
 							}	

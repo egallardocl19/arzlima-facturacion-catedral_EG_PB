@@ -21,7 +21,7 @@
                         
                         <div class="form-group">
 
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <!-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-tag" aria-hidden="true"></i> Dni / Ruc: <span class="required"></span></label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                 <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="dni" name="dni" data-size="5" style="max-width: 100%!important;" >
@@ -31,9 +31,9 @@
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            <!-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Estado Ticket:</label>
                                 
                                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -46,7 +46,7 @@
                                     </select>
                                 
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Tipo Ticket:</label>
@@ -56,7 +56,21 @@
                                     <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_ticket" name="tipo_ticket" data-size="5" style="max-width: 100%!important;" >
                                     <option value="0">--Seleccione Tipo Ticket--</option>  
                                     <?php foreach($tipo_ticket as $p):?>
-                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['clase_ticket'].' - '.$p['nombre'].' - '.$p['tipo_moneda'].$p['importe']; ?></option>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Tipo Pago:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="0">--Seleccione Tipo Pago--</option>  
+                                    <?php foreach($tipo_pago as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 
@@ -87,9 +101,9 @@
                            
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutalocal ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
+                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
                             
-                            <button class="btn btn-success" name="export" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
+                            <button class="btn btn-success" name="export" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
                          
                             </div>
                         </div>    
