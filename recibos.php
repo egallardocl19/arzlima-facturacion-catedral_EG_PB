@@ -217,6 +217,8 @@
                 document.getElementById("nuevo").style.display = "block";
                 load(1);
                 load2(1);
+                reset_montos();
+             
             }
         });
     
@@ -232,6 +234,8 @@
         
         $("#result").hide(); 
         document.getElementById("nuevo").style.display = "none";
+        
+    
         }
 
        
@@ -261,8 +265,26 @@
          var clase2 = 2; //clas2
          var filt = '<?=$key1?>';
          
-        
-          
+        //  document.getElementById('nuevo').addEventListener('click', function(){
+        //          suma_monto=0;
+        //          suma_monto1=0;
+        //          suma_monto2=0;
+        //          suma_monto3=0;
+        //          suma_monto4=0;
+        //          suma_monto5=0;
+        //          suma_monto6=0;
+        //          suma_monto7=0;
+        //          suma_monto8=0;
+        //          importe1=0;
+        //          importe2=0;
+        //          importe3=0;
+        //          importe4=0;
+        //          importe5=0;
+        //          importe6=0;
+        //          importe7=0;
+        //          importe8=0;
+        // });  
+
          if (filt == 2){
             document.getElementById('agregar1').addEventListener('click', function(){
             document.getElementById("gp3").style.display = "block";
@@ -291,7 +313,8 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
-                reset_montos();
+             });  
+    
                 
                //LLENADO DE DATA
                 $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase1, tipo:1}, function(data){
@@ -347,7 +370,7 @@
                         importe8=data;
                     });             
                 });
-            }); 
+           
         }
         if (filt == 70){
             document.getElementById('agregar2').addEventListener('click', function(){
@@ -376,7 +399,7 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
-                reset_montos();
+            }); 
                
                 //LLENADO DE DATA
                 $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase2, tipo:1}, function(data){
@@ -422,40 +445,33 @@
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
-                        importe7=data;
+                        importe7=0;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
-                        importe8=data;
+                        importe8=0;
                     });             
                 });
 
-            }); 
+            
         }
-           
+
+       
            
     </script> 
     <script language="javascript">
     function reset_montos() {
-            suma_monto=0;
-            suma_monto1=0;
-            suma_monto2=0;
-            suma_monto3=0;
-            suma_monto4=0;
-            suma_monto5=0;
-            suma_monto6=0;
-            suma_monto7=0;
-            suma_monto8=0;
-            importe1=0;
-            importe2=0;
-            importe3=0;
-            importe4=0;
-            importe5=0;
-            importe6=0;
-            importe7=0;
-            importe8=0;
+             suma_monto=0;
+             suma_monto1=0;
+             suma_monto2=0;
+             suma_monto3=0;
+             suma_monto4=0;
+             suma_monto5=0;
+             suma_monto6=0;
+             suma_monto7=0;
+             suma_monto8=0;   
             
     }
     </script> 

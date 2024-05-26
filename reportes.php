@@ -7,11 +7,10 @@
     include "sidebaradmin.php";
     $dni =mysqli_query($con, "select distinct(dni),nombre from ticket order by dni");
     $estado_ticket =mysqli_query($con, "select * from estado_ticket");
-    $tipo_ticket =mysqli_query($con, "select tt.id,(select nombre from clase_ticket where id=tt.idclase_ticket) as clase_ticket,tt.nombre,(select signo from tipo_moneda where id=tt.idtipo_moneda) as tipo_moneda,tt.importe 
-    from tipos_ticket tt where id in (select distinct(idtipo_ticket) from ticket)");
+    $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2)");
     $ticket =mysqli_query($con, "select concat(serie,\"-\",numero) as codigo,serie,numero from ticket_control group by serie,numero");
     $cobranza =mysqli_query($con, "select n_cobranza from cobranza");
-    $tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in (select distinct(idformapago) from cobranza)");
+    $tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in(4,5) and idestado_dato=1");
     $fecha = date("Y-m-d"); 
     $colorheder="info"; //COLOR  CABECERA MODAL
         
@@ -196,7 +195,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <!-- <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="tile-stats">
                                         <div class="icon"><i class="fa fa-file-text"></i></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecontrol" >
@@ -212,7 +211,7 @@
                                             <img src="images/bon6.png" style="width:40%"></a>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecobranza" ><h3>Cobranza</h3></a>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     
                                 </div>
