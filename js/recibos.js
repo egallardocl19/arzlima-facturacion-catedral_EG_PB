@@ -5,10 +5,12 @@ $(document).ready(function(){
 
 function load(page){
 	var q= $("#q").val();
+	var q1= $("#q1").val();
+	var q2= $("#q2").val();
 	
 	$("#loader").fadeIn('slow');
 	$.ajax({
-		url:'./ajax/recibos.php?action=ajax&page='+page+'&q='+q,
+		url:'./ajax/recibos.php?action=ajax&page='+page+'&q='+q+'&q1='+q1+'&q2='+q2,
 		beforeSend: function(objeto){
 			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
 		},
@@ -21,11 +23,13 @@ function load(page){
 }
 
 function load2(page){
-	var q= $("#qq").val();
+	var qq= $("#qq").val();
+	var qq1= $("#qq1").val();
+	var qq2= $("#qq2").val();
 	
 	$("#loader").fadeIn('slow');
 	$.ajax({
-		url:'./ajax/recibos2.php?action=ajax&page='+page+'&qq='+q,
+		url:'./ajax/recibos2.php?action=ajax&page='+page+'&qq='+qq+'&qq1='+qq1+'&qq2='+qq2,
 		beforeSend: function(objeto){
 			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
 		},

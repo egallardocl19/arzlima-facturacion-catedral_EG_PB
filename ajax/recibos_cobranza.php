@@ -38,13 +38,15 @@
         // escaping, additionally removing everything that could be (html/javascript-) code
        
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-        
-         $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha','t.dni');//Columnas de busqueda  
+        $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
+
+         $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
          $sTable = "cobranza c, ticket t,formapago f";
-         $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id ";
+         $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=4 ";
+
         if ( $_GET['q'] != "" ) 
         {
-            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id  and  (";
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=4 and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
@@ -52,12 +54,32 @@
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
+
+        if ( $_GET['q1'] != "" ) 
+        {
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=4 and  (c.fecha='".$q1."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+
+        if ( $_GET['q'] != "" && $_GET['q1'] != "") 
+        {
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=4 and  c.fecha='".$q1."' and (";
+            for ( $i=0 ; $i<count($aColumns) ; $i++ )
+            {
+                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+            }
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+
         $sWhere.=" order by c.n_cobranza desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
 		
         $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-        $per_page = 10; //how much records you want to show
+        $per_page = 5; //how much records you want to show
         $adjacents  = 4; //gap between pages after number of adjacents
         $offset = ($page - 1) * $per_page;
         //Count the total number of row in your table*/
@@ -141,7 +163,7 @@
                         <?php  
                         if ($idformapago==6){
                         ?>
-                        <a href="#" class='btn btn-info' title='Ver Recibo' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a>
+                        <a href="#" class='btn btn-info' title='Ver Recibo' onclick="" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a>
                         <?php 
                             } 
                         ?>

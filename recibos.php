@@ -25,6 +25,7 @@
 
     //Variables
     $estado_pago =mysqli_query($con, "SELECT * from estado_pago where id=1");
+    $ticket_motivos=mysqli_query($con, "SELECT * from ticket_motivos where idestado_dato=1");
     $colorheder="info"; //COLOR  CABECERA MODAL
     $colortipo1="#F9E8C2";
     $colortipo2="#FAD7D7";
@@ -38,7 +39,7 @@
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
     $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 AND id in(4,5)"); 
-
+    $estado_recibo =mysqli_query($con, "SELECT * from estado_ticket");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
              
     //PERMISOS
@@ -85,6 +86,7 @@
                         <?php
                     
                             include("modal/mantenimiento_recibos_caja.php");
+                            include("modal/delete_ticket.php");
                             
 
                             ?>
@@ -106,18 +108,41 @@
                                             <!--<div class="form-group">-->
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
-                                                    <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo - Fecha" ><!--//onkeyup='load(1);'-->
+                                                    <label for="q" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="q1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <input type="date" id="q1" name="q1" class="form-control" value="<?php echo $fechahoy ?>" >
                                                     </div>
                                                   
-                                                        <div class="col-mg-3 col-sm-3 col-xs-12">
+                                                    <label  for="q2" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-bars" aria-hidden="true"></i> Estado:</label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                                                        <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="q2" name="q2" data-size="5" style="max-width: 100%!important;" >
+                                                        <option value="">Seleccionar Estado</option>  
+                                                        <?php foreach($estado_recibo as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>	
+                                                        </select>
+                                                    
+                                                    </div>
+                                                
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">                                                   
                                                             <button type="button" class="btn btn-warning" onclick='load(1);'>
                                                                 <span class="glyphicon glyphicon-search" ></span> Buscar</button>
-                                                                <span id="loader"></span>
+                                                                 <span id="loader"></span> 
+                                                             
+                                                             
                                                         </div>
+                                                        
                                                 </div>
+                                   
                                                 
                                             </div>
                                         </form> 
@@ -156,18 +181,41 @@
                                             <!--<div class="form-group">-->
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
-                                                    <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="Código Recibo - Fecha" ><!--//onkeyup='load(1);'-->
+                                                    <label for="qq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="qq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <input type="date" id="qq1" name="qq1" class="form-control" value="<?php echo $fechahoy ?>" >
                                                     </div>
                                                   
-                                                        <div class="col-mg-3 col-sm-3 col-xs-12">
+                                                    <label  for="qq2" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-bars" aria-hidden="true"></i> Estado:</label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                                                        <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="qq2" name="qq2" data-size="5" style="max-width: 100%!important;" >
+                                                        <option value="">Seleccionar Estado</option>  
+                                                        <?php foreach($estado_recibo as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>	
+                                                        </select>
+                                                    
+                                                    </div>
+                                                
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">                                                   
                                                             <button type="button" class="btn btn-warning" onclick='load2(1);'>
                                                                 <span class="glyphicon glyphicon-search" ></span> Buscar</button>
-                                                                <span id="loader"></span>
+                                                                 <span id="loader"></span> 
+                                                             
+                                                             
                                                         </div>
+                                                        
                                                 </div>
+                                   
                                                 
                                             </div>
                                         </form> 
@@ -225,6 +273,29 @@
     event.preventDefault();
     })
 
+    $( "#del" ).submit(function( event ) {
+    var parametros = $(this).serialize();
+        $.ajax({
+                type: "POST",
+                url: "action/del_ticket.php",
+                data: parametros,
+                beforeSend: function(objeto){
+                    $("#result2").show();
+                    $("#result2").html("Mensaje: Cargando...");
+                },
+                success: function(datos){
+                $("#result2").html(datos);
+                $('#save_data').attr("disabled", false);
+                load(1);
+                load2(1);
+                
+             
+            }
+        });
+    
+    event.preventDefault();
+    })
+
        
        function limpiarFormulario() {
         document.getElementById("add").reset();
@@ -239,7 +310,12 @@
         }
 
        
-        
+        function obtener_datos(id){
+            var serie = $("#serie"+id).val();    
+            var numero = $("#numero"+id).val();
+            $("#mod_id").val(id);   
+            $("#n_ticket").val(serie+'-'+numero);   
+       }
                     
 </script>
 <!-- CAMPO POR DEFAULT AL INICIAR BOTON AGREGAR -->
@@ -294,6 +370,7 @@
             document.getElementById("gp7").style.display = "block";
             document.getElementById("gp8").style.display = "block";
             document.getElementById("nuevo").style.display = "none";
+           
             //document.getElementById("gp7").style.display = "block";
             // document.getElementById("ln3").style.display = "block";
             // document.getElementById("ln4").style.display = "block";
@@ -366,7 +443,7 @@
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:6}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
                         importe8=data;
                     });             
                 });
@@ -458,8 +535,14 @@
             
         }
 
-       
-           
+        document.getElementById('save_data').addEventListener('click', function(){
+            document.getElementById("save_data").style.display = "none";
+        }); 
+        
+        document.getElementById('nuevo').addEventListener('click', function(){
+            document.getElementById("save_data").style.display = "block";
+        }); 
+
     </script> 
     <script language="javascript">
     function reset_montos() {

@@ -6,24 +6,29 @@
 		} else if (empty($_POST['fecha2'])){
 			$errors[] = "Fecha Fin vacío";
 		} else if (empty($_POST['n_comprobante'])){
-			$errors[] = "N° Comprobante vacío";
+			$errors[] = "Ultimo N° Comprobante vacío";
+		} else if (empty($_POST['tipo_registro'])){
+			$errors[] = "Tipo Registro vacío";
 		} else if (
 			
 			!empty($_POST['fecha'])  &&
 			!empty($_POST['fecha2']) &&
-			!empty($_POST['n_comprobante'])
+			!empty($_POST['n_comprobante'])&&
+			!empty($_POST['tipo_registro'])
 		){
 
 		include "../config/config.php";
+
 		$fecha = $_POST["fecha"];
 		$fecha2 = $_POST["fecha2"];
 		$n_comprobante = $_POST["n_comprobante"];
+		$tipo_registro = $_POST["tipo_registro"];
 		$submod=$_SESSION['keytok0']; 
 		$iduser_add = $_SESSION['user_id'];
 		$fecha_add = date("Y-m-d");
 
 		
-		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_registro_concar('$fecha','$fecha2','$n_comprobante',$iduser_add,'$fecha_add',$submod,@resultado,@resultado1);");
+		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_registro_concar('$fecha','$fecha2','$n_comprobante',$tipo_registro,$iduser_add,'$fecha_add',$submod,@resultado,@resultado1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1");
 		
 		while($row = $resultado->fetch_assoc())

@@ -95,7 +95,7 @@
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                                </ul>
+                                </ul> 
                                 <div class="clearfix"></div>
                                     </div>
                                         <!-- form search -->
@@ -103,19 +103,26 @@
                                             <!--<div class="form-group">-->
                                             <div class="form-group">
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
-                                                    <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Código Recibo" ><!--//onkeyup='load(1);'-->
+                                                    <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-3 col-xs-12">
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="N° Ticket" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="q1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-3 col-xs-12">
+                                                    <input type="date" id="q1" name="q1" class="form-control" value="<?php echo $fechahoy ?>" >
                                                     </div>
                                                   
-                                                        <div class="col-mg-3 col-sm-3 col-xs-12">
+                                                
+                                                    <div class="col-md-2 col-sm-3 col-xs-12">                                                   
                                                             <button type="button" class="btn btn-warning" onclick='load(1);'>
                                                                 <span class="glyphicon glyphicon-search" ></span> Buscar</button>
-                                                                <span id="loader"></span>
-                                                        </div>
-                                                </div>
-                                                
+                                                                 <span id="loader"></span> 
+                                                    </div>
+                                                        
+                                                </div> 
                                             </div>
                                         </form> 
                                            

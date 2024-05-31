@@ -5,12 +5,15 @@
 					<?php
 					$mes_actualx = date("m"); 
                     $anio_actualx=date("Y"); 
-					$TicketData=mysqli_query($con, "select * from ticket where idclase_ticket=1");
-                    $TicketData1=mysqli_query($con, "select * from ticket where idclase_ticket=2");
-					$TicketData2=mysqli_query($con, "select * from ticket_control");
-                    $TicketData3=mysqli_query($con, "select * from user");
-                    $TicketData4=mysqli_query($con, "select * from user where id=$codigo");
-                    $TicketData5=mysqli_query($con, "select * from cobranza");
+                    $fechahoy=date("Y-m-d"); 
+					$TicketData=mysqli_query($con, "select * from ticket where idclase_ticket=1 and fecha='$fechahoy'");
+                    $TicketData1=mysqli_query($con, "select * from ticket where idclase_ticket=2 and fecha='$fechahoy'");
+					$TicketData2=mysqli_query($con, "select * from ticket_control where fecha='$fechahoy'");
+                    $TicketData3=mysqli_query($con, "select * from cobranza where fecha='$fechahoy'");
+                    $TicketData4=mysqli_query($con, "select * from contabilidad_concar_registros where fecha='$fechahoy'");
+                    $TicketData5=mysqli_query($con, "select * from user");
+                    $TicketData6=mysqli_query($con, "select * from user where id=$codigo");
+                    
                  
                     
                     $menu =mysqli_query($con,"CALL menu('$id');");

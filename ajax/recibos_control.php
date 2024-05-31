@@ -38,10 +38,13 @@
         // escaping, additionally removing everything that could be (html/javascript-) code
        
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-        
+        $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
+
+
          $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha','t.dni');//Columnas de busqueda  
          $sTable = "ticket_control t, clase_ticket tt, tipo_moneda tm";
          $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id ";
+      
         if ( $_GET['q'] != "" ) 
         {
             $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id and  (";
@@ -52,10 +55,29 @@
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
+
+        if ( $_GET['q1'] != "" ) 
+        {
+            $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id and  (t.fecha='".$q1."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+
+        if ( $_GET['q'] != "" && $_GET['q1'] != "") 
+        {
+            $sWhere = "WHERE t.idclase_ticket=tt.id and t.idtipo_moneda=tm.id and  t.fecha='".$q1."' and (";
+            for ( $i=0 ; $i<count($aColumns) ; $i++ )
+            {
+                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+            }
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
         $sWhere.=" order by t.id desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
-		
+		 
         $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
         $per_page = 10; //how much records you want to show
         $adjacents  = 4; //gap between pages after number of adjacents

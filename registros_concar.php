@@ -28,18 +28,12 @@
     $colorheder="info"; //COLOR  CABECERA MODAL
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
+    $AnioMes = date("Y-m");  
     $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1");
     $clase=mysqli_query($con, "SELECT * FROM clase_ticket where idestado_dato=1");
     //$tipo_venta=mysqli_query($con, "SELECT * FROM tipo_venta where idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
-
-    //Conteos 
-    //$info0=mysqli_query($con, "select * from recibos WHERE tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //TOTAL
-    //$info1=mysqli_query($con, "select * from recibos WHERE idestado_recibo=1 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PENDIENTE
-    //$info2=mysqli_query($con, "select * from recibos WHERE idestado_recibo=2 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PAGADO
-    //$info3=mysqli_query($con, "select * from recibos WHERE idestado_recibo=3 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //ANULADO
-    //$info4=mysqli_query($con, "select * from recibos WHERE idestado_recibo=4 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //FRACCIONADO
-                               
+              
     //PERMISOS
       $submenu =mysqli_query($con,"CALL submenu('$id','0','$key1');");
       if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -90,7 +84,7 @@
 
                             <div class="x_panel">
                             <div class="x_title">
-                                <h2><?php echo $titulo; ?> : </h2>
+                                <h2><?php echo $titulo; ?> : Ventas </h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
@@ -105,7 +99,8 @@
                                                     <label for="q" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
 
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="Fecha" ><!--//onkeyup='load(1);'-->
+                                                        <!-- <input type="text" class="form-control" id="q" name="q" placeholder="Fecha" > -->
+                                                        <input type="month" id="q" name="q" class="form-control"  value="<?php echo $AnioMes;?>" >
                                                     </div>
                                                   
                                                         <div class="col-mg-3 col-sm-3 col-xs-12">

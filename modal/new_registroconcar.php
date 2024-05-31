@@ -48,11 +48,27 @@
                                 </div>
 
                             </div>  
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Tipo:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
 
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-5 col-sm-5 col-xs-12"><i class="fa fa-inbox" aria-hidden="true"></i> Último N° Comprobante: <span class="required"></span></label>
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_registro" name="tipo_registro" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="1">VENTAS</option>  	
+                                    <option value="2">DEPOSITO</option>  	
+                                    <!-- <?php foreach($forma_pago as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
+                                        <?php endforeach; ?>-->
+                                    </select> 
+                                
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-5 col-sm-5 col-xs-12"><i class="fa fa-inbox" aria-hidden="true"></i> Último N°: <span class="required"></span></label>
                                 <div class="col-md-7 col-sm-7 col-xs-12">
-                                <input type="text" id="n_comprobante" name="n_comprobante" class="form-control" placeholder="Último N° Comprobante"  maxlength="10" >
+                                <input type="text" id="n_comprobante" name="n_comprobante" class="form-control" placeholder="Último N°"  maxlength="10" >
                                 </div>
                             </div>
 

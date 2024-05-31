@@ -9,6 +9,7 @@ $tipo_pago = 0;
 $tipo_ticket = 0;
 $fecha1 = "";
 $fecha2 = "";
+$idcajero = 0;
 
 //$dni = $_POST['dni'];
 //$estado_ticket = $_POST['estado_ticket'];
@@ -16,7 +17,7 @@ $tipo_ticket = $_POST['tipo_ticket'];
 $tipo_pago = $_POST['tipo_pago'];
 $fecha1 = $_POST['fecha_inicio'];
 $fecha2 = $_POST['fecha_fin'];
-
+$idcajero = $_POST['idcajero'];
 
 
 
@@ -27,6 +28,11 @@ if($tipo_ticket!='0'){
 }
 if($tipo_pago!='0'){
 	$where.=" and c.idformapago=".$tipo_pago."";
+}else{
+	$where.="";
+}
+if($idcajero!='0'){
+	$where.=" and t.iduser_add=".$idcajero."";
 }else{
 	$where.="";
 }

@@ -449,13 +449,13 @@
                         <div class="ln_solid"></div>
                         <div id="result"></div>
                         <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
                                         <button id="save_data" type="submit" class="btn<?php echo $tamaniocampo ?> btn-success"></button>
                                        
                                     </div>
                                     
-                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                         <button id="nuevo" type="button" class="btn<?php echo $tamaniocampo ?> btn-warning" onclick="limpiarFormulario();"></button> 
                                     </div>
                                 </div>
@@ -536,3 +536,18 @@
             })
         })          
 </script> 
+
+
+<script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO
+            document.getElementById("n_pago").addEventListener("keypress",verificar);
+            document.getElementById("monto_ingresado").addEventListener("keypress",verificar);
+            document.getElementById("monto_devolver").addEventListener("keypress",verificar);
+                      
+            function verificar(e) {
+                if(e.key.match(/[0-9]/i)===null) {
+                    e.preventDefault();
+                }
+                
+            }
+        
+            </script>

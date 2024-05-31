@@ -171,7 +171,7 @@
 											
 						 					<td>".utf8_decode('')."</td>
 						 					<td style='".$style."'>".utf8_decode($fetch['sub_diario'])."</td>
-						 					<td>".utf8_decode($fetch['comprobante'])."</td>
+						 					<td style='".$style."'>".utf8_decode($fetch['comprobante'])."</td>
 						 					<td>".utf8_decode($fetch['fecha'])."</td>
 						 					<td>".utf8_decode($fetch['moneda_contable'])."</td>
 						 					<td>".utf8_decode($fetch['glosa'])."</td>

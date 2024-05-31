@@ -4,11 +4,11 @@ $(document).ready(function(){
 
 function load(page){
 	var q= $("#q").val();
-	
+	var q1= $("#q1").val();
 	
 	$("#loader").fadeIn('slow');
 	$.ajax({
-		url:'./ajax/recibos_control.php?action=ajax&page='+page+'&q='+q,
+		url:'./ajax/recibos_control.php?action=ajax&page='+page+'&q='+q+'&q1='+q1,
 		beforeSend: function(objeto){
 			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
 		},

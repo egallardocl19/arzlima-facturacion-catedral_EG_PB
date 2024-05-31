@@ -77,6 +77,21 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Cajero:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idcajero" name="idcajero" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="0">--Seleccione Cajero--</option>  
+                                    <?php foreach($cajero as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['username'].' - '.$p['nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
+                            </div>
+
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Inicio:<span class="required"></span>
                                 </label>
@@ -101,9 +116,9 @@
                            
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
+                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutalocal ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
                             
-                            <button class="btn btn-success" name="export" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
+                            <button class="btn btn-success" name="export" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button>
                          
                             </div>
                         </div>    

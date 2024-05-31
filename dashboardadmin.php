@@ -184,7 +184,7 @@
                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-cubes"></i></div>
-                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
+                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
                           <a href="<?php echo  $ruta_envio?>"><h3>Ticket Promocionales</h3></a>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
 					<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-child"></i></div>
-                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData5) ?></div></a>
+                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData3) ?></div></a>
                           <a href="<?php echo  $ruta_envio?>"><h3>Cobranza</h3></a>
                         </div>
                     </div>
@@ -276,7 +276,7 @@
 					<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-child"></i></div>
-                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData5) ?></div></a>
+                          <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData4) ?></div></a>
                           <a href="<?php echo  $ruta_envio?>"><h3>ConcarSQL</h3></a>
                         </div>
                     </div>

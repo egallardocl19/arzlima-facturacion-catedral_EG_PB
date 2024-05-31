@@ -8,27 +8,7 @@
 
     $submod=$_SESSION['keytok0']; 
     
-    if (isset($_GET['id'])){
-        $id_del=($_GET['id']);
-        $query=mysqli_query($con, "SELECT * from ticket where  serie in(select abrev from recibos_serial where idsubmodulo=$submod)"); //codigogruposervice='".$gruposervice."' and tiposervicio=1 and 
-        $count=mysqli_num_rows($query);
-
-            if ($delete1=mysqli_query($con,"UPDATE ticket set idestado_ticket=3  WHERE id='".$id_del."'")){
-				?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <strong>Aviso!</strong> Recibo anulado exitosamente.
-            </div>
-        		<?php 
-            }else {
-        			?>
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
-                </div>
-   				 <?php
-            } //end else
-        } //end if
+ 
     			?>
 
 <?php
@@ -38,10 +18,13 @@
         // escaping, additionally removing everything that could be (html/javascript-) code
        
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-        
-         $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha');//Columnas de busqueda  
+        $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
+        $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
+
+         $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
          $sTable = "ticket t, tipo_moneda tm";
          $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1";
+    
         if ( $_GET['q'] != "" ) 
         {
             $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (";
@@ -52,6 +35,61 @@
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
+
+        if ( $_GET['q1'] != "" ) 
+        {
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+ 
+        if ( $_GET['q2']!= "" ) 
+        {
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.idestado_ticket='".$q2."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+
+        if ( $_GET['q'] != "" && $_GET['q1'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['q'] != "" && $_GET['q2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.idestado_ticket='".$q2."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['q1'] != "" && $_GET['q2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' OR ";
+           
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['q'] != "" && $_GET['q1'] != "" && $_GET['q2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+
         $sWhere.=" order by t.id desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
@@ -143,7 +181,8 @@
                         if ($date_actual==$fecha){
                             if ($estado=="PAGADO" or $estado=="PENDIENTE"){
                         ?>
-                            <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="eliminar('<?php echo $id; ?>')">|<i class="glyphicon glyphicon-trash"></i></a>
+                            <!-- <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="eliminar('<?php echo $id; ?>')">|<i class="glyphicon glyphicon-trash"></i></a> -->
+                            <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-addanular">|<i class="glyphicon glyphicon-remove"></i></a>
                         <?php 
                             } 
                         }

@@ -29,15 +29,11 @@
                     <input type="hidden" id="codigo" name="codigo">
                     <div class="form-group">  
 
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Cobranza:</label>
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="cobra">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="color:red"><i class="fa fa-calendar" aria-hidden="true"></i> Cobranza:</label>
                                 
                                 <div class="col-md-7 col-sm-7 col-xs-12">
 
-                                    <!-- <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idticket" name="idticket" data-size="5" style="max-width: 100%!important;" >
-                                    <option value="">-- Seleccionar Ticket--</option> 
-                                 
-                                    </select> -->
                                     <input type="date" id="fecha" name="fecha" class="form-control" placeholder="Fecha Hasta" >
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
@@ -46,43 +42,18 @@
                                 </div>
                             </div>
 
-<!-- 
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha:<span class="required"></span>
-                                </label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" >
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="cobra2">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> N° Ticket: </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                               
+                                <input type="text" id="ticket_pagado" name="ticket_pagado"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="000" readonly="true">
                                 </div>
+                            </div>  
+                            
 
-                            </div>   
-
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> DNI / RUC: <span class="required"></span></label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text"  id="dni" name="dni" class="form-control"  placeholder="DNI" maxlength="11">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12"> Nombre: <span class="required"></span></label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                <input type="text"  id="razon_social" name="razon_social" class="form-control"  placeholder="Nombre - Razón Social" maxlength="11">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12"> Dirección: <span class="required"></span></label>
-                                <div class="col-md-10 col-sm-10 col-xs-12">
-                                <input type="text"  id="direccion" name="direccion" class="form-control"  placeholder="Dirección" maxlength="11">
-                                </div>
-                            </div> -->
-
-                           
-
-                     
 
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-6 col-sm-6 col-xs-12"><i class="fa fa-money" aria-hidden="true"></i> Moneda:</label>
+                                <label class="control-label col-md-6 col-sm-6 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Moneda:</label>
                                 
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -97,25 +68,10 @@
                                 
                             </div>
 
-                           
-                            <!-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-money" aria-hidden="true"></i> Costo: </label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text" id="importe" name="importe"  class="form-control" placeholder="0.00" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                <label class="control-label col-md-5 col-sm-5 col-xs-12"><i class="fa fa-suitcase" aria-hidden="true"></i> Cantidad: <span class="required"></span></label>
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                <input type="text" id="cantidad" name="cantidad" class="form-control" placeholder="0" >
-                                </div>
-                            </div> -->
-
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <label class="control-label col-md-6 col-sm-6 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Monto Total: </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                
-                                <!-- <label  id="monto_total_ticket" name="monto_total_ticket" style="font-size: x-large" ></label> -->
                                 <input type="text" id="monto_total_ticket" name="monto_total_ticket"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
                                 </div>
                             </div>  
@@ -168,15 +124,26 @@
                                                 </div>
                                                 
                                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"> Banco: </label>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="banco" name="banco"  class="form-control" value="BCP" readonly="true" >
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> Banco: </label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <select  class="form-control"   id="banco" name="banco" data-size="5" style="max-width: 100%!important;" >
+                                                        
+                                                        <?php foreach($banco as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"> Cuenta: </label>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <input type="text" id="cuenta" name="cuenta"  class="form-control" value="999-999-999-999" readonly="true" >
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> Cuenta: </label>
+                                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <select  class="form-control"   id="cuenta" name="cuenta" data-size="5" style="max-width: 100%!important;" >
+                                                        
+                                                        <?php foreach($banco_cuenta as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['cuenta'];  ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
@@ -198,7 +165,7 @@
                         <div class="ln_solid"></div>
                         <div id="result"></div>
                         <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                         <button id="save_data" type="submit" class="btn btn-success"></button>
                                        
@@ -258,6 +225,18 @@
                     })
                 });      
     </script> 
+
+<script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO
+            document.getElementById("n_operacion").addEventListener("keypress",verificar);
+                      
+            function verificar(e) {
+                if(e.key.match(/[0-9]/i)===null) {
+                    e.preventDefault();
+                }
+                
+            }
+        
+            </script>
 
      
     

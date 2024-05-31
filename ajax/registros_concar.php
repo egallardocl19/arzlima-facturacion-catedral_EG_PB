@@ -6,7 +6,7 @@
     $UserData=mysqli_query($con, "select * from user order by created_at desc");
     $action = (isset($_REQUEST['action']) && $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 
-    $submod=$_SESSION['keytok0']; 
+    //$submod=$_SESSION['keytok0']; 
     
     if (isset($_GET['codigo_recibo'])){
         $id_del=($_GET['codigo_recibo']);
@@ -38,17 +38,25 @@
 		
          // escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-         $aColumns = array('cc.fecha');//Columnas de busqueda
-         $sTable = "contabilidad_concar_registros cc
-         JOIN ticket as t ON  cc.idticket=t.id";
-         $sWhere = "";
-        if ( $_GET['q'] != "" )
+         $aColumns = array('concat(cc.anio,"-",cc.mes)');//Columnas de busqueda
+         $sTable = "contabilidad_concar_registros cc,ticket_detalle td";
+         $sWhere = "where  cc.idticket=td.id ";
+        // if ( $_GET['q'] != "" )
+        // {
+        //     $sWhere = "where  cc.idticket=td.id and (";
+        //     for ( $i=0 ; $i<count($aColumns) ; $i++ )
+        //     {
+        //         $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+        //     }
+        //     $sWhere = substr_replace( $sWhere, "", -3 );
+        //     $sWhere .= ')';
+        // }
+
+        
+        if ( $_GET['q'] != "" ) 
         {
-            $sWhere = "where (";
-            for ( $i=0 ; $i<count($aColumns) ; $i++ )
-            {
-                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-            }
+            $sWhere = "where  cc.idticket=td.id and  (concat(cc.anio,'-',cc.mes)='".$q."' OR ";
+            
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
@@ -72,10 +80,13 @@
         $total_pages = ceil($numrows/$per_page);
         $reload = './expences.php';
 		//consulta principal para obtener los datos
-        $sql="SELECT COUNT(distinct(cc.idticket)) as ticket,count(cc.idcontabilidad_concar) as registro_concar,
-        count((select id from contabilidad_concar where tipo_cuenta='D' and id=cc.idcontabilidad_concar)) as debe,
-        count((select id from contabilidad_concar where tipo_cuenta='H' and id=cc.idcontabilidad_concar)) as haber,
-        cc.fecha,format((select SUM(monto_total) from ticket where fecha=cc.fecha),2) as monto FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        $sql="SELECT cc.fecha,COUNT(distinct(cc.idticket)) as cantidad_tipos_ticket,
+        format((select SUM(costo) from ticket_detalle td,ticket t where td.id_ticket=t.id and t.fecha=cc.fecha),2) as monto,
+        count(cc.idcontabilidad_concar) as registro_concar,
+        count((select c.id from contabilidad_concar_registros c,contabilidad_concar cx 
+        where c.idcontabilidad_concar=cx.id and cx.tipo_registro=1 and cx.tipo_cuenta='D' and c.id=cc.id)) as debe,
+        count((select c.id from contabilidad_concar_registros c,contabilidad_concar cx 
+        where c.idcontabilidad_concar=cx.id and cx.tipo_registro=1 and cx.tipo_cuenta='H' and c.id=cc.id)) as haber FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -85,7 +96,7 @@
                     <tr class="headings">
 					   
                         <th class="column-title">Fecha Registro </th>
-                        <th class="column-title">Cantidad Ticket </th>
+                        <th class="column-title">Tipos Ticket </th>
                         <th class="column-title">Monto Total </th>
                         <th class="column-title">Registro CONCAR</th>
                         <th class="column-title">Registro D </th>
@@ -98,7 +109,7 @@
                 <?php 
                         while ($r=mysqli_fetch_array($query)) {
                              $id=$r['fecha'];//
-                             $ticket=$r['ticket'];//
+                             $ticket=$r['cantidad_tipos_ticket'];//
                              $registro_concar=$r['registro_concar'];//
                              $debe=$r['debe'];//
                              $haber=$r['haber'];//

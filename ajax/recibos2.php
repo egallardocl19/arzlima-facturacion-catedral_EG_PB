@@ -37,21 +37,78 @@
 		
         // escaping, additionally removing everything that could be (html/javascript-) code
        
-        $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq'], ENT_QUOTES)));
-        
+        $qq = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq'], ENT_QUOTES)));
+        $qq1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq1'], ENT_QUOTES)));
+        $qq2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq2'], ENT_QUOTES)));
+
          $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha');//Columnas de busqueda  
          $sTable = "ticket t, tipo_moneda tm";
          $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2";
+
         if ( $_GET['qq'] != "" ) 
         {
             $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
-                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+                $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
             }
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
+
+        if ( $_GET['qq1'] != "" ) 
+        {
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.fecha='".$qq1."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+ 
+        if ( $_GET['qq2']!= "" ) 
+        {
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.idestado_ticket='".$qq2."' OR ";
+            
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+
+        if ( $_GET['qq'] != "" && $_GET['qq1'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.fecha='".$qq1."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['qq'] != "" && $_GET['qq2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.idestado_ticket='".$qq2."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['qq1'] != "" && $_GET['qq2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.fecha='".$qq1."' and  t.idestado_ticket='".$qq2."' OR ";
+           
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
+       if ( $_GET['qq'] != "" && $_GET['qq1'] != "" && $_GET['qq2'] != "") 
+       {
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.fecha='".$qq1."' and  t.idestado_ticket='".$qq2."' and (";
+           for ( $i=0 ; $i<count($aColumns) ; $i++ )
+           {
+               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+           }
+           $sWhere = substr_replace( $sWhere, "", -3 );
+           $sWhere .= ')';
+       }
         $sWhere.=" order by t.id desc";
         include 'pagination2.php'; //include pagination file  
         //pagination variables
@@ -143,7 +200,8 @@
                          if ($date_actual==$fecha){
                              if ($estado=="PAGADO" or $estado=="PENDIENTE"){
                         ?>
-                            <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="eliminar2('<?php echo $id; ?>')">|<i class="glyphicon glyphicon-trash"></i></a>
+                            <!-- <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="eliminar2('<?php echo $id; ?>')">|<i class="glyphicon glyphicon-trash"></i></a> -->
+                            <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-addanular">|<i class="glyphicon glyphicon-remove"></i></a>
                         <?php  
                              }
                           }

@@ -22,8 +22,8 @@
 		$tipo_pago = $_POST["tipo_pago"];
 		$n_pago = $_POST["n_operacion"];
 		$n_deposito = '';
-		$banco = 0;
-		$cuenta = 0;
+		$banco = $_POST["banco"];
+		$cuenta = $_POST["cuenta"];
 		$observaciones = $_POST["observaciones"];
 		
 		$user_id=$_SESSION['user_id'];  
