@@ -39,8 +39,8 @@
        
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
         
-         $aColumns = array('dni','nombre','apellido');//Columnas de busqueda  
-         $sTable = "agencias_guias";
+         $aColumns = array('ag.dni','ag.nombre','ag.apellido','concat(ag.nombre," ",ag.apellido)','(select nombre from agencia where id=ag.idagencia)');//Columnas de busqueda  
+         $sTable = "agencias_guias ag";
          $sWhere = "";
         if ( $_GET['q'] != "" ) 
         {
@@ -52,7 +52,7 @@
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
-        $sWhere.=" order by nombre desc";
+        $sWhere.=" order by ag.nombre desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
 		
@@ -67,7 +67,7 @@
         $total_pages = ceil($numrows/$per_page);
         $reload = './expences.php';
 		//consulta principal para obtener los datos
-        $sql="SELECT * FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        $sql="SELECT ag.id,ag.dni,ag.nombre,ag.apellido,ag.correo,ag.celular,ag.idestado_dato,ag.idagencia,(select nombre from agencia where id=ag.idagencia) as agencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -94,6 +94,7 @@
                             $apellido=$r['apellido'];//
                             $celular=$r['celular'];//
                             $correo=$r['correo'];//
+                            $agencia=$r['agencia'];//
                             $idagencia=$r['idagencia'];//
                             $idestado_dato=$r['idestado_dato'];//
                             if ($idestado_dato==1){$nombre_estado="ACTIVO";}else {$nombre_estado="INACTIVO";}
@@ -119,7 +120,7 @@
                         <td >
                         <?php echo $celular; ?></td>
                         <td >
-                        <?php echo $idagencia; ?></td>
+                        <?php echo $agencia; ?></td>
                         <td >
                         <?php echo $nombre_estado; ?></td>
                        

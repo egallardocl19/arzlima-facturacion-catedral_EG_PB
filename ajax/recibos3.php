@@ -8,7 +8,27 @@
 
     $submod=$_SESSION['keytok0']; 
     
+    if (isset($_GET['id'])){
+        $id_del=($_GET['id']);
+        $query=mysqli_query($con, "SELECT * from ticket where  serie in(select abrev from recibos_serial where idsubmodulo=$submod)"); //codigogruposervice='".$gruposervice."' and tiposervicio=1 and 
+        $count=mysqli_num_rows($query);
 
+            if ($delete1=mysqli_query($con,"UPDATE ticket set idestado_ticket=3  WHERE id='".$id_del."'")){
+				?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <strong>Aviso!</strong> Recibo anulado exitosamente.
+            </div>
+        		<?php 
+            }else {
+        			?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <strong>Error!</strong> Lo siento algo ha salido mal intenta nuevamente.
+                </div>
+   				 <?php
+            } //end else
+        } //end if
     			?>
 
 <?php
@@ -17,80 +37,80 @@
 		
         // escaping, additionally removing everything that could be (html/javascript-) code
        
-        $qq = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq'], ENT_QUOTES)));
-        $qq1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq1'], ENT_QUOTES)));
-        $qq2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq2'], ENT_QUOTES)));
+        $qqq = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qqq'], ENT_QUOTES)));
+        $qqq1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qqq1'], ENT_QUOTES)));
+        $qqq2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qqq2'], ENT_QUOTES)));
 
          $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
          $sTable = "ticket t, tipo_moneda tm";
-         $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2";
+         $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3";
 
-        if ( $_GET['qq'] != "" ) 
+        if ( $_GET['qqq'] != "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (";
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
-                $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
             }
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
 
-        if ( $_GET['qq1'] != "" ) 
+        if ( $_GET['qqq1'] != "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.fecha='".$qq1."' OR ";
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
  
-        if ( $_GET['qq2']!= "" ) 
+        if ( $_GET['qqq2']!= "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.idestado_ticket='".$qq2."' OR ";
+            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.idestado_ticket='".$qqq2."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
 
-        if ( $_GET['qq'] != "" && $_GET['qq1'] != "") 
+        if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.fecha='".$qq1."' and (";
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
-               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+               $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
            }
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
-       if ( $_GET['qq'] != "" && $_GET['qq2'] != "") 
+       if ( $_GET['qqq'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.idestado_ticket='".$qq2."' and (";
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
-               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+               $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
            }
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
-       if ( $_GET['qq1'] != "" && $_GET['qq2'] != "") 
+       if ( $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  (t.fecha='".$qq1."' and  t.idestado_ticket='".$qq2."' OR ";
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' OR ";
            
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
-       if ( $_GET['qq'] != "" && $_GET['qq1'] != "" && $_GET['qq2'] != "") 
+       if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=2  and  t.fecha='".$qq1."' and  t.idestado_ticket='".$qq2."' and (";
+           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
-               $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+               $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
            }
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
         $sWhere.=" order by t.id desc";
-        include 'pagination2.php'; //include pagination file  
+        include 'pagination2_2.php'; //include pagination file  
         //pagination variables
 		
         $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;

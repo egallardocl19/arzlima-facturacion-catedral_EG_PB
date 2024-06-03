@@ -105,6 +105,25 @@
         
     }
 
+    if ($caso=="6"){
+        if ($condicion!=""){
+            $tipo =mysqli_query($con, "SELECT ag.id,ag.dni,ag.nombre,ag.apellido FROM agencias_guias ag, agencia a 
+            where ag.idagencia=a.id and a.id=$condicion");
+
+            $html= "<option value=''>-- Seleccionar Guia--</option>";
+            while($rowM = $tipo->fetch_assoc())
+            {
+                $html.= "<option value='".$rowM['id']."'>".$rowM['dni']." - ".$rowM['nombre']." ".$rowM['apellido']."</option>";  
+            } 
+            echo $html;
+        }else{
+            $html= "<option value=''>-- Seleccionar Agencia --</option>";
+            echo $html;
+            }
+
+        
+    }
+
   
     
 ?>		

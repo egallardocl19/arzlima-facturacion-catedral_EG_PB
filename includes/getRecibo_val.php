@@ -113,4 +113,21 @@
         }
         echo $val;
     }
+
+    if ($caso=="5"){
+        $dato=mysqli_query($con,"SELECT celular FROM agencias_guias where id='$condicion'");
+
+        if (!$dato||mysqli_num_rows($dato)!=0){
+            while($rowM = $dato->fetch_assoc())
+                {
+                $val=$rowM['celular'];
+                
+                }
+        }else{
+            $val= "0";
+           
+        }
+
+        echo $val;
+    }
 ?>		

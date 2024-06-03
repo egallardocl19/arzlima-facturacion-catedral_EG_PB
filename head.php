@@ -80,18 +80,22 @@
 		<link href="css/bootstrap-select/bootstrap-select.css" rel="stylesheet">
         <!-- camara qr -16/11/2023-->
         <link rel="stylesheet" type="text/css" href="assets/css/estilo_camara.css" />
+        <!-- confeti-->
+        <link rel="stylesheet" href="ccs/style_cpnfeti.css">
     </head>
 
     <body class="nav-md">
+   
         <div class="container body">
             <div class="main_container">
+            
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                     <div class="mb-4 mb-md-5 text-center">
                         <div class="navbar nav_title" style="border: 0;">
                           <a href="#" class="site_title">
                           <span>SIGAC</span><img src="images/profiles/ico.png" alt="" height="28"></a>
-							
+                          
                         </div>
 						</div>
                         <div class="clearfix"></div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<link  rel="icon"   href="images/favicon.png" type="image/png" />
+    
 <?php 
     $title ="Dashboard - "; 
     include "head.php";
@@ -131,6 +132,7 @@
         <div class="">
             <div class="page-title">
                 <div class="row top_tiles">
+                
                 <?php 
                   $submenu =mysqli_query($con,"CALL submenu('$id','0','2');");
                  if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -323,7 +325,7 @@
                  
                 </div>
                         
-
+               
                 <!-- content -->
                 <br><br>
                 <div class="row">
@@ -552,7 +554,7 @@
             </div>
         </div>
     </div><!-- /page content -->
-
+   
 <?php include "footer.php" ?>
 
 <script>

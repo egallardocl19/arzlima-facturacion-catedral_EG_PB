@@ -159,7 +159,8 @@
        
        function limpiarFormulario() {
         document.getElementById("add").reset();
-        $('#estado').val(1).addClass("selectpicker").selectpicker('refresh');         
+        $('#estado').addClass("selectpicker").selectpicker('refresh');       
+        $('#agencia').addClass("selectpicker").selectpicker('refresh');      
         $("#result").hide(); 
         }
 
@@ -189,46 +190,47 @@
             document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
             document.getElementById("nuevo").style.display = "block";
             document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
-            document.getElementById("buscar").style.display = "block";
             $("#codigo").val(0);    
             $("#valor_mantenimiento").val(1);  
             }
            
              $("#result").hide();
-             $("#ruc").prop("readonly",false);
-             $("#razon_social").prop("readonly",false);
+             $("#dni").prop("readonly",false);
+             //$("#razon_social").prop("readonly",false);
              
             }); 
            
             
                 // OBTENER DATOS CON EL BOTON EDITAR
             function obtener_datos(id){
-                        document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar Agencia</strong>';
-                        var permiso_editar = '<?=$permiso_editar?>';
-                        if (permiso_editar == 1){
-                            document.getElementById("save_data").style.display = "block";
-                            document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Actualizar'; 
+                          var titulo = '<?=$titulo?>';
+                         document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar '+titulo+'</strong>';
+                         var permiso_editar = '<?=$permiso_editar?>';
+                         if (permiso_editar == 1){
+                             document.getElementById("save_data").style.display = "block";
+                             document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Actualizar'; 
                        
-                            document.getElementById("nuevo").style.display = "none";
-                            document.getElementById("buscar").style.display = "none";
-                        }
-                        var dni_ruc = $("#dni_ruc"+id).val();
+                             document.getElementById("nuevo").style.display = "none";
+                             //document.getElementById("buscar").style.display = "none";
+                         }
+                        var dni_ruc = $("#dni"+id).val();
                         var nombre = $("#nombre"+id).val();    
-                        var direccion = $("#direccion"+id).val();    
+                        var apellido = $("#apellido"+id).val();    
                         var celular = $("#celular"+id).val();    
                         var correo = $("#correo"+id).val();    
+                        var idagencia = $("#idagencia"+id).val();
                         var idestado_dato = $("#idestado_dato"+id).val();
                        
                         $("#codigo").val(id);    
                         $("#valor_mantenimiento").val("2");    
-                        $("#ruc").val(dni_ruc);
-                        $("#ruc").prop("readonly",true);
+                        $("#dni").val(dni_ruc);
+                        $("#dni").prop("readonly",true);
 
-                        $('#razon_social').val(nombre);
-                        $("#razon_social").prop("readonly",true);
-                        $('#direccion').val(direccion); 
+                        $('#nombre').val(nombre);
+                        $('#apellido').val(apellido); 
                         $("#celular").val(celular);
                         $("#correo").val(correo);
+                        $("#agencia").val(idagencia).addClass("selectpicker").selectpicker('refresh'); 
                         $("#estado").val(idestado_dato).addClass("selectpicker").selectpicker('refresh'); 
                         
                         

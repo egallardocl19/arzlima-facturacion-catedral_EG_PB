@@ -1,5 +1,6 @@
 
 <link  rel="icon"   href="images/favicon.png" type="image/png" />
+
 <?php
     $title ="Recibos | ";
     include "head.php";
@@ -26,6 +27,7 @@
     //Variables
     $estado_pago =mysqli_query($con, "SELECT * from estado_pago where id=1");
     $ticket_motivos=mysqli_query($con, "SELECT * from ticket_motivos where idestado_dato=1");
+    $agencia=mysqli_query($con, "SELECT id,dni_ruc,nombre FROM agencia where idestado_dato=1");
     $colorheder="info"; //COLOR  CABECERA MODAL
     $colortipo1="#F9E8C2";
     $colortipo2="#FAD7D7";
@@ -77,12 +79,16 @@
       
          
 ?>
-        
+       
     <div class="right_col" role="main"><!-- page content -->
         <div class="">
             <div class="page-title">
+            
                 <div class="clearfix"></div>
+                
+
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                   
                         <?php
                     
                             include("modal/mantenimiento_recibos_caja.php");
@@ -235,6 +241,78 @@
                         <?php 
                         }
                         ?>
+                         <?php 
+                          if ( $key1==71){
+
+                          ?>
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><?php echo $titulo; ?> :  </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                    </div>
+                                        <!-- form search -->
+                                        <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                            <!--<div class="form-group">-->
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+
+                                                    <label for="qqq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="qqq" name="qqq" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="qqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <input type="date" id="qqq1" name="qqq1" class="form-control" value="<?php echo $fechahoy ?>" >
+                                                    </div>
+                                                  
+                                                    <label  for="qqq2" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-bars" aria-hidden="true"></i> Estado:</label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                                                        <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="qqq2" name="qqq2" data-size="5" style="max-width: 100%!important;" >
+                                                        <option value="">Seleccionar Estado</option>  
+                                                        <?php foreach($estado_recibo as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>	
+                                                        </select>
+                                                    
+                                                    </div>
+                                                
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">                                                   
+                                                            <button type="button" class="btn btn-warning" onclick='load3(1);'>
+                                                                <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                 <span id="loader"></span> 
+                                                             
+                                                             
+                                                        </div>
+                                                        
+                                                </div>
+                                   
+                                                
+                                            </div>
+                                        </form> 
+                                        
+                                                                <!-- end form search -->
+                                        <div class="x_content">
+                                            <div class="table-responsive">
+                                                <!-- ajax -->
+                                                <div id="resultados3"></div><!--Carga los datos ajax -->
+                                                <div class='outer_div3'></div><!-- Carga los datos ajax -->
+                                                <!-- /ajax -->
+                                            </div>
+                                        </div>                            
+                                                               
+                            </div> 
+                        </div>
+                        <?php 
+                        }
+                        ?>
 
                         
                 </div>
@@ -265,6 +343,7 @@
                 document.getElementById("nuevo").style.display = "block";
                 load(1);
                 load2(1);
+                load3(1);
                 reset_montos();
              
             }
@@ -288,7 +367,7 @@
                 $('#save_data').attr("disabled", false);
                 load(1);
                 load2(1);
-                
+                load3(1);
              
             }
         });
@@ -305,8 +384,12 @@
         
         $("#result").hide(); 
         document.getElementById("nuevo").style.display = "none";
-        
-    
+        $('#agencia').addClass("selectpicker").selectpicker('refresh');   
+        caso = "6";
+        $.post("includes/getRecibo_html.php", { caso: caso, condicion: 0}, function(data){
+        $("#guia").html(data).addClass("selectpicker").selectpicker('refresh');                                                                                                                                                                        
+         }); 
+
         }
 
        
@@ -339,6 +422,7 @@
         var importe8=0;
          var clase1 = 1; //clas1
          var clase2 = 2; //clas2
+         var clase3 = 3; //clas2
          var filt = '<?=$key1?>';
          
         //  document.getElementById('nuevo').addEventListener('click', function(){
@@ -369,6 +453,8 @@
             document.getElementById("gp6").style.display = "block";
             document.getElementById("gp7").style.display = "block";
             document.getElementById("gp8").style.display = "block";
+            document.getElementById("gp9").style.display = "block";
+            document.getElementById("gp10").style.display = "none";
             document.getElementById("nuevo").style.display = "none";
            
             //document.getElementById("gp7").style.display = "block";
@@ -457,6 +543,8 @@
             document.getElementById("gp6").style.display = "none";
             document.getElementById("gp7").style.display = "none";
             document.getElementById("gp8").style.display = "none";
+            document.getElementById("gp9").style.display = "block";
+            document.getElementById("gp10").style.display = "none";
             document.getElementById("nuevo").style.display = "none";
             //document.getElementById("gp7").style.display = "none";
             // document.getElementById("ln3").style.display = "none";
@@ -526,6 +614,97 @@
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
+                $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
+                        importe8=0;
+                    });             
+                });
+
+            
+        }
+
+        if (filt == 71){
+            document.getElementById('agregar3').addEventListener('click', function(){
+            document.getElementById("gp2").style.display = "none";
+            document.getElementById("gp3").style.display = "none";
+            document.getElementById("gp4").style.display = "none";
+            document.getElementById("gp5").style.display = "none";
+            document.getElementById("gp6").style.display = "none";
+            document.getElementById("gp7").style.display = "none";
+            document.getElementById("gp8").style.display = "none";
+            document.getElementById("gp9").style.display = "none";
+            document.getElementById("gp10").style.display = "block";
+            document.getElementById("nuevo").style.display = "none";
+            //document.getElementById("gp7").style.display = "none";
+            // document.getElementById("ln3").style.display = "none";
+            // document.getElementById("ln4").style.display = "none";
+            //document.getElementById("ln7").style.display = "none";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Crédito</strong>';
+            var permiso_crear = '<?=$permiso_crear?>';
+                if (permiso_crear == 1){
+                document.getElementById("save_data").style.display = "none";
+                document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
+                
+                document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
+                $("#codigo").val(0);   
+                $("#valor_mantenimiento").val(1);  
+                $("#clase").val(clase3);  
+                }
+                limpiarFormulario();
+                $("#result").hide();
+                $("#n_pago").prop("readonly",true);
+               
+            }); 
+
+               
+                //LLENADO DE DATA
+                $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase3, tipo:1}, function(data){
+                $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');     
+                });
+
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:7}, function(data){
+                $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');     
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                        importe1=data;
+                    });              
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');    
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                        importe2=0;
+                    });           
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                        importe3=0;
+                    });               
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');   
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                        importe4=0;
+                    });            
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh'); 
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                        importe5=0;
+                    });                
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                        importe6=0;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
+                $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                        importe7=0;
+                    });             
+                });
+                $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
                 $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
                         importe8=0;

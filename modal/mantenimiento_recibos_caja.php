@@ -4,7 +4,7 @@
 
     $permiso_token =mysqli_query($con,"CALL permisos('$id','$key1','$tok1');"); 
     if (!$permiso_token||mysqli_num_rows($permiso_token)!=0){
-        
+ 
     ?>
  <!-- Modal -->
     <!-- <div>
@@ -40,6 +40,21 @@
                     <?php 
                         }
                         ?>
+                        <?php 
+                          if ( $key1==71){
+
+                          ?>
+                     <div class="animated flipInY col-lg-4 col-md-12 col-sm-6 col-xs-12" id="agregar3">
+                        <div class="tile-stats" style="background-color:#FFE69A">
+                        <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
+                        
+                        <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
+                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><h3 style="color:#777E96">Ticket Crédito</h3></a>
+                        </div>
+                    </div>
+                    <?php 
+                        }
+                        ?>
                    <!-- <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar2">
                         <div class="tile-stats" style="background-color:#FFE69A">
                         <div class="icon"><img src="images/shop.png" style="width:350%"></div>
@@ -55,14 +70,15 @@
     $con->next_result();
     ?> 
     <div class="modal fade bs-example-modal-lg-add-caja" tabindex="-1" role="dialog" aria-hidden="true">
+
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content ">
                 <div class="modal-header bg-<?php echo $colorheder ?> text-white" >
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title" id="myModalLabel" style="text-align: center"></h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     <form class="form-horizontal form-label-left input_mask" method="post" id="add" name="add" >
                     <input type="hidden" id="valor_mantenimiento" name="valor_mantenimiento">
                     <input type="hidden" id="codigo" name="codigo">
@@ -364,87 +380,128 @@
                            </div> 
                            <div class="ln_solid" id="ln8"></div>
                             <!-- ###################################################### -->
-                            <div class="form-group">  
-                                <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                <div class="form-group"> 
-                                    <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> :<span class="required"></span>
-                                    </label>
-                                    <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="<?php echo $fechahoy;?>" readonly="true" >
-                                    </div>
+                            <div class="form-group" >  
+                                 <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                     <div class="form-group"> 
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> :<span class="required"></span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="<?php echo $fechahoy;?>" readonly="true" >
+                                        </div>
                                     </div>  
                                 </div>  
 
                                 <div class="col-md-4 col-sm-6 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                <div class="form-group"> 
-                                <label class="control-label col-md-5 col-sm-5 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Total:</label>
-                                <div class="col-md-7 col-sm-7 col-xs-12">
-                                <input type="text" id="monto_totalx" name="monto_totalx"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
-                                </div>
-                                 </div>  
-                                 </div>  
+                                    <div class="form-group"> 
+                                        <label class="control-label col-md-5 col-sm-5 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Total:</label>
+                                        <div class="col-md-7 col-sm-7 col-xs-12">
+                                        <input type="text" id="monto_totalx" name="monto_totalx"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
+                                        </div>
+                                    </div>  
+                                 </div>   
 
-                                <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
                                     <div class="form-group"> 
                                         <label class="control-label col-md-3 col-sm-2 col-xs-12"> Serie:</label>
                                     
                                         <div class="col-md-9 col-sm-10 col-xs-12">
 
                                             <select class="form-control"  id="serie" name="serie" data-size="5" style="max-width: 100%!important;" >
-                                        
-                                            <!-- <?php foreach($serie1 as $p):?>
-                                                <option value="<?php echo $p['abrev']; ?>"><?php echo $p['abrev'];  ?></option>
-                                                <?php endforeach; ?> -->
+ 
                                             </select>
                                         
                                         </div>
                                     </div>  
-                                </div>
+                                </div> 
 
                             </div>
                             
-                            
-                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                            <div class="form-group" >
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> Pago:</label>
-                                
-                                <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="form-group" id="gp9">  
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" >
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12"> Pago:</label>
+                                        
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
 
-                                    <select  class="selectpicker" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
-                                   
-                                    <?php foreach($forma_pago as $p):?>
-                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                
+                                            <select  class="selectpicker" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
+                                        
+                                            <?php foreach($forma_pago as $p):?>
+                                                <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°: </label>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                        <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
+                                        </div>
+                                    </div>
                                 </div>
-                                
-                            </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                            <div class="form-group" >
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°: </label>
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
-                                </div>
-                            </div>
-                            </div>
 
-                            <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                            <div class="form-group" >
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12"> Cal: </label>
-                                <div class="col-md-5 col-sm-5 col-xs-12">
-                                <input type="text" id="monto_ingresado" name="monto_ingresado"  style="color:blue; font-weight: bold; font-size:20px;" class="form-control" placeholder="0" maxlength="6">
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Cal: </label>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <input type="text" id="monto_ingresado" name="monto_ingresado"  style="color:blue; font-weight: bold; font-size:20px;" class="form-control" placeholder="0" maxlength="6">
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <input type="text" id="monto_devolver" name="monto_devolver"  style="color:black; font-weight: bold; font-size:20px;" class="form-control" readonly="true">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-5 col-sm-5 col-xs-12">
-                                <input type="text" id="monto_devolver" name="monto_devolver"  style="color:black; font-weight: bold; font-size:20px;" class="form-control" readonly="true">
-                                </div>
-                            </div>
-                            </div>
-                           
+                             </div>
                             
                         </div>
-                 
+                        <div class="form-group" id="gp10"> 
+                            <div class="ln_solid" id="ln10"></div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Agencia:</label>
+                                        
+                                        <div class="col-md-10 col-sm-10 col-xs-12">
+
+                                        <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="agencia" name="agencia" data-size="5" style="max-width: 100%!important;" >
+                                        <option value="">-- Seleccionar Agencia--</option> 
+                                            <?php foreach($agencia as $p):?>
+                                                <option value="<?php echo $p['id']; ?>"><?php echo $p['dni_ruc']." - ".$p['nombre'];  ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
+                                         <div class="form-group" >
+                                             <label class="control-label col-md-1 col-sm-1 col-xs-12"> Guia:</label>
+                                        
+                                            <div class="col-md-7 col-sm-7 col-xs-12">
+
+                                            <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="guia" name="guia" data-size="5" style="max-width: 100%!important;" >
+                                            <option value="">-- Seleccionar Agencia--</option> 
+                                            </select>
+                                            
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <input type="text" id="celular" name="celular"  style="color:black; font-weight: bold; font-size:20px;" class="form-control" readonly="true">
+                                            </div>
+                                        
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                            <a href="#" id="enlace" class='btn btn-primary' title='Enviar SMS' target="_blank" ><i class="fa fa-whatsapp"></i></a>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                            </div>
+                               
+
+                        
                         <!--------------------------------------------------------------------------------->
                         <div class="ln_solid"></div>
                         <div id="result"></div>
@@ -452,7 +509,7 @@
                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group ">
                                         <button id="save_data" type="submit" class="btn<?php echo $tamaniocampo ?> btn-success"></button>
-                                       
+                                        
                                     </div>
                                     
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
@@ -523,18 +580,52 @@
                              $valor_monto=($monto_ingresado-$monto_cobrar);
                          $("#monto_devolver").val($valor_monto);
                           }
-                        //  if ($importe1==''){
-                        //     $importe1=0;
-                        //  }else{
-                        //     $importe1=parseFloat($importe1);
-                        //  }
-                         
-                        // document.getElementById('monto_total_ticket').innerHTML=$valor_total.toFixed(2); 
-
+                       
                 }
 
             })
-        })          
+        })   
+        
+        $(document).ready(function(){
+                    $("#agencia").change(function () {
+                        $("#agencia option:selected").each(function () {
+                            condicion = $(this).val();
+                            caso = "6";
+                            document.getElementById("save_data").style.display = "none";
+                            $.post("includes/getRecibo_html.php", { caso: caso, condicion: condicion}, function(data){
+                            $("#guia").html(data).addClass("selectpicker").selectpicker('refresh');                                                                                                                                                                        
+                            }); 
+
+                            
+                        });
+                    })
+                });      
+
+                $(document).ready(function(){
+                    $("#guia").change(function () {
+                        $("#guia option:selected").each(function () {
+                            condicion = $(this).val();
+                            caso = "5";
+                            document.getElementById("save_data").style.display = "block";
+                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
+                            $("#celular").val(data);   
+                            celular=$("#celular").val();
+                            cantidadx=$("#cantidad1").val();
+                            fechax=$("#fecha_inicio").val();
+                            combo1 = document.getElementById("agencia");
+                            selected1 = combo1.options[combo1.selectedIndex].text;
+                            combo2 = document.getElementById("guia");
+                            selected2 = combo2.options[combo2.selectedIndex].text;
+                            //document.getElementById('salidacelular').innerHTML = celular ;    
+                            document.getElementById('enlace').setAttribute('href', 'https://api.whatsapp.com/send?phone=51'+celular+'&text=Hola! Agencia: *'+selected1+
+                            '* con Guia: *'+ selected2 +'*, se está registrando el ingreso de *'+ cantidadx +'* Turistas con FECHA de Ingreso: *'+fechax +'*. Está conforme con el Registro?');                                                                                                                                                             
+                            }); 
+
+                            
+                        });
+                    })
+                }); 
+       
 </script> 
 
 
@@ -550,4 +641,5 @@
                 
             }
         
-            </script>
+    </script>
+

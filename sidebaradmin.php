@@ -1,7 +1,7 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu"><!-- sidebar menu -->
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    
+                
 					<?php
 					$mes_actualx = date("m"); 
                     $anio_actualx=date("Y"); 

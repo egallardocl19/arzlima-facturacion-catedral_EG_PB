@@ -12,10 +12,9 @@
         data-target=".bs-example-modal-lg-add"  onclick="limpiarFormulario()"><i class="fa fa-plus-circle"></i> Agregar <?php echo  $titulo?></button>
     </div> -->
 
-    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <div class="tile-stats" style="background-color:#FFE69A"> 
-                         
-                          <a data-toggle="modal" data-target=".bs-example-modal-lg-reporterecibosarrendamiento" >
+                    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="tile-stats" style="background-color:#FFE69A">
+                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporterecibosarrendamiento" >
                           <img src="images/ticket3.png" style="width:350%"></div>
                           <a href="recibos.php?key1=2"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
                           <a href="recibos.php?key1=2"><h3 style="color:#777E96">Ticket Nacionales</h3></a>
@@ -30,6 +29,15 @@
                         
                           <a href="recibos.php?key1=2"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
                           <a href="recibos.php?key1=2"><h3 style="color:#777E96">Ticket Extranjeros</h3></a>
+                        </div>
+                    </div>
+
+                    <div class="animated flipInY col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="tile-stats" style="background-color:#FFE69A">
+                        <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
+                        
+                          <a href="recibos.php?key1=2"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
+                          <a href="recibos.php?key1=2"><h3 style="color:#777E96">Ticket Crédito</h3></a>
                         </div>
                     </div>
     

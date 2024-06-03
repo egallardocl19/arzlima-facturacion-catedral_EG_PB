@@ -90,7 +90,7 @@
            $sWhere .= ')';
        }
 
-        $sWhere.=" order by t.id desc";
+        $sWhere.="order by t.id desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
 		

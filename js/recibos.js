@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	load(1);
 	load2(1);
+	load3(1);
 });
 
 function load(page){
@@ -41,24 +42,26 @@ function load2(page){
 
 }
 
-function carga_recibo_contable(qq){
-	
-	var q= qq;
-	
+function load3(page){
+	var qqq= $("#qqq").val();
+	var qqq1= $("#qqq1").val();
+	var qqq2= $("#qqq2").val();
 	
 	$("#loader").fadeIn('slow');
 	$.ajax({
-		url:'./ajax/recibos_contables_listado.php?action=ajax&qq='+qq+'&q='+q,
+		url:'./ajax/recibos3.php?action=ajax&page='+page+'&qqq='+qqq+'&qqq1='+qqq1+'&qqq2='+qqq2,
 		beforeSend: function(objeto){
 			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
 		},
 		success:function(data){
-			$(".outer_divdetalle").html(data).fadeIn('slow');
+			$(".outer_div3").html(data).fadeIn('slow');
 			$('#loader').html('');
 		}
 	})
 
 }
+
+
 
 
 

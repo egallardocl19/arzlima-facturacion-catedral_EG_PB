@@ -34,10 +34,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text"  id="dni" name="dni" class="form-control"  placeholder="DNI" maxlength="8">
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xs-12">
-                                        <button id="buscar" name="buscar" type="button" class="btn btn-primary" >Buscar</button> 
-                           
-                                </div>
+                                
                             </div>
 
                            
@@ -76,8 +73,8 @@
                                 
                                 <div class="col-md-8 col-sm-8 col-xs-12">
 
-                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="estado" name="estado" data-size="5" style="max-width: 100%!important;" >
-                                    
+                                    <select  class="form-control" id="estado" name="estado" data-size="5" style="max-width: 100%!important;" >
+                                   
                                     <?php foreach($estado_dato as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
                                         <?php endforeach; ?>
@@ -92,8 +89,8 @@
                                 
                                 <div class="col-md-10 col-sm-10 col-xs-12">
 
-                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="estado" name="estado" data-size="5" style="max-width: 100%!important;" >
-                                    
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="agencia" name="agencia" data-size="5" style="max-width: 100%!important;" >
+                                    <!-- <option value="">--Seleccionar Agencia--</option>   -->
                                     <?php foreach($nombre_agencia as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['dni_ruc']." - ".$p['nombre'];  ?></option>
                                         <?php endforeach; ?>
@@ -147,7 +144,7 @@
 		
          <script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO
             $(document).ready(function(){      
-                document.getElementById("ruc").addEventListener("keypress",verificar_numeros);
+                document.getElementById("dni").addEventListener("keypress",verificar_numeros);
                 document.getElementById("celular").addEventListener("keypress",verificar_numeros);
                 
                 function verificar_numeros(e) {
@@ -160,27 +157,6 @@
              })
             </script> 
 
-            <script language="javascript">
-                
-                document.getElementById('buscar').addEventListener('click', function(){
-                       
-                                    $cantidadx=$("#ruc").val();
-                                    //$cantidad=$cantidadx.length;
-                                    if($cantidadx.length==8 || $cantidadx.length==11){
-                                        $cantidadxx=$("#ruc").val();
-                                        $.post("includes/getCliente_nombre_api.php", { id_numero_identidad: $cantidadxx}, function(data){
-                                            var res = data.split("-");    
-                                            $("#razon_social").val(res[0].trim()); 
-                                            $("#direccion").val(res[1].trim()); 
-                                                            
-                                        }); 
-                                    }else{
-                                        $("#razon_social").val(''); 
-                                        $("#direccion").val(''); 
-                                    }
-                    }) 
-                       
-            </script> 
 
         <script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO
                    
