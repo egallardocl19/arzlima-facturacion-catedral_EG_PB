@@ -438,7 +438,7 @@
                                     <div class="form-group" >
                                         <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°: </label>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input type="text" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
+                                        <input type="number" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
                                         </div>
                                     </div>
                                 </div>
