@@ -105,7 +105,7 @@
                         <th class="column-title">N° Ticket </th>
                         <th class="column-title">Importe</th>
                         <th class="column-title">Tipo Pago </th>
-                       
+                        <th class="column-title">N° Referencia </th>
                         <th class="column-title no-link last"><span class="nobr"></span></th>
                     </tr>
                 </thead>
@@ -154,7 +154,8 @@
                         <?php echo $moneda." ".$importe; ?></td>
                         <td >
                         <?php echo $nombre_pago; ?></td>
-                       
+                        <td >
+                        <?php echo $n_referencia; ?></td>
 
                         
                                               

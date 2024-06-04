@@ -135,14 +135,15 @@ function Header()
 
 	$this->SetFillColor(37,67,120);//Fondo verde de celda
 	$this->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$this->Cell(20,6,utf8_decode('SERIE'),1,0,'C',TRUE);
+	$this->Cell(15,6,utf8_decode('SERIE'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('NUMERO'),1,0,'C',TRUE);
-	$this->Cell(30,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('HORA'),1,0,'C',TRUE);
+	$this->Cell(20,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
+	$this->Cell(15,6,utf8_decode('HORA'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('PERSONAS'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
-	$this->Cell(22,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE); 
+	$this->Cell(22,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE);
+	$this->Cell(22,6,utf8_decode('REFERENCIA'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('CAJERO'),1,1,'C',TRUE); 
 }
 // Pie de página
@@ -168,14 +169,15 @@ $moneda='';
 	while ($row=$resultado->fetch_assoc()) {
 		
 			$pdf->SetFillColor(255, 255, 255);
-			$pdf->Cell(20,5,utf8_decode($row['serie']),0,0,'C',0);
+			$pdf->Cell(15,5,utf8_decode($row['serie']),0,0,'C',0);
 			$pdf->Cell(20,5,utf8_decode($row['numero']),0,0,'C',0);
-			$pdf->Cell(30,5,utf8_decode($row['fecha']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['hora']),0,0,'C',0);
+			$pdf->Cell(20,5,utf8_decode($row['fecha']),0,0,'C',0);
+			$pdf->Cell(15,5,utf8_decode($row['hora']),0,0,'C',0);
 			$pdf->Cell(20,5,utf8_decode($row['cantidad_total']),0,0,'C',0);
 			$pdf->Cell(20,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
 			$pdf->Cell(20,5,number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
 			$pdf->Cell(22,5,utf8_decode($row['nombre_pago']),0,0,'C',0);
+			$pdf->Cell(22,5,utf8_decode($row['n_referencia']),0,0,'C',0);
 			$pdf->Cell(20,5,utf8_decode($row['cajero']),0,1,'C',0);
 
 			$moneda=$row['signo_moneda'];

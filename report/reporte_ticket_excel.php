@@ -40,7 +40,7 @@
 				<thead>
 					<tr style='height:40px;'>
 						
-						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='10' >REPORTE DE TICKET - ".$nombre_clase."</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='11' >REPORTE DE TICKET - ".$nombre_clase."</th>
 						
 					</tr>
 					<tr >
@@ -53,6 +53,7 @@
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>MONEDA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TOTAL</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO PAGO</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>N REFERENCIA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
 					</tr>
 				<tbody>
@@ -95,6 +96,7 @@
 											<td>".utf8_decode($fetch['nombre_moneda'])."</td>
 											<td>".utf8_decode($fetch['monto_total'])."</td>
 											<td>".utf8_decode($fetch['nombre_pago'])."</td>
+											<td>".utf8_decode($fetch['n_referencia'])."</td>
 											<td>".utf8_decode($fetch['cajero'])."</td>
 							
 										</tr>
