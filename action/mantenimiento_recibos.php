@@ -255,7 +255,7 @@
 						
 				<div class="form-group"> 
                     <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-5">
-					<strong style='text-align: center'><b><a style='color:#FF0000'  class='visible' href="report/recibo_pago2.php?variable1=<?php echo $n_ticket;?>" target="_blank" >
+					<strong style='text-align: center'><b><a style='color:#FF0000'  class='visible' href="report/recibo_pago3.php?variable1=<?php echo $n_ticket;?>" target="_blank" >
 					<i class="glyphicon glyphicon-print"></i>  IMPRIMIR RECIBO
 						</a></b></strong>       
 					</div>
