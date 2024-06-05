@@ -47,33 +47,44 @@ $resultado_detalle=$con->query($consulta_detalle);
                 }
             }
         </script>
+        
     </head>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" /> 
     <link
-  href="https://fonts.googleapis.com/css?family=Rock+Salt"
+  href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
   rel="stylesheet"
   type="text/css" />
     <body  style="width:100%;"
       onload="imprimir();" >
   
-     <!-- <img src="../images/profiles/fondo.png"  alt=""  height="1400" width="300" /> -->
+      <!-- <img src="../images/profiles/fondo.png"  alt=""  height="400" width="300" /> -->
     <div class="contenedor">
-        <img src="../images/profiles/fondo.png?<?php echo rand()?>" height="1000" width="300"/>
+        <!-- <img src="../images/profiles/fondo.png?<?php echo rand()?>" height="1000" width="300"/> -->
     
-        <div class="centrado">
-            <img src="../images/profiles/logo4.png?<?php echo rand()?>" height="100" width="220"/>
+        <div class="contenedor">
+            <!-- <img src="../images/profiles/logo4.png?<?php echo rand()?>" height="100" width="220"/> -->
         
-            <font size="2" style="font-weight: bolder">MUSEO DE ARTE RELIGIOSO</font>
-                <table border="1px" width ="100%" height ="20px" style="border-collapse:collapse; text-align:center;">
-                <tr style="background-color: black">
-                    <td><font size="2" style="font-weight: bolder">Nº TICKET</font></td>
-                </tr>
+            <!-- <font size="2" style="font-weight: bolder">MUSEO DE ARTE RELIGIOSO</font> -->
+                <table border="0px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
                 <tr>
-                    <td><font size="2" style="font-weight: bolder; font-family: Calibri"><?php echo $serie."-".$numero?></font></td>
+                    <td>
+                    <div class="contenedor">
+                     <!-- <img src="../images/profiles/recta.png?<?php echo rand()?>" height="25" width="250">  -->
+                     <!-- <div class="centrado"> color="#FFFFFF"-->
+                    <font  style="font-weight: bolder; font-family: Calibri" size="4">Nº TICKET</font>
+                    <!-- </div> -->
+                    </div>
+                    </td>
+                   
+                </tr>
+                <!-- </table>
+                <table border="1px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto"> -->
+                <tr>
+                    <td><font size="3" style="font-weight: bolder; font-family: Calibri"><?php echo $serie."-".$numero?></font></td>
                 </tr>
                 </table>
-            <font size="1" style="font-weight: bolder; font-family: Courier">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font>  </br>
-            <font size="1" style="font-weight: bolder; font-family: Courier">  TICKET:<?php echo utf8_decode($clase)?> - CAJERO: <?php echo $iduser_add?></font>
+            <font size="1" style="font-weight: bolder; font-family: Calibri">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font>  </br>
+            <font size="1" style="font-weight: bolder; font-family: Calibri">  TICKET:<?php echo utf8_decode($clase)?> - CAJERO: <?php echo $iduser_add?></font>
         </br>
  
             <?php
@@ -82,22 +93,22 @@ $resultado_detalle=$con->query($consulta_detalle);
             ?>
             <Img src="resultado.png?<?php echo rand()?>" height="180" width="180"/>
 
-            <table border="1px"  style="border-collapse:collapse; text-align:center;">
+            <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto">
                 <tr style="background-color: black">
-                    <td ><font size="1" style="font-weight: bolder">____TIPO TICKET___</font></td>
-                    <td ><font size="1" style="font-weight: bolder">CANT.</font></td>
-                    <td ><font size="1" style="font-weight: bolder">P.UNIT</font></td>
-                    <td ><font size="1" style="font-weight: bolder">__SUBTOTAL__</font></td>
+                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri">TIPO TICKET</font></td>
+                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri">CANT.</font></td>
+                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri">P.UNIT</font></td>
+                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri">SUBTOTAL</font></td>
                 </tr>
                 
                 <?php
                 while ($row=$resultado_detalle->fetch_assoc()) {
                 ?>
                     <tr>
-                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri"><?php echo substr(utf8_decode($row['nombre']),0,19)?></font></td>
-                    <td><font size="1" style="font-weight: bolder; font-family: Calibri"><?php echo $row['cantidad']?></font></td>
-                    <td><font size="1" style="font-weight: bolder; font-family: Calibri"><?php echo $row['moneda'].$row['importe']?></font></td>
-                    <td><font size="1" style="font-weight: bolder; font-family: Calibri"><?php echo $row['moneda'].$row['total']?></font></td>
+                    <td ><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo substr(utf8_decode($row['nombre']),0,19)?></font></td>
+                    <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['cantidad']?></font></td>
+                    <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['moneda'].$row['importe']?></font></td>
+                    <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['moneda'].$row['total']?></font></td>
                     </tr>
                     <?php
                 }
@@ -112,8 +123,8 @@ $resultado_detalle=$con->query($consulta_detalle);
 
             ?>
              </br>
-                <font size="3" style="font-weight: bolder">TOTAL: <?php echo $nombre_monto?></font></br>
-                <font size="2" style="font-weight: bolder; font-family: Courier">  DNI:<?php echo utf8_decode($dni)?> - <?php echo utf8_decode($nombre)?></font> </br>
+                <font size="3" style="font-family: Calibri">TOTAL: <?php echo $nombre_monto?></font></br>
+                <!-- <font size="2" style="font-weight: bolder; font-family: Courier">  DNI:<?php echo utf8_decode($dni)?> - <?php echo utf8_decode($nombre)?></font> </br> -->
                 <?php
                 if($estado=="PAGADO"){
                     $nombre_estado="CANCELADO";
@@ -124,19 +135,21 @@ $resultado_detalle=$con->query($consulta_detalle);
                 }
 
             ?>
-                <font size="2" style="font-weight: bolder">*** <?php echo $nombre_estado?>***</font></br>
-                <font size="2" style="font-weight: bolder">--------------------------------</font></br>
-                <font size="2" style="font-weight: bolder"><?php echo $tipo_pago?></font></br>
-                <img src="../images/profiles/catedral1.png?<?php echo rand()?>" height="250" width="250"/></br>
-                <font size="1" style="font-weight: bolder">EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font>
+                <font size="1" style="font-family: Calibri">*** <?php echo $nombre_estado?>***</font></br>
+                <!-- <font size="1" style="font-weight: bolder">--------------------------------</font></br> -->
+                <font size="1" style="font-family: Calibri"><?php echo $tipo_pago?></font></br>
+                <img src="../images/profiles/catedral2.png?<?php echo rand()?>" height="100" width="250" style="border: 0px solid #000;"/></br>
                 
+                <font size="1" style="font-family: Calibri">EL PRESENTE DOCUMENTO CONSTITUYE EL</font>
+                <font size="1" style="text-align:center; font-family: Calibri">ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font>
+          
 
         </div>
         
     </div>
-    
-        <style>
-        .contenedor{
+<!--     
+    <style>
+         .contenedor{
             position: relative;
             display: inline-block;
             text-align: center;
@@ -151,8 +164,14 @@ $resultado_detalle=$con->query($consulta_detalle);
             min-width: 235px;
             height: 20px;
             }
-      
-        </style>
+            @font-face {
+                font-family: 'Roboto';
+                src: url('../images/profiles/Roboto/Roboto-Regular.ttf');
+            }
+            .roboto {
+                font-family: 'Roboto', sans-serif;
+            } 
+        </style> -->
 
 
     </body>

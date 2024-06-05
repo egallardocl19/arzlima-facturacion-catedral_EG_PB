@@ -7,6 +7,7 @@
 			$errors[] = "Monto debe ser mayor a 0";
 		} else if (empty($_POST['fecha_inicio'])){
 			$errors[] = "Fecha vacío";
+		
 		} else if (
 			!empty($_POST['serie']) && 
 			!empty($_POST['monto_totalx']) &&

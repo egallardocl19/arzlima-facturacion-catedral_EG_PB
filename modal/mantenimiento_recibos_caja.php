@@ -438,7 +438,7 @@
                                     <div class="form-group" >
                                         <label class="control-label col-md-4 col-sm-4 col-xs-12"> N°: </label>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input type="number" id="n_pago" name="n_pago"  class="form-control" placeholder="0000000000" maxlength="6">
+                                        <input type="number" id="n_pago" name="n_pago"  class="form-control" maxlength="6">
                                         </div>
                                     </div>
                                 </div>
@@ -625,6 +625,34 @@
                         });
                     })
                 }); 
+
+                $(document).ready(function(){
+                    $("#tipo_pago").change(function () {
+                        $("#tipo_pago option:selected").each(function () {
+                            condicion = $(this).val();
+                           if (condicion==5){
+                            document.getElementById("save_data").style.display = "none";
+                             }
+                            
+                        });
+                    })
+                }); 
+
+                $(document).ready(function(){
+                let input = document.getElementById('n_pago');
+                input.addEventListener('focus', function(){
+               document.onkeyup    = function(e){
+                        $n_pago=$("#n_pago").val();
+                          if ($n_pago>0){
+                             document.getElementById("save_data").style.display = "block";
+                          } else {
+                             document.getElementById("save_data").style.display = "none";
+                          }
+                       
+                }
+
+            })
+        })   
        
 </script> 
 
