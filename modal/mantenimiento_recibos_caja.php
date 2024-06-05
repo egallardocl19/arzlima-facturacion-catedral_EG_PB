@@ -632,7 +632,10 @@
                             condicion = $(this).val();
                            if (condicion==5){
                             document.getElementById("save_data").style.display = "none";
-                             }
+                             }else{
+                             document.getElementById("save_data").style.display = "block";
+                          }
+                       
                             
                         });
                     })
