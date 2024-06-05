@@ -456,7 +456,7 @@
             document.getElementById("gp9").style.display = "block";
             document.getElementById("gp10").style.display = "none";
             document.getElementById("nuevo").style.display = "none";
-           
+            reset_montos();
             //document.getElementById("gp7").style.display = "block";
             // document.getElementById("ln3").style.display = "block";
             // document.getElementById("ln4").style.display = "block";
@@ -546,6 +546,7 @@
             document.getElementById("gp9").style.display = "block";
             document.getElementById("gp10").style.display = "none";
             document.getElementById("nuevo").style.display = "none";
+            reset_montos();
             //document.getElementById("gp7").style.display = "none";
             // document.getElementById("ln3").style.display = "none";
             // document.getElementById("ln4").style.display = "none";
@@ -635,6 +636,7 @@
             document.getElementById("gp9").style.display = "none";
             document.getElementById("gp10").style.display = "block";
             document.getElementById("nuevo").style.display = "none";
+            reset_montos();
             //document.getElementById("gp7").style.display = "none";
             // document.getElementById("ln3").style.display = "none";
             // document.getElementById("ln4").style.display = "none";
