@@ -60,12 +60,13 @@ $resultado_detalle=$con->query($consulta_detalle);
       <!-- <img src="../images/profiles/fondo.png"  alt=""  height="400" width="300" /> -->
     <div class="contenedor">
         <!-- <img src="../images/profiles/fondo.png?<?php echo rand()?>" height="1000" width="300"/> -->
-    
+        <img src="../images/profiles/catedral2.png?<?php echo rand()?>" height="100" width="250" style="border: 0px solid #000;"/></br>
+
         <div class="contenedor">
             <!-- <img src="../images/profiles/logo4.png?<?php echo rand()?>" height="100" width="220"/> -->
         
             <!-- <font size="2" style="font-weight: bolder">MUSEO DE ARTE RELIGIOSO</font> -->
-                <table border="0px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
+                <table border="1px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
                 <tr>
                     <td>
                     <div class="contenedor">
@@ -93,8 +94,8 @@ $resultado_detalle=$con->query($consulta_detalle);
             ?>
             <Img src="resultado.png?<?php echo rand()?>" height="180" width="180"/>
 
-            <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto">
-                <tr style="background-color: black">
+            <table border="1px"  style="border-collapse:collapse; text-align:center; margin:auto">
+                <tr>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">TIPO TICKET</font></td>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">CANT.</font></td>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">P.UNIT</font></td>
@@ -113,6 +114,8 @@ $resultado_detalle=$con->query($consulta_detalle);
                     <?php
                 }
                 ?>
+
+                
             </table>
             <?php
                 if($monto_total==0){
@@ -138,10 +141,11 @@ $resultado_detalle=$con->query($consulta_detalle);
                 <font size="1" style="font-family: Calibri">*** <?php echo $nombre_estado?>***</font></br>
                 <!-- <font size="1" style="font-weight: bolder">--------------------------------</font></br> -->
                 <font size="1" style="font-family: Calibri"><?php echo $tipo_pago?></font></br>
-                <img src="../images/profiles/catedral2.png?<?php echo rand()?>" height="100" width="250" style="border: 0px solid #000;"/></br>
+                <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto" width ="50%" height ="10px">
+                <tr>
+                    <td ><font size="1"  style="font-family: Calibri">EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font></td>
+                </table>
                 
-                <font size="1" style="font-family: Calibri">EL PRESENTE DOCUMENTO CONSTITUYE EL</font>
-                <font size="1" style="text-align:center; font-family: Calibri">ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font>
           
 
         </div>

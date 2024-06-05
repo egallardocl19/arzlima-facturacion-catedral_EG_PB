@@ -79,7 +79,8 @@
 
     if ($caso=="4"){
         if ($condicion!=""){
-                $importe=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=6 and fecha='$condicion'");
+                $importe=mysqli_query($con,"SELECT if(sum(c.importe)is null,0,sum(c.importe)) as importe 
+                FROM cobranza c, ticket t where c.idticket=t.id and t.idestado_ticket<>3 and  c.idformapago=6 and c.fecha='$condicion'");
                 while($rowM = $importe->fetch_assoc())
                 {
                 $validar_importe=$rowM['importe'];
@@ -89,7 +90,8 @@
                     $val= "0";     
                 }else{
 
-                    $importe2=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=4 and fecha='$condicion'");
+                    $importe2=mysqli_query($con,"SELECT if(sum(c.importe)is null,0,sum(c.importe)) as importe 
+                    FROM cobranza c, ticket t where c.idticket=t.id and t.idestado_ticket<>3 and c.idformapago=4 and c.fecha='$condicion'");
                     while($rowM = $importe2->fetch_assoc())
                     {
                     $validar_importe2=$rowM['importe'];
