@@ -40,7 +40,7 @@
     $tamaniocampo="-lg";
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
-    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 AND id in(4,5)"); 
+    $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 AND id in(4,5,7)"); 
     $estado_recibo =mysqli_query($con, "SELECT * from estado_ticket");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
              
