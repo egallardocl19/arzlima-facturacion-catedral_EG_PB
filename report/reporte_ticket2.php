@@ -48,7 +48,7 @@ function Header()
 
 	if ($fecha1!="") {
 		$fecha1=$fecha1;
-	}else{
+	}else{ 
 		$fecha1="";
 	}
 	
