@@ -50,8 +50,8 @@
                         <div class="x_title">
 
                             <h2>Usuarios : <?php if ($idroles==$grupo1) {
-                                            echo mysqli_num_rows($TicketData3);
-                                            }else{ echo mysqli_num_rows($TicketData4);} ?></h2>
+                                            echo mysqli_num_rows($TicketData5);
+                                            }else{ echo mysqli_num_rows($TicketData6);} ?></h2>
                                             
                                           
                             <ul class="nav navbar-right panel_toolbox">
