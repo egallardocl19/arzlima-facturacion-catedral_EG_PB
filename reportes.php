@@ -17,6 +17,7 @@
         
    
     include("modal/new_reporte_ticket.php");
+    include("modal/new_reporte_ticket2.php");
     include("modal/new_reporte_ticket_control.php");
     include("modal/new_reporte_cobranza.php");
 
@@ -196,16 +197,16 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="tile-stats">
                                         <div class="icon"><i class="fa fa-file-text"></i></div>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecontrol" >
-                                            <img src="images/bon3.png" style="width:40%"></a>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecontrol" ><h3>Contro Ticket</h3></a>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" >
+                                            <img src="images/bon2.png" style="width:40%"></a>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><h3>Resumen</h3></a>
                                         </div>
                                     </div>
 
-                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <!--<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <div class="tile-stats">
                                         <div class="icon"><i class="fa fa-money"></i></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecobranza" >

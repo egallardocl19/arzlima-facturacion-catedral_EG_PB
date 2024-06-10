@@ -119,11 +119,11 @@ function Header()
 	$this->Cell(97,5,utf8_decode('FECHA INICIO: ').$fecha1,0,0,'C');
 	$this->Cell(61,5,'Hora: '.$time,0,1,'C');
 	$this->Cell(59);
-	$this->Cell(80,5,'FECHA FIN:       '.$fecha2,0,0,'C');
+	$this->Cell(80,5,'FECHA FIN:       '.$fecha2,0,1,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);
 	
-	$this->Cell(125);
+	$this->Cell(82);
 	$this->SetTextColor(37,67,120);
 	$this->Cell(30,5,utf8_decode('FORMA PAGO: ').$nombre_pago,0,1,'C');
 	

@@ -66,7 +66,7 @@
                     <li>
                       
                         
-						<img class="thumb-image" style="width: 100%; display: block;" src="images/profiles/logo_principal.png" alt="image" />
+						<img class="thumb-image" style="width: 90%; display: block;" src="images/profiles/logo_principal.png" alt="image" />
 									
                     </li>
 
