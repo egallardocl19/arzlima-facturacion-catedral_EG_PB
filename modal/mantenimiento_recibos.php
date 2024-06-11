@@ -181,8 +181,8 @@
                                 
                                 <div class="col-md-8 col-sm-8 col-xs-12">
 
-                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
-                                   
+                                    <!-- <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" > -->
+                                    <select  class="form-control"   id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
                                     <?php foreach($forma_pago as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
                                         <?php endforeach; ?>

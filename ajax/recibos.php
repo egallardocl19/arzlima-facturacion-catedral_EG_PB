@@ -21,7 +21,7 @@
         $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
         $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
 
-         $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
+         $aColumns = array('CONCAT(t.serie,"-",t.numero)','(select n_referencia from cobranza where idticket=t.id)');//Columnas de busqueda  
          $sTable = "ticket t, tipo_moneda tm";
          $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1";
     
@@ -106,7 +106,9 @@
         $reload = './expences.php';
 		//consulta principal para obtener los datos
         $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,t.cantidad_total,tm.signo,format(t.monto_total,2) as importe,
-        (select nombre from estado_ticket where id=t.idestado_ticket) as estado FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        (select nombre from estado_ticket where id=t.idestado_ticket) as estado,
+        (select nombre from formapago where id=(select idformapago from cobranza where idticket=t.id)) as forma_pago,
+        (select n_referencia from cobranza where idticket=t.id) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -120,7 +122,8 @@
                         <th class="column-title">Hora </th>
                         <th class="column-title">Cant. </th>
                         <th class="column-title">Monto </th>
-                        <th class="column-title">Estado </th>
+                        <th class="column-title">Tipo Pago </th>
+                        <th class="column-title">N° Pago </th>
 						
                         <th class="column-title no-link last"><span class="nobr"></span></th>
                     </tr>
@@ -138,6 +141,8 @@
                             $signo=$r['signo'];//
                             $importe=$r['importe'];//
                             $estado=$r['estado'];//
+                            $forma_pago=$r['forma_pago'];//
+                            $referencia=$r['referencia'];//
                         
                           
      
@@ -169,7 +174,9 @@
                         <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
                         <?php echo $signo." ".$importe; ?></td>
                         <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
-                        <?php echo $estado; ?></td>
+                        <?php echo $forma_pago; ?></td>
+                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
+                        <?php echo $referencia; ?></td>
                        
 
                         
@@ -194,7 +201,7 @@
                     } //en while
                 ?>
                 <tr>
-                    <td colspan=11><span class="pull-right">
+                    <td colspan=8><span class="pull-right">
                         <?php echo paginate($reload, $page, $total_pages, $adjacents);?>
                     </span></td>
                 </tr>

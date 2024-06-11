@@ -19,7 +19,7 @@
 		$codigo = $_POST["codigo"];
 		$valor_mantenimiento = $_POST["valor_mantenimiento"];
 		$serie = $_POST["serie"];
-		$monto_totalx = number_format($_POST["monto_totalx"],0);
+		$monto_totalx = $_POST["monto_totalx"];
 		$fecha_inicio = $_POST["fecha_inicio"];
 
 		$numero = 0;
@@ -43,7 +43,7 @@
 			if (empty($_POST['monto_total1'])){
 				$monto_total1=0;
 			}else{
-				$monto_total1=number_format($_POST["monto_total1"],0);
+				$monto_total1=$_POST["monto_total1"];
 			}
 		}
 
@@ -63,7 +63,7 @@
 			if (empty($_POST['monto_total2'])){
 				$monto_total2=0;
 			}else{
-				$monto_total2=number_format($_POST["monto_total2"],0);
+				$monto_total2=$_POST["monto_total2"];
 			}
 		}
 
@@ -82,7 +82,7 @@
 			if (empty($_POST['monto_total3'])){
 				$monto_total3=0;
 			}else{
-				$monto_total3=number_format($_POST["monto_total3"],0);
+				$monto_total3=$_POST["monto_total3"];
 			}
 		}
 
@@ -101,7 +101,7 @@
 			if (empty($_POST['monto_total4'])){
 				$monto_total4=0;
 			}else{
-				$monto_total4=number_format($_POST["monto_total4"],0);
+				$monto_total4=$_POST["monto_total4"];
 			}
 		}
 
@@ -120,7 +120,7 @@
 			if (empty($_POST['monto_total5'])){
 				$monto_total5=0;
 			}else{
-				$monto_total5=number_format($_POST["monto_total5"],0);
+				$monto_total5=$_POST["monto_total5"];
 			}
 		}
 
@@ -139,7 +139,7 @@
 			if (empty($_POST['monto_total6'])){
 				$monto_total6=0;
 			}else{
-				$monto_total6=number_format($_POST["monto_total6"],0);
+				$monto_total6=$_POST["monto_total6"];
 			}
 		}
 		if (empty($_POST['idtipo7'])){
@@ -157,7 +157,7 @@
 			if (empty($_POST['monto_total7'])){
 				$monto_total7=0;
 			}else{
-				$monto_total7=number_format($_POST["monto_total7"],0);
+				$monto_total7=$_POST["monto_total7"];
 			}
 		}
 		if (empty($_POST['idtipo8'])){
@@ -175,11 +175,11 @@
 			if (empty($_POST['monto_total8'])){
 				$monto_total8=0;
 			}else{
-				$monto_total8=number_format($_POST["monto_total8"],0);
+				$monto_total8=$_POST["monto_total8"];
 			}
 		}
 		
-		$tipo_pago=$_POST["tipo_pago"];
+		$tipo_pago=$_POST["tipo_pago2"];
 
 		$agencia = $_POST["agencia"];
 		if (empty($_POST['agencia'])){
@@ -204,21 +204,22 @@
 		$submod=$_SESSION['keytok0']; 
 		$fecha_add = date("Y-m-d");
 			
-		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_recibo($codigo,$valor_mantenimiento,'$serie','$numero',$submod,
-		'$fecha_inicio',$monto_totalx,$cantidad_total,$clase,'$dni','$razon_social','$direccion',$idtipo1,$cantidad1,$monto_total1,$idtipo2,$cantidad2,$monto_total2,
-		$idtipo3,$cantidad3,$monto_total3,$idtipo4,$cantidad4,$monto_total4,$idtipo5,$cantidad5,$monto_total5,$idtipo6,$cantidad6,$monto_total6,$idtipo7,$cantidad7,$monto_total7,
-		$idtipo8,$cantidad8,$monto_total8,$tipo_pago,'$n_pago',$user_id,'$fecha_add',$agencia,$guia,@resultado,@resultado1,@ticket1);");
-		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1,@ticket1 AS tick1");
+		 $mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_recibo($codigo,$valor_mantenimiento,'$serie','$numero',$submod,
+		 '$fecha_inicio',$monto_totalx,$cantidad_total,$clase,'$dni','$razon_social','$direccion',$idtipo1,$cantidad1,$monto_total1,$idtipo2,$cantidad2,$monto_total2,
+		 $idtipo3,$cantidad3,$monto_total3,$idtipo4,$cantidad4,$monto_total4,$idtipo5,$cantidad5,$monto_total5,$idtipo6,$cantidad6,$monto_total6,$idtipo7,$cantidad7,$monto_total7,
+		 $idtipo8,$cantidad8,$monto_total8,$tipo_pago,'$n_pago',$user_id,'$fecha_add',$agencia,$guia,@resultado,@resultado1,@ticket1);");
+		 $resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1,@ticket1 AS tick1");
 		
-		while($row = $resultado->fetch_assoc())
-			{
-				if ($row['result1']=='1'){
-					$errors []= $row['result'];
-				}else{
-					$messages[] = $row['result'];	
-			}
-					$n_ticket=$row['tick1'];
-			}
+		 while($row = $resultado->fetch_assoc())
+		 	{
+		 		if ($row['result1']=='1'){
+		 			$errors []= $row['result'];
+		 		}else{
+		 			$messages[] = $row['result'];	
+		 	}
+		 			$n_ticket=$row['tick1'];
+		 	}
+		
 			$resultado->close();  
 			$con->next_result();
 		} else {

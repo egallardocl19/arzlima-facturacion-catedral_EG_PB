@@ -100,20 +100,17 @@
                                                 <input type="date" id="fecha2" name="fecha2" class="form-control" placeholder="Fecha Hasta" >
                                                 </div>
                                                 </div>
+
                                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                                     <label class="control-label col-md-4 col-sm-4 col-xs-12"> T.Pago:</label>
-                                                
                                                     <div class="col-md-8 col-sm-8 col-xs-12">
-
                                                         <select  class="form-control"   id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
                                                         
                                                         <?php foreach($forma_pago as $p):?>
                                                             <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
-                                                    
                                                     </div>
-                                                
                                                 </div>
 
                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">

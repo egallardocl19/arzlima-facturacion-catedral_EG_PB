@@ -117,7 +117,7 @@
 
                                                     <label for="q" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
                                                     <div class="col-md-2 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="q" name="q" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="q" name="q" placeholder="N° Recibo - N° Pago" ><!--//onkeyup='load(1);'-->
                                                     </div>
 
                                                     <label  for="q1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
@@ -190,7 +190,7 @@
 
                                                     <label for="qq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
                                                     <div class="col-md-2 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="qq" name="qq" placeholder="N° Recibo - N° Pago" ><!--//onkeyup='load(1);'-->
                                                     </div>
 
                                                     <label  for="qq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
@@ -262,7 +262,7 @@
 
                                                     <label for="qqq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
                                                     <div class="col-md-2 col-sm-4 col-xs-12">
-                                                        <input type="text" class="form-control" id="qqq" name="qqq" placeholder="N° Recibo" ><!--//onkeyup='load(1);'-->
+                                                        <input type="text" class="form-control" id="qqq" name="qqq" placeholder="N° Recibo - N° Pago" ><!--//onkeyup='load(1);'-->
                                                     </div>
 
                                                     <label  for="qqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
@@ -378,8 +378,8 @@
        
        function limpiarFormulario() {
         document.getElementById("add").reset();
-     
-        $('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');         
+        document.getElementById("n_pago").style.background  = "";
+        $('#tipo_pago2').val(4);         
         $("#n_pago").prop("readonly",true);
         
         $("#result").hide(); 
@@ -425,25 +425,7 @@
          var clase3 = 3; //clas2
          var filt = '<?=$key1?>';
          
-        //  document.getElementById('nuevo').addEventListener('click', function(){
-        //          suma_monto=0;
-        //          suma_monto1=0;
-        //          suma_monto2=0;
-        //          suma_monto3=0;
-        //          suma_monto4=0;
-        //          suma_monto5=0;
-        //          suma_monto6=0;
-        //          suma_monto7=0;
-        //          suma_monto8=0;
-        //          importe1=0;
-        //          importe2=0;
-        //          importe3=0;
-        //          importe4=0;
-        //          importe5=0;
-        //          importe6=0;
-        //          importe7=0;
-        //          importe8=0;
-        // });  
+   
 
          if (filt == 2){
             document.getElementById('agregar1').addEventListener('click', function(){
@@ -724,6 +706,26 @@
             document.getElementById("save_data").style.display = "block";
         }); 
 
+        document.getElementById('q').addEventListener('focus', function(){
+                document.onkeydown = function(e){
+                    var ev = document.all ? window.event : e;
+                    if(ev.keyCode==13) {
+                      load(1);
+
+                    }
+                }
+
+            })  
+            document.getElementById('qq').addEventListener('focus', function(){
+                document.onkeydown = function(e){
+                    var ev = document.all ? window.event : e;
+                    if(ev.keyCode==13) {
+                      load2(1);
+
+                    }
+                }
+
+            })   
     </script> 
     <script language="javascript">
     function reset_montos() {
@@ -1020,16 +1022,8 @@
          cal8();
     }
             
-    document.getElementById('q').addEventListener('focus', function(){
-                document.onkeydown = function(e){
-                    var ev = document.all ? window.event : e;
-                    if(ev.keyCode==13) {
-                      load(1);
-
-                    }
-                }
-
-            })          
+     
+                   
 </script> 
 
 

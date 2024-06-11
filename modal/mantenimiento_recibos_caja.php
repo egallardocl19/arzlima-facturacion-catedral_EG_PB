@@ -412,33 +412,36 @@
                             <div class="form-group" id="gp9">  
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" >
                                 <div class="form-group" >
-                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Pago:</label>
-                                        <div class="col-md-5 col-sm-4 col-xs-12">
-                                            <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="tipo_pago" name="tipo_pago" data-size="5" style="max-width: 100%!important;" >
-                                            <?php foreach($forma_pago as $p):?>
-                                                <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        
-                                        </div>
-                                        
-                                    <label class="control-label col-md-1 col-sm-2 col-xs-12"> N°:</label>
+                                
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Pago:</label>  
+                                            <div class="col-md-5 col-sm-4 col-xs-12">
+                                                    <select  class="form-control"   id="tipo_pago2" name="tipo_pago2" data-size="5" style="max-width: 100%!important;" >
+                                                        
+                                                        <?php foreach($forma_pago as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                            </div>
+                                                
+
+                                        <label class="control-label col-md-1 col-sm-2 col-xs-12"> N°:</label>
+
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="number" id="n_pago" name="n_pago" placeholder="0000" class="form-control" maxlength="4">
+                                        <input type="number" id="n_pago" name="n_pago" style="color:black; font-weight: bold; font-size:20px;" placeholder="0000" class="form-control" maxlength="4">
                                         </div>
                                         </div>
+                               
                                 </div>
-                              
                                
                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
                                 <div class="form-group" >
                                         <label class="control-label col-md-2 col-sm-2 col-xs-12"> Efectivo: </label>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="number" id="monto_ingresado" name="monto_ingresado"  style="color:blue; font-weight: bold; font-size:20px;" class="form-control" >
+                                        <input type="number" id="monto_ingresado" name="monto_ingresado"  placeholder="Recibe S/." style="color:blue; font-weight: bold; font-size:17px;" class="form-control" >
                                         </div>
                                         <label class="control-label col-md-2 col-sm-2 col-xs-12"> Vuelto: </label>
                                         <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <input type="number" id="monto_devolver" name="monto_devolver"  style="color:black; font-weight: bold; font-size:20px;" class="form-control" readonly="true">
+                                        <input type="number" id="monto_devolver" name="monto_devolver" placeholder="Vuelto S/."  style="color:black; font-weight: bold; font-size:17px;" class="form-control" readonly="true">
                                         </div>
                                     </div>
                                 </div>
@@ -536,16 +539,18 @@
 
           <script language="javascript">
                 $(document).ready(function(){
-                    $("#tipo_pago").change(function () {
-                        $("#tipo_pago option:selected").each(function () {
+                    $("#tipo_pago2").change(function () {
+                        $("#tipo_pago2 option:selected").each(function () {
                             condicion = $(this).val();
 
                             if(condicion==5){
                                 $("#n_pago").val('');
                                 $("#n_pago").prop("readonly",false);
+                                document.getElementById("n_pago").style.background  = "#FAFA9E";
                             }else{
                                 $("#n_pago").val('');
                                 $("#n_pago").prop("readonly",true);
+                                document.getElementById("n_pago").style.background  = "";
                             }   
                         });
                     })
@@ -616,8 +621,8 @@
                 }); 
 
                 $(document).ready(function(){
-                    $("#tipo_pago").change(function () {
-                        $("#tipo_pago option:selected").each(function () {
+                    $("#tipo_pago2").change(function () {
+                        $("#tipo_pago2 option:selected").each(function () {
                             condicion = $(this).val();
                            if (condicion==5){
                             document.getElementById("save_data").style.display = "none";
