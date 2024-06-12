@@ -16,7 +16,7 @@ $idcajero = 0;
 $tipo_ticket = $_POST['tipo_ticket'];
 $tipo_pago = $_POST['tipo_pago'];
 $fecha1 = $_POST['fecha_inicio'];
-$fecha2 = $_POST['fecha_fin'];
+$fecha2 = $_POST['fecha_fin']; 
 $idcajero = $_POST['idcajero'];
 
 

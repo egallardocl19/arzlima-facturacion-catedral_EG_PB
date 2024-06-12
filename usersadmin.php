@@ -6,7 +6,17 @@
     
     $estado =mysqli_query($con, "select * from estado_dato");
     $colorheder="info"; //COLOR  CABECERA MODAL
-
+    
+    $user=$_SESSION['user_id'];
+        $consulta_codigo_user =mysqli_query($con,"SELECT idroles FROM user where id=$user");
+       
+                if (!$consulta_codigo_user||mysqli_num_rows($consulta_codigo_user)!=0){
+                    if ($row = mysqli_fetch_array($consulta_codigo_user)){
+                        $consulta_rol=$row['idroles']; 
+                    }
+                }
+   
+       
     
     if (empty($_GET['key1'])){
         $key1='1';

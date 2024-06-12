@@ -1,7 +1,10 @@
 
+<?php 
+if($consulta_rol==1){ ?>
     <div> <!-- Modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg-add"><i class="fa fa-plus-circle"></i> Agregar Usuario</button>
     </div>
+    <?php }?>
     <div class="modal fade bs-example-modal-lg-add" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">

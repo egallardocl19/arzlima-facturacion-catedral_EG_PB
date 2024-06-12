@@ -6,6 +6,7 @@
     $title ="Dashboard - "; 
     include "head.php";
     include "sidebaradmin.php";
+    echo("<meta http-equiv='refresh' content='300'>");
     $fecha_inicio = "2024-06-04"; //lanzamiento system
     $fecha_actual = date("Y-m-d");
     
@@ -514,6 +515,7 @@
 </script>
 
 <?php       
+
             $query =mysqli_query($con,"CALL grafico_cob_diario (1);");
             if (!$query||mysqli_num_rows($query)!=0){ 
             while ($rowM=$query->fetch_assoc()) 
@@ -556,7 +558,7 @@
     
              
             $con->next_result();
-                
+                  
 ?>      
 
  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -569,26 +571,29 @@ const dateChartJS = dateArrayJS.map((day,index)=>{
 let diajs = new Date(day);
 return diajs.setHours(24,24,24,24);
 });
- 
+
  const config = {
-         type: 'bar',
+         type: 'line',
          data:
          {
  labels:  dateChartJS,
  datasets:   [{
      label: 'S/. SOLES',
      data: <?php echo json_encode($miArray2);?>,
+     pointRadius: 8,
      backgroundColor:[
          'rgba(255, 99, 132, 0.2)'
      ],
      borderColor: [
          'rgba(255, 99, 132, 1)'
      ],
-     borderWidth: 2
+     fill: true,
+     tension: 0.1,
+     borderWidth: 3
              }]
  }
  ,
-         options:    {
+         options:    {                   
          scales: {
              x: {
                  min: $("#fe1").val() ,
@@ -597,18 +602,28 @@ return diajs.setHours(24,24,24,24);
                  time:{
                      unit:'day'
                  }
+                
                  },
              y: {
-                 beginAtZero: true
+                 beginAtZero: true,
+                
                  }
-                 }
+                
+                 },
+                
+           
+            
+                   
                 }
-  };
-      
-
-  const myChart = new Chart(
+        
+     };
+     
+     
+    
+    const myChart = new Chart(
      document.getElementById('myChart'),config
- );
+    );
+    
  </script>
  
 
@@ -775,6 +790,17 @@ return diajs.setHours(24,24,24,24);
           myChart2.update();
           myChart3.update();
  }
-         
+
+ setInterval(function(){
+    //const myChart = new Chart(
+    // document.getElementById('myChart'),config
+    const endDate=new Date($("#fe2").val());
+    myChart.config.options.scales.x.max= endDate.setHours(24,24,24,24);
+     myChart.update();
+     //console.log("Hola Mundo");
+    //myChart2.update();
+    //myChart3.update();
+    //);
+}, 2000);   
 </script>
 
