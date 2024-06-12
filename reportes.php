@@ -19,7 +19,7 @@
         $cajero =mysqli_query($con, "select * from user where id=$user");
      
     }else{
-        $cajero =mysqli_query($con, "select * from user where idroles>1");
+        $cajero =mysqli_query($con, "select * from user");
     }
     //$cajero =mysqli_query($con, "select * from user where idroles>1");
     $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2)");
