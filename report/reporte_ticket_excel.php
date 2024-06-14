@@ -12,16 +12,17 @@
 	$fecha1 = "";
 	$fecha2 = "";
 	$idcajero = 0;
+	$hora_inicio = "";
+	$hora_fin =  "";
 
-	//$dni = $_POST['dni'];
-	//$estado_ticket = $_POST['estado_ticket'];
 	$tipo_ticket = $_POST['tipo_ticket'];
 	$tipo_pago = $_POST['tipo_pago'];
 	$fecha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
 	$idcajero = $_POST['idcajero'];
-
-	
+	$hora_inicio = $_POST['hora_inicio'];
+	$hora_fin = $_POST['hora_fin'];
+		
 
 
 	if ($tipo_ticket>0) {
@@ -85,6 +86,17 @@
 		}else{
 			$where.="";
 		}
+		if($hora_inicio!=''){
+			$where.=" and DATE_FORMAT(t.hora, \"%H:%i\")>=\"$hora_inicio\"";
+		}else{
+			$where.="";
+		}
+		if($hora_fin!=''){
+			$where.=" and DATE_FORMAT(t.hora, \"%H:%i\")<=\"$hora_fin\"";
+		}else{
+			$where.="";
+		}
+		
 		$cadena_script00="call reporte_ticket('1','$where')";
 		$style='mso-number-format:"@";';
 

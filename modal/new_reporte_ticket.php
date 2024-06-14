@@ -96,6 +96,24 @@
 
                             </div>   
 
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Inicio:<span class="required"></span>
+                                </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="time" name="hora_inicio" class="form-control" value="08:00" >
+                                </div>
+
+                            </div>   
+
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Fin:<span class="required"></span>
+                                </label>
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input type="time" name="hora_fin" class="form-control" value="17:00" >
+                                </div>
+
+                            </div>   
+
                             </div>
                         
                         <div class="ln_solid"></div>

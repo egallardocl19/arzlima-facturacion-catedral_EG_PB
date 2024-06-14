@@ -10,15 +10,16 @@ $tipo_ticket = 0;
 $fecha1 = "";
 $fecha2 = "";
 $idcajero = 0;
+$hora_inicio = "";
+$hora_fin =  "";
 
-//$dni = $_POST['dni'];
-//$estado_ticket = $_POST['estado_ticket'];
 $tipo_ticket = $_POST['tipo_ticket'];
 $tipo_pago = $_POST['tipo_pago'];
 $fecha1 = $_POST['fecha_inicio'];
 $fecha2 = $_POST['fecha_fin'];
 $idcajero = $_POST['idcajero'];
-
+$hora_inicio = $_POST['hora_inicio'];
+$hora_fin = $_POST['hora_fin'];
 
 
 if($tipo_ticket!='0'){
@@ -43,6 +44,16 @@ if($fecha1!=''){
 }
 if($fecha2!=''){
 	$where.=" and t.fecha <=\"$fecha2\"";
+}else{
+	$where.="";
+}
+if($hora_inicio!=''){
+	$where.=" and DATE_FORMAT(t.hora, \"%H:%i\")>=\"$hora_inicio\"";
+}else{
+	$where.="";
+}
+if($hora_fin!=''){
+	$where.=" and DATE_FORMAT(t.hora, \"%H:%i\")<=\"$hora_fin\"";
 }else{
 	$where.="";
 }
