@@ -67,9 +67,9 @@
 			$where="";
 		}
 		if($tipo_pago!='0'){
-			$where.="and t.id in (select idticket from cobranza where idformapago=".$tipo_pago."";
-		}else{
-			$where.="";
+		  	$where.=" and t.id in (select idticket from cobranza where idformapago=".$tipo_pago.")";
+		  }else{
+		  	$where.="";
 		}
 		if($idcajero!='0'){
 			$where.=" and t.iduser_add=".$idcajero."";

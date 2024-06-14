@@ -210,13 +210,41 @@
                                         $ruta_envio='recibos.php?key1='.$idsubmodulo;
                             
                                 ?>
-                               
 
+                                        
                                         <div class="col-md-12 col-xs-12 col-sm-12">
+                                      
+                                                            <nav class="navbar navbar-dark bg-primary text-white" style="background-color:#364d5f">
+                                                                <div class="form-group">
+                                                                    <div class="control-label col-md-2 col-sm-2 col-xs-12">
+                                                                    <h2>Filtros Gráficos:</h2>
+                                                                    </div>  
+                                                                    <div class="control-label col-md-2 col-sm-2 col-xs-12">
+                                                                    <h5><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Desde:</h5>
+                                                                    </div>  
+                                                                    
+                                                                    <div class="col-md-2 col-sm-3 col-xs-12">
+                                                                    <input type="date" id="fe1" name="fe1" onchange="mostrarResultados1(this)" value="<?php echo $fecha_inicio ?>" min="<?php echo $fecha_inicio ?>" max="<?php echo $fecha_actual ?>"  class="form-control" onkeydown="return false">
+                                                                    </div>
+
+                                                                    <div class="control-label col-md-2 col-sm-2 col-xs-12">
+                                                                    <h5><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Hasta:</h5>
+                                                                    </div>  
+                                                                   
+                                                                    <div class="col-md-2 col-sm-3 col-xs-12">
+                                                                    <input type="date"  id="fe2" name="fe2" onchange="mostrarResultados2(this)" value="<?php echo $fecha_actual ?>"  min="<?php echo $fecha_inicio ?>" max="<?php echo $fecha_actual ?>" class="form-control" onkeydown="return false">
+                                                                    </div>
+                                                                        
+                                                                </div>   
+                                                            </div>
+                                                     
+                                        </div>
+                                    
+                                        <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Cobranza por Dia</h2>
-                                                    <ul class="nav navbar-right panel_toolbox">
+                                                    <h2>Ventas por Dia</h2>
+                                                    <ul class="nav navbar-right panel_toolbox ">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
                                                         <li><a class="close-link"><i class="fa fa-close"></i></a>
@@ -228,23 +256,14 @@
                                                 <!-- Filtro -->
                                                         <div class="x_content">		
                                                             <div class="form-group">
-                                                                <div class="col-md-10 col-sm-10 col-xs-12 form-group"> 
+                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
 
-                                                                    <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Desde:</label>
-                                                                            <div class="col-md-2 col-sm-3 col-xs-12">
-                                                                            <input type="date" id="fe1" name="fe1" onchange="mostrarResultados1(this)" value="<?php echo $fecha_inicio ?>" min="<?php echo $fecha_inicio ?>" max="<?php echo $fecha_actual ?>"  class="form-control" onkeydown="return false">
-                                                                            </div>
-
-                                                                    <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Hasta:</label>
-                                                                            <div class="col-md-2 col-sm-3 col-xs-12">
-                                                                            <input type="date"  id="fe2" name="fe2" onchange="mostrarResultados2(this)" value="<?php echo $fecha_actual ?>"  min="<?php echo $fecha_inicio ?>" max="<?php echo $fecha_actual ?>" class="form-control" onkeydown="return false">
-                                                                            </div>
-                                                                        
+                                                                    <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i></label>
                                                                 </div>   
                                                             </div>
                                                     
                                                             <div class="form-group">
-                                                                <canvas id="myChart" width="400" height="60"></canvas>
+                                                                <canvas id="myChart" width="400" height="100"></canvas>
                                                             </div>
 
                                                         </div>  
@@ -252,6 +271,39 @@
                                             
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6 col-xs-12 col-sm-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Visitantes por Dia</h2>
+                                                    <ul class="nav navbar-right panel_toolbox ">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+                                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                
+                                                <!-- Filtro -->
+                                                        <div class="x_content">		
+                                                            <div class="form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+
+                                                                    <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i></label>
+                                                                </div>   
+                                                            </div>
+                                                    
+                                                            <div class="form-group">
+                                                                <canvas id="myChart5" width="400" height="100"></canvas>
+                                                            </div>
+
+                                                        </div>  
+                                                    
+                                            
+                                            </div>
+                                        </div>
+                                       
 
                                         <?php 
                                         }
@@ -277,10 +329,10 @@
                                             
                                         ?>
                                         
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Cobranza por Dia y Tipo Pago</h2>
+                                                    <h2>Ventas por Dia y Tipo Pago</h2>
                                                     <ul class="nav navbar-right panel_toolbox">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
@@ -310,7 +362,7 @@
                                                                 </div> 
                                                                 <div class="form-group">
                                                                 
-                                                                <canvas id="myChart2" width="400" height="60"></canvas>
+                                                                <canvas id="myChart2" width="400" height="100"></canvas>
                                                                 
                                                                  </div> 
                                                 </div>
@@ -343,7 +395,7 @@
                                             
                                         ?>
                                         
-                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                        <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
                                                     <h2>Ticket por Dia </h2>
@@ -361,25 +413,49 @@
                                                                     <div class="col-md-10 col-sm-10 col-xs-12 form-group"> 
 
                                                                           <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> </label>
-                                                                                <!--<div class="col-md-2 col-sm-3 col-xs-12">
-                                                                                <input type="date" id="fe3" name="fe3" onchange="mostrarResultados3(this)" value="<?php echo $fecha_inicio ?>" min="<?php echo $fecha_inicio ?>" max="<?php echo $fecha_actual ?>"  class="form-control" onkeydown="return false">
-                                                                                </div>
-
-                                                                        <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Hasta:</label>
-                                                                                <div class="col-md-2 col-sm-3 col-xs-12">
-                                                                                <input type="date"  id="fe4" name="fe4" onchange="mostrarResultados4(this)" value="<?php echo $fecha_actual ?>"  min="<?php echo $fecha_inicio ?>" class="form-control" onkeydown="return false">
-                                                                                </div>
-                                                                            
-                                                                                </div>  -->
-                                                                    
+             
                                                                     </div> 
                                                                 </div> 
                                                                 <div class="form-group">
                                                                 
-                                                                <canvas id="myChart3" width="400" height="60"></canvas>
+                                                                <canvas id="myChart3" width="400" height="100"></canvas>
                                                                 
                                                                  </div> 
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Detalle Visitantes por Dia</h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+                                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                
+                                                <!-- Filtro -->
+                                                        <div class="x_content">		
+                                                            <div class="form-group">
+                                                                <div class="col-md-10 col-sm-10 col-xs-12 form-group"> 
+
+                                                                    <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i></label>
+                                                                          
+                                                                        
+                                                                </div>   
+                                                            </div>
+                                                    
+                                                            <div class="form-group">
+                                                                <canvas id="myChart4" width="400" height="80"></canvas>
+                                                            </div>
+
+                                                        </div>  
+                                                    
+                                            
                                             </div>
                                         </div>
                                         <?php 
@@ -558,6 +634,48 @@
     
              
             $con->next_result();
+
+            $query3 =mysqli_query($con,"CALL grafico_cob_diario (4);");
+            if (!$query3||mysqli_num_rows($query3)!=0){ 
+               while ($rowM=$query3->fetch_assoc()) 
+               {
+                    $miArray10[] = $rowM["fecha"];
+                    $miArray11[]= $rowM["cantidad1"];	
+                    $miArray12[]= $rowM["cantidad2"];	
+                    $miArray13[]= $rowM["cantidad3"];	
+                    $miArray14[]= $rowM["cantidad4"];	
+                    $miArray15[]= $rowM["cantidad5"];	
+                    $miArray16[]= $rowM["cantidad6"];	
+                    $miArray17[]= $rowM["cantidad7"];	
+                    $miArray18[]= $rowM["cantidad8"];	
+           
+               
+                
+                }   
+                    unset($query3);
+                }
+    
+             
+            $con->next_result();
+
+            $query4 =mysqli_query($con,"CALL grafico_cob_diario (5);");
+            if (!$query4||mysqli_num_rows($query4)!=0){ 
+               while ($rowM=$query4->fetch_assoc()) 
+               {
+                    $miArray19[] = $rowM["fecha"];
+                    $miArray20[]= $rowM["nacional"];	
+                    $miArray21[]= $rowM["extranjero"];	
+                   
+           
+               
+                
+                }   
+                    unset($query4);
+                }
+    
+             
+            $con->next_result();
+            
                   
 ?>      
 
@@ -589,7 +707,7 @@ return diajs.setHours(24,24,24,24);
      ],
      fill: true,
      tension: 0.1,
-     borderWidth: 3
+     borderWidth: 2
              }]
  }
  ,
@@ -769,15 +887,244 @@ return diajs.setHours(24,24,24,24);
 
 </script>
 
+<!-- DISEÑO GRAFICO 4 -->
+<script> 
+
+const dateArrayJS4 =<?php echo json_encode($miArray10);?>;       
+const dateChartJS4 = dateArrayJS4.map((day,index)=>{
+let diajs = new Date(day);
+return diajs.setHours(24,24,24,24);
+});
+
+var bordernum=2;
+const config4 = {
+         type: 'bar',
+         data:
+         {
+ labels:  dateChartJS,
+ datasets:   [{
+     label: 'G.NACIONAL',
+     data: <?php echo json_encode($miArray11);?>,
+     pointRadius: 4,
+     backgroundColor:[
+        'rgba(255, 65, 56, 0.2)'
+     ],
+     borderColor: [
+         'rgba(255, 65, 56, 1)'
+        
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'G.EXTRANJERO',
+     data: <?php echo json_encode($miArray15);?>,
+     pointRadius: 4,
+     backgroundColor:[
+        'rgba(185, 194, 23, 0.2)'
+     ],
+     borderColor: [
+            'rgba(185, 194, 23, 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'ADULTO Y NIÑO NACIONAL',
+     data: <?php echo json_encode($miArray12);?>,
+     pointRadius: 4,
+     backgroundColor:[
+          'rgba(48, 2, 231, 0.2)'
+     ],
+     borderColor: [
+          'rgba(48, 2, 231, 0.8)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'UNIV - INST NACIONAL',
+     data: <?php echo json_encode($miArray13);?>,
+     pointRadius: 4,
+     backgroundColor:[
+         'rgba(170, 226, 165, 0.8)'
+     ],
+     borderColor: [
+          'rgba(22, 129, 12, 0.8)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'ESCOLAR NACIONAL',
+     data: <?php echo json_encode($miArray14);?>,
+     pointRadius: 4,
+     backgroundColor:[
+        'rgba(54, 162, 235, 0.2)'
+     ],
+     borderColor: [
+         'rgba(54, 162, 235, 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'NIÑO EXTRANJERO',
+     data: <?php echo json_encode($miArray16);?>,
+     pointRadius: 4,
+     backgroundColor:[
+        'rgba(194, 100, 24, 0.2)'
+     ],
+     borderColor: [
+         'rgba(194, 100, 24, 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'GRATUITO',
+     data: <?php echo json_encode($miArray17);?>,
+     pointRadius: 4,
+     backgroundColor:[
+         'rgba(214, 136, 248 , 0.2)'
+     ],
+     borderColor: [
+         'rgba(214, 136, 248 , 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'CONADIS',
+     data: <?php echo json_encode($miArray18);?>,
+     pointRadius: 4,
+     backgroundColor:[
+         'rgba(143, 255, 187 , 0.2)'
+     ],
+     borderColor: [
+         'rgba(143, 255, 187 , 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             }]
+ }
+ ,
+         options:    {                   
+         scales: {
+             x: {
+                 min: $("#fe1").val() ,
+                 max: $("#fe2").val(),
+                 type:'time',
+                 time:{
+                     unit:'day'
+                 }
+                
+                 },
+             y: {
+                 beginAtZero: true,
+                
+                 }
+                
+                 },
+                
+           
+            
+                   
+                }
+        
+     };
+      
+
+  const myChart4 = new Chart(
+     document.getElementById('myChart4'),config4
+ );
+
+</script>
+
+<!-- DISEÑO GRAFICO 5 -->
+<script> 
+
+const dateArrayJS5 =<?php echo json_encode($miArray19);?>;       
+const dateChartJS5 = dateArrayJS5.map((day,index)=>{
+let diajs = new Date(day);
+return diajs.setHours(24,24,24,24);
+});
+
+ const config5 = {
+         type: 'bar',
+         data:
+         {
+            labels:  dateChartJS3,
+            datasets:   [{
+             label: 'NACIONAL',
+             data: <?php echo json_encode($miArray20);?>,
+             backgroundColor: [
+                 'rgba(54, 162, 235, 0.2)'
+             ],
+             borderColor: [
+                 'rgba(54, 162, 235, 1)'
+             ],
+             borderWidth: 2
+            }
+                    ,
+                {
+            label: 'EXTRANJERO',
+             data: <?php echo json_encode($miArray21);?>,
+             backgroundColor: [
+                 'rgba(194, 100, 24, 0.2)'
+                
+             ],
+             borderColor: [
+                 'rgba(194, 100, 24, 1)'
+             ],
+             borderWidth: 2
+         }]
+  }
+         ,
+         options:    {
+         scales: {
+             x: {
+                 min: $("#fe1").val() ,
+                 max: $("#fe2").val(),
+                 type:'time',
+                 time:{
+                     unit:'day'
+                 }
+                 },
+             y: {
+                 beginAtZero: true
+                 }
+                 }
+                 }
+  };
+      
+
+  const myChart5 = new Chart(
+     document.getElementById('myChart5'),config5
+ );
+
+</script>
 <script> 
  function mostrarResultados1(date) {
           const startDate=new Date(date.value);
           myChart.config.options.scales.x.min= startDate.setHours(12,12,12,12);
           myChart2.config.options.scales.x.min= startDate.setHours(12,12,12,12);
           myChart3.config.options.scales.x.min= startDate.setHours(12,12,12,12);
+          myChart4.config.options.scales.x.min= startDate.setHours(12,12,12,12);
+          myChart5.config.options.scales.x.min= startDate.setHours(12,12,12,12);
           myChart.update();
           myChart2.update();
           myChart3.update();
+          myChart4.update();
+          myChart5.update();
  
  }
 
@@ -786,21 +1133,16 @@ return diajs.setHours(24,24,24,24);
           myChart.config.options.scales.x.max= endDate.setHours(24,24,24,24);
           myChart2.config.options.scales.x.max= endDate.setHours(12,12,12,12);
           myChart3.config.options.scales.x.max= endDate.setHours(12,12,12,12);
+          myChart4.config.options.scales.x.max= endDate.setHours(12,12,12,12);
+          myChart5.config.options.scales.x.max= endDate.setHours(12,12,12,12);
           myChart.update();
           myChart2.update();
           myChart3.update();
+          myChart4.update();
+          myChart5.update();
  }
 
- setInterval(function(){
-    //const myChart = new Chart(
-    // document.getElementById('myChart'),config
-    const endDate=new Date($("#fe2").val());
-    myChart.config.options.scales.x.max= endDate.setHours(24,24,24,24);
-     myChart.update();
-     //console.log("Hola Mundo");
-    //myChart2.update();
-    //myChart3.update();
-    //);
-}, 2000);   
+
+
 </script>
 
