@@ -13,8 +13,9 @@
                     $TicketData4=mysqli_query($con, "select * from contabilidad_concar_registros where fecha='$fechahoy'");
                     $TicketData5=mysqli_query($con, "select * from user");
                     $TicketData6=mysqli_query($con, "select * from user where id=$codigo");
-                    
-                 
+                    $TicketData7=mysqli_query($con, "select * from cobranza_auditoria");
+                    $TicketData8=mysqli_query($con, "select * from ticket_seguimiento where proceso=1");
+
                     
                     $menu =mysqli_query($con,"CALL menu('$id');");
                     
@@ -64,9 +65,8 @@
                    
                     <br>
                     <li>
-                      
-                        
-						<img class="thumb-image" style="width: 90%; display: block;" src="images/profiles/logo_principal.png" alt="image" />
+                 
+						<img class="thumb-image" style="width: 90%; display: block;" src="images/profiles/logo_principal.png" alt="image" /> 
 									
                     </li>
 

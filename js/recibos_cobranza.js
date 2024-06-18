@@ -2,6 +2,7 @@ $(document).ready(function(){
 	load(1);
 	load2(1);
 	load3(1);
+	load4(1);
 });
 
 function load(page){
@@ -50,6 +51,22 @@ function load3(page){
 		},
 		success:function(data){
 			$(".outer_div3").html(data).fadeIn('slow');
+			$('#loader').html('');
+		}
+	})
+}
+function load4(page){
+	var qqqq= $("#qqqq").val();
+	var qqqq1= $("#qqqq1").val();
+
+	$("#loader").fadeIn('slow');
+	$.ajax({
+		url:'./ajax/recibos_cobranza4.php?action=ajax&page='+page+'&qqqq='+qqqq+'&qqqq1='+qqqq1,
+		beforeSend: function(objeto){
+			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
+		},
+		success:function(data){
+			$(".outer_div4").html(data).fadeIn('slow');
 			$('#loader').html('');
 		}
 	})

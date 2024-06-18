@@ -132,6 +132,7 @@
                     <input type="hidden" value="<?php echo $n_cobranza;?>" id="n_cobranza<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $fecha;?>" id="fecha<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $idticket;?>" id="idticket<?php echo $id;?>">
+                    <input type="hidden" value="<?php echo $ticket;?>" id="ticket<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $moneda;?>" id="moneda<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $importe;?>" id="importe<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $idformapago;?>" id="idformapago<?php echo $id;?>">
@@ -161,14 +162,8 @@
                                               
                         <td ><span class="pull-right">
                         <a href="report/recibo_pago_concretado.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
-                        <?php  
-                        if ($idformapago==6){
-                        ?>
-                        <a href="#" class='btn btn-info' title='Ver Recibo' onclick="" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a>
-                        <?php 
-                            } 
-                        ?>
                         
+                        <a href="#" class='btn btn-success' title='Editar Cobranza' onclick="obtener_datos2('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-add-updatecobranza">|<i class="glyphicon glyphicon-pencil"></i></a>
                     </tr>
                 <?php
                     } //en while

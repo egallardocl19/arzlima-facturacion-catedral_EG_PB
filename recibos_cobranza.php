@@ -31,17 +31,12 @@
     $fechahoy=date("Y-m-d"); 
     $Mes = date("m");  
     $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id=6");
+    //$forma_pago2=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,7)");
+    $forma_pago3=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,5,7)");
     
     //$tipo_venta=mysqli_query($con, "SELECT * FROM tipo_venta where idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
-
-    //Conteos 
-    //$info0=mysqli_query($con, "select * from recibos WHERE tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //TOTAL
-    //$info1=mysqli_query($con, "select * from recibos WHERE idestado_recibo=1 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PENDIENTE
-    //$info2=mysqli_query($con, "select * from recibos WHERE idestado_recibo=2 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //PAGADO
-    //$info3=mysqli_query($con, "select * from recibos WHERE idestado_recibo=3 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //ANULADO
-    //$info4=mysqli_query($con, "select * from recibos WHERE idestado_recibo=4 and tipo_recibo in(select abrev from recibos_serial where idsubmodulo='$key1')"); //FRACCIONADO
-                               
+             
     //PERMISOS
       $submenu =mysqli_query($con,"CALL submenu('$id','0','$key1');");
       if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -86,6 +81,7 @@
                         <?php
                     
                             include("modal/mantenimiento_cobranza.php");
+                            include("modal/mantenimiento_cobranza2.php");
                             //include("modal/new_recibos_antiguos_impresion.php");?php echo mysqli_num_rows($info0) 
 
                             ?>
@@ -186,53 +182,101 @@
                                                                
                             </div>
 
-                            <div class="x_panel">
-                            <div class="x_title">
-                                <h2><?php echo $titulo; ?> Izipay : </h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                                </ul>
-                                <div class="clearfix"></div>
-                                    </div>
-                                        <!-- form search -->
-                                        <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
-                                            <!--<div class="form-group">-->
-                                            <div class="form-group">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                        <h2><?php echo $titulo; ?> POS : </h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                        </div>
+                                            <!-- form search -->
+                                            <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                                <!--<div class="form-group">-->
+                                                <div class="form-group">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
 
-                                                    <label for="qqq" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
-                                                    <div class="col-md-2 col-sm-3 col-xs-12">
-                                                        <input type="text" class="form-control" id="qqq" name="qqq" placeholder="N° Ticket" ><!--//onkeyup='load(1);'-->
-                                                    </div>
+                                                        <label for="qqq" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">
+                                                            <input type="text" class="form-control" id="qqq" name="qqq" placeholder="N° Ticket" ><!--//onkeyup='load(1);'-->
+                                                        </div>
 
-                                                    <label  for="qqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
-                                                    </label>
-                                                    <div class="col-md-2 col-sm-3 col-xs-12">
-                                                    <input type="date" id="qqq1" name="qqq1" class="form-control" value="<?php echo $fechahoy ?>" >
-                                                    </div>
-                                                  
-                                                
-                                                    <div class="col-md-2 col-sm-3 col-xs-12">                                                   
-                                                            <button type="button" class="btn btn-warning" onclick='load3(1);'>
-                                                                <span class="glyphicon glyphicon-search" ></span> Buscar</button>
-                                                                 <span id="loader"></span> 
-                                                    </div>
-                                                        
-                                                </div> 
-                                            </div>
-                                        </form> 
-                                                                <!-- end form search -->
-                                        <div class="x_content">
-                                            <div class="table-responsive">
-                                                <!-- ajax -->
-                                                <div id="resultados3"></div><!--Carga los datos ajax -->
-                                                <div class='outer_div3'></div><!-- Carga los datos ajax -->
-                                                <!-- /ajax -->
-                                            </div>
-                                        </div>                            
+                                                        <label  for="qqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">
+                                                        <input type="date" id="qqq1" name="qqq1" class="form-control" value="<?php echo $fechahoy ?>" >
+                                                        </div>
+                                                    
+                                                    
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">                                                   
+                                                                <button type="button" class="btn btn-warning" onclick='load3(1);'>
+                                                                    <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                    <span id="loader"></span> 
+                                                        </div>
+                                                            
+                                                    </div> 
+                                                </div>
+                                            </form> 
+                                                                    <!-- end form search -->
+                                            <div class="x_content">
+                                                <div class="table-responsive">
+                                                    <!-- ajax -->
+                                                    <div id="resultados3"></div><!--Carga los datos ajax -->
+                                                    <div class='outer_div3'></div><!-- Carga los datos ajax -->
+                                                    <!-- /ajax -->
+                                                </div>
+                                            </div>                            
                                                                
-                            </div> 
+                                     </div> 
+
+                                     <div class="x_panel">
+                                        <div class="x_title">
+                                        <h2><?php echo $titulo; ?> Transferencia : </h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                        </div>
+                                            <!-- form search -->
+                                            <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                                <!--<div class="form-group">-->
+                                                <div class="form-group">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+
+                                                        <label for="qqqq" class="control-label col-md-1 col-sm-1 col-xs-12">Busqueda </label>
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">
+                                                            <input type="text" class="form-control" id="qqqq" name="qqqq" placeholder="N° Ticket" ><!--//onkeyup='load(1);'-->
+                                                        </div>
+
+                                                        <label  for="qqqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">
+                                                        <input type="date" id="qqqq1" name="qqqq1" class="form-control" value="<?php echo $fechahoy ?>" >
+                                                        </div>
+                                                    
+                                                    
+                                                        <div class="col-md-2 col-sm-3 col-xs-12">                                                   
+                                                                <button type="button" class="btn btn-warning" onclick='load4(1);'>
+                                                                    <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                    <span id="loader"></span> 
+                                                        </div>
+                                                            
+                                                    </div> 
+                                                </div>
+                                            </form> 
+                                                                    <!-- end form search -->
+                                            <div class="x_content">
+                                                <div class="table-responsive">
+                                                    <!-- ajax -->
+                                                    <div id="resultados4"></div><!--Carga los datos ajax -->
+                                                    <div class='outer_div4'></div><!-- Carga los datos ajax -->
+                                                    <!-- /ajax -->
+                                                </div>
+                                            </div>                            
+                                                               
+                                     </div> 
                     </div>
                 </div>
             </div>
@@ -268,6 +312,29 @@
     event.preventDefault();
     })
 
+    $( "#add2" ).submit(function( event ) {
+    var parametros = $(this).serialize();
+        $.ajax({
+                type: "POST",
+                url: "action/mantenimiento_cobranza2.php",
+                data: parametros,
+                beforeSend: function(objeto){
+                    $("#result2").show();
+                    $("#result2").html("Mensaje: Cargando...");
+                },
+                success: function(datos){
+                $("#result2").html(datos);
+                $('#save_data').attr("disabled", false);
+                load(1);
+                load2(1);
+                load3(1);
+                load4(1);
+            }
+        });
+    
+    event.preventDefault();
+    })
+
        function limpiarFormulario() {
         document.getElementById("add").reset();
         $('#idticket').val(0).addClass("selectpicker").selectpicker('refresh'); 
@@ -288,6 +355,7 @@
         //$('#idticket').val(0).addClass("selectpicker").selectpicker('refresh'); 
         //$('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');                 
         condicion=$("#fecha").val(); 
+       
         //condicion = 1;
                             caso = "4";
                             $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
@@ -356,43 +424,52 @@
               var n_deposito = $("#n_deposito"+id).val();  //
               var observaciones = $("#observaciones"+id).val();  //
                
-            //  var total = $("#total"+id_cod).val();    //
-            //  var anio = $("#anio"+id_cod).val();//
-            //  var mes = $("#mes"+id_cod).val();//
-            //  var fecha_recibo = $("#fecha_recibo"+id_cod).val();//
-            //  var fecha_vencimiento = $("#fecha_vencimiento"+id_cod).val();//
-            //  var inquilino = $("#inquilino"+id_cod).val();//
-            //  var inmueble = $("#inmueble"+id_cod).val();   //
-            //  var tipo_moneda = $("#tipo_moneda"+id_cod).val();    //
-            //  var observacion = $("#observacion"+id_cod).val();//
-
+    
               $("#ticket_pagado").val(ticket); 
               $("#monto_total_ticket").val(importe); 
               $("#fecha2").val(fecha); 
               $("#n_operacion").val(n_deposito); 
               $("#observaciones").val(observaciones); 
-            //  $('#tipo_recibo').val(tipo_recibo).addClass("selectpicker").selectpicker('refresh');
-            //  $("#codigo_recibo").val(codigo_recibo); 
-            //  $("#anio").val(anio);
-            //  $('#mes').val(mes).addClass("selectpicker").selectpicker('refresh');
-             
-            //  $("#fecha_inicio").val(fecha_recibo);
-            //  $("#fecha_vencimiento").val(fecha_vencimiento);
-           
-           
-            //  $("#arbitrios").val(arbitrios);   
-            //  document.getElementById('monto_total').innerHTML= total;                                                  
-            //  $("#observaciones").val(observacion);
-            //  $("#observaciones").prop("readonly",true);
-            //  $("#importe").prop("readonly",true);
-            //  $("#arbitrios").prop("readonly",true);
-            //  $("#anio").prop("readonly",true);
-            //  $("#valor_mantenimiento").val(0);  
-            //  $("#result").hide();
+         
            
         
             
-         }    
+         }  
+
+          //OBTENER DATOS PARA IMPRIMIR RECIBO
+          function obtener_datos2(id){
+  
+            var titulo = '<?=$titulo?>';
+            document.getElementById('myModalLabel2').innerHTML= '<strong><i class="fa fa-search" aria-hidden="true"></i> Actualizar '+titulo+'</strong>';
+            var n_cobranza = $("#n_cobranza"+id).val();  //
+            var fecha = $("#fecha"+id).val();  //
+            var ticket = $("#ticket"+id).val();  //
+            var moneda = $("#moneda"+id).val();  //
+            var importe = $("#importe"+id).val();  //
+            var idformapago = $("#idformapago"+id).val();  //
+            var n_referencia = $("#n_referencia"+id).val();  //
+    
+            $("#n_cobranza2").val(n_cobranza); 
+            $("#fecha_cobranza2").val(fecha); 
+            $("#n_ticket2").val(ticket); 
+            $("#importe2").val(moneda+' '+importe); 
+            $("#tipo_pago2").val(idformapago); 
+            $("#referencia2").val(n_referencia); 
+            //$("#referencia2").prop("readonly",true);
+            document.getElementById("referencia2").style.background  = "";
+            $("#result2").hide();
+            document.getElementById("save_data2").style.display = "none";
+            var permiso_editar = '<?=$permiso_editar?>';
+            if (permiso_editar == 1){
+            document.getElementById("save_data2").style.display = "block";
+            $("#codigo2").val(id);    
+            $("#valor_mantenimiento2").val(2);  
+                            
+            }
+         }  
+
+      
+           
 </script> 
 
 

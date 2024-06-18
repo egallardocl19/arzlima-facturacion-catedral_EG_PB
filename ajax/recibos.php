@@ -107,8 +107,8 @@
 		//consulta principal para obtener los datos
         $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,t.cantidad_total,tm.signo,format(t.monto_total,2) as importe,
         (select nombre from estado_ticket where id=t.idestado_ticket) as estado,
-        (select nombre from formapago where id=(select idformapago from cobranza where idticket=t.id)) as forma_pago,
-        (select n_referencia from cobranza where idticket=t.id) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        (select nombre from formapago where id=(select idformapago from cobranza where idformapago<>6 and idticket=t.id)) as forma_pago,
+        (select n_referencia from cobranza where idformapago<>6 and idticket=t.id) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             

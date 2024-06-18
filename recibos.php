@@ -26,7 +26,7 @@
 
     //Variables
     $estado_pago =mysqli_query($con, "SELECT * from estado_pago where id=1");
-    $ticket_motivos=mysqli_query($con, "SELECT * from ticket_motivos where idestado_dato=1");
+    $ticket_motivos=mysqli_query($con, "SELECT * from ticket_motivos where idestado_dato=1 and id<>1");
     $agencia=mysqli_query($con, "SELECT id,dni_ruc,nombre FROM agencia where idestado_dato=1");
     $colorheder="info"; //COLOR  CABECERA MODAL
     $colortipo1="#F9E8C2";
@@ -398,6 +398,7 @@
             var numero = $("#numero"+id).val();
             $("#mod_id").val(id);   
             $("#n_ticket").val(serie+'-'+numero);   
+            $("#result2").hide();
        }
                     
 </script>

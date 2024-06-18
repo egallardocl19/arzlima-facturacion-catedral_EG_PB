@@ -27,7 +27,7 @@
                                         
                                         <div class="col-md-9 col-sm-9 col-xs-12">
 
-                                            <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idmotivo" name="idmotivo" data-size="5" style="max-width: 100%!important;" >
+                                            <select class="form-control"  id="idmotivo" name="idmotivo" data-size="5" style="max-width: 100%!important;" >
                                             <option value="">----- Seleccionar Motivo -----</option>  	
                                             <?php foreach($ticket_motivos as $p):?>
                                                 <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>

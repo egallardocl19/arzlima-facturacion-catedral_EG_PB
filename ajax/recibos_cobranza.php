@@ -91,7 +91,7 @@
 		//consulta principal para obtener los datos
         $sql="SELECT c.id,c.n_cobranza,c.fecha,c.idticket,concat(t.serie,'-',t.numero) as ticket,
         (select signo from tipo_moneda where id=t.idtipo_moneda) as moneda ,
-        c.importe,c.idformapago,f.nombre as nombre_pago,c.n_deposito,c.n_referencia  FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        format(c.importe,2) as importe,c.idformapago,f.nombre as nombre_pago,c.n_deposito,c.n_referencia  FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -132,6 +132,7 @@
                     <input type="hidden" value="<?php echo $n_cobranza;?>" id="n_cobranza<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $fecha;?>" id="fecha<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $idticket;?>" id="idticket<?php echo $id;?>">
+                    <input type="hidden" value="<?php echo $ticket;?>" id="ticket<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $moneda;?>" id="moneda<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $importe;?>" id="importe<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $idformapago;?>" id="idformapago<?php echo $id;?>">
@@ -160,13 +161,9 @@
                                               
                         <td ><span class="pull-right">
                         <a href="report/recibo_pago_concretado.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
-                        <?php  
-                        if ($idformapago==6){
-                        ?>
-                        <a href="#" class='btn btn-info' title='Ver Recibo' onclick="" data-toggle="modal" data-target=".bs-example-modal-lg-add">|<i class="glyphicon glyphicon-file"></i></a>
-                        <?php 
-                            } 
-                        ?>
+                     
+                        <a href="#" class='btn btn-success' title='Editar Cobranza' onclick="obtener_datos2('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-add-updatecobranza">|<i class="glyphicon glyphicon-pencil"></i></a>
+                     
                         
                     </tr>
                 <?php

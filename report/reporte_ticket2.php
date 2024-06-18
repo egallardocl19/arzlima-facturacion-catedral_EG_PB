@@ -1,5 +1,6 @@
 
 <?php
+
 require('../fpdf/fpdf.php');
 include "../config/config.php";//Contiene funcion que conecta a la base de datos
 include "../head2.php";
@@ -12,6 +13,11 @@ if($fecha1!=''){
 }else{
 	$where="";
 }
+
+if($idroles==2){
+	$where.=" and t.iduser_add =\"$codigo\"";
+}
+
 
 if (!empty($_POST['fecha_inicio'])){
 

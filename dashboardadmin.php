@@ -136,6 +136,35 @@
                             $con->next_result();
                             ?>
                             <?php 
+                            $submenu =mysqli_query($con,"CALL submenu('$id','0','73');");
+                            if (!$submenu||mysqli_num_rows($submenu)!=0){
+                                $submenu->close();
+                                $con->next_result();
+                                $permisos =mysqli_query($con,"CALL permisos('$id','73','0');");
+                                if (!$permisos||mysqli_num_rows($permisos)!=0){
+                                    while ($row_sub=$permisos->fetch_assoc()) { 
+                                        $idsubmodulo= $row_sub['idsubmodulo'];
+                                        
+                                    }
+                                    $ruta_envio='recibos_cobranza_auditoria.php?key1='.$idsubmodulo;
+                                
+                            ?>
+                        
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats" style="background-image: url('images/profiles/fonbo7.png'); width:100%;" >
+                                <div class="icon"><i class="fa fa-money"></i></div>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData7) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Cobranza Auditoria</a>
+                                </div>
+                            </div>
+                            <?php 
+                            }
+                            $permisos->close(); 
+                            $con->next_result();
+                            }
+                            $con->next_result();
+                            ?>
+                            <?php 
                             $submenu =mysqli_query($con,"CALL submenu('$id','0','66');");
                             if (!$submenu||mysqli_num_rows($submenu)!=0){
                                 $submenu->close();
@@ -194,7 +223,38 @@
                             }
                             $con->next_result();
                             ?>
-          
+                             <?php 
+                            $submenu =mysqli_query($con,"CALL submenu('$id','0','72');");
+                            if (!$submenu||mysqli_num_rows($submenu)!=0){
+                            $submenu->close();
+                            $con->next_result();
+                                $permisos =mysqli_query($con,"CALL permisos('$id','72','0');");
+                                if (!$permisos||mysqli_num_rows($permisos)!=0){
+                                    while ($row_sub=$permisos->fetch_assoc()) { 
+                                        $idsubmodulo= $row_sub['idsubmodulo'];
+                                        
+                                    }
+                                    $ruta_envio='recibos_seguimiento.php?key1='.$idsubmodulo;
+                                
+                            ?>
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="precaucion" >
+                                <div class="tile-stats" style="background-image: url('images/profiles/fonbo10.png'); width:100%;">
+                            
+                                <div class="icon" ><i  class="fa fa-bell"></i></div>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData8) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Seguimiento Alertas</a>
+                                </div>
+                                
+                                <!-- <p id="precaucion">¡Tenga precaución!</p> -->
+                            </div>
+                           
+                            <?php 
+                            }
+                            $permisos->close(); 
+                            $con->next_result();
+                            }
+                            $con->next_result();
+                            ?>
                             <div class="col-md-12 col-xs-12 col-sm-12">   <!-- COLUMNA PADRE -->
                                 <?php 
                                 $submenu =mysqli_query($con,"CALL submenu('$id','0','2');");
@@ -681,8 +741,38 @@
 
  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-
+ <?php 
+ $alert_seg=mysqli_num_rows($TicketData8);
+ if($alert_seg>0){ 
+ ?>
+ <style>
+    #precaucion {
+        text-transform: capitalize;  
+        /* background: red; */
+        animation: alerta 1.5s linear 100ms infinite;
+        opacity: 0;
+        display: none;
+      }
+      
+      @-webkit-keyframes alerta {
+          from {opacity: 0;}
+          25% {opacity: 1;}
+          75% {opacity: 1;}
+          to {opacity: 0;}
+      } 
+      
+      @keyframes alerta {
+          from {opacity: 0;}
+          25% {opacity: 1;}
+          75% {opacity: 1;}
+          to {opacity: 0;}
+      }
+      </style>
+<?php 
+ }
+ ?>
 <script> 
+document.getElementById("precaucion").style.display = "block";
 
 const dateArrayJS =<?php echo json_encode($miArray);?>;        
 const dateChartJS = dateArrayJS.map((day,index)=>{
@@ -1143,6 +1233,15 @@ return diajs.setHours(24,24,24,24);
  }
 
 
-
 </script>
 
+
+<!-- <script src="js/jqFancyTransitions.js" type="text/javascript"></script>
+
+<script>
+$('#slideImagenes').jqFancyTransitions({ width: 900, height: 250 });      
+</script> -->
+<!-- <div id="slideImagenes">
+    	<img src="imagenes/ibe.jpg" alt="" />
+        <img src="imagenes/blrh.jpg" alt="" />
+    </div> -->

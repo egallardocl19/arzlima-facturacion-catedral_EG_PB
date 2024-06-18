@@ -1,33 +1,36 @@
 <?php	
-
-	
 	session_start();
-
-	if (empty($_POST['mod_id'])) {
-           $errors[] = "N° Ticket vacío";
-		} else if (empty($_POST['idmotivo'])){
-			$errors[] = "Motivo vacío";
-		}else if (
-			!empty($_POST['mod_id'])  &&
-			!empty($_POST['idmotivo'])
+	/*Inicia validacion del lado del servidor*/
+	if (empty($_POST['n_cobranza2'])) {
+           $errors[] = "Cobranza vacío";
+		} else if (empty($_POST['fecha_cobranza2'])){
+			$errors[] = "Fecha Cobranza vacío";
+		} else if (empty($_POST['n_ticket2'])){
+			$errors[] = "Ticket vacío";
+		} else if (
+			!empty($_POST['n_cobranza2']) &&
+			!empty($_POST['fecha_cobranza2'])&&
+			!empty($_POST['n_ticket2'])
+			
 		){
 
 		include "../config/config.php";//Contiene funcion que conecta a la base de datos
+		$codigo = $_POST["codigo2"]; 
+		$valor_mantenimiento = $_POST["valor_mantenimiento2"];
 
-		$mod_id=$_POST['mod_id'];
-		$idmotivo=$_POST['idmotivo'];
-		$estado=0;
-		$codigo=0;
-		$fecha_add = date("Y-m-d");
-		$user_id=$_SESSION['user_id'];
+		$tipo_pago2 = $_POST["tipo_pago2"];
+		$referencia2 = $_POST["referencia2"];
+
+		
+		$user_id=$_SESSION['user_id'];  
 		$submod=$_SESSION['keytok0']; 
-
-		//$sql="UPDATE ticket SET idestado_ticket=3, idmotivo=$idmotivo WHERE id=$mod_id";
-		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_seguimiento($mod_id,1,$idmotivo,$estado,$codigo,$submod,$user_id,
-		'$fecha_add',@resultado,@resultado1);");
+		$fecha_add = date("Y-m-d");
+	
+		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_cobranza
+		($codigo,$valor_mantenimiento,'$fecha_add',0,0,'$fecha_add',$tipo_pago2,'$referencia2','',0,0,'',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1");
-
-			while($row = $resultado->fetch_assoc())
+		
+		while($row = $resultado->fetch_assoc())
 			{
 				if ($row['result1']=='1'){
 					$errors []= $row['result'];
@@ -38,7 +41,7 @@
 			$resultado->close();  
 			$con->next_result();
 		} else {
-			$errors []= "Error desconocido.";
+			$errors []= "Error desconocido - Verificar los Datos Ingresados";
 		}
 		
 		if (isset($errors)){

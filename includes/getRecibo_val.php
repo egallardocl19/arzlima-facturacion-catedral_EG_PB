@@ -3,6 +3,7 @@
 	require ('../config/config.php');
 	
 	$condicion = $_POST['condicion'];
+   // $condicion2 = $_POST['condicion2'];
     $caso = $_POST['caso'];
 
     if ($caso=="1"){
@@ -79,34 +80,32 @@
 
     if ($caso=="4"){
         if ($condicion!=""){
-                $importe=mysqli_query($con,"SELECT if(sum(c.importe)is null,0,sum(c.importe)) as importe 
-                FROM cobranza c, ticket t where c.idticket=t.id and t.idestado_ticket<>3 and  c.idformapago=6 and c.fecha='$condicion'");
-                while($rowM = $importe->fetch_assoc())
+            $importe=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=6 and fecha='$condicion'");
+            while($rowM = $importe->fetch_assoc())
+            {
+            $validar_importe=$rowM['importe'];
+            }
+
+            if ($validar_importe > 0){
+                $val= "0";     
+            }else{
+
+                $importe2=mysqli_query($con,"SELECT if(sum(importe)is null,0,sum(importe)) as importe FROM cobranza where idformapago=4 and fecha='$condicion'");
+                while($rowM = $importe2->fetch_assoc())
                 {
-                $validar_importe=$rowM['importe'];
+                $validar_importe2=$rowM['importe'];
+           
                 }
 
-                if ($validar_importe > 0){
-                    $val= "0";     
+                if ($validar_importe2 > 0){
+                   $val= $validar_importe2;
                 }else{
-
-                    $importe2=mysqli_query($con,"SELECT if(sum(c.importe)is null,0,sum(c.importe)) as importe 
-                    FROM cobranza c, ticket t where c.idticket=t.id and t.idestado_ticket<>3 and c.idformapago=4 and c.fecha='$condicion'");
-                    while($rowM = $importe2->fetch_assoc())
-                    {
-                    $validar_importe2=$rowM['importe'];
+                    $val= "0";
+                           
+                }    
                
-                    }
-
-                    if ($validar_importe2 > 0){
-                       $val= $validar_importe2;
-                    }else{
-                        $val= "0";
-                               
-                    }    
-                   
-                    
-                }
+                
+            }
                 
                 
         }else{
