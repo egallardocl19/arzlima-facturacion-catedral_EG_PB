@@ -647,7 +647,7 @@
 
 
 // success
-
+document.getElementById("precaucion").style.display = "block";
 </script>
 
 <?php       
@@ -772,7 +772,7 @@
  }
  ?>
 <script> 
-document.getElementById("precaucion").style.display = "block";
+
 
 const dateArrayJS =<?php echo json_encode($miArray);?>;        
 const dateChartJS = dateArrayJS.map((day,index)=>{
