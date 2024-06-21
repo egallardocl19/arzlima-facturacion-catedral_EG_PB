@@ -32,7 +32,7 @@
                             ?>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-ticket"></i></div> 
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-ticket"></i></a></div> 
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Generales</a>
                                 </div>
@@ -64,9 +64,40 @@
                            
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo5.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-ticket"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-ticket"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Promocionales</a>
+                                </div>
+                            </div>
+                            <?php 
+                                }
+                                $permisos->close(); 
+                                $con->next_result(); 
+                            }
+                            $con->next_result();
+                            ?> 
+                            <?php 
+                            $submenu =mysqli_query($con,"CALL submenu('$id','0','71');");
+                            if (!$submenu||mysqli_num_rows($submenu)!=0){
+                            $submenu->close();
+                            $con->next_result();
+                                $permisos =mysqli_query($con,"CALL permisos('$id','71','0');");
+                                
+                                if (!$permisos||mysqli_num_rows($permisos)!=0){
+                                
+                                    while ($row_sub=$permisos->fetch_assoc()) { 
+                                        $idsubmodulo= $row_sub['idsubmodulo'];
+                                        
+                                    }
+                                    $ruta_envio='recibos.php?key1='.$idsubmodulo;
+                                    
+                            ?>
+                           
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats" style="background-image: url('images/profiles/fonbo11.png'); width:100%;" >
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-ticket"></i></a></div>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Crédito</a>
                                 </div>
                             </div>
                             <?php 
@@ -94,7 +125,7 @@
 
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo6.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-binoculars"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-binoculars"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData2) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Control</a>
                                 </div>
@@ -123,7 +154,7 @@
                         
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo7.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-money"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-money"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData3) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Cobranza</a>
                                 </div>
@@ -152,7 +183,7 @@
                         
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo7.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-money"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-money"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData7) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Cobranza Auditoria</a>
                                 </div>
@@ -181,7 +212,7 @@
                             
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo8.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-database"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-database"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData4) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> ConcarSQL</a>
                                 </div>
@@ -209,7 +240,7 @@
                             ?>
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats" style="background-image: url('images/profiles/fonbo9.png'); width:100%;" >
-                                <div class="icon"><i class="fa fa-users"></i></div>
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-users"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php if ($idroles==$grupo1) {
                                                     echo mysqli_num_rows($TicketData5);
                                                     }else{ echo mysqli_num_rows($TicketData6);} ?></div></a>
@@ -240,7 +271,7 @@
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="precaucion" >
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo10.png'); width:100%;">
                             
-                                <div class="icon" ><i  class="fa fa-bell"></i></div>
+                                <div class="icon" ><a href="<?php echo  $ruta_envio?>"><i  class="fa fa-bell"></i></a></div>
                                 <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData8) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Seguimiento Alertas</a>
                                 </div>
@@ -707,7 +738,9 @@ document.getElementById("precaucion").style.display = "block";
                     $miArray15[]= $rowM["cantidad5"];	
                     $miArray16[]= $rowM["cantidad6"];	
                     $miArray17[]= $rowM["cantidad7"];	
-                    $miArray18[]= $rowM["cantidad8"];	
+                    $miArray18[]= $rowM["cantidad8"];
+                    $miArray22[]= $rowM["cantidad9"];
+                    $miArray23[]= $rowM["cantidad10"];	
            
                
                 
@@ -1096,10 +1129,38 @@ const config4 = {
      data: <?php echo json_encode($miArray18);?>,
      pointRadius: 4,
      backgroundColor:[
-         'rgba(143, 255, 187 , 0.2)'
+         'rgba(143, 255, 50 , 0.2)'
      ],
      borderColor: [
-         'rgba(143, 255, 187 , 1)'
+         'rgba(143, 255, 50 , 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'PROMO1',
+     data: <?php echo json_encode($miArray22);?>,
+     pointRadius: 4,
+     backgroundColor:[
+         'rgba(236, 72, 255 , 0.2)'
+     ],
+     borderColor: [
+         'rgba(236, 72, 255 , 1)'
+     ],
+     fill: true,
+     tension: 0.1,
+     borderWidth: bordernum
+             },
+             {
+     label: 'PROMO2',
+     data: <?php echo json_encode($miArray23);?>,
+     pointRadius: 4,
+     backgroundColor:[
+         'rgba(18, 175, 185 , 0.2)'
+     ],
+     borderColor: [
+         'rgba(18, 175, 185 , 1)'
      ],
      fill: true,
      tension: 0.1,

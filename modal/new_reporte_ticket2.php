@@ -1,9 +1,9 @@
 <?php
        
     $rutalocal='../syscatedral/report/reporte_ticket2.php';
-    $rutalocal2='../syscatedral/report/reporte_ticket_excel2.php';
+    $rutalocal2='../syscatedral/report/reporte_ticket4.php';
     $rutaserver='../report/reporte_ticket2.php';
-    $rutaserver2='../report/reporte_ticket_excel2.php';
+    $rutaserver2='../report/reporte_ticket4.php';
 ?> 
 
    
@@ -13,7 +13,7 @@
                 <div class="modal-header bg-<?php echo $colorheder ?> text-white" >
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel" style="text-align: center"><strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Resumen Ventas</strong></h4>
+                    <h4 class="modal-title" id="myModalLabelReporte" style="text-align: center"></h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal form-label-left input_mask" method="post" id="addreporte_propi" name="addreporte_propi" target="_blank">
@@ -39,8 +39,16 @@
                         <div class="ln_solid"></div>
                            
                         <div class="form-group">
-                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4" id="btn1">
                             <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
+                            
+                            
+                            <!-- <button class="btn btn-success" name="export" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button> -->
+                         
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-4" id="btn2">
+                            
+                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver2 ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte</button>
                             
                             <!-- <button class="btn btn-success" name="export" formaction="<?php echo $rutalocal2 ?>"><span class="fa fa-file-excel-o"></span> Exportar a Excel</button> -->
                          

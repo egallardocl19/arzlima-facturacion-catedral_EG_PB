@@ -38,118 +38,118 @@
 
   
   
-    $query_reporte =mysqli_query($con,"CALL dashboard('1','1','2','3');");
+    // $query_reporte =mysqli_query($con,"CALL dashboard('1','1','2','3');");
    
-     if (!$query_reporte||mysqli_num_rows($query_reporte)!=0){
+    //  if (!$query_reporte||mysqli_num_rows($query_reporte)!=0){
    
-             while ($row_rep=$query_reporte->fetch_assoc()) 
-	 		{
-	 			$monto1= $row_rep['mes1'];	
-                 $monto2= $row_rep['mes2'];	
-                 $monto3=$row_rep['mes3']; 
-                 $monto4=$row_rep['mes4']; 
-                 $monto5=$row_rep['mes5']; 
-                 $monto6=$row_rep['mes6']; 
-                 $monto7=$row_rep['mes7']; 
-                 $monto8=$row_rep['mes8']; 
-                 $monto9=$row_rep['mes9']; 
-                 $monto10=$row_rep['mes10']; 
-                 $monto11=$row_rep['mes11']; 
-                 $monto12=$row_rep['mes12']; 
+    //          while ($row_rep=$query_reporte->fetch_assoc()) 
+	//  		{
+	//  			$monto1= $row_rep['mes1'];	
+    //              $monto2= $row_rep['mes2'];	
+    //              $monto3=$row_rep['mes3']; 
+    //              $monto4=$row_rep['mes4']; 
+    //              $monto5=$row_rep['mes5']; 
+    //              $monto6=$row_rep['mes6']; 
+    //              $monto7=$row_rep['mes7']; 
+    //              $monto8=$row_rep['mes8']; 
+    //              $monto9=$row_rep['mes9']; 
+    //              $monto10=$row_rep['mes10']; 
+    //              $monto11=$row_rep['mes11']; 
+    //              $monto12=$row_rep['mes12']; 
               
-                 $conteo1=$row_rep['mes1xx']; 
-                 $conteo2=$row_rep['mes2xx']; 
-                 $conteo3=$row_rep['mes3xx']; 
-                 $conteo4=$row_rep['mes4xx']; 
-                 $conteo5=$row_rep['mes5xx']; 
-                 $conteo6=$row_rep['mes6xx']; 
-                 $conteo7=$row_rep['mes7xx']; 
-                 $conteo8=$row_rep['mes8xx']; 
-                 $conteo9=$row_rep['mes9xx']; 
-                 $conteo10=$row_rep['mes10xx']; 
-                 $conteo11=$row_rep['mes11xx']; 
-                 $conteo12=$row_rep['mes12xx']; 
-                 $conteo1x=$row_rep['mes1xxx']; 
-                 $conteo2x=$row_rep['mes2xxx']; 
-                 $conteo3x=$row_rep['mes3xxx']; 
-                 $conteo4x=$row_rep['mes4xxx']; 
-                 $conteo5x=$row_rep['mes5xxx']; 
-                 $conteo6x=$row_rep['mes6xxx']; 
-                 $conteo7x=$row_rep['mes7xxx']; 
-                 $conteo8x=$row_rep['mes8xxx']; 
-                 $conteo9x=$row_rep['mes9xxx']; 
-                 $conteo10x=$row_rep['mes10xxx']; 
-                 $conteo11x=$row_rep['mes11xxx']; 
-                 $conteo12x=$row_rep['mes12xxx']; 
-                 $conteo1xx=$row_rep['mes1xxxx']; 
-                 $conteo2xx=$row_rep['mes2xxxx']; 
-                 $conteo3xx=$row_rep['mes3xxxx']; 
-                 $conteo4xx=$row_rep['mes4xxxx']; 
-                 $conteo5xx=$row_rep['mes5xxxx']; 
-                 $conteo6xx=$row_rep['mes6xxxx']; 
-                 $conteo7xx=$row_rep['mes7xxxx']; 
-                 $conteo8xx=$row_rep['mes8xxxx']; 
-                 $conteo9xx=$row_rep['mes9xxxx']; 
-                 $conteo10xx=$row_rep['mes10xxxx']; 
-                 $conteo11xx=$row_rep['mes11xxxx']; 
-                 $conteo12xx=$row_rep['mes12xxxx']; 
+    //              $conteo1=$row_rep['mes1xx']; 
+    //              $conteo2=$row_rep['mes2xx']; 
+    //              $conteo3=$row_rep['mes3xx']; 
+    //              $conteo4=$row_rep['mes4xx']; 
+    //              $conteo5=$row_rep['mes5xx']; 
+    //              $conteo6=$row_rep['mes6xx']; 
+    //              $conteo7=$row_rep['mes7xx']; 
+    //              $conteo8=$row_rep['mes8xx']; 
+    //              $conteo9=$row_rep['mes9xx']; 
+    //              $conteo10=$row_rep['mes10xx']; 
+    //              $conteo11=$row_rep['mes11xx']; 
+    //              $conteo12=$row_rep['mes12xx']; 
+    //              $conteo1x=$row_rep['mes1xxx']; 
+    //              $conteo2x=$row_rep['mes2xxx']; 
+    //              $conteo3x=$row_rep['mes3xxx']; 
+    //              $conteo4x=$row_rep['mes4xxx']; 
+    //              $conteo5x=$row_rep['mes5xxx']; 
+    //              $conteo6x=$row_rep['mes6xxx']; 
+    //              $conteo7x=$row_rep['mes7xxx']; 
+    //              $conteo8x=$row_rep['mes8xxx']; 
+    //              $conteo9x=$row_rep['mes9xxx']; 
+    //              $conteo10x=$row_rep['mes10xxx']; 
+    //              $conteo11x=$row_rep['mes11xxx']; 
+    //              $conteo12x=$row_rep['mes12xxx']; 
+    //              $conteo1xx=$row_rep['mes1xxxx']; 
+    //              $conteo2xx=$row_rep['mes2xxxx']; 
+    //              $conteo3xx=$row_rep['mes3xxxx']; 
+    //              $conteo4xx=$row_rep['mes4xxxx']; 
+    //              $conteo5xx=$row_rep['mes5xxxx']; 
+    //              $conteo6xx=$row_rep['mes6xxxx']; 
+    //              $conteo7xx=$row_rep['mes7xxxx']; 
+    //              $conteo8xx=$row_rep['mes8xxxx']; 
+    //              $conteo9xx=$row_rep['mes9xxxx']; 
+    //              $conteo10xx=$row_rep['mes10xxxx']; 
+    //              $conteo11xx=$row_rep['mes11xxxx']; 
+    //              $conteo12xx=$row_rep['mes12xxxx']; 
   
-	 		}
-             $query_reporte->close();
-             $con->next_result();
+	//  		}
+    //          $query_reporte->close();
+    //          $con->next_result();
         
-     }else{
-                 $monto1='0'; 
-                 $monto2='0'; 
-                 $monto3='0'; 
-                 $monto4='0'; 
-                 $monto5='0'; 
-                 $monto6='0'; 
-                 $monto7='0'; 
-                 $monto8='0'; 
-                 $monto9='0'; 
-                 $monto10='0'; 
-                 $monto11='0'; 
-                 $monto12='0'; 
+    //  }else{
+    //              $monto1='0'; 
+    //              $monto2='0'; 
+    //              $monto3='0'; 
+    //              $monto4='0'; 
+    //              $monto5='0'; 
+    //              $monto6='0'; 
+    //              $monto7='0'; 
+    //              $monto8='0'; 
+    //              $monto9='0'; 
+    //              $monto10='0'; 
+    //              $monto11='0'; 
+    //              $monto12='0'; 
                 
-                 $conteo1='0'; 
-                 $conteo2='0'; 
-                 $conteo3='0'; 
-                 $conteo4='0'; 
-                 $conteo5='0'; 
-                 $conteo6='0'; 
-                 $conteo7='0'; 
-                 $conteo8='0'; 
-                 $conteo9='0'; 
-                 $conteo10='0'; 
-                 $conteo11='0'; 
-                 $conteo12='0'; 
-                 $conteo1x='0'; 
-                 $conteo2x='0'; 
-                 $conteo3x='0'; 
-                 $conteo4x='0'; 
-                 $conteo5x='0'; 
-                $conteo6x='0'; 
-                 $conteo7x='0'; 
-                 $conteo8x='0'; 
-                 $conteo9x='0'; 
-                 $conteo10x='0'; 
-                 $conteo11x='0'; 
-                 $conteo12x='0'; 
-                 $conteo1xx='0'; 
-                 $conteo2xx='0'; 
-                 $conteo3xx='0'; 
-                 $conteo4xx='0'; 
-                 $conteo5xx='0'; 
-                 $conteo6xx='0'; 
-                 $conteo7xx='0'; 
-                 $conteo8xx='0'; 
-                 $conteo9xx='0'; 
-                 $conteo10xx='0'; 
-                 $conteo11xx='0'; 
-                 $conteo12xx='0';  
+    //              $conteo1='0'; 
+    //              $conteo2='0'; 
+    //              $conteo3='0'; 
+    //              $conteo4='0'; 
+    //              $conteo5='0'; 
+    //              $conteo6='0'; 
+    //              $conteo7='0'; 
+    //              $conteo8='0'; 
+    //              $conteo9='0'; 
+    //              $conteo10='0'; 
+    //              $conteo11='0'; 
+    //              $conteo12='0'; 
+    //              $conteo1x='0'; 
+    //              $conteo2x='0'; 
+    //              $conteo3x='0'; 
+    //              $conteo4x='0'; 
+    //              $conteo5x='0'; 
+    //             $conteo6x='0'; 
+    //              $conteo7x='0'; 
+    //              $conteo8x='0'; 
+    //              $conteo9x='0'; 
+    //              $conteo10x='0'; 
+    //              $conteo11x='0'; 
+    //              $conteo12x='0'; 
+    //              $conteo1xx='0'; 
+    //              $conteo2xx='0'; 
+    //              $conteo3xx='0'; 
+    //              $conteo4xx='0'; 
+    //              $conteo5xx='0'; 
+    //              $conteo6xx='0'; 
+    //              $conteo7xx='0'; 
+    //              $conteo8xx='0'; 
+    //              $conteo9xx='0'; 
+    //              $conteo10xx='0'; 
+    //              $conteo11xx='0'; 
+    //              $conteo12xx='0';  
          
-     }
+    //  }
 
    
             
@@ -202,33 +202,35 @@
                                 <div class="x_content">
                                     <br />
                                     
-                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                        <div class="tile-stats">
-                                        <div class="icon"><i class="fa fa-file-text"></i></div>
+                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                                    <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;">
+                                        <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" >
-                                            <img src="images/bon2.png" style="width:40%"></a>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" ><h3>Ticket Emitidos</h3></a>
+                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Ticket Emitidos</a>
                                         </div>
                                     </div>
 
-                                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                        <div class="tile-stats">
-                                        <div class="icon"><i class="fa fa-file-text"></i></div>
+                                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="1">
+                                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo5.png'); width:100%;">
+                                        <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" >
-                                            <img src="images/bon2.png" style="width:40%"></a>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><h3>Resumen</h3></a>
+                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Resumen</a>
                                         </div>
                                     </div>
 
-                                    <!--<div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                        <div class="tile-stats">
-                                        <div class="icon"><i class="fa fa-money"></i></div>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecobranza" >
-                                            <img src="images/bon6.png" style="width:40%"></a>
-                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reportecobranza" ><h3>Cobranza</h3></a>
+                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="2">
+                                        <div class="tile-stats" style="background-image: url('images/profiles/fonbo6.png'); width:100%;">
+                                        <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><i class="fa fa-file-text"></i></a></div>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" >
+                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                        <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Ticket Control</a>
                                         </div>
-                                    </div> -->
+                                    </div> 
 
+                                   
+                                    
                                     
                                 </div>
                             </div>
@@ -631,4 +633,20 @@ const myChart2 = new Chart(ctx2, {
          include "informacion.php";
       
      }  
-    ?><?php 
+    ?> 
+
+    
+    <script language="javascript">
+    document.getElementById('1').addEventListener('click', function(){
+    document.getElementById('myModalLabelReporte').innerHTML= '<strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Resumen Ventas</strong>';
+    document.getElementById("btn1").style.display = "block";
+    document.getElementById("btn2").style.display = "none";
+    });  
+
+    document.getElementById('2').addEventListener('click', function(){
+    document.getElementById('myModalLabelReporte').innerHTML= '<strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Control Ticket</strong>';
+    document.getElementById("btn1").style.display = "none";
+    document.getElementById("btn2").style.display = "block";
+    
+    });  
+    </script>

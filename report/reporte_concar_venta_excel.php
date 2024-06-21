@@ -55,7 +55,7 @@
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>N&uacute;mero Serie Caja Registradora</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>Fecha de Operaci&oacute;n</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>Tipo de Tasa</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>Tasa Detracción/Percepci&oacute;n</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>Tasa Detracci&oacute;n/Percepci&oacute;n</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>Importe Base Detracci&oacute;n/Percepci&oacute;n D&oacute;lares</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>Importe Base Detracci&oacute;n/Percepci&oacute;n Soles</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>Tipo Cambio para 'F'</th>

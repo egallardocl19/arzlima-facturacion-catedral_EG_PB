@@ -85,7 +85,7 @@ $resultado_detalle=$con->query($consulta_detalle);
                 </tr>
                 </table>
             <font size="1" style="font-weight: bolder; font-family: Calibri">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font>  </br>
-            <font size="1" style="font-weight: bolder; font-family: Calibri">  TICKET:<?php echo utf8_decode($clase)?> - CAJERO: <?php echo $iduser_add?></font>
+            <font size="1" style="font-weight: bolder; font-family: Calibri">  TICKET:<?php echo $clase?> - CAJERO: <?php echo $iduser_add?></font>
         </br>
  
             <?php

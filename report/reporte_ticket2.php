@@ -78,7 +78,7 @@ function Header()
 	$this->SetFont('Arial','B',9);
 	$this->Cell(50);
 	$this->SetTextColor(37,67,120);
-	$this->Cell(100,5,utf8_decode($inicio),0,0,'C');
+	$this->Cell(100,5,$inicio,0,0,'C');
 	$this->Cell(61,5,'Hora: '.$time,0,1,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);

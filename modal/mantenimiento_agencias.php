@@ -32,7 +32,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-barcode" aria-hidden="true"></i> RUC: <span class="required"></span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text"  id="ruc" name="ruc" class="form-control"  placeholder="DNI" maxlength="11">
+                                <input type="text"  id="ruc" name="ruc" class="form-control"  placeholder="RUC" maxlength="11">
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-12">
                                         <button id="buscar" name="buscar" type="button" class="btn btn-primary" >Buscar</button> 

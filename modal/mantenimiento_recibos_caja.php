@@ -30,7 +30,7 @@
                           if ( $key1==70){
 
                           ?>
-                     <div class="animated flipInY col-lg-4 col-md-12 col-sm-6 col-xs-12" id="agregar2">
+                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="agregar2">
                      <div class="tile-stats" style="background-image: url('images/profiles/fonbo5.png'); width:100%;" >
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                         <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
@@ -44,8 +44,8 @@
                           if ( $key1==71){
 
                           ?>
-                     <div class="animated flipInY col-lg-4 col-md-12 col-sm-6 col-xs-12" id="agregar3">
-                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;" >
+                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="agregar3">
+                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo11.png'); width:100%;" >
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                         <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData2) ?></div></a>
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" style="font-size:25px;"><i class="fa fa-bookmark"></i>Ticket Crédito</a>

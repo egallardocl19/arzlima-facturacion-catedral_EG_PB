@@ -106,8 +106,8 @@
 		//consulta principal para obtener los datos
         $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,t.cantidad_total,tm.signo,format(t.monto_total,2) as importe,
         (select nombre from estado_ticket where id=t.idestado_ticket) as estado,
-        (select nombre from formapago where id=(select idformapago from cobranza where idticket=t.id)) as forma_pago,
-        (select n_referencia from cobranza where idticket=t.id) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        (select nombre from formapago where id=(select idformapago from cobranza where idticket=t.id and idformapago<>6 )) as forma_pago,
+        (select n_referencia from cobranza where idticket=t.id and idformapago<>6) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -182,7 +182,7 @@
                         
                                               
                         <td ><span class="pull-right">
-                        <a href="report/recibo_pago2.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
+                        <a href="report/recibo_pago3.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
                         <?php  
                          $date_actual=date("Y-m-d");
                          if ($date_actual==$fecha){

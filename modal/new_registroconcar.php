@@ -55,7 +55,7 @@
 
                                     <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_registro" name="tipo_registro" data-size="5" style="max-width: 100%!important;" >
                                     <option value="1">VENTAS</option>  	
-                                    <option value="2">DEPOSITO</option>  	
+                                    <option value="2">COBRANZA</option>  	
                                     <!-- <?php foreach($forma_pago as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
                                         <?php endforeach; ?>-->
