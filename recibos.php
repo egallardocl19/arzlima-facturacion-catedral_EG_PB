@@ -445,6 +445,7 @@
             // document.getElementById("ln4").style.display = "block";
             document.getElementById("ln8").style.display = "block";
             document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket General</strong>';
+            $("#fecha_inicio").prop("readonly",true);
             var permiso_crear = '<?=$permiso_crear?>';
                 if (permiso_crear == 1){
                 document.getElementById("save_data").style.display = "block";
@@ -535,6 +536,7 @@
             // document.getElementById("ln4").style.display = "none";
             //document.getElementById("ln7").style.display = "none";
             document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Promocional</strong>';
+            $("#fecha_inicio").prop("readonly",true);
             var permiso_crear = '<?=$permiso_crear?>';
                 if (permiso_crear == 1){
                 document.getElementById("save_data").style.display = "block";
@@ -625,6 +627,7 @@
             // document.getElementById("ln4").style.display = "none";
             //document.getElementById("ln7").style.display = "none";
             document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Crédito</strong>';
+            $("#fecha_inicio").prop("readonly",false);
             var permiso_crear = '<?=$permiso_crear?>';
                 if (permiso_crear == 1){
                 document.getElementById("save_data").style.display = "none";

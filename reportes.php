@@ -5,7 +5,7 @@
     $title ="Reportes - "; 
     include "head.php";
     include "sidebaradmin.php";
-    $dni =mysqli_query($con, "select distinct(dni),nombre from ticket order by dni");
+    //$dni =mysqli_query($con, "select distinct(dni),nombre from ticket order by dni");
     $estado_ticket =mysqli_query($con, "select * from estado_ticket");
     $user=$_SESSION['user_id'];
     $consulta_codigo_user =mysqli_query($con,"SELECT idroles FROM user where id=$user");
@@ -23,7 +23,7 @@
     }
     //$cajero =mysqli_query($con, "select * from user where idroles>1");
     $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2)");
-    $ticket =mysqli_query($con, "select concat(serie,\"-\",numero) as codigo,serie,numero from ticket_control group by serie,numero");
+    //$ticket =mysqli_query($con, "select concat(serie,\"-\",numero) as codigo,serie,numero from ticket_control group by serie,numero");
     $cobranza =mysqli_query($con, "select n_cobranza from cobranza");
     $tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in(4,5,7) and idestado_dato=1");
     $fecha = date("Y-m-d"); 

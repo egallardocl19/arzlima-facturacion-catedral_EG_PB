@@ -334,7 +334,7 @@
                                         <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Ventas por Dia</h2>
+                                                    <h2>Ventas por Día</h2>
                                                     <ul class="nav navbar-right panel_toolbox ">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
@@ -366,7 +366,37 @@
                                         <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Visitantes por Dia</h2>
+                                                    <h2>Visitantes por Día </h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+                                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+
+                                                                <div class="form-group">
+                                                                    <div class="col-md-10 col-sm-10 col-xs-12 form-group"> 
+
+                                                                          <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> </label>
+             
+                                                                    </div> 
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                
+                                                                <canvas id="myChart3" width="400" height="100"></canvas>
+                                                                
+                                                                 </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-xs-12 col-sm-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Visitantes por Día y Tipo Visitante</h2>
                                                     <ul class="nav navbar-right panel_toolbox ">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
@@ -423,7 +453,7 @@
                                         <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Ventas por Dia y Tipo Pago</h2>
+                                                    <h2>Ventas por Día y Tipo Pago</h2>
                                                     <ul class="nav navbar-right panel_toolbox">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
@@ -486,40 +516,12 @@
                                             
                                         ?>
                                         
-                                        <div class="col-md-6 col-xs-12 col-sm-12">
-                                            <div class="x_panel">
-                                                <div class="x_title">
-                                                    <h2>Ticket por Dia </h2>
-                                                    <ul class="nav navbar-right panel_toolbox">
-                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                                        </li>
-                                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="clearfix"></div>
-                                                </div>
-                                                <div class="x_content">
-
-                                                                <div class="form-group">
-                                                                    <div class="col-md-10 col-sm-10 col-xs-12 form-group"> 
-
-                                                                          <label  class="control-label col-md-2 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> </label>
-             
-                                                                    </div> 
-                                                                </div> 
-                                                                <div class="form-group">
-                                                                
-                                                                <canvas id="myChart3" width="400" height="100"></canvas>
-                                                                
-                                                                 </div> 
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
 
                                         <div class="col-md-12 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
-                                                    <h2>Detalle Visitantes por Dia</h2>
+                                                    <h2>Detalle Visitantes por Día</h2>
                                                     <ul class="nav navbar-right panel_toolbox">
                                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                         </li>
@@ -758,7 +760,7 @@ document.getElementById("precaucion").style.display = "block";
                     $miArray19[] = $rowM["fecha"];
                     $miArray20[]= $rowM["nacional"];	
                     $miArray21[]= $rowM["extranjero"];	
-                   
+                    $miArray24[]= $rowM["nac_ext"];	
            
                
                 
@@ -949,32 +951,21 @@ return diajs.setHours(24,24,24,24);
 <!-- DISEÑO GRAFICO 3 -->
 <script> 
 
-const dateArrayJS3 =<?php echo json_encode($miArray7);?>;       
+const dateArrayJS3 =<?php echo json_encode($miArray19);?>;       
 const dateChartJS3 = dateArrayJS3.map((day,index)=>{
 let diajs = new Date(day);
 return diajs.setHours(24,24,24,24);
 });
 
  const config3 = {
-         type: 'bar',
+         type: 'line',
          data:
          {
             labels:  dateChartJS3,
             datasets:   [{
-             label: 'EMITIDOS',
-             data: <?php echo json_encode($miArray8);?>,
-             backgroundColor: [
-                 'rgba(185, 194, 23, 0.2)'
-             ],
-             borderColor: [
-                 'rgba(185, 194, 23, 1)'
-             ],
-             borderWidth: 2
-            }
-                    ,
-                {
-            label: 'ANULADOS',
-             data: <?php echo json_encode($miArray9);?>,
+            label: 'VISITANTES',
+             data: <?php echo json_encode($miArray24);?>,
+             pointRadius: 8,
              backgroundColor: [
                  'rgba(48, 2, 231, 0.2)'
                 
@@ -982,7 +973,9 @@ return diajs.setHours(24,24,24,24);
              borderColor: [
                  'rgba(48, 2, 231, 0.8)'
              ],
-             borderWidth: 2
+     fill: true,
+     tension: 0.1,
+     borderWidth: 2
          }]
   }
          ,
