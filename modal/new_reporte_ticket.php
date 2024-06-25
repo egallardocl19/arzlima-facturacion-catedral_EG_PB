@@ -82,7 +82,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha Inicio:<span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="date" name="fecha_inicio" class="form-control" placeholder="Fecha Inicio" >
+                                <input type="date" name="fecha_inicio" class="form-control" placeholder="Fecha Inicio" value="<?php echo $fecha;?>" >
                                 </div>
 
                             </div>   

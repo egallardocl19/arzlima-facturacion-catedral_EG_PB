@@ -22,9 +22,9 @@
         $cajero =mysqli_query($con, "select * from user");
     }
     //$cajero =mysqli_query($con, "select * from user where idroles>1");
-    $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2)");
+    $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2,5)");
     //$ticket =mysqli_query($con, "select concat(serie,\"-\",numero) as codigo,serie,numero from ticket_control group by serie,numero");
-    $cobranza =mysqli_query($con, "select n_cobranza from cobranza");
+    //$cobranza =mysqli_query($con, "select n_cobranza from cobranza");
     $tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in(4,5,7) and idestado_dato=1");
     $fecha = date("Y-m-d"); 
     $colorheder="info"; //COLOR  CABECERA MODAL
@@ -202,7 +202,7 @@
                                 <div class="x_content">
                                     <br />
                                     
-                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;">
                                         <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" >
@@ -375,250 +375,250 @@
 
 <?php 
     
-     $mes1 = date('Y-m', strtotime("first day of -0 month"));
-     $mes2 = date('Y-m', strtotime("first day of -1 month"));
-     $mes3 = date('Y-m', strtotime("first day of -2 month"));
-     $mes4 = date('Y-m', strtotime("first day of -3 month"));
-     $mes5 = date('Y-m', strtotime("first day of -4 month"));
-     $mes6 = date('Y-m', strtotime("first day of -5 month"));
-     $mes7 = date('Y-m', strtotime("first day of -6 month"));
-     $mes8 = date('Y-m', strtotime("first day of -7 month"));
-     $mes9 = date('Y-m', strtotime("first day of -8 month"));
-     $mes10 = date('Y-m', strtotime("first day of -9 month"));
-     $mes11 = date('Y-m', strtotime("first day of -10 month"));
-     $mes12 = date('Y-m', strtotime("first day of -11 month"));
+    //  $mes1 = date('Y-m', strtotime("first day of -0 month"));
+    //  $mes2 = date('Y-m', strtotime("first day of -1 month"));
+    //  $mes3 = date('Y-m', strtotime("first day of -2 month"));
+    //  $mes4 = date('Y-m', strtotime("first day of -3 month"));
+    //  $mes5 = date('Y-m', strtotime("first day of -4 month"));
+    //  $mes6 = date('Y-m', strtotime("first day of -5 month"));
+    //  $mes7 = date('Y-m', strtotime("first day of -6 month"));
+    //  $mes8 = date('Y-m', strtotime("first day of -7 month"));
+    //  $mes9 = date('Y-m', strtotime("first day of -8 month"));
+    //  $mes10 = date('Y-m', strtotime("first day of -9 month"));
+    //  $mes11 = date('Y-m', strtotime("first day of -10 month"));
+    //  $mes12 = date('Y-m', strtotime("first day of -11 month"));
    
      
 ?>
 
 
 <script>
-    var mes1 = '<?=$mes1?>';
-    var mes2 = '<?=$mes2?>';
-    var mes3 = '<?=$mes3?>';
-    var mes4 = '<?=$mes4?>';
-    var mes5 = '<?=$mes5?>';
-    var mes6 = '<?=$mes6?>';
-    var mes7 = '<?=$mes7?>';
-    var mes8 = '<?=$mes8?>';
-    var mes9 = '<?=$mes9?>';
-    var mes10 = '<?=$mes10?>';
-    var mes11 = '<?=$mes11?>';
-    var mes12 = '<?=$mes12?>';
-    var monto1 = '<?=$monto1?>';
-    var monto2 = '<?=$monto2?>';
-    var monto3 = '<?=$monto3?>';
-    var monto4 = '<?=$monto4?>';
-    var monto5 = '<?=$monto5?>';
-    var monto6 = '<?=$monto6?>';
-    var monto7 = '<?=$monto7?>';
-    var monto8 = '<?=$monto8?>';
-    var monto9 = '<?=$monto9?>';
-    var monto10 = '<?=$monto10?>';
-    var monto11 = '<?=$monto11?>';
-    var monto12 = '<?=$monto12?>';
+//     var mes1 = '<?=$mes1?>';
+//     var mes2 = '<?=$mes2?>';
+//     var mes3 = '<?=$mes3?>';
+//     var mes4 = '<?=$mes4?>';
+//     var mes5 = '<?=$mes5?>';
+//     var mes6 = '<?=$mes6?>';
+//     var mes7 = '<?=$mes7?>';
+//     var mes8 = '<?=$mes8?>';
+//     var mes9 = '<?=$mes9?>';
+//     var mes10 = '<?=$mes10?>';
+//     var mes11 = '<?=$mes11?>';
+//     var mes12 = '<?=$mes12?>';
+//     var monto1 = '<?=$monto1?>';
+//     var monto2 = '<?=$monto2?>';
+//     var monto3 = '<?=$monto3?>';
+//     var monto4 = '<?=$monto4?>';
+//     var monto5 = '<?=$monto5?>';
+//     var monto6 = '<?=$monto6?>';
+//     var monto7 = '<?=$monto7?>';
+//     var monto8 = '<?=$monto8?>';
+//     var monto9 = '<?=$monto9?>';
+//     var monto10 = '<?=$monto10?>';
+//     var monto11 = '<?=$monto11?>';
+//     var monto12 = '<?=$monto12?>';
  
-    var conteo1 = '<?=$conteo1?>';
-    var conteo2 = '<?=$conteo2?>';
-    var conteo3 = '<?=$conteo3?>';
-    var conteo4 = '<?=$conteo4?>';
-    var conteo5 = '<?=$conteo5?>';
-    var conteo6 = '<?=$conteo6?>';
-    var conteo7 = '<?=$conteo7?>';
-    var conteo8 = '<?=$conteo8?>';
-    var conteo9 = '<?=$conteo9?>';
-    var conteo10 = '<?=$conteo10?>';
-    var conteo11 = '<?=$conteo11?>';
-    var conteo12 = '<?=$conteo12?>';
-    var conteo1x = '<?=$conteo1x?>';
-    var conteo2x = '<?=$conteo2x?>';
-    var conteo3x = '<?=$conteo3x?>';
-    var conteo4x = '<?=$conteo4x?>';
-    var conteo5x = '<?=$conteo5x?>';
-    var conteo6x = '<?=$conteo6x?>';
-    var conteo7x = '<?=$conteo7x?>';
-    var conteo8x = '<?=$conteo8x?>';
-    var conteo9x = '<?=$conteo9x?>';
-    var conteo10x = '<?=$conteo10x?>';
-    var conteo11x = '<?=$conteo11x?>';
-    var conteo12x = '<?=$conteo12x?>';
-    var conteo1xx = '<?=$conteo1xx?>';
-    var conteo2xx = '<?=$conteo2xx?>';
-    var conteo3xx = '<?=$conteo3xx?>';
-    var conteo4xx = '<?=$conteo4xx?>';
-    var conteo5xx = '<?=$conteo5xx?>';
-    var conteo6xx = '<?=$conteo6xx?>';
-    var conteo7xx = '<?=$conteo7xx?>';
-    var conteo8xx = '<?=$conteo8xx?>';
-    var conteo9xx = '<?=$conteo9xx?>';
-    var conteo10xx = '<?=$conteo10xx?>';
-    var conteo11xx = '<?=$conteo11xx?>';
-    var conteo12xx = '<?=$conteo12xx?>';
+//     var conteo1 = '<?=$conteo1?>';
+//     var conteo2 = '<?=$conteo2?>';
+//     var conteo3 = '<?=$conteo3?>';
+//     var conteo4 = '<?=$conteo4?>';
+//     var conteo5 = '<?=$conteo5?>';
+//     var conteo6 = '<?=$conteo6?>';
+//     var conteo7 = '<?=$conteo7?>';
+//     var conteo8 = '<?=$conteo8?>';
+//     var conteo9 = '<?=$conteo9?>';
+//     var conteo10 = '<?=$conteo10?>';
+//     var conteo11 = '<?=$conteo11?>';
+//     var conteo12 = '<?=$conteo12?>';
+//     var conteo1x = '<?=$conteo1x?>';
+//     var conteo2x = '<?=$conteo2x?>';
+//     var conteo3x = '<?=$conteo3x?>';
+//     var conteo4x = '<?=$conteo4x?>';
+//     var conteo5x = '<?=$conteo5x?>';
+//     var conteo6x = '<?=$conteo6x?>';
+//     var conteo7x = '<?=$conteo7x?>';
+//     var conteo8x = '<?=$conteo8x?>';
+//     var conteo9x = '<?=$conteo9x?>';
+//     var conteo10x = '<?=$conteo10x?>';
+//     var conteo11x = '<?=$conteo11x?>';
+//     var conteo12x = '<?=$conteo12x?>';
+//     var conteo1xx = '<?=$conteo1xx?>';
+//     var conteo2xx = '<?=$conteo2xx?>';
+//     var conteo3xx = '<?=$conteo3xx?>';
+//     var conteo4xx = '<?=$conteo4xx?>';
+//     var conteo5xx = '<?=$conteo5xx?>';
+//     var conteo6xx = '<?=$conteo6xx?>';
+//     var conteo7xx = '<?=$conteo7xx?>';
+//     var conteo8xx = '<?=$conteo8xx?>';
+//     var conteo9xx = '<?=$conteo9xx?>';
+//     var conteo10xx = '<?=$conteo10xx?>';
+//     var conteo11xx = '<?=$conteo11xx?>';
+//     var conteo12xx = '<?=$conteo12xx?>';
 
   
-    const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
+//     const ctx = document.getElementById('myChart');
+// const myChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
         
-        labels: [mes1,mes2, mes3, mes4,mes5, mes6,mes7,mes8, mes9, mes10,mes11, mes12],
-        datasets: [{
-            label: 'S/. SOLES',
-            data: [monto1,monto2,monto3,monto4,monto5,monto6,monto7,monto8,monto9,monto10,monto11,monto12],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-    function CargarDatosGraficoBar(){
+//         labels: [mes1,mes2, mes3, mes4,mes5, mes6,mes7,mes8, mes9, mes10,mes11, mes12],
+//         datasets: [{
+//             label: 'S/. SOLES',
+//             data: [monto1,monto2,monto3,monto4,monto5,monto6,monto7,monto8,monto9,monto10,monto11,monto12],
+//             backgroundColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)'
+//             ],
+//             borderWidth: 2
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
+//     function CargarDatosGraficoBar(){
 
 
-    }
+//     }
 </script>
 <script>
-    var mes1 = '<?=$mes1?>';
-    var mes2 = '<?=$mes2?>';
-    var mes3 = '<?=$mes3?>';
-    var mes4 = '<?=$mes4?>';
-    var mes5 = '<?=$mes5?>';
-    var mes6 = '<?=$mes6?>';
-    const ctx2 = document.getElementById('myChart2');
-const myChart2 = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: [mes1,mes2, mes3, mes4,mes5, mes6,mes7,mes8, mes9, mes10,mes11, mes12],
-        datasets: [{
-            label: 'PENDIENTE',
-            data: [conteo1,conteo2,conteo3,conteo4,conteo5,conteo6,conteo7,conteo8,conteo9,conteo10,conteo11,conteo12],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 2
-        },
-        {
-            label: 'PAGADO',
-            data: [conteo1x,conteo2x,conteo3x,conteo4x,conteo5x,conteo6x,conteo7x,conteo8x,conteo9x,conteo10x,conteo11x,conteo12x],
-            backgroundColor: [
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)',
-                'rgba(170, 226, 165, 0.8)'
-            ],
-            borderColor: [
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)',
-                'rgba(22, 129, 12, 0.8)'
-            ],
-            borderWidth: 2
-        },
-        {
-            label: 'ANULADO',
-            data: [conteo1xx,conteo2xx,conteo3xx,conteo4xx,conteo5xx,conteo6xx,conteo7xx,conteo8xx,conteo9xx,conteo10xx,conteo11xx,conteo12xx],
-            backgroundColor: [
+//     var mes1 = '<?=$mes1?>';
+//     var mes2 = '<?=$mes2?>';
+//     var mes3 = '<?=$mes3?>';
+//     var mes4 = '<?=$mes4?>';
+//     var mes5 = '<?=$mes5?>';
+//     var mes6 = '<?=$mes6?>';
+//     const ctx2 = document.getElementById('myChart2');
+// const myChart2 = new Chart(ctx2, {
+//     type: 'bar',
+//     data: {
+//         labels: [mes1,mes2, mes3, mes4,mes5, mes6,mes7,mes8, mes9, mes10,mes11, mes12],
+//         datasets: [{
+//             label: 'PENDIENTE',
+//             data: [conteo1,conteo2,conteo3,conteo4,conteo5,conteo6,conteo7,conteo8,conteo9,conteo10,conteo11,conteo12],
+//             backgroundColor: [
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)',
+//                 'rgba(54, 162, 235, 0.2)'
+//             ],
+//             borderColor: [
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)',
+//                 'rgba(54, 162, 235, 1)'
+//             ],
+//             borderWidth: 2
+//         },
+//         {
+//             label: 'PAGADO',
+//             data: [conteo1x,conteo2x,conteo3x,conteo4x,conteo5x,conteo6x,conteo7x,conteo8x,conteo9x,conteo10x,conteo11x,conteo12x],
+//             backgroundColor: [
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)',
+//                 'rgba(170, 226, 165, 0.8)'
+//             ],
+//             borderColor: [
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)',
+//                 'rgba(22, 129, 12, 0.8)'
+//             ],
+//             borderWidth: 2
+//         },
+//         {
+//             label: 'ANULADO',
+//             data: [conteo1xx,conteo2xx,conteo3xx,conteo4xx,conteo5xx,conteo6xx,conteo7xx,conteo8xx,conteo9xx,conteo10xx,conteo11xx,conteo12xx],
+//             backgroundColor: [
                 
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)',
+//                 'rgba(255, 99, 132, 0.2)'
+//             ],
+//             borderColor: [
                 
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)',
+//                 'rgba(255, 99, 132, 1)'
+//             ],
+//             borderWidth: 2
+//         }]
+//     },
+//     options: {
+//         scales: {
+//             y: {
+//                 beginAtZero: true
+//             }
+//         }
+//     }
+// });
     
 </script>
 
@@ -641,12 +641,15 @@ const myChart2 = new Chart(ctx2, {
     document.getElementById('myModalLabelReporte').innerHTML= '<strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Resumen Ventas</strong>';
     document.getElementById("btn1").style.display = "block";
     document.getElementById("btn2").style.display = "none";
+    document.getElementById("con1").style.display = "block";
     });  
 
     document.getElementById('2').addEventListener('click', function(){
     document.getElementById('myModalLabelReporte').innerHTML= '<strong><i class="fa fa-book" aria-hidden="true"></i> Reporte Control Ticket</strong>';
     document.getElementById("btn1").style.display = "none";
     document.getElementById("btn2").style.display = "block";
+    document.getElementById("con1").style.display = "none";
+  
     
     });  
     </script>

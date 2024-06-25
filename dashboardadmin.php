@@ -96,8 +96,39 @@
                             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo11.png'); width:100%;" >
                                 <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-ticket"></i></a></div>
-                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData9) ?></div></a>
                                 <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Crédito</a>
+                                </div>
+                            </div>
+                            <?php 
+                                }
+                                $permisos->close(); 
+                                $con->next_result(); 
+                            }
+                            $con->next_result();
+                            ?> 
+                            <?php 
+                            $submenu =mysqli_query($con,"CALL submenu('$id','0','74');");
+                            if (!$submenu||mysqli_num_rows($submenu)!=0){
+                            $submenu->close();
+                            $con->next_result();
+                                $permisos =mysqli_query($con,"CALL permisos('$id','74','0');");
+                                
+                                if (!$permisos||mysqli_num_rows($permisos)!=0){
+                                
+                                    while ($row_sub=$permisos->fetch_assoc()) { 
+                                        $idsubmodulo= $row_sub['idsubmodulo'];
+                                        
+                                    }
+                                    $ruta_envio='recibos.php?key1='.$idsubmodulo;
+                                    
+                            ?>
+                           
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats" style="background-image: url('images/profiles/fonbo12.png'); width:100%;" >
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-shopping-cart"></i></a></div>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData11) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Producto</a>
                                 </div>
                             </div>
                             <?php 

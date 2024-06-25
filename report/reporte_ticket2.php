@@ -6,8 +6,11 @@ include "../config/config.php";//Contiene funcion que conecta a la base de datos
 include "../head2.php";
 
 $fecha1 = "";
+$tipo_ticket = 0;
 
+$tipo_ticket = $_POST['tipo_ticket'];
 $fecha1 = $_POST['fecha_inicio'];
+
 if($fecha1!=''){
 	$where=" and t.fecha =\"$fecha1\"";
 }else{
@@ -16,6 +19,12 @@ if($fecha1!=''){
 
 if($idroles==2){
 	$where.=" and t.iduser_add =\"$codigo\"";
+}
+
+if($tipo_ticket==1){
+	$where.=" and t.idclase_ticket in (1,2)";
+}else if ($tipo_ticket==2){
+	$where.=" and t.idclase_ticket in (5)";
 }
 
 
@@ -51,13 +60,25 @@ function Header()
 	
 	$fecha1 = $_POST['fecha_inicio'];
 
+	
+	
+	$tipo_ticket = $_POST['tipo_ticket'];
 
 	if ($fecha1!="") {
 		$fecha1=$fecha1;
 	}else{ 
 		$fecha1="";
 	}
-	
+
+	if($tipo_ticket==1){
+	 $nombre_tipo_ticket=" - T.ENTRADAS";
+	}else if ($tipo_ticket==2){
+	$nombre_tipo_ticket=" - T.PRODUCTOS";
+	}else{
+	$nombre_tipo_ticket="";
+	}
+
+
 
 	setlocale(LC_TIME, 'es_ES.UTF-8');
 	setlocale(LC_TIME, 'spanish');
@@ -72,7 +93,7 @@ function Header()
 
     $this->Cell(50);
 
-    $this->Cell(100,10,'REPORTE RESUMEN',0,0,'C');
+    $this->Cell(100,10,'RESUMEN'.$nombre_tipo_ticket,0,0,'C');
 	$this->SetFont('Arial','B',8);
 	$this->Cell(60,10,'Fecha: '.$fecha,0,1,'C');
 	$this->SetFont('Arial','B',9);
@@ -133,19 +154,28 @@ if (!empty($_POST['fecha_inicio'])){
 	 $pdf->SetFont('Arial','',8);
 	 $pdf->SetTextColor(0,0,0);
 
-	while ($row=$resultado->fetch_assoc()) {
-			$pdf->Cell(36);
-			$pdf->SetFillColor(255, 255, 255);
-			$pdf->Cell(55,5,utf8_decode($row['tipo_ticket']),0,0,'',0);
-			$pdf->Cell(15,5,$moneda." ".number_format($row['importe'],2),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['cantidad']),0,0,'C',0);
-			$pdf->Cell(30,5,$moneda." ".number_format($row['costo_total'],2),0,1,'C',0);
+	 $clase_ticket_producto="";
 
-			//$moneda=$row['signo_moneda']
-			$suma_cantidad=$suma_cantidad+$row['cantidad'];
-			$suma_totales=$suma_totales+$row['costo_total'];
+	while ($row=$resultado->fetch_assoc()) {
+			//$clase_ticket_producto=$row['idclase_ticket'];
+			//if($clase_ticket_producto=1 or $clase_ticket_producto=2){
+				$pdf->Cell(36);
+				$pdf->SetFillColor(255, 255, 255);
+				$pdf->Cell(55,5,utf8_decode($row['tipo_ticket']),0,0,'',0);
+				$pdf->Cell(15,5,$moneda." ".number_format($row['importe'],2),0,0,'C',0);
+				$pdf->Cell(20,5,utf8_decode($row['cantidad']),0,0,'C',0);
+				$pdf->Cell(30,5,$moneda." ".number_format($row['costo_total'],2),0,1,'C',0);
+	
+				//$moneda=$row['signo_moneda']
+				$suma_cantidad=$suma_cantidad+$row['cantidad'];
+				$suma_totales=$suma_totales+$row['costo_total'];	
+			//}
 			
 	}
+			
+
+
+
 			$pdf->Ln(0);
 			$pdf->SetFont('Arial','',9);
 			$pdf->Cell(36);

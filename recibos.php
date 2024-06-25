@@ -313,7 +313,78 @@
                         <?php 
                         }
                         ?>
+<?php 
+                          if ( $key1==74){
 
+                          ?>
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><?php echo $titulo; ?> :  </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                    </div>
+                                        <!-- form search -->
+                                        <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                            <!--<div class="form-group">-->
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+
+                                                    <label for="qqqq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="qqqq" name="qqqq" placeholder="N° Recibo - N° Pago" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="qqqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <input type="date" id="qqqq1" name="qqqq1" class="form-control" value="<?php echo $fechahoy ?>" >
+                                                    </div>
+                                                  
+                                                    <label  for="qqqq2" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-bars" aria-hidden="true"></i> Estado:</label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                                                        <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="qqqq2" name="qqqq2" data-size="5" style="max-width: 100%!important;" >
+                                                        <option value="">Seleccionar Estado</option>  
+                                                        <?php foreach($estado_recibo as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>	
+                                                        </select>
+                                                    
+                                                    </div>
+                                                
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">                                                   
+                                                            <button type="button" class="btn btn-warning" onclick='load4(1);'>
+                                                                <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                 <span id="loader"></span> 
+                                                             
+                                                             
+                                                        </div>
+                                                        
+                                                </div>
+                                   
+                                                
+                                            </div>
+                                        </form> 
+                                        
+                                                                <!-- end form search -->
+                                        <div class="x_content">
+                                            <div class="table-responsive">
+                                                <!-- ajax -->
+                                                <div id="resultados4"></div><!--Carga los datos ajax -->
+                                                <div class='outer_div4'></div><!-- Carga los datos ajax -->
+                                                <!-- /ajax -->
+                                            </div>
+                                        </div>                            
+                                                               
+                            </div> 
+                        </div>
+                        <?php 
+                        }
+                        ?>
                         
                 </div>
             </div>
@@ -344,6 +415,7 @@
                 load(1);
                 load2(1);
                 load3(1);
+                load4(1);
                 reset_montos();
              
             }
@@ -368,6 +440,7 @@
                 load(1);
                 load2(1);
                 load3(1);
+                load4(1);
              
             }
         });
@@ -389,7 +462,15 @@
         $.post("includes/getRecibo_html.php", { caso: caso, condicion: 0}, function(data){
         $("#guia").html(data).addClass("selectpicker").selectpicker('refresh');                                                                                                                                                                        
          }); 
-
+        $('#idtipo1').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo2').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo3').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo4').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo5').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo6').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo7').addClass("selectpicker").selectpicker('refresh');   
+        $('#idtipo8').addClass("selectpicker").selectpicker('refresh');   
+        reset_montos();
         }
 
        
@@ -423,7 +504,9 @@
         var importe8=0;
          var clase1 = 1; //clas1
          var clase2 = 2; //clas2
-         var clase3 = 3; //clas2
+         var clase3 = 3; //clas3
+         var clase4 = 4; //clas4
+         var clase5 = 5; //clas5
          var filt = '<?=$key1?>';
          
    
@@ -702,6 +785,226 @@
             
         }
 
+        if (filt == 74){
+            document.getElementById('agregar4').addEventListener('click', function(){
+            document.getElementById("gp3").style.display = "block";
+            document.getElementById("gp4").style.display = "none";
+            document.getElementById("gp5").style.display = "none";
+            document.getElementById("gp6").style.display = "none";
+            document.getElementById("gp7").style.display = "block";
+            document.getElementById("gp8").style.display = "block";
+            document.getElementById("gp9").style.display = "block";
+            document.getElementById("gp10").style.display = "none";
+            document.getElementById("nuevo").style.display = "none";
+            reset_montos();
+            //document.getElementById("gp7").style.display = "block";
+            // document.getElementById("ln3").style.display = "block";
+            // document.getElementById("ln4").style.display = "block";
+            document.getElementById("ln8").style.display = "block";
+            document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Ticket Producto</strong>';
+            $("#fecha_inicio").prop("readonly",true);
+            var permiso_crear = '<?=$permiso_crear?>';
+                if (permiso_crear == 1){
+                document.getElementById("save_data").style.display = "block";
+                document.getElementById('save_data').innerHTML= '<i class="glyphicon glyphicon-ok"> </i> Guardar'; 
+                
+                document.getElementById('nuevo').innerHTML= '<i class="glyphicon glyphicon-pencil"> </i> Nuevo'; 
+                $("#codigo").val(0);   
+                $("#valor_mantenimiento").val(1); 
+                $("#clase").val(clase5);  
+                }
+
+                limpiarFormulario();
+                $("#result").hide();
+                $("#n_pago").prop("readonly",true);
+             });  
+    
+                
+               //LLENADO DE DATA
+                $.post("includes/getRecibo_html.php", { caso: 5, condicion: clase5, tipo:1}, function(data){
+                $("#serie").html(data).addClass("selectpicker").selectpicker('refresh');  
+                });
+              
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:1}, function(data){
+                $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');        
+                });
+
+                $(document).ready(function(){
+                    $("#idtipo1").change(function () {
+                        $("#idtipo1 option:selected").each(function () {
+                            condicion1 = $(this).val();
+                            
+                            if(condicion1==0){
+                                importe1=0; 
+                                $("#cantidad1").val(0);   
+                                $("#monto_total1").val(0); 
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion1}, function(data){
+                                    importe1=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });      
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:2}, function(data){
+                $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');              
+                });
+                $(document).ready(function(){
+                    $("#idtipo2").change(function () {
+                        $("#idtipo2 option:selected").each(function () {
+                            condicion2 = $(this).val();
+                            
+                            if(condicion2==0){
+                                importe2=0; 
+                                $("#cantidad2").val(0);   
+                                $("#monto_total2").val(0);
+                                global_cal();  
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion2}, function(data){
+                                    importe2=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });      
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:3}, function(data){
+                $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');             
+                });
+                $(document).ready(function(){
+                    $("#idtipo3").change(function () {
+                        $("#idtipo3 option:selected").each(function () {
+                            condicion3 = $(this).val();
+                            
+                            if(condicion3==0){
+                                importe3=0; 
+                                $("#cantidad3").val(0);   
+                                $("#monto_total3").val(0);  
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion3}, function(data){
+                                    importe3=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });      
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:4}, function(data){
+                $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');            
+                });
+                $(document).ready(function(){
+                    $("#idtipo4").change(function () {
+                        $("#idtipo4 option:selected").each(function () {
+                            condicion4 = $(this).val();
+                            
+                            if(condicion4==0){
+                                importe4=0; 
+                                $("#cantidad4").val(0);   
+                                $("#monto_total4").val(0);   
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion4}, function(data){
+                                    importe4=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });   
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:9}, function(data){
+                $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh');             
+                });
+                $(document).ready(function(){
+                    $("#idtipo5").change(function () {
+                        $("#idtipo5 option:selected").each(function () {
+                            condicion5 = $(this).val();
+                            
+                            if(condicion5==0){
+                                importe5=0; 
+                                $("#cantidad5").val(0);   
+                                $("#monto_total5").val(0);  
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion5}, function(data){
+                                    importe5=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });   
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:12}, function(data){
+                $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');           
+                });
+                $(document).ready(function(){
+                    $("#idtipo6").change(function () {
+                        $("#idtipo6 option:selected").each(function () {
+                            condicion6 = $(this).val();
+                            
+                            if(condicion6==0){
+                                importe6=0; 
+                                $("#cantidad6").val(0);   
+                                $("#monto_total6").val(0);  
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion6}, function(data){
+                                    importe6=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });   
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:5}, function(data){
+                $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');            
+                });
+                $(document).ready(function(){
+                    $("#idtipo7").change(function () {
+                        $("#idtipo7 option:selected").each(function () {
+                            condicion7 = $(this).val();
+                            
+                            if(condicion7==0){
+                                importe7=0; 
+                                $("#cantidad7").val(0);   
+                                $("#monto_total7").val(0); 
+                                global_cal(); 
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion7}, function(data){
+                                    importe7=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });   
+
+
+                $.post("includes/getRecibo_html.php", { caso: 7, condicion: clase5, tipo:6}, function(data){
+                $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');          
+                });
+                $(document).ready(function(){
+                    $("#idtipo8").change(function () {
+                        $("#idtipo8 option:selected").each(function () {
+                            condicion8 = $(this).val();
+                            
+                            if(condicion8==0){
+                                importe8=0; 
+                                $("#cantidad8").val(0);   
+                                $("#monto_total8").val(0);  
+                                global_cal();
+                            }else{
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion8}, function(data){
+                                    importe8=data;                   
+                            });  
+                            }                        
+                        });
+                    })
+                });   
+           
+        }
+
         document.getElementById('save_data').addEventListener('click', function(){
             document.getElementById("save_data").style.display = "none";
         }); 
@@ -741,7 +1044,30 @@
              suma_monto5=0;
              suma_monto6=0;
              suma_monto7=0;
-             suma_monto8=0;   
+             suma_monto8=0; 
+             if (filt == 74){
+             importe1=0;
+             importe2=0;
+             importe3=0;
+             importe4=0;
+             importe5=0;
+             importe6=0;
+             importe7=0;
+             importe8=0;
+             }
+            
+    }
+    function global_cal() {
+             cal1();
+             cal2();
+             cal3();
+             cal4();
+             cal5();
+             cal6();
+             cal7();
+             cal8();
+
+            
             
     }
     </script> 

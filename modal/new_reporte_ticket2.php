@@ -21,10 +21,24 @@
                         
                         <div class="form-group">
 
-                      
+                        <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="con1">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Tipo Ticket:</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_ticket" name="tipo_ticket" data-size="5" style="max-width: 100%!important;" >
+                                    <option value="1">TICKET ENTRADAS</option>  
+                                    <option value="2">TICKET PRODUCTOS</option>  
+                                    <!-- <?php foreach($tipo_ticket as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                        <?php endforeach; ?> -->
+                                    </select>
+                                
+                                </div>
+                            </div>
 
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha :<span class="required"></span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Fecha :<span class="required"></span>
                                 </label>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                 <input type="date" name="fecha_inicio" class="form-control" placeholder="Fecha Inicio" value="<?php echo $fecha ?>" >
@@ -64,4 +78,3 @@
         </div>
     </div> <!-- /Modal -->
     <script language="javascript" src="js/jquery-3.1.1.min.js"></script>
-    

@@ -16,7 +16,7 @@
 
                           ?>
 
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="agregar1">
+                    <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12" id="agregar1">
                                 <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;" >
                                 <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                                 <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData) ?></div></a>
@@ -30,7 +30,7 @@
                           if ( $key1==70){
 
                           ?>
-                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="agregar2">
+                     <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12" id="agregar2">
                      <div class="tile-stats" style="background-image: url('images/profiles/fonbo5.png'); width:100%;" >
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
                         <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData1) ?></div></a>
@@ -44,25 +44,31 @@
                           if ( $key1==71){
 
                           ?>
-                     <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" id="agregar3">
+                     <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12" id="agregar3">
                      <div class="tile-stats" style="background-image: url('images/profiles/fonbo11.png'); width:100%;" >
                         <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
-                        <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData2) ?></div></a>
+                        <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData9) ?></div></a>
                           <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" style="font-size:25px;"><i class="fa fa-bookmark"></i>Ticket Crédito</a>
                         </div>
                     </div>
                     <?php 
                         }
                         ?>
-                   <!-- <div class="animated flipInY col-lg-4 col-md-4 col-sm-4 col-xs-12" id="agregar2">
-                        <div class="tile-stats" style="background-color:#FFE69A">
-                        <div class="icon"><img src="images/shop.png" style="width:350%"></div>
-                        
-                        <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja2" ><div class="count">0</div></a>
-                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja2" ><h3 style="color:#777E96">Ticket Productos</h3></a>
+                  <?php 
+                          if ( $key1==74){
+
+                          ?>
+                     <div class="animated flipInY col-lg-4 col-md-3 col-sm-6 col-xs-12" id="agregar4">
+                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo12.png'); width:100%;" >
+                        <div class="icon"><img src="images/ticket3.png" style="width:350%"></div>
+                        <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" ><div class="count"><?php echo mysqli_num_rows($TicketData11) ?></div></a>
+                          <a data-toggle="modal" data-target=".bs-example-modal-lg-add-caja" style="font-size:25px;"><i class="fa fa-bookmark"></i>Ticket Producto</a>
                         </div>
                     </div>
-     -->
+                    <?php 
+                        }
+                        ?>
+     
     <?php
     }
     $permiso_token->close();  
@@ -89,8 +95,11 @@
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control " id="idtipo7" name="idtipo7" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control " id="idtipo7" name="idtipo7" data-size="5" style="max-width: 100%!important;" >
                                     
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo7" name="idtipo7" data-size="5" style="max-width: 100%!important;" >
+                                    <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                            </div>
@@ -126,8 +135,11 @@
                                     <div class="form-group" >  
                                         <div class="col-md-12 col-sm-12 col-xs-12">
 
-                                            <select class="form-control" id="idtipo1" name="idtipo1" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <select class="form-control" id="idtipo1" name="idtipo1" data-size="5" style="max-width: 100%!important;" >
                                             
+                                            </select> -->
+                                            <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo1" name="idtipo1" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                             </select>
                                         
                                         </div>
@@ -162,8 +174,11 @@
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo4 ?>">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control " id="idtipo8" name="idtipo8" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control " id="idtipo8" name="idtipo8" data-size="5" style="max-width: 100%!important;" >
                                     
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo8" name="idtipo8" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                            </div>
@@ -197,8 +212,11 @@
                             <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:<?php echo $colortipo2 ?>">
                             <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control" id="idtipo2" name="idtipo2" data-size="5" style="max-width: 100%!important;" >
+                                    <!--     <select class="form-control" id="idtipo2" name="idtipo2" data-size="5" style="max-width: 100%!important;" >
 
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo2" name="idtipo2" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                                </div>
@@ -233,8 +251,11 @@
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
 
-                                   <select class="form-control" id="idtipo3" name="idtipo3" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control" id="idtipo3" name="idtipo3" data-size="5" style="max-width: 100%!important;" >
                                    
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo3" name="idtipo3" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                
                                </div>
@@ -269,8 +290,11 @@
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control" id="idtipo6" name="idtipo6" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control" id="idtipo6" name="idtipo6" data-size="5" style="max-width: 100%!important;" >
                                     
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo6" name="idtipo6" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                            </div>
@@ -305,8 +329,11 @@
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control" id="idtipo4" name="idtipo4" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control" id="idtipo4" name="idtipo4" data-size="5" style="max-width: 100%!important;" >
                                     
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo4" name="idtipo4" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                            </div>
@@ -341,8 +368,11 @@
                            <div class="col-md-6 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>" style="background-color:">
                            <div class="form-group" > 
                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                   <select class="form-control " id="idtipo5" name="idtipo5" data-size="5" style="max-width: 100%!important;" >
+                                   <!-- <select class="form-control " id="idtipo5" name="idtipo5" data-size="5" style="max-width: 100%!important;" >
                                     
+                                    </select> -->
+                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idtipo5" name="idtipo5" data-size="5" style="max-width: 100%!important;" >
+                                            <!-- <option value="0">-- Seleccionar Producto --</option>      -->
                                     </select>
                                </div>
                            </div>

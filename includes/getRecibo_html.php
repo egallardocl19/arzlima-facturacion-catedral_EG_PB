@@ -88,8 +88,8 @@
 
     if ($caso=="5"){
         if ($condicion!=""){
-            $tipo =mysqli_query($con, "SELECT rs.abrev as abrev,ct.id as id FROM recibos_serial rs, clase_ticket ct 
-            where rs.abrev=ct.idrecibos_serial and  rs.activo=1 and ct.id=$condicion");
+            $tipo =mysqli_query($con, "SELECT ct.idrecibos_serial as abrev,ct.id as id FROM clase_ticket ct 
+            where  ct.idestado_dato=1 and ct.id=$condicion");
 
 
             while($rowM = $tipo->fetch_assoc())
@@ -118,6 +118,25 @@
             echo $html;
         }else{
             $html= "<option value=''>-- Seleccionar Agencia --</option>";
+            echo $html;
+            }
+
+        
+    }
+
+    if ($caso=="7"){
+        if ($condicion!=""){
+            $tipo =mysqli_query($con, "SELECT tt.id,tt.nombre,tm.signo,format(tt.importe,2) as importe FROM tipos_ticket tt, tipo_moneda tm 
+            where tt.idtipo_moneda=tm.id and tt.idclase_ticket=$condicion and  tt.idestado_dato=1 order by tt.importe desc");
+
+            $html= "<option value='0'>-- Seleccionar Producto--</option>";
+            while($rowM = $tipo->fetch_assoc())
+            {
+                $html.= "<option value='".$rowM['id']."'>".$rowM['nombre']."   -   ".$rowM['signo'].$rowM['importe']."</option>";  
+            } 
+            echo $html;
+        }else{
+            $html= "<option value=''>-- Seleccionar Tipo Ticket --</option>";
             echo $html;
             }
 

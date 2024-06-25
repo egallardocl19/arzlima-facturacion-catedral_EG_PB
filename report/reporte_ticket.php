@@ -132,15 +132,17 @@ function Header()
 	$this->SetFont('Arial','B',8);
 	$this->Cell(58,10,'Fecha: '.$fecha,0,1,'C');
 	$this->SetFont('Arial','B',9);
-	$this->Cell(50);
+	$this->Cell(67);
 	$this->SetTextColor(37,67,120);
-	$this->Cell(97,5,utf8_decode('FECHA INICIO: '),0,1,'C');
-	$this->Cell(50);
-	$this->Cell(95,5,utf8_decode($inicio),0,0,'C');
-	$this->Cell(65,5,'Hora: '.$time,0,1,'C');
-	$this->Cell(59);
-	$this->Cell(80,5,'FECHA FIN:',0,1,'C');
-	$this->Cell(195,5,utf8_decode($inicio2),0,1,'C');
+	$this->Cell(25,5,utf8_decode('FECHA INICIO: '),0,0,'C');
+	$this->Cell(5);
+	$this->Cell(30,5,utf8_decode($inicio),0,0,'C');
+	$this->Cell(43);
+	$this->Cell(15,5,'Hora: '.$time,0,1,'C');
+	$this->Cell(67);
+	$this->Cell(25,5,'FECHA FIN:',0,0,'C');
+	$this->Cell(5);
+	$this->Cell(30,5,utf8_decode($inicio2),0,1,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);
 	
@@ -150,18 +152,19 @@ function Header()
 	
 	
 
-    $this->Ln(6);
+    $this->Ln(3);
 
 	$this->SetFont('Arial','B',8);
 
 	$this->SetFillColor(37,67,120);//Fondo verde de celda
 	$this->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$this->Cell(15,6,utf8_decode('SERIE'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('NUMERO'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
-	$this->Cell(15,6,utf8_decode('HORA'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('PERSONAS'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
+	$this->Cell(23,6,utf8_decode('TIPO TICKET'),1,0,'C',TRUE);
+	$this->Cell(10,6,utf8_decode('SERIE'),1,0,'C',TRUE);
+	$this->Cell(18,6,utf8_decode('NUMERO'),1,0,'C',TRUE);
+	$this->Cell(18,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
+	$this->Cell(12,6,utf8_decode('HORA'),1,0,'C',TRUE);
+	$this->Cell(10,6,utf8_decode('CANT.'),1,0,'C',TRUE);
+	$this->Cell(17,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
 	$this->Cell(20,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
 	$this->Cell(22,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE);
 	$this->Cell(22,6,utf8_decode('REFERENCIA'),1,0,'C',TRUE);
@@ -188,36 +191,61 @@ $suma_cantidad2=0;
 $suma_totales2=0;
 $suma_cantidad3=0;
 $suma_totales3=0;
+$producto_cantidad=0;
+$producto_totales=0;
+$producto_cantidad2=0;
+$producto_totales2=0;
+$producto_cantidad3=0;
+$producto_totales3=0;
 $moneda='';
 
 
 	while ($row=$resultado->fetch_assoc()) {
 		
 			$pdf->SetFillColor(255, 255, 255);
-			$pdf->Cell(15,5,utf8_decode($row['serie']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['numero']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['fecha']),0,0,'C',0);
-			$pdf->Cell(15,5,utf8_decode($row['hora']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['cantidad_total']),0,0,'C',0);
-			$pdf->Cell(20,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
+			$pdf->Cell(23,5,utf8_decode($row['clase_ticket']),0,0,'',0);
+			$pdf->Cell(10,5,utf8_decode($row['serie']),0,0,'C',0);
+			$pdf->Cell(18,5,utf8_decode($row['numero']),0,0,'C',0);
+			$pdf->Cell(18,5,utf8_decode($row['fecha']),0,0,'C',0);
+			$pdf->Cell(12,5,utf8_decode($row['hora']),0,0,'C',0);
+			$pdf->Cell(10,5,utf8_decode($row['cantidad_total']),0,0,'C',0);
+			$pdf->Cell(17,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
 			$pdf->Cell(20,5,number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
 			$pdf->Cell(22,5,utf8_decode($row['nombre_pago']),0,0,'C',0);
 			$pdf->Cell(22,5,utf8_decode($row['n_referencia']),0,0,'C',0);
 			$pdf->Cell(20,5,utf8_decode($row['cajero']),0,1,'C',0);
-
-			$moneda=$row['signo_moneda'];
-			if($row['nombre_pago']=="EFECTIVO"){
-			$suma_cantidad=$suma_cantidad+$row['cantidad_total'];
-			$suma_totales=$suma_totales+$row['monto_total'];
-			}	
-			if($row['nombre_pago']=="IZIPAY"){
-				$suma_cantidad2=$suma_cantidad2+$row['cantidad_total'];
-				$suma_totales2=$suma_totales2+$row['monto_total'];
+			$clase_ticket=$row['idclase_ticket'];
+			if ($clase_ticket ==1 or $clase_ticket ==2 or $clase_ticket ==3 ){
+				$moneda=$row['signo_moneda'];
+				if($row['nombre_pago']=="EFECTIVO"){
+				$suma_cantidad=$suma_cantidad+$row['cantidad_total'];
+				$suma_totales=$suma_totales+$row['monto_total'];
+				}	
+				if($row['nombre_pago']=="IZIPAY"){
+					$suma_cantidad2=$suma_cantidad2+$row['cantidad_total'];
+					$suma_totales2=$suma_totales2+$row['monto_total'];
+				}
+				if($row['nombre_pago']=="TRANSFERENCIA"){
+					$suma_cantidad3=$suma_cantidad3+$row['cantidad_total'];
+					$suma_totales3=$suma_totales3+$row['monto_total'];
+				}
 			}
-			if($row['nombre_pago']=="TRANSFERENCIA"){
-				$suma_cantidad3=$suma_cantidad3+$row['cantidad_total'];
-				$suma_totales3=$suma_totales3+$row['monto_total'];
+			if ($clase_ticket ==5){
+				$moneda=$row['signo_moneda'];
+				if($row['nombre_pago']=="EFECTIVO"){
+				$producto_cantidad=$producto_cantidad+$row['cantidad_total'];
+				$producto_totales=$producto_totales+$row['monto_total'];
+				}	
+				if($row['nombre_pago']=="IZIPAY"){
+					$producto_cantidad2=$producto_cantidad2+$row['cantidad_total'];
+					$producto_totales2=$producto_totales2+$row['monto_total'];
+				}
+				if($row['nombre_pago']=="TRANSFERENCIA"){
+					$producto_cantidad3=$producto_cantidad3+$row['cantidad_total'];
+					$producto_totales3=$producto_totales3+$row['monto_total'];
+				}
 			}
+			
 			
 	}
 			$pdf->Ln(5);
@@ -226,41 +254,89 @@ $moneda='';
 			$pdf->Cell(30);
 			$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-			$pdf->Cell(60,5,utf8_decode('Total Venta EFECTIVO.:'),1,0,'C',TRUE);
+			$pdf->Cell(60,5,utf8_decode('Total Venta Entradas EFECTIVO.:'),1,0,'C',TRUE);
 			$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
 			//$pdf->Cell(20);
 			$pdf->Cell(40,5,'Personas: '.$suma_cantidad,1,0,'C',0);
 			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales,2),1,1,'C',0);
 			}
+			
 			if($suma_cantidad2>0){
 			$pdf->Cell(30);
 			$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-			$pdf->Cell(60,5,utf8_decode('Total Venta POS.:'),1,0,'C',TRUE);
+			$pdf->Cell(60,5,utf8_decode('Total Venta Entradas POS.:'),1,0,'C',TRUE);
 			$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
 			//$pdf->Cell(20);
 			$pdf->Cell(40,5,'Personas: '.$suma_cantidad2,1,0,'C',0);
 			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales2,2),1,1,'C',0);
 			}
+			
 			if($suma_cantidad3>0){
 			$pdf->Cell(30);
 			$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-			$pdf->Cell(60,5,utf8_decode('Total Venta TRANSFERENCIA.:'),1,0,'C',TRUE);
+			$pdf->Cell(60,5,utf8_decode('Total Venta Entradas TRANSFERENCIA.:'),1,0,'C',TRUE);
 			$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
 			//$pdf->Cell(20);
 			$pdf->Cell(40,5,'Personas: '.$suma_cantidad3,1,0,'C',0);
 			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales3,2),1,1,'C',0);
 			}
+			$suma_cantidad_entradas=$suma_cantidad+$suma_cantidad2+$suma_cantidad3;
+			if($suma_cantidad_entradas>0){
+				$pdf->Cell(30);
+				$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+				$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(60,5,utf8_decode('Total Venta Entradas COBRADO.:'),1,0,'C',TRUE);
+				$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+				//$pdf->Cell(20);
+				$pdf->Cell(40,5,'Personas: '.($suma_cantidad_entradas),1,0,'C',0);
+				$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format(($suma_totales+$suma_totales2+$suma_totales3),2),1,1,'C',0);
+	
+				$pdf->Ln(5);
+			}
+			
+			if($producto_cantidad>0){
+				$pdf->Cell(30);
+				$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+				$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(60,5,utf8_decode('Total Venta Productos EFECTIVO.:'),1,0,'C',TRUE);
+				$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+				//$pdf->Cell(20);
+				$pdf->Cell(40,5,'Productos: '.$producto_cantidad,1,0,'C',0);
+				$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($producto_totales,2),1,1,'C',0);
+				}	
+			if($producto_cantidad2>0){
+					$pdf->Cell(30);
+					$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+					$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+					$pdf->Cell(60,5,utf8_decode('Total Venta Productos POS.:'),1,0,'C',TRUE);
+					$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+					//$pdf->Cell(20);
+					$pdf->Cell(40,5,'Productos: '.$producto_cantidad2,1,0,'C',0);
+					$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($producto_totales2,2),1,1,'C',0);
+					}
+			if($producto_cantidad3>0){
+						$pdf->Cell(30);
+						$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+						$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+						$pdf->Cell(60,5,utf8_decode('Total Venta Productos TRANSFERENCIA.:'),1,0,'C',TRUE);
+						$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+						//$pdf->Cell(20);
+						$pdf->Cell(40,5,'Productos: '.$producto_cantidad3,1,0,'C',0);
+						$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($producto_totales3,2),1,1,'C',0);
+						}
+			$suma_cantidad_productos=$producto_cantidad+$producto_cantidad2+$producto_cantidad3;
+			if($suma_cantidad_productos>0){
 			$pdf->Cell(30);
-			$pdf->SetFillColor(37,67,120);//Fondo verde de celda
-			$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-			$pdf->Cell(60,5,utf8_decode('Total Venta Cobrado.:'),1,0,'C',TRUE);
-			$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
-			//$pdf->Cell(20);
-			$pdf->Cell(40,5,'Personas: '.($suma_cantidad+$suma_cantidad2+$suma_cantidad3),1,0,'C',0);
-			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format(($suma_totales+$suma_totales2+$suma_totales3),2),1,1,'C',0);
-
+						$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+						$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+						$pdf->Cell(60,5,utf8_decode('Total Venta Productos COBRADO.:'),1,0,'C',TRUE);
+						$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+						//$pdf->Cell(20);
+						$pdf->Cell(40,5,'Productos: '.($suma_cantidad_productos),1,0,'C',0);
+						$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format(($producto_totales+$producto_totales2+$producto_totales3),2),1,1,'C',0);
+			}
 $pdf->Output();
 
 ?>

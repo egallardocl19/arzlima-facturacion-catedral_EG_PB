@@ -15,6 +15,9 @@
                     $TicketData6=mysqli_query($con, "select * from user where id=$codigo");
                     $TicketData7=mysqli_query($con, "select * from cobranza_auditoria");
                     $TicketData8=mysqli_query($con, "select * from ticket_seguimiento where proceso=1");
+                    $TicketData9=mysqli_query($con, "select * from ticket where idclase_ticket=3 and fecha='$fechahoy'");
+                    $TicketData10=mysqli_query($con, "select * from ticket where idclase_ticket=4 and fecha='$fechahoy'");
+                    $TicketData11=mysqli_query($con, "select * from ticket where idclase_ticket=5 and fecha='$fechahoy'");
 
                     
                     $menu =mysqli_query($con,"CALL menu('$id');");

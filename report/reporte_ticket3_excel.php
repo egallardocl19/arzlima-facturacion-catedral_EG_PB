@@ -42,7 +42,7 @@
 				<thead>
 					<tr style='height:40px;'>
 						
-						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='12' >REPORTE DE TICKET DETALLE - ".$nombre_clase."</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='13' >REPORTE DE TICKET DETALLE - ".$nombre_clase."</th>
 						
 					</tr>
 					<tr >
@@ -53,6 +53,7 @@
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>FECHA EMISION</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>HORA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO TICKET</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>CONCEPTO</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>PRECIO</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>CANTIDAD</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TOTAL</th>
@@ -113,6 +114,7 @@
 											<td>".strftime("%A", strtotime($fetch['fecha']))."</td>
 											<td>".utf8_decode($fetch['fecha'])."</td>
 											<td>".utf8_decode($fetch['hora'])."</td>
+											<td>".utf8_decode($fetch['clase_ticket'])."</td>
 											<td>".utf8_decode($fetch['tipo_ticket'])."</td>
 											<td>".number_format(utf8_decode($fetch['importe']),2)."</td>
 											<td>".utf8_decode($fetch['cantidad'])."</td>
