@@ -9,6 +9,15 @@
     echo("<meta http-equiv='refresh' content='300'>");
     $fecha_inicio = "2024-06-04"; //lanzamiento system
     $fecha_actual = date("Y-m-d");
+    // $user=$_SESSION['user_id'];
+
+    // $consulta_codigo_user =mysqli_query($con,"SELECT idroles FROM user where id=$user");
+   
+	// 		if (!$consulta_codigo_user||mysqli_num_rows($consulta_codigo_user)!=0){
+	// 			if ($row = mysqli_fetch_array($consulta_codigo_user)){
+	// 				$consulta_rol=$row['idroles']; 
+	// 			}
+	// 		}
     
 ?>
 
@@ -332,8 +341,11 @@
                                         $ruta_envio='recibos.php?key1='.$idsubmodulo;
                             
                                 ?>
+                                <?php 
+                                
+                                    if($idroles==1){
 
-                                        
+                                ?>                             
                                         <div class="col-md-12 col-xs-12 col-sm-12">
                                       
                                                             <nav class="navbar navbar-dark bg-primary text-white" style="background-color:#364d5f">
@@ -455,8 +467,9 @@
                                             
                                             </div>
                                         </div>
-                                       
-
+                                        <?php 
+                                        }
+                                        ?>
                                         <?php 
                                         }
                                         $permisos->close(); 
@@ -480,7 +493,11 @@
                                             $ruta_envio='recibos.php?key1='.$idsubmodulo;
                                             
                                         ?>
-                                        
+                                <?php 
+
+                                    if($idroles==1){
+
+                                ?>    
                                         <div class="col-md-6 col-xs-12 col-sm-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
@@ -520,7 +537,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                
+                                        <?php 
+                                    }
+                                         ?>
                                 <?php 
                                     }
                                     $permisos->close(); 
@@ -547,7 +566,11 @@
                                             
                                         ?>
                                         
-                                       
+                                    <?php 
+                                
+                                    if($idroles==1){
+
+                                    ?>   
 
                                         <div class="col-md-12 col-xs-12 col-sm-12">
                                             <div class="x_panel">
@@ -584,6 +607,9 @@
                                         </div>
                                         <?php 
                                     }
+                                         ?>
+                                        <?php 
+                                    }
                                     $permisos->close(); 
                                     $con->next_result();
                                     
@@ -591,6 +617,8 @@
                                 
                                 $con->next_result();
                                 ?>
+                                    
+                               
                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                     <div class="x_panel">
                                         <div class="x_title">
