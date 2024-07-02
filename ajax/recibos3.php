@@ -42,12 +42,12 @@
         $qqq2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qqq2'], ENT_QUOTES)));
 
          $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
-         $sTable = "ticket t, tipo_moneda tm";
-         $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3";
+         $sTable = " ticket t, tipo_moneda tm ";
+         $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 ";
 
         if ( $_GET['qqq'] != "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -58,7 +58,7 @@
 
         if ( $_GET['qqq1'] != "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' OR ";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
@@ -66,7 +66,7 @@
  
         if ( $_GET['qqq2']!= "" ) 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.idestado_ticket='".$qqq2."' OR ";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.idestado_ticket='".$qqq2."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
@@ -74,7 +74,7 @@
 
         if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -84,7 +84,7 @@
        }
        if ( $_GET['qqq'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.idestado_ticket='".$qqq2."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -94,14 +94,14 @@
        }
        if ( $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' OR ";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' OR ";
            
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
        if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -114,7 +114,7 @@
         //pagination variables
 		
         $page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
-        $per_page = 5; //how much records you want to show
+        $per_page = 10; //how much records you want to show
         $adjacents  = 4; //gap between pages after number of adjacents
         $offset = ($page - 1) * $per_page;
         //Count the total number of row in your table*/

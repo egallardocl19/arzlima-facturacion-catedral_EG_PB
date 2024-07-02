@@ -22,12 +22,39 @@
         $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
 
          $aColumns = array('CONCAT(t.serie,"-",t.numero)','(select n_referencia from cobranza where idticket=t.id)');//Columnas de busqueda  
-         $sTable = "ticket t, tipo_moneda tm";
-         $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1";
-    
-        if ( $_GET['q'] != "" ) 
+         $sTable = " ticket t, tipo_moneda tm ";
+         $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1 ";
+
+         if ( $_GET['q'] != "" ) 
+         {
+             $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (";
+             for ( $i=0 ; $i<count($aColumns) ; $i++ )
+             {
+                 $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+             }
+             $sWhere = substr_replace( $sWhere, "", -3 );
+             $sWhere .= ')';
+         }
+ 
+         if ( $_GET['q1'] != "" ) 
+         {
+             $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' OR ";
+             
+             $sWhere = substr_replace( $sWhere, "", -3 );
+             $sWhere .= ')';
+         }
+  
+         if ( $_GET['q2']!= "" ) 
+         {
+             $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.idestado_ticket='".$q2."' OR ";
+             
+             $sWhere = substr_replace( $sWhere, "", -3 );
+             $sWhere .= ')';
+         }
+ 
+         if ( $_GET['q'] != "" && $_GET['q1'] != "") 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
@@ -35,62 +62,36 @@
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
-
-        if ( $_GET['q1'] != "" ) 
+        if ( $_GET['q'] != "" && $_GET['q2'] != "") 
         {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' OR ";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.idestado_ticket='".$q2."' and (";
+            for ( $i=0 ; $i<count($aColumns) ; $i++ )
+            {
+                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+            }
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+        if ( $_GET['q1'] != "" && $_GET['q2'] != "") 
+        {
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' OR ";
             
+            $sWhere = substr_replace( $sWhere, "", -3 );
+            $sWhere .= ')';
+        }
+        if ( $_GET['q'] != "" && $_GET['q1'] != "" && $_GET['q2'] != "") 
+        {
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' and (";
+            for ( $i=0 ; $i<count($aColumns) ; $i++ )
+            {
+                $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
+            }
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
         }
  
-        if ( $_GET['q2']!= "" ) 
-        {
-            $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.idestado_ticket='".$q2."' OR ";
-            
-            $sWhere = substr_replace( $sWhere, "", -3 );
-            $sWhere .= ')';
-        }
-
-        if ( $_GET['q'] != "" && $_GET['q1'] != "") 
-       {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and (";
-           for ( $i=0 ; $i<count($aColumns) ; $i++ )
-           {
-               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-           }
-           $sWhere = substr_replace( $sWhere, "", -3 );
-           $sWhere .= ')';
-       }
-       if ( $_GET['q'] != "" && $_GET['q2'] != "") 
-       {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.idestado_ticket='".$q2."' and (";
-           for ( $i=0 ; $i<count($aColumns) ; $i++ )
-           {
-               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-           }
-           $sWhere = substr_replace( $sWhere, "", -3 );
-           $sWhere .= ')';
-       }
-       if ( $_GET['q1'] != "" && $_GET['q2'] != "") 
-       {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  (t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' OR ";
-           
-           $sWhere = substr_replace( $sWhere, "", -3 );
-           $sWhere .= ')';
-       }
-       if ( $_GET['q'] != "" && $_GET['q1'] != "" && $_GET['q2'] != "") 
-       {
-           $sWhere = "where t.idtipo_moneda=tm.id and t.idclase_ticket=1  and  t.fecha='".$q1."' and  t.idestado_ticket='".$q2."' and (";
-           for ( $i=0 ; $i<count($aColumns) ; $i++ )
-           {
-               $sWhere .= $aColumns[$i]." LIKE '%".$q."%' OR ";
-           }
-           $sWhere = substr_replace( $sWhere, "", -3 );
-           $sWhere .= ')';
-       }
-
-        $sWhere.="order by t.id desc";
+       
+        $sWhere.=" order by t.id desc";
         include 'pagination.php'; //include pagination file  
         //pagination variables
 		
@@ -107,8 +108,8 @@
 		//consulta principal para obtener los datos
         $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,t.cantidad_total,tm.signo,format(t.monto_total,2) as importe,
         (select nombre from estado_ticket where id=t.idestado_ticket) as estado,
-        (select nombre from formapago where id=(select idformapago from cobranza where idformapago<>6 and idticket=t.id)) as forma_pago,
-        (select n_referencia from cobranza where idformapago<>6 and idticket=t.id) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        (select nombre from formapago where id=(select idformapago from cobranza where idticket=t.id and idformapago<>6 )) as forma_pago,
+        (select n_referencia from cobranza where idticket=t.id and idformapago<>6) as referencia FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             

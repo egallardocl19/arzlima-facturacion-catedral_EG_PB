@@ -60,43 +60,48 @@ $resultado_detalle=$con->query($consulta_detalle);
       <!-- <img src="../images/profiles/fondo.png"  alt=""  height="400" width="300" /> -->
     <div class="contenedor">
         <!-- <img src="../images/profiles/fondo.png?<?php echo rand()?>" height="1000" width="300"/> -->
-        <img src="../images/profiles/catedral2.png?<?php echo rand()?>" height="80" width="220" style="border: 0px solid #000;"/></br>
+        <img src="../images/profiles/catedral2.png?<?php echo rand()?>" height="50" width="140" style="border: 0px solid #000;"/></br>
 
         <div class="contenedor">
             <!-- <img src="../images/profiles/logo4.png?<?php echo rand()?>" height="100" width="220"/> -->
         
             <!-- <font size="2" style="font-weight: bolder">MUSEO DE ARTE RELIGIOSO</font> -->
-                <table border="1px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
+                <table border="0px" width ="100%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
                 <tr>
                     <td>
                     <div class="contenedor">
-                     <!-- <img src="../images/profiles/recta.png?<?php echo rand()?>" height="25" width="250">  -->
-                     <!-- <div class="centrado"> color="#FFFFFF"-->
-                    <font  style="font-weight: bolder; font-family: Calibri" size="4">Nº TICKET</font>
+                    <font  style="font-weight: bolder; font-family: Calibri" size="1">MUSEO DE ARTE RELIGIOSO</font></br>
+                    <font  style="font-family: Calibri" size="1">CABILDO METROPOLITANO DE LIMA - RUC: 20177176771</font></br>
+                    <font  style="font-family: Calibri" size="1">JR.CARABAYA S/N, PLAZA DE ARMAS DE LIMA - LIMA</font></br>
+                    <font  style="font-weight: bolder; font-family: Calibri" size="1">Nº TICKET: <?php echo $serie."-".$numero?></font>
                     <!-- </div> -->
                     </div>
                     </td>
                    
                 </tr>
-                <!-- </table>
-                <table border="1px" width ="50%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto"> -->
-                <tr>
-                    <td><font size="3" style="font-weight: bolder; font-family: Calibri"><?php echo $serie."-".$numero?></font></td>
-                </tr>
                 </table>
-            <font size="1" style="font-weight: bolder; font-family: Calibri">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font>  </br>
-            <font size="1" style="font-weight: bolder; font-family: Calibri">  TICKET:<?php echo $clase?> - CAJERO: <?php echo $iduser_add?></font>
-        </br>
+           
+       
  
             <?php
             $contenido = $serie."-".$numero;
             QRcode::png($contenido,"resultado.png",QR_ECLEVEL_L,10,2);
             ?>
-            <Img src="resultado.png?<?php echo rand()?>" height="130" width="130"/>
+            <Img src="resultado.png?<?php echo rand()?>" height="90" width="90"/>
 
             <table border="1px"  style="border-collapse:collapse; text-align:center; margin:auto">
                 <tr>
-                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri">TIPO TICKET</font></td>
+                
+                <?php
+                $nombre_tit="";
+                if($clase=="PRODUCTOS"){
+                $nombre_tit="ITEM";
+                }else{
+                $nombre_tit="TIPO TICKET";  
+                }
+
+                ?>
+                    <td ><font size="1" style="font-weight: bolder; font-family: Calibri"><?php echo $nombre_tit?></font></td>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">CANT.</font></td>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">P.UNIT</font></td>
                     <td ><font size="1" style="font-weight: bolder; font-family: Calibri">SUBTOTAL</font></td>
@@ -106,7 +111,7 @@ $resultado_detalle=$con->query($consulta_detalle);
                 while ($row=$resultado_detalle->fetch_assoc()) {
                 ?>
                     <tr>
-                    <td ><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo substr($row['nombre'],0,19)?></font></td>
+                    <td ><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo substr($row['nombre'],0,20)?></font></td>
                     <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['cantidad']?></font></td>
                     <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['moneda'].$row['importe']?></font></td>
                     <td><font size="1" style="font-weight: Calibri; font-family: Calibri"><?php echo $row['moneda'].$row['total']?></font></td>
@@ -124,11 +129,6 @@ $resultado_detalle=$con->query($consulta_detalle);
                 $nombre_monto=$signo.$monto_total;  
                 }
 
-            ?>
-             </br>
-                <font size="3" style="font-family: Calibri">TOTAL: <?php echo $nombre_monto?></font></br>
-                <!-- <font size="2" style="font-weight: bolder; font-family: Courier">  DNI:<?php echo utf8_decode($dni)?> - <?php echo utf8_decode($nombre)?></font> </br> -->
-                <?php
                 if($estado=="PAGADO"){
                     $nombre_estado="CANCELADO";
                 }else if($estado=="ANULADO"){
@@ -138,13 +138,29 @@ $resultado_detalle=$con->query($consulta_detalle);
                 }
 
             ?>
-                <font size="1" style="font-weight: bolder;font-family: Calibri">*** <?php echo $nombre_estado?>***</font></br>
-                <!-- <font size="1" style="font-weight: bolder">--------------------------------</font></br> -->
-                <font size="1" style="font-weight: bolder;font-family: Calibri"><?php echo $tipo_pago?></font></br>
+           
+                <table border="0px" style="border-collapse:collapse; text-align:center; margin:auto">
+                <tr>
+                <td >
+                <font  style="font-weight: bolder;font-family: Calibri;font-size: 70%;"><?php echo $tipo_pago?></font>
+                </td>
+                 <td >
+                <font  style="font-family: Calibri;font-size: 70%;">TOTAL: <?php echo $nombre_monto?></font></br>
+                </td> 
+                
+                </tr>
+               
+                </table>
+                
+                <font size="1" style="font-family: Calibri">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font> </br>
+                <font size="1" style="font-family: Calibri">  TICKET:<?php echo $clase?> - CAJERO: <?php echo $iduser_add?></font>
+                
+       
+      
                 <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto" width ="50%" height ="10px">
                 <tr>
-                    <td ><font size="1"  style="font-family: Calibri">EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font></br>
-                    <font style="font-family: Calibri;font-size: 50%;">INAFECTO: Por el convenio suscrito entre el Gobierno Peruano y la Santa Sede. Decreto Ley 23211 - Decreto Legislativo 628.</font></td>
+                    <td ><font style="font-family: Calibri;font-size: 40%;">EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font>
+                    <font style="font-family: Calibri;font-size: 40%;">INAFECTO: POR EL CONVENIO SUSCRITO ENTRE EL GOBIERNO PERUANO Y LA SATA SEDE. DECRETO LEY 23211 - DECRETO LEGISLATIVO 628</font></td>
                 </table>
                 
           
