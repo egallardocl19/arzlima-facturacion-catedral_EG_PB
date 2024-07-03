@@ -185,6 +185,10 @@
                         <td ><span class="pull-right">
                         <a href="report/recibo_pago3.php?variable1=<?php echo $id;?>" class='btn btn-primary' title='Imprimir Recibo' target="_blank" >|<i class="glyphicon glyphicon-print"></i></a> 
                         <?php  
+                        if ($idroles>1){
+                        ?>
+                        <?php  
+
                         $date_actual=date("Y-m-d");
                         if ($date_actual==$fecha){
                             if ($estado=="PAGADO" or $estado=="PENDIENTE"){
@@ -194,9 +198,12 @@
                         <?php 
                             } 
                         }
+                        }else{
                         ?>
-                       
-                        
+                        <a href="#" class='btn btn-danger' title='Anular Recibo' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-addanular">|<i class="glyphicon glyphicon-remove"></i></a>
+                        <?php 
+                            } 
+                        ?>
                     </tr>
                 <?php
                     } //en while
