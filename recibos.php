@@ -543,6 +543,7 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
+                document.getElementById('cantidad1').style = "font-weight: bold; font-size:20px;";
              });  
     
                 
@@ -633,6 +634,7 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
+                document.getElementById('cantidad1').style = "font-weight: bold; font-size:20px;";
             }); 
                
                 //LLENADO DE DATA
@@ -724,6 +726,10 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
+                $("#cantidad1").prop("readonly",false);
+                
+                document.getElementById('cantidad1').style = "font-weight: bold; font-size:16px;";
+                document.getElementById('cantidad1').style.boxShadow = "inset 0 0 5px black";  
                
             }); 
 
@@ -817,6 +823,7 @@
                 limpiarFormulario();
                 $("#result").hide();
                 $("#n_pago").prop("readonly",true);
+                document.getElementById('cantidad1').style = "font-weight: bold; font-size:20px;";
              });  
     
                 
@@ -1013,27 +1020,44 @@
             document.getElementById("save_data").style.display = "block";
         }); 
 
-        document.getElementById('q').addEventListener('focus', function(){
-                document.onkeydown = function(e){
-                    var ev = document.all ? window.event : e;
+
+            $(document).ready(function(){
+            let input = document.getElementById('cantidad1');
+            input.addEventListener('focus', function(){
+               document.onkeyup    = function(e){
+                var ev = document.all ? window.event : e;
                     if(ev.keyCode==13) {
-                      load(1);
+                        cal1();
 
                     }
+                        
+
                 }
 
-            })  
-            document.getElementById('qq').addEventListener('focus', function(){
-                document.onkeydown = function(e){
-                    var ev = document.all ? window.event : e;
-                    if(ev.keyCode==13) {
-                      load2(1);
+            })
+        })      
 
-                    }
-                }
 
-            })   
     </script> 
+     <script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO
+            document.getElementById("cantidad1").addEventListener("keypress",verificar);
+           
+            
+            function verificar(e) {
+                if(e.key.match(/[0-9]/i)===null) {
+                    e.preventDefault();
+                }
+                
+            }
+            function verificar_textos(e) {
+               if(e.key.match(/[0-9.a-zA-ZÑñ()-]/i)===null) {
+                   e.preventDefault();
+                   
+               }
+               
+           }
+
+    </script>
     <script language="javascript">
     function reset_montos() {
              suma_monto=0;

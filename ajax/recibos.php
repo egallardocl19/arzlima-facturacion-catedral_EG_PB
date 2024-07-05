@@ -21,7 +21,7 @@
         $q1 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q1'], ENT_QUOTES)));
         $q2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q2'], ENT_QUOTES)));
 
-         $aColumns = array('CONCAT(t.serie,"-",t.numero)','(select n_referencia from cobranza where idticket=t.id)');//Columnas de busqueda  
+         $aColumns = array('CONCAT(t.serie,"-",t.numero)','(select n_referencia from cobranza where idticket=t.id and idformapago<>6)');//Columnas de busqueda  
          $sTable = " ticket t, tipo_moneda tm ";
          $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=1 ";
 

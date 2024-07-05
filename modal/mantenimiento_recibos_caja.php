@@ -152,7 +152,7 @@
                                         <button type="button" class="btn btn-primary btn-circle btn-md" onclick="incrementar1()" style="font-weight: bold; font-size:20px;">+</button>
                                         </div>
                                         <div class="col-md-4 col-sm-4 col-xs-4">
-                                        <input type="text" id="cantidad1" name="cantidad1"  class="form-control" style="font-weight: bold; font-size:20px;" value=0 readonly="true">
+                                        <input type="text" id="cantidad1" name="cantidad1"  class="form-control"  value=0 readonly="true">
                                         </div>
                                         <div class="col-md-2 col-sm-4 col-xs-1">
                                         <button type="button" class="btn btn-primary btn-circle btn-md" onclick="decrementar1()" style="font-weight: bold; font-size:20px;">-</button>    

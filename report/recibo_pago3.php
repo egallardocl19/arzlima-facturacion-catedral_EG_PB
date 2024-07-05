@@ -160,7 +160,7 @@ $resultado_detalle=$con->query($consulta_detalle);
                 <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto" width ="50%" height ="10px">
                 <tr>
                     <td ><font style="font-family: Calibri;font-size: 40%;">EL PRESENTE DOCUMENTO CONSTITUYE EL ÚNICO COMPROBANTE DE PAGO VÁLIDO PARA AMBAS PARTES.</font>
-                    <font style="font-family: Calibri;font-size: 40%;">INAFECTO: POR EL CONVENIO SUSCRITO ENTRE EL GOBIERNO PERUANO Y LA SATA SEDE. DECRETO LEY 23211 - DECRETO LEGISLATIVO 628</font></td>
+                    <font style="font-family: Calibri;font-size: 40%;">INAFECTO: POR EL CONVENIO SUSCRITO ENTRE EL GOBIERNO PERUANO Y LA SANTA SEDE. DECRETO LEY 23211 - DECRETO LEGISLATIVO 628</font></td>
                 </table>
                 
           
