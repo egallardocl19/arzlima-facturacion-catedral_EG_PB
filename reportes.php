@@ -206,7 +206,7 @@
                                     <div class="tile-stats" style="background-image: url('images/profiles/fonbo4.png'); width:100%;">
                                         <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" >
-                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                        <img src="images/bon2.png" style="width:31%"></a></br>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Ticket Emitidos</a>
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
                                      <div class="tile-stats" style="background-image: url('images/profiles/fonbo5.png'); width:100%;">
                                         <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" >
-                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                            <img src="images/bon2.png" style="width:31%"></a></br>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Resumen</a>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
                                         <div class="tile-stats" style="background-image: url('images/profiles/fonbo6.png'); width:100%;">
                                         <div class="icon"><a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" ><i class="fa fa-file-text"></i></a></div>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" >
-                                            <img src="images/bon2.png" style="width:40%"></a></br>
+                                            <img src="images/bon2.png" style="width:31%"></a></br>
                                         <a data-toggle="modal" data-target=".bs-example-modal-lg-reporteticket2" style="font-size:21px;" ><i class="fa fa-bookmark"></i>Ticket Control</a>
                                         </div>
                                     </div> 

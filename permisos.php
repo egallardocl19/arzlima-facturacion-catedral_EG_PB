@@ -130,7 +130,7 @@ $( "#add" ).submit(function( event ) {
             $("#result").html(datos);
             $('#save_data').attr("disabled", false);
             load(1);
-            //$("#save_data").hide();
+            //$("#save_data").hide(); 
           }
     });
   event.preventDefault();

@@ -64,7 +64,8 @@
         $total_pages = ceil($numrows/$per_page);
         $reload = './expences.php';
 		//consulta principal para obtener los datos
-        $sql="SELECT ss.idsubmodulo as idsubmodulo,ss.nombre as nombre_submodulo,sm.idmodulo as idmodulo,sm.nombre as nombre_modulo,ss.idestado_dato,ed.nombre as nombre_estado
+        $sql="SELECT ss.idsubmodulo as idsubmodulo,ss.nombre as nombre_submodulo,sm.idmodulo as idmodulo,sm.nombre as nombre_modulo,
+        ss.idestado_dato,ed.nombre as nombre_estado
          FROM  $sTable  $sWhere LIMIT $offset,$per_page";
     
         $query = mysqli_query($con, $sql);
@@ -133,11 +134,7 @@
                         <span class="slider round"></span>
                         </label>
                         </td>
-
-                        
-						
-                        
-                                              
+         
                         <td ><span class="pull-right">
                         
                          <a href="#" class='btn btn-primary' title='Ver Recibo' onclick="obtener_datos('<?php echo $id;?>'); load2(1,'<?php echo $id;?>');" 

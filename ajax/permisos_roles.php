@@ -56,7 +56,7 @@
         $qq = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qq'], ENT_QUOTES)));
   
          
-         $aColumns = array('ss.idsubmodulo','ss.nombre','u.nombre');//Columnas de busqueda  
+         $aColumns = array('ss.idsubmodulo','ss.nombre');//Columnas de busqueda  
          $sTable = "seguridad_roles sr,seguridad_permisos sp,user u, seguridad_submodulo ss ";
          $sWhere = "WHERE sr.idpermisos=sp.idpermisos and sr.iduser=u.id and sp.idsubmodulo=ss.idsubmodulo";
         if ( $_GET['qq'] != "" ) 
@@ -64,7 +64,7 @@
             $sWhere = "WHERE sr.idpermisos=sp.idpermisos and sr.iduser=u.id and sp.idsubmodulo=ss.idsubmodulo and (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
-                $sWhere .= $aColumns[$i]." LIKE '%".$qq."%' OR ";
+                $sWhere .= $aColumns[$i]." = '".$qq."' OR ";
             }
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';

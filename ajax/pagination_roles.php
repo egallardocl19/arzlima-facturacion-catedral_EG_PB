@@ -1,5 +1,5 @@
 <?php
-function paginate($reload, $page, $tpages, $adjacents, $q) {
+function paginate($reload, $page, $tpages, $adjacents, $qq) {
 	$prevlabel = "&lsaquo; Anterior";
 	$nextlabel = "Siguiente &rsaquo;";
 	$out = '<ul class="pagination pagination-large">';
@@ -9,9 +9,9 @@ function paginate($reload, $page, $tpages, $adjacents, $q) {
 	if($page==1) {
 		$out.= "<li class='disabled'><span><a>$prevlabel</a></span></li>";
 	} else if($page==2) {
-		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(1,".($q).")'>$prevlabel</a></span></li>";
+		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(1,".($qq).")'>$prevlabel</a></span></li>";
 	}else {
-		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(".($page-1).",".($q).")'>$prevlabel</a></span></li>";
+		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(".($page-1).",".($qq).")'>$prevlabel</a></span></li>";
 
 	}
 	
@@ -32,9 +32,9 @@ function paginate($reload, $page, $tpages, $adjacents, $q) {
 		if($i==$page) {
 			$out.= "<li class='active'><a>$i</a></li>";
 		}else if($i==1) {
-			$out.= "<li><a href='javascript:void(0);' onclick='load2(1,".($q).")'>$i</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load2(1,".($qq).")'>$i</a></li>";
 		}else {
-			$out.= "<li><a href='javascript:void(0);' onclick='load2(".$i.",".($q).")'>$i</a></li>";
+			$out.= "<li><a href='javascript:void(0);' onclick='load2(".$i.",".($qq).")'>$i</a></li>";
 		}
 	}
 
@@ -47,13 +47,13 @@ function paginate($reload, $page, $tpages, $adjacents, $q) {
 	// last
 
 	if($page<($tpages-$adjacents)) {
-		$out.= "<li><a href='javascript:void(0);' onclick='load2($tpages,".($q).")'>$tpages</a></li>";
+		$out.= "<li><a href='javascript:void(0);' onclick='load2($tpages,".($qq).")'>$tpages</a></li>";
 	}
 
 	// next
 
 	if($page<$tpages) {
-		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(".($page+1).",".($q).")'>$nextlabel</a></span></li>";
+		$out.= "<li><span><a href='javascript:void(0);' onclick='load2(".($page+1).",".($qq).")'>$nextlabel</a></span></li>";
 	}else {
 		$out.= "<li class='disabled'><span><a>$nextlabel</a></span></li>";
 	}

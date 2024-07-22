@@ -28,12 +28,11 @@ function load(page){
 
 function load2(page,qq){
 	
-	var q= qq;
-	
+	var qq= qq;
 	
 	$("#loader").fadeIn('slow');
 	$.ajax({
-		url:'./ajax/permisos_roles.php?action=ajax&page='+page+'&qq='+qq+'&q='+q,
+		url:'./ajax/permisos_roles.php?action=ajax&page='+page+'&qq='+qq,
 		beforeSend: function(objeto){
 			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
 		},
