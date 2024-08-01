@@ -359,7 +359,7 @@
                                                                     </div>  
                                                                     
                                                                     <div class="col-md-2 col-sm-3 col-xs-12">
-                                                                    <input type="date" id="fe1" name="fe1" onchange="mostrarResultados1(this)" value="<?php echo $fecha_in."-01" ?>" min="<?php echo  $fecha_in."-01" ?>" max="<?php echo $fecha_actual ?>"  class="form-control" onkeydown="return false">
+                                                                    <input type="date" id="fe1" name="fe1" onchange="mostrarResultados1(this)" value="<?php echo $fecha_in."-01" ?>" min="<?php echo  $fecha_inicio ?>" max="<?php echo $fecha_actual ?>"  class="form-control" onkeydown="return false">
                                                                     </div>
 
                                                                     <div class="control-label col-md-2 col-sm-2 col-xs-12">
@@ -367,7 +367,7 @@
                                                                     </div>  
                                                                    
                                                                     <div class="col-md-2 col-sm-3 col-xs-12">
-                                                                    <input type="date"  id="fe2" name="fe2" onchange="mostrarResultados2(this)" value="<?php echo $fecha_actual ?>"  min="<?php echo  $fecha_in."-01" ?>" max="<?php echo $fecha_actual ?>" class="form-control" onkeydown="return false">
+                                                                    <input type="date"  id="fe2" name="fe2" onchange="mostrarResultados2(this)" value="<?php echo $fecha_actual ?>"  min="<?php echo  $fecha_inicio ?>" max="<?php echo $fecha_actual ?>" class="form-control" onkeydown="return false">
                                                                     </div>
                                                                         
                                                                 </div>   

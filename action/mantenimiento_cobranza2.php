@@ -27,7 +27,7 @@
 		$fecha_add = date("Y-m-d");
 	
 		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_cobranza
-		($codigo,$valor_mantenimiento,'$fecha_add',0,0,'$fecha_add',$tipo_pago2,'$referencia2','',0,0,'',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
+		($codigo,$valor_mantenimiento,'$fecha_add','0',0,0,'$fecha_add',$tipo_pago2,'$referencia2','',0,0,'',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1");
 		
 		while($row = $resultado->fetch_assoc())

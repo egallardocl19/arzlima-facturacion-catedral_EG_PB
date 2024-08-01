@@ -12,6 +12,7 @@ $v1 = $_GET['variable1'];
 $consulta="call recibo_ticket($v1)";
 $resultado=$con->query($consulta);
 while ($row=$resultado->fetch_assoc()) {
+            $id = $row['id'];
 	 		$serie = $row['serie'];
 	 		$numero = $row['numero'];
 	 		$fecha = $row['fecha'];
@@ -23,12 +24,24 @@ while ($row=$resultado->fetch_assoc()) {
 	 		$signo = $row['signo'];
             $monto_total = $row['monto_total'];
             $clase = $row['clase'];
+            $idclase = $row['idclase'];
             $estado = $row['estado'];
             $tipo_pago = $row['tipo_pago'];
 		
 	 }	
 $resultado->close();  
 $con->next_result();
+
+                $consulta2="call recibo_ticket_agencia($id)";
+                $resultado2=$con->query($consulta2);
+                while ($row=$resultado2->fetch_assoc()) {
+                            
+                            $ruc = $row['ruc'];
+                            $agencia = $row['nombre'];
+                        
+                    }	
+                $resultado2->close();  
+                $con->next_result();
 $consulta_detalle="call recibo_ticket_detalle($v1)";
 $resultado_detalle=$con->query($consulta_detalle);
 ?>
@@ -152,9 +165,18 @@ $resultado_detalle=$con->query($consulta_detalle);
                
                 </table>
                 
-                <font size="1" style="font-family: Calibri">  FECHA:<?php echo $fecha?> - HORA: <?php echo $hora?></font> </br>
-                <font size="1" style="font-family: Calibri">  TICKET:<?php echo $clase?> - CAJERO: <?php echo $iduser_add?></font>
+                <font size="1" style="font-family: Calibri">  FECHA : <?php echo $fecha?> - HORA : <?php echo $hora?></font> </br>
+                <font size="1" style="font-family: Calibri">  TICKET : <?php echo $clase?> - CAJERO : <?php echo $iduser_add?></font>
+                <?php
+                if($idclase==3){
+                $mostrar_agencia=$ruc."-".$agencia;
+                ?>
+                </br><font size="1" style="font-family: Calibri">  AGENCIA : <?php echo $mostrar_agencia?></font>
+                <?php
+                }
+
                 
+               ?>
        
       
                 <table border="0px"  style="border-collapse:collapse; text-align:center; margin:auto" width ="50%" height ="10px">

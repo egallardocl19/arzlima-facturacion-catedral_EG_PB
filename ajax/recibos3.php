@@ -42,12 +42,12 @@
         $qqq2 = mysqli_real_escape_string($con,(strip_tags($_REQUEST['qqq2'], ENT_QUOTES)));
 
          $aColumns = array('CONCAT(t.serie,"-",t.numero)');//Columnas de busqueda  
-         $sTable = " ticket t, tipo_moneda tm ";
-         $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 ";
+         $sTable = " ticket t, tipo_moneda tm, agencias_movimientos am ";
+         $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket ";
 
         if ( $_GET['qqq'] != "" ) 
         {
-            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -58,7 +58,7 @@
 
         if ( $_GET['qqq1'] != "" ) 
         {
-            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' OR ";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  (t.fecha='".$qqq1."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
@@ -66,7 +66,7 @@
  
         if ( $_GET['qqq2']!= "" ) 
         {
-            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.idestado_ticket='".$qqq2."' OR ";
+            $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  (t.idestado_ticket='".$qqq2."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
@@ -74,7 +74,7 @@
 
         if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "") 
        {
-           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  t.fecha='".$qqq1."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -84,7 +84,7 @@
        }
        if ( $_GET['qqq'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.idestado_ticket='".$qqq2."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and t.id=am.idticket and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -94,14 +94,14 @@
        }
        if ( $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  (t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' OR ";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  (t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' OR ";
            
            $sWhere = substr_replace( $sWhere, "", -3 );
            $sWhere .= ')';
        }
        if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "" && $_GET['qqq2'] != "") 
        {
-           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3  and  t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' and (";
+           $sWhere = " where t.idtipo_moneda=tm.id and t.idclase_ticket=3 and t.id=am.idticket and  t.fecha='".$qqq1."' and  t.idestado_ticket='".$qqq2."' and (";
            for ( $i=0 ; $i<count($aColumns) ; $i++ )
            {
                $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -125,7 +125,8 @@
         $reload = './expences.php';
 		//consulta principal para obtener los datos
         $sql="SELECT t.id,t.serie,t.numero,t.fecha,t.hora,t.dni,t.cantidad_total,tm.signo,format(t.monto_total,2) as importe,
-        (select nombre from estado_ticket where id=t.idestado_ticket) as estado FROM  $sTable  $sWhere LIMIT $offset,$per_page";
+        (select nombre from estado_ticket where id=t.idestado_ticket) as estado,
+        (select concat(dni_ruc,' - ',nombre) from agencia where id=am.idagencia) as agencia  FROM  $sTable  $sWhere LIMIT $offset,$per_page";
         $query = mysqli_query($con, $sql);
         if ($numrows>0){
             
@@ -140,6 +141,7 @@
                         <th class="column-title">Cant. </th>
                         <th class="column-title">Monto </th>
                         <th class="column-title">Estado </th>
+                        <th class="column-title">Agencia </th>
 						
                         <th class="column-title no-link last"><span class="nobr"></span></th>
                     </tr>
@@ -157,6 +159,7 @@
                             $signo=$r['signo'];//
                             $importe=$r['importe'];//
                             $estado=$r['estado'];//
+                            $agencia=$r['agencia'];//
                         
                           
      
@@ -189,6 +192,8 @@
                         <?php echo $signo." ".$importe; ?></td>
                         <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
                         <?php echo $estado; ?></td>
+                        <td <?php if ($estado=="ANULADO") {?>style="color:#ff0000"<?php }else if($estado=="PAGADO") {?>style="color:#128F1B"<?php }?>>
+                        <?php echo $agencia; ?></td>
                        
 
                         
@@ -213,7 +218,7 @@
                     } //en while
                 ?>
                 <tr>
-                    <td colspan=11><span class="pull-right">
+                    <td colspan=8><span class="pull-right">
                         <?php echo paginate($reload, $page, $total_pages, $adjacents);?>
                     </span></td>
                 </tr>

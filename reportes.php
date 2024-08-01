@@ -22,7 +22,7 @@
         $cajero =mysqli_query($con, "select * from user");
     }
     //$cajero =mysqli_query($con, "select * from user where idroles>1");
-    $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2,5)");
+    $tipo_ticket =mysqli_query($con, "select id,nombre from clase_ticket where idestado_dato=1 and id in(1,2,3,5)");
     //$ticket =mysqli_query($con, "select concat(serie,\"-\",numero) as codigo,serie,numero from ticket_control group by serie,numero");
     //$cobranza =mysqli_query($con, "select n_cobranza from cobranza");
     $tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in(4,5,7) and idestado_dato=1");

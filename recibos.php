@@ -554,50 +554,50 @@
               
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:1}, function(data){
                 $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh'); 
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val(), condicion2: 0}, function(data){
                         importe1=data;
                     });          
                 });
 
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:2}, function(data){
                 $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');              
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val(), condicion2: 0}, function(data){
                         importe2=data;
                     }); 
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:3}, function(data){
                 $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');            
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val(), condicion2: 0}, function(data){
                         importe3=data;
                     });   
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:4}, function(data){
                 $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');            
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val(), condicion2: 0}, function(data){
                         importe4=data;
                     });   
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:9}, function(data){
                 $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val(), condicion2: 0}, function(data){
                         importe5=data;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:12}, function(data){
                 $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val(), condicion2: 0}, function(data){
                         importe6=data;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:5}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val(), condicion2: 0}, function(data){
                         importe7=data;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase1, tipo:6}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val(), condicion2: 0}, function(data){
                         importe8=data;
                     });             
                 });
@@ -644,49 +644,49 @@
 
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:10}, function(data){
                 $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');     
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val(), condicion2: 0}, function(data){
                         importe1=data;
                     });              
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:11}, function(data){
                 $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');    
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val(), condicion2: 0}, function(data){
                         importe2=data;
                     });           
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val(), condicion2: 0}, function(data){
                         importe3=0;
                     });               
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');   
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val(), condicion2: 0}, function(data){
                         importe4=0;
                     });            
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh'); 
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val(), condicion2: 0}, function(data){
                         importe5=0;
                     });                
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val(), condicion2: 0}, function(data){
                         importe6=0;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val(), condicion2: 0}, function(data){
                         importe7=0;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase2, tipo:0}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val(), condicion2: 0}, function(data){
                         importe8=0;
                     });             
                 });
@@ -741,49 +741,49 @@
 
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:7}, function(data){
                 $("#idtipo1").html(data).addClass("selectpicker").selectpicker('refresh');     
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo1").val(), condicion2: 0}, function(data){
                         importe1=data;
                     });              
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo2").html(data).addClass("selectpicker").selectpicker('refresh');    
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo2").val(), condicion2: 0}, function(data){
                         importe2=0;
                     });           
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo3").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo3").val(), condicion2: 0}, function(data){
                         importe3=0;
                     });               
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo4").html(data).addClass("selectpicker").selectpicker('refresh');   
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo4").val(), condicion2: 0}, function(data){
                         importe4=0;
                     });            
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo5").html(data).addClass("selectpicker").selectpicker('refresh'); 
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo5").val(), condicion2: 0}, function(data){
                         importe5=0;
                     });                
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo6").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo6").val(), condicion2: 0}, function(data){
                         importe6=0;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo7").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo7").val(), condicion2: 0}, function(data){
                         importe7=0;
                     });             
                 });
                 $.post("includes/getRecibo_html.php", { caso: 4, condicion: clase3, tipo:0}, function(data){
                 $("#idtipo8").html(data).addClass("selectpicker").selectpicker('refresh');  
-                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val()}, function(data){
+                $.post("includes/getRecibo_val.php", { caso: 3, condicion: $("#idtipo8").val(), condicion2: 0}, function(data){
                         importe8=0;
                     });             
                 });
@@ -847,7 +847,7 @@
                                 $("#monto_total1").val(0); 
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion1}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion1, condicion2: 0}, function(data){
                                     importe1=data;                   
                             });  
                             }                        
@@ -869,7 +869,7 @@
                                 $("#monto_total2").val(0);
                                 global_cal();  
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion2}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion2, condicion2: 0}, function(data){
                                     importe2=data;                   
                             });  
                             }                        
@@ -891,7 +891,7 @@
                                 $("#monto_total3").val(0);  
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion3}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion3, condicion2: 0}, function(data){
                                     importe3=data;                   
                             });  
                             }                        
@@ -913,7 +913,7 @@
                                 $("#monto_total4").val(0);   
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion4}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion4, condicion2: 0}, function(data){
                                     importe4=data;                   
                             });  
                             }                        
@@ -935,7 +935,7 @@
                                 $("#monto_total5").val(0);  
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion5}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion5, condicion2: 0}, function(data){
                                     importe5=data;                   
                             });  
                             }                        
@@ -957,7 +957,7 @@
                                 $("#monto_total6").val(0);  
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion6}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion6, condicion2: 0}, function(data){
                                     importe6=data;                   
                             });  
                             }                        
@@ -979,7 +979,7 @@
                                 $("#monto_total7").val(0); 
                                 global_cal(); 
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion7}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion7, condicion2: 0}, function(data){
                                     importe7=data;                   
                             });  
                             }                        
@@ -1002,7 +1002,7 @@
                                 $("#monto_total8").val(0);  
                                 global_cal();
                             }else{
-                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion8}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: 3, condicion: condicion8, condicion2: 0}, function(data){
                                     importe8=data;                   
                             });  
                             }                        

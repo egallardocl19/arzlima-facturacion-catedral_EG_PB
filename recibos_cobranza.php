@@ -34,7 +34,7 @@
     //$forma_pago2=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,7)");
     $forma_pago3=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,5,7)");
     
-    //$tipo_venta=mysqli_query($con, "SELECT * FROM tipo_venta where idestado_dato=1");
+    $tipo_ticket=mysqli_query($con, "SELECT * FROM clase_ticket where id in (1,2,5) and idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
              
     //PERMISOS
@@ -348,17 +348,14 @@
                            
                                                                        
                             });   
-        }
+        } 
 
         function buscarcobranza() {
-        //document.getElementById("add").reset();
-        //$('#idticket').val(0).addClass("selectpicker").selectpicker('refresh'); 
-        //$('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');                 
+                     
         condicion=$("#fecha").val(); 
-       
-        //condicion = 1;
-                            caso = "4";
-                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
+        condicion2=$("#tipo_ticket").val(); 
+                            caso = "6";
+                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: condicion2}, function(data){
                                 $("#monto_total_ticket").val(data);      
                                     
                             });   

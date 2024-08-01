@@ -37,6 +37,19 @@
 
                                     <input type="date" id="fecha" name="fecha" class="form-control" placeholder="Fecha Hasta" >
                                 </div>
+
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12" style="color:red"><i class="fa fa-ticket" aria-hidden="true"></i> Tipo Ticket:</label>
+                                
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+
+                                    <select  class="form-control"  id="tipo_ticket" name="tipo_ticket" data-size="5" style="max-width: 100%!important;" >
+                                    
+                                    <?php foreach($tipo_ticket as $p):?>
+                                        <option value="<?php echo $p['idrecibos_serial']; ?>"><?php echo $p['nombre'];  ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
                                 
                                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
                                
@@ -57,9 +70,9 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Moneda:</label>
                                 
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-3 col-sm-3 col-xs-12">
 
-                                    <select  class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="tipo_moneda" name="tipo_moneda" data-size="5" style="max-width: 100%!important;" >
+                                    <select  class="form-control"  id="tipo_moneda" name="tipo_moneda" data-size="5" style="max-width: 100%!important;" >
                                     
                                     <?php foreach($moneda as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre'];  ?></option>
@@ -70,7 +83,7 @@
                                 
                                 
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12" style="color:red"><i class="fa fa-money" aria-hidden="true"></i> Monto Total: </label>
-                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-md-3 col-sm-3 col-xs-12">
                                
                                 <input type="text" id="monto_total_ticket" name="monto_total_ticket"  class="form-control" style="color:red; font-weight: bold; font-size:20px;" placeholder="0.00" readonly="true">
                                 </div>
@@ -209,7 +222,7 @@
                         $("#idticket option:selected").each(function () {
                             condicion = $(this).val();
                             caso = "2";
-                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: 0}, function(data){
                              var res = data.split("-");    
                             $("#dni").val(res[0]);  
                             $("#razon_social").val(res[1]);  
@@ -224,7 +237,20 @@
                             });                          
                         });
                     })
-                });      
+                });    
+                
+                $(document).ready(function(){
+                    $("#tipo_ticket").change(function () {
+                        $("#tipo_ticket option:selected").each(function () {
+                            
+                           
+                            $("#monto_total_ticket").val(0);  
+
+                           
+                                                    
+                        });
+                    })
+                });    
     </script> 
 
 <script> //VALIDAR CARACTERES PARA INGRESAR AL CAMPO TEXTO

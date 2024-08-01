@@ -631,7 +631,7 @@
                             condicion = $(this).val();
                             caso = "5";
                             document.getElementById("save_data").style.display = "block";
-                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion}, function(data){
+                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: 0}, function(data){
                             $("#celular").val(data);   
                             celular=$("#celular").val();
                             cantidadx=$("#cantidad1").val();

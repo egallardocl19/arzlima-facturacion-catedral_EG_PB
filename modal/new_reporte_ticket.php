@@ -100,7 +100,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Inicio:<span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="time" name="hora_inicio" class="form-control" value="08:00" >
+                                <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="08:00" >
                                 </div>
 
                             </div>   
@@ -109,7 +109,7 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Fin:<span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input type="time" name="hora_fin" class="form-control" value="17:00" >
+                                <input type="time" id="hora_fin" name="hora_fin" class="form-control" value="17:00" >
                                 </div>
 
                             </div>   
@@ -149,4 +149,25 @@
         </div>
     </div> <!-- /Modal -->
     <script language="javascript" src="js/jquery-3.1.1.min.js"></script>
-    
+
+    <script language="javascript">
+                $(document).ready(function(){
+                    $("#tipo_ticket").change(function () {
+                        $("#tipo_ticket option:selected").each(function () {
+                            condicion = $(this).val();
+
+                            if(condicion==3){
+                                
+                                $("#tipo_pago").prop("disabled",true);
+                                $("#hora_inicio").prop("disabled",true);
+                                $("#hora_fin").prop("disabled",true);
+                            }else{
+                               
+                                $("#tipo_pago").prop("disabled",false);
+                                $("#hora_inicio").prop("disabled",false);
+                                $("#hora_fin").prop("disabled",false);
+                            }   
+                        });
+                    })
+                });      
+    </script> 

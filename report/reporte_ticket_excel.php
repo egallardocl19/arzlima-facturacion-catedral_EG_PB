@@ -14,14 +14,33 @@
 	$idcajero = 0;
 	$hora_inicio = "";
 	$hora_fin =  "";
+	$valor=0;
 
 	$tipo_ticket = $_POST['tipo_ticket'];
-	$tipo_pago = $_POST['tipo_pago'];
+	//$tipo_pago = $_POST['tipo_pago'];
+	if (empty($_POST['tipo_pago'])){
+		$tipo_pago = 0;
+	}else{
+		$tipo_pago = $_POST['tipo_pago'];
+	
+	}
 	$fecha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
 	$idcajero = $_POST['idcajero'];
-	$hora_inicio = $_POST['hora_inicio'];
-	$hora_fin = $_POST['hora_fin'];
+	//$hora_inicio = $_POST['hora_inicio'];
+	if (empty($_POST['hora_inicio'])){
+		$hora_inicio = "";
+	}else{
+		$hora_inicio = $_POST['hora_inicio'];
+	}
+
+	//$hora_fin = $_POST['hora_fin'];
+	if (empty($_POST['hora_fin'])){
+		$hora_fin = "";
+	}else{
+		$hora_fin = $_POST['hora_fin'];
+
+	}
 		
 
 
@@ -97,7 +116,13 @@
 			$where.="";
 		}
 		
-		$cadena_script00="call reporte_ticket('1','$where')";
+		if ($tipo_ticket==3){
+			$valor=8;
+	   }else{
+		   $valor=1;
+	   }
+	   
+		$cadena_script00="call reporte_ticket('$valor','$where')";
 		$style='mso-number-format:"@";';
 
 			$query = mysqli_query($con, $cadena_script00) or die(mysqli_errno());

@@ -12,14 +12,35 @@ $fecha2 = "";
 $idcajero = 0;
 $hora_inicio = "";
 $hora_fin =  "";
+$valor=0;
 
 $tipo_ticket = $_POST['tipo_ticket'];
-$tipo_pago = $_POST['tipo_pago'];
+
+//$tipo_pago = $_POST['tipo_pago'];
+if (empty($_POST['tipo_pago'])){
+	$tipo_pago = 0;
+}else{
+	$tipo_pago = $_POST['tipo_pago'];
+
+}
 $fecha1 = $_POST['fecha_inicio'];
 $fecha2 = $_POST['fecha_fin']; 
 $idcajero = $_POST['idcajero'];
-$hora_inicio = $_POST['hora_inicio'];
-$hora_fin = $_POST['hora_fin'];
+
+//$hora_inicio = $_POST['hora_inicio'];
+if (empty($_POST['hora_inicio'])){
+	$hora_inicio = "";
+}else{
+	$hora_inicio = $_POST['hora_inicio'];
+}
+
+//$hora_fin = $_POST['hora_fin'];
+if (empty($_POST['hora_fin'])){
+	$hora_fin = "";
+}else{
+	$hora_fin = $_POST['hora_fin'];
+
+}
 
 
 
@@ -59,7 +80,13 @@ if($hora_fin!=''){
 	$where.="";
 }
 
-$cadena_script0="call reporte_ticket('1','$where')";
+if ($tipo_ticket==3){
+ 	$valor=8;
+}else{
+	$valor=1;
+}
+
+$cadena_script0="call reporte_ticket('$valor','$where')";
 $consulta=$cadena_script0;
 $resultado=$con->query($consulta);
 
@@ -72,7 +99,13 @@ function Header()
 {
 	include "../config/configreport.php";//Contiene funcion que conecta a la base de datos
 	//$dni = $_POST['dni'];
-	$tipo_pago = $_POST['tipo_pago'];
+	//$tipo_pago = $_POST['tipo_pago'];
+	if (empty($_POST['tipo_pago'])){
+		$tipo_pago = 0;
+	}else{
+		$tipo_pago = $_POST['tipo_pago'];
+	
+	}
 	$tipo_ticket = $_POST['tipo_ticket'];
 	$fecha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
@@ -122,7 +155,7 @@ function Header()
 	$fecha =date('d/m/Y'); 
 	$time =date('h:i:s a'); 
     // Logo
-    $this->Image('../images/profiles/logo4.png',10,5,66);
+    $this->Image('../images/profiles/logo4.png',10,5,50);
 
     $this->SetFont('Arial','B',12);
 
@@ -136,13 +169,13 @@ function Header()
 	$this->SetTextColor(37,67,120);
 	$this->Cell(25,5,utf8_decode('FECHA INICIO: '),0,0,'C');
 	$this->Cell(5);
-	$this->Cell(30,5,utf8_decode($inicio),0,0,'C');
+	$this->Cell(30,5,$inicio,0,0,'C');
 	$this->Cell(43);
 	$this->Cell(15,5,'Hora: '.$time,0,1,'C');
 	$this->Cell(67);
 	$this->Cell(25,5,'FECHA FIN:',0,0,'C');
 	$this->Cell(5);
-	$this->Cell(30,5,utf8_decode($inicio2),0,1,'C');
+	$this->Cell(30,5,$inicio2,0,1,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);
 	
@@ -203,7 +236,7 @@ $moneda='';
 	while ($row=$resultado->fetch_assoc()) {
 		
 			$pdf->SetFillColor(255, 255, 255);
-			$pdf->Cell(23,5,utf8_decode($row['clase_ticket']),0,0,'',0);
+			$pdf->Cell(23,5,substr(utf8_decode($row['clase_ticket']),0,13),0,0,'',0);
 			$pdf->Cell(10,5,utf8_decode($row['serie']),0,0,'C',0);
 			$pdf->Cell(18,5,utf8_decode($row['numero']),0,0,'C',0);
 			$pdf->Cell(18,5,utf8_decode($row['fecha']),0,0,'C',0);

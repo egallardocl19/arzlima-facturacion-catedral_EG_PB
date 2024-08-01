@@ -15,6 +15,7 @@
 		$codigo = $_POST["codigo"]; 
 		$valor_mantenimiento = $_POST["valor_mantenimiento"];
 		$fecha = $_POST["fecha"];
+		$tipo_ticket = $_POST["tipo_ticket"];
 		$tipo_moneda = $_POST["tipo_moneda"];
 		$monto_total_ticket = $_POST["monto_total_ticket"];
 
@@ -31,7 +32,7 @@
 		$fecha_add = date("Y-m-d");
 	
 		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_cobranza
-		($codigo,$valor_mantenimiento,'$fecha',$tipo_moneda,$monto_total_ticket,'$fecha2',$tipo_pago,'$n_pago','$n_deposito','$banco','$cuenta','$observaciones',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
+		($codigo,$valor_mantenimiento,'$fecha','$tipo_ticket',$tipo_moneda,$monto_total_ticket,'$fecha2',$tipo_pago,'$n_pago','$n_deposito','$banco','$cuenta','$observaciones',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1");
 		
 		while($row = $resultado->fetch_assoc())
