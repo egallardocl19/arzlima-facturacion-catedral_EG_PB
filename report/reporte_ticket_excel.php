@@ -6,8 +6,8 @@
 	header("Expires: 0");
 
 	$output = "";
-	//$dni = 0;
 	$tipo_pago = 0;
+	$agencia = 0;
 	$tipo_ticket = 0;
 	$fecha1 = "";
 	$fecha2 = "";
@@ -22,6 +22,12 @@
 		$tipo_pago = 0;
 	}else{
 		$tipo_pago = $_POST['tipo_pago'];
+	
+	}
+	if (empty($_POST['idagencia'])){
+		$agencia = 0;
+	}else{
+		$agencia = $_POST['idagencia'];
 	
 	}
 	$fecha1 = $_POST['fecha_inicio'];
@@ -56,12 +62,13 @@
 	}
 	
 	if(ISSET($_POST['export'])){
+		if($tipo_ticket==3){
 		$output .="
 			<table border='1'>
 				<thead>
 					<tr style='height:40px;'>
 						
-						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='11' >REPORTE DE TICKET - ".$nombre_clase."</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='11'>REPORTE DE TICKET - ".$nombre_clase."</th>
 						
 					</tr>
 					<tr >
@@ -70,16 +77,40 @@
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>NUMERO</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>FECHA DE EMISION</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>HORA</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>PERSONAS</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>CANTIDAD</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>MONEDA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>TOTAL</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO PAGO</th>
-						<th bgcolor='#1262EE' style='color:#FFFFFF'>N REFERENCIA</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>RUC</th>
+						<th bgcolor='#1262EE' style='color:#FFFFFF'>AGENCIA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
 					</tr>
 				<tbody>
 		";
-
+	}else{
+		$output .="
+		<table border='1'>
+			<thead>
+				<tr style='height:40px;'>
+					
+					<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='11'>REPORTE DE TICKET - ".$nombre_clase."</th>
+					
+				</tr>
+				<tr >
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO TICKET</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>SERIE</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>NUMERO</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>FECHA DE EMISION</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>HORA</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>CANTIDAD</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>MONEDA</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>TOTAL</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO PAGO</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>N REFERENCIA</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
+				</tr>
+			<tbody>
+	";
+	}
 		if($tipo_ticket!='0'){
 			$where=" and t.idclase_ticket=".$tipo_ticket."";
 		}else{
@@ -87,6 +118,11 @@
 		}
 		if($tipo_pago!='0'){
 			$where.=" and c.idformapago=".$tipo_pago."";
+		}else{
+			$where.="";
+		}
+		if($agencia!='0'){
+			$where.=" and am.idagencia=".$agencia."";
 		}else{
 			$where.="";
 		}
@@ -128,22 +164,42 @@
 			$query = mysqli_query($con, $cadena_script00) or die(mysqli_errno());
 						while($fetch = mysqli_fetch_array($query)){
 							
-							$output .= "
-										<tr>
-											<td><b>".utf8_decode($fetch['clase_ticket'])."</b></td>
-											<td style='".$style."'><b>".utf8_decode($fetch['serie'])."</b></td>
-											<td style='".$style."'>".utf8_decode($fetch['numero'])."</td>
-											<td>".utf8_decode($fetch['fecha'])."</td>
-											<td>".utf8_decode($fetch['hora'])."</td>
-											<td>".utf8_decode($fetch['cantidad_total'])."</td>
-											<td>".utf8_decode($fetch['nombre_moneda'])."</td>
-											<td>".utf8_decode($fetch['monto_total'])."</td>
-											<td>".utf8_decode($fetch['nombre_pago'])."</td>
-											<td>".utf8_decode($fetch['n_referencia'])."</td>
-											<td>".utf8_decode($fetch['cajero'])."</td>
 							
-										</tr>
-							";
+							if ($tipo_ticket==3){
+								$output .= "
+								<tr>
+									<td><b>".utf8_decode($fetch['clase_ticket'])."</b></td>
+									<td style='".$style."'><b>".utf8_decode($fetch['serie'])."</b></td>
+									<td style='".$style."'>".utf8_decode($fetch['numero'])."</td>
+									<td>".utf8_decode($fetch['fecha'])."</td>
+									<td>".utf8_decode($fetch['hora'])."</td>
+									<td>".utf8_decode($fetch['cantidad_total'])."</td>
+									<td>".utf8_decode($fetch['nombre_moneda'])."</td>
+									<td>".utf8_decode($fetch['monto_total'])."</td>
+									<td>".utf8_decode($fetch['dni_ruc'])."</td>
+									<td>".utf8_decode($fetch['agencia'])."</td>
+									<td>".utf8_decode($fetch['cajero'])."</td>
+					
+								</tr>
+								";
+							}else{
+								$output .= "
+								<tr>
+									<td><b>".utf8_decode($fetch['clase_ticket'])."</b></td>
+									<td style='".$style."'><b>".utf8_decode($fetch['serie'])."</b></td>
+									<td style='".$style."'>".utf8_decode($fetch['numero'])."</td>
+									<td>".utf8_decode($fetch['fecha'])."</td>
+									<td>".utf8_decode($fetch['hora'])."</td>
+									<td>".utf8_decode($fetch['cantidad_total'])."</td>
+									<td>".utf8_decode($fetch['nombre_moneda'])."</td>
+									<td>".utf8_decode($fetch['monto_total'])."</td>
+									<td>".utf8_decode($fetch['nombre_pago'])."</td>
+									<td>".utf8_decode($fetch['n_referencia'])."</td>
+									<td>".utf8_decode($fetch['cajero'])."</td>
+					
+								</tr>
+								";
+							}
 							}	
 		
 	

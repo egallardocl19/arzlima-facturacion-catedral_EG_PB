@@ -41,7 +41,7 @@
                                 
                                 </div>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="bot3">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Tipo Pago:</label>
                                 
                                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -51,6 +51,22 @@
                                     <option value="0">--Seleccione Tipo Pago--</option>  
                                     <?php foreach($tipo_pago as $p):?>
                                         <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="bot4">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"><i class="fa fa-cubes" aria-hidden="true"></i> Agencia :</label>
+                                
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+
+                                    <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true" id="idagencia" name="idagencia" data-size="5" style="max-width: 100%!important;" >
+                                    
+                                    <option value="0">--Seleccione Agencia--</option>  
+                                    <?php foreach($agencia as $p):?>
+                                        <option value="<?php echo $p['id']; ?>"><?php echo $p['agencia']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 
@@ -96,7 +112,7 @@
 
                             </div>   
 
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" id="bot5">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Inicio:<span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
@@ -105,7 +121,7 @@
 
                             </div>   
 
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 form-group" id="bot6">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12"><i class="fa fa-history" aria-hidden="true"></i> Hora Fin:<span class="required"></span>
                                 </label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
@@ -120,23 +136,23 @@
                            
                         <div class="form-group">
                             <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-1">
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte Ticket </button>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte Ticket </button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <button class="btn btn-success" name="export" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar Reporte Ticket</button>
+                                </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button class="btn btn-success" name="export" formaction="<?php echo $rutaserver2 ?>"><span class="fa fa-file-excel-o"></span> Exportar Reporte Ticket</button>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group" id="bot2">
                             <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-1">
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver0 ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte Detalle</button>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                            <button class="btn btn-success" name="export2" formaction="<?php echo $rutaserver02 ?>"><span class="fa fa-file-excel-o"></span> Exportar Reporte Detalle</button>
-                            </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <button id="save_data_reportepropi" type="submit" class="btn btn-primary"  formaction="<?php echo $rutaserver0 ?>" ><i class="fa fa-file-pdf-o"> </i> Generar Reporte Detalle</button>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                <button class="btn btn-success" name="export2" formaction="<?php echo $rutaserver02 ?>"><span class="fa fa-file-excel-o"></span> Exportar Reporte Detalle</button>
+                                </div>
                             </div>
                         </div>    
                         </form>
@@ -155,17 +171,31 @@
                     $("#tipo_ticket").change(function () {
                         $("#tipo_ticket option:selected").each(function () {
                             condicion = $(this).val();
-
+                            
                             if(condicion==3){
-                                
+                               
                                 $("#tipo_pago").prop("disabled",true);
                                 $("#hora_inicio").prop("disabled",true);
                                 $("#hora_fin").prop("disabled",true);
-                            }else{
+                                $("#idagencia").val(0).addClass("selectpicker").selectpicker('refresh');     
+                                document.getElementById("bot2").style.display = "none";
+                                document.getElementById("bot3").style.display = "none";
+                                document.getElementById("bot4").style.display = "block";
+                                document.getElementById("bot5").style.display = "none";
+                                document.getElementById("bot6").style.display = "none";
                                
+                            }else{
+                                
                                 $("#tipo_pago").prop("disabled",false);
                                 $("#hora_inicio").prop("disabled",false);
                                 $("#hora_fin").prop("disabled",false);
+                                $("#idagencia").val(0).addClass("selectpicker").selectpicker('refresh');  
+                                document.getElementById("bot2").style.display = "block";
+                                document.getElementById("bot3").style.display = "block";
+                                document.getElementById("bot4").style.display = "none";
+                                document.getElementById("bot5").style.display = "block";
+                                document.getElementById("bot6").style.display = "block";
+                               
                             }   
                         });
                     })

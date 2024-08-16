@@ -6,6 +6,7 @@ include "../head2.php";
 
 //$dni = 0;
 $tipo_pago = 0;
+$agencia = 0;
 $tipo_ticket = 0;
 $fecha1 = "";
 $fecha2 = "";
@@ -21,6 +22,12 @@ if (empty($_POST['tipo_pago'])){
 	$tipo_pago = 0;
 }else{
 	$tipo_pago = $_POST['tipo_pago'];
+
+}
+if (empty($_POST['idagencia'])){
+	$agencia = 0;
+}else{
+	$agencia = $_POST['idagencia'];
 
 }
 $fecha1 = $_POST['fecha_inicio'];
@@ -51,6 +58,11 @@ if($tipo_ticket!='0'){
 }
 if($tipo_pago!='0'){
 	$where.=" and c.idformapago=".$tipo_pago."";
+}else{
+	$where.="";
+}
+if($agencia!='0'){
+	$where.=" and am.idagencia=".$agencia."";
 }else{
 	$where.="";
 }
@@ -98,8 +110,7 @@ class PDF extends FPDF
 function Header()
 {
 	include "../config/configreport.php";//Contiene funcion que conecta a la base de datos
-	//$dni = $_POST['dni'];
-	//$tipo_pago = $_POST['tipo_pago'];
+
 	if (empty($_POST['tipo_pago'])){
 		$tipo_pago = 0;
 	}else{
@@ -107,7 +118,7 @@ function Header()
 	
 	}
 	$tipo_ticket = $_POST['tipo_ticket'];
-	$fecha1 = $_POST['fecha_inicio'];
+	$fec_ha1 = $_POST['fecha_inicio'];
 	$fecha2 = $_POST['fecha_fin'];
 	$nombre_clase ="";
 	$nombre_pago ="";
@@ -138,9 +149,9 @@ function Header()
 	$inicio ="";
 	$inicio2 ="";
 
-	if ($fecha1!="") {
-		$fecha1=$fecha1;
-		$inicio = strftime("%A, %d de %B del %Y", strtotime($fecha1));
+	if ($fec_ha1!="") {
+		$fecha1=$fec_ha1;
+		$inicio = strftime("%A, %d de %B del %Y", strtotime($fec_ha1));
 	}else{
 		$fecha1="";
 	}
@@ -197,10 +208,16 @@ function Header()
 	$this->Cell(18,6,utf8_decode('F.EMISIÓN'),1,0,'C',TRUE);
 	$this->Cell(12,6,utf8_decode('HORA'),1,0,'C',TRUE);
 	$this->Cell(10,6,utf8_decode('CANT.'),1,0,'C',TRUE);
-	$this->Cell(17,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
-	$this->Cell(20,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
-	$this->Cell(22,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE);
-	$this->Cell(22,6,utf8_decode('REFERENCIA'),1,0,'C',TRUE);
+	$this->Cell(14,6,utf8_decode('MONEDA'),1,0,'C',TRUE);
+	$this->Cell(16,6,utf8_decode('TOTAL'),1,0,'C',TRUE);
+	if ($tipo_ticket==3){
+		$this->Cell(18,6,utf8_decode('RUC'),1,0,'C',TRUE);
+		$this->Cell(33,6,utf8_decode('AGENCIA'),1,0,'C',TRUE);
+	}else{
+		$this->Cell(26,6,utf8_decode('TIPO PAGO'),1,0,'C',TRUE);
+		$this->Cell(25,6,utf8_decode('REFERENCIA'),1,0,'C',TRUE);
+	}
+	
 	$this->Cell(20,6,utf8_decode('CAJERO'),1,1,'C',TRUE); 
 }
 // Pie de página
@@ -224,6 +241,8 @@ $suma_cantidad2=0;
 $suma_totales2=0;
 $suma_cantidad3=0;
 $suma_totales3=0;
+$suma_cantidad4=0;
+$suma_totales4=0;
 $producto_cantidad=0;
 $producto_totales=0;
 $producto_cantidad2=0;
@@ -242,10 +261,15 @@ $moneda='';
 			$pdf->Cell(18,5,utf8_decode($row['fecha']),0,0,'C',0);
 			$pdf->Cell(12,5,utf8_decode($row['hora']),0,0,'C',0);
 			$pdf->Cell(10,5,utf8_decode($row['cantidad_total']),0,0,'C',0);
-			$pdf->Cell(17,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
-			$pdf->Cell(20,5,number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
-			$pdf->Cell(22,5,utf8_decode($row['nombre_pago']),0,0,'C',0);
-			$pdf->Cell(22,5,utf8_decode($row['n_referencia']),0,0,'C',0);
+			$pdf->Cell(14,5,utf8_decode($row['nombre_moneda']),0,0,'C',0);
+			$pdf->Cell(16,5,number_format(utf8_decode($row['monto_total']),2),0,0,'C',0);
+			if ($tipo_ticket==3){
+				$pdf->Cell(18,5,utf8_decode($row['dni_ruc']),0,0,'C',0);
+				$pdf->Cell(33,5,substr(utf8_decode($row['agencia']),0,18),0,0,'C',0);
+			}else{
+				$pdf->Cell(26,5,utf8_decode($row['nombre_pago']),0,0,'C',0);
+				$pdf->Cell(25,5,utf8_decode($row['n_referencia']),0,0,'C',0);
+			}
 			$pdf->Cell(20,5,utf8_decode($row['cajero']),0,1,'C',0);
 			$clase_ticket=$row['idclase_ticket'];
 			if ($clase_ticket ==1 or $clase_ticket ==2 or $clase_ticket ==3 ){
@@ -261,6 +285,10 @@ $moneda='';
 				if($row['nombre_pago']=="TRANSFERENCIA"){
 					$suma_cantidad3=$suma_cantidad3+$row['cantidad_total'];
 					$suma_totales3=$suma_totales3+$row['monto_total'];
+				}
+				if ($tipo_ticket==3){
+				$suma_cantidad4=$suma_cantidad4+$row['cantidad_total'];
+				$suma_totales4=$suma_totales4+$row['monto_total'];
 				}
 			}
 			if ($clase_ticket ==5){
@@ -315,6 +343,18 @@ $moneda='';
 			$pdf->Cell(40,5,'Personas: '.$suma_cantidad3,1,0,'C',0);
 			$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales3,2),1,1,'C',0);
 			}
+
+			if($suma_cantidad4>0){
+				$pdf->Cell(30);
+				$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+				$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(60,5,utf8_decode('Total Venta AGENCIA AL CREDITO.:'),1,0,'C',TRUE);
+				$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+				//$pdf->Cell(20);
+				$pdf->Cell(40,5,'Personas: '.$suma_cantidad4,1,0,'C',0);
+				$pdf->Cell(40,5,'Ingreso Total: '.$moneda.number_format($suma_totales4,2),1,1,'C',0);
+				}
+
 			$suma_cantidad_entradas=$suma_cantidad+$suma_cantidad2+$suma_cantidad3;
 			if($suma_cantidad_entradas>0){
 				$pdf->Cell(30);

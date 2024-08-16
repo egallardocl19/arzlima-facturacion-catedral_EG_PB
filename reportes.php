@@ -27,6 +27,7 @@
     //$cobranza =mysqli_query($con, "select n_cobranza from cobranza");
     //$tipo_pago =mysqli_query($con, "select id,nombre from formapago where id in(4,5,7) and idestado_dato=1");
     $tipo_pago=mysqli_query($con, "SELECT id,nombre FROM formapago where idestado_dato=1 AND id<>6"); 
+    $agencia=mysqli_query($con, "SELECT id,concat(dni_ruc,' - ',nombre) as agencia FROM agencia where idestado_dato=1"); 
     $fecha = date("Y-m-d"); 
     $colorheder="info"; //COLOR  CABECERA MODAL
         
@@ -653,4 +654,6 @@
   
     
     });  
+    document.getElementById("bot4").style.display = "none";
     </script>
+    
