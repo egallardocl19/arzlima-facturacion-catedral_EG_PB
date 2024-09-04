@@ -573,7 +573,7 @@
                         $("#tipo_pago2 option:selected").each(function () {
                             condicion = $(this).val();
 
-                            if(condicion==5){
+                            if(condicion ==8 || condicion ==5){
                                 $("#n_pago").val('');
                                 $("#n_pago").prop("readonly",false);
                                 document.getElementById("n_pago").style.background  = "#FAFA9E";
@@ -654,7 +654,7 @@
                     $("#tipo_pago2").change(function () {
                         $("#tipo_pago2 option:selected").each(function () {
                             condicion = $(this).val();
-                           if (condicion==5){
+                            if(condicion ==8 || condicion ==5){
                             document.getElementById("save_data").style.display = "none";
                              }else{
                              document.getElementById("save_data").style.display = "block";
