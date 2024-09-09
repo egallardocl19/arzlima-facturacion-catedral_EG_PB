@@ -48,6 +48,11 @@ $con->next_result();
 $cadena_script3="call reporte_ticket('5','$where')";
 $consulta3=$cadena_script3;
 $resultado3=$con->query($consulta3);
+
+$con->next_result();
+$cadena_script4="call reporte_ticket('9','$where')";
+$consulta4=$cadena_script4;
+$resultado4=$con->query($consulta4);
 }
 		
 
@@ -140,7 +145,7 @@ if (!empty($_POST['fecha_inicio'])){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 	$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$pdf->Cell(120,12,utf8_decode('RESUMEN DE VENTAS POR DIA'),1,1,'C',TRUE);
+	$pdf->Cell(120,6,utf8_decode('RESUMEN DE VENTAS POR DIA'),1,1,'C',TRUE);
 
 	 $pdf->Cell(36);
 	 $pdf->SetFont('Arial','B',8);
@@ -205,7 +210,7 @@ if (!empty($_POST['fecha_inicio'])){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 	$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$pdf->Cell(160,12,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO EFECTIVO'),1,1,'C',TRUE);
+	$pdf->Cell(160,6,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO EFECTIVO'),1,1,'C',TRUE);
 
 	 $pdf->Cell(15);
 	 $pdf->SetFont('Arial','B',8);
@@ -261,7 +266,7 @@ if (!empty($_POST['fecha_inicio'])){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 	$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$pdf->Cell(160,12,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO POS'),1,1,'C',TRUE);
+	$pdf->Cell(160,6,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO POS'),1,1,'C',TRUE);
 
 	 $pdf->Cell(15);
 	 $pdf->SetFont('Arial','B',8);
@@ -307,6 +312,63 @@ if (!empty($_POST['fecha_inicio'])){
 			$pdf->Cell(40,5,$moneda." ".number_format($suma_totales2,2),1,1,'C',0);
 	}
 
+	if (!$resultado4||mysqli_num_rows($resultado4)!=0){
+		$suma_cantidad4=0;
+		$suma_totales4=0;
+		$moneda4='S/.';
+		
+		$pdf->Ln(5);
+		$pdf->Cell(15);
+		$pdf->SetFont('Arial','B',8);
+		$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+		$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+		$pdf->Cell(160,6,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO POS'),1,1,'C',TRUE);
+	
+		 $pdf->Cell(15);
+		 $pdf->SetFont('Arial','B',8);
+		 $pdf->SetFillColor(37,67,120);//Fondo verde de celda
+		 $pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+		 $pdf->Cell(55,6,utf8_decode('TIPO TICKET'),1,0,'C',TRUE);
+		 $pdf->Cell(20,6,utf8_decode('PRECIO'),1,0,'C',TRUE);
+		 $pdf->Cell(20,6,utf8_decode('VENTAS'),1,0,'C',TRUE);
+		 $pdf->Cell(30,6,utf8_decode('MONTO TOTAL'),1,0,'C',TRUE);
+		 $pdf->Cell(35,6,utf8_decode('FORMA PAGO'),1,1,'C',TRUE);
+	
+		 $pdf->SetFont('Arial','',8);
+		 $pdf->SetTextColor(0,0,0);
+	
+		while ($row4=$resultado4->fetch_assoc()) {
+				$pdf->Cell(15);
+				$pdf->SetFillColor(255, 255, 255);
+				$pdf->Cell(55,5,utf8_decode($row4['tipo_ticket']),0,0,'',0);
+				$pdf->Cell(20,5,$moneda4." ".number_format($row4['importe'],2),0,0,'C',0);
+				$pdf->Cell(20,5,utf8_decode($row4['cantidad']),0,0,'C',0);
+				$pdf->Cell(30,5,$moneda4." ".number_format($row4['costo_total'],2),0,0,'C',0);
+				$pdf->Cell(30,5,utf8_decode($row4['forma_pago']),0,1,'C',0);
+	
+				//$moneda=$row['signo_moneda']
+				$suma_cantidad4=$suma_cantidad4+$row4['cantidad'];
+				$suma_totales4=$suma_totales4+$row4['costo_total'];
+				
+		}
+				$pdf->Ln(0);
+				$pdf->SetFont('Arial','',9);
+				$pdf->Cell(36);
+				$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+				$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(80,5,utf8_decode('Total Cantidad de Ventas.:'),1,0,'C',TRUE);
+				$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+				//$pdf->Cell(20);
+				$pdf->Cell(40,5,$suma_cantidad4." Entradas",1,1,'C',0);
+				$pdf->SetFillColor(37,67,120);//Fondo verde de celda
+				$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(36);
+				$pdf->Cell(80,5,utf8_decode('Monto Total de Ventas .:'),1,0,'C',TRUE);
+				$pdf->SetTextColor(0,0,0);  // Establece el color del texto (en este caso es blanco)
+				$pdf->Cell(40,5,$moneda4." ".number_format($suma_totales4,2),1,1,'C',0);
+		}
+
+		
 	if (!$resultado3||mysqli_num_rows($resultado3)!=0){	
 	$suma_cantidad3=0;
 	$suma_totales3=0;
@@ -317,7 +379,7 @@ if (!empty($_POST['fecha_inicio'])){
 	$pdf->SetFont('Arial','B',8);
 	$pdf->SetFillColor(37,67,120);//Fondo verde de celda
 	$pdf->SetTextColor(255,255,255);  // Establece el color del texto (en este caso es blanco)
-	$pdf->Cell(160,12,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO TRANSFERENCIA'),1,1,'C',TRUE);
+	$pdf->Cell(160,6,utf8_decode('RESUMEN DE VENTAS POR DIA Y FORMA PAGO TRANSFERENCIA'),1,1,'C',TRUE);
 
 	 $pdf->Cell(15);
 	 $pdf->SetFont('Arial','B',8);

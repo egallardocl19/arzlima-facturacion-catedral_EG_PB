@@ -172,20 +172,20 @@ function Header()
 
     $this->Cell(50);
 
-    $this->Cell(100,10,'REPORTE TICKET - '.$nombre_clase,0,0,'C');
+    $this->Cell(100,10,'REPORTE TICKET - '.utf8_decode($nombre_clase),0,0,'C');
 	$this->SetFont('Arial','B',8);
 	$this->Cell(58,10,'Fecha: '.$fecha,0,1,'C');
 	$this->SetFont('Arial','B',9);
 	$this->Cell(67);
 	$this->SetTextColor(37,67,120);
-	$this->Cell(25,5,utf8_decode('FECHA INICIO: '),0,0,'C');
-	$this->Cell(5);
+	$this->Cell(20,5,utf8_decode('FECHA INICIO: '),0,0,'C');
+	$this->Cell(10);
 	$this->Cell(30,5,$inicio,0,0,'C');
 	$this->Cell(43);
 	$this->Cell(15,5,'Hora: '.$time,0,1,'C');
 	$this->Cell(67);
-	$this->Cell(25,5,'FECHA FIN:',0,0,'C');
-	$this->Cell(5);
+	$this->Cell(20,5,'FECHA FIN:',0,0,'C');
+	$this->Cell(10);
 	$this->Cell(30,5,$inicio2,0,1,'C');
 	$this->SetFont('Arial','B',8);
 	$this->SetTextColor(0,0,0);
