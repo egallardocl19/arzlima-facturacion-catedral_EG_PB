@@ -274,15 +274,15 @@ $moneda='';
 			$clase_ticket=$row['idclase_ticket'];
 			if ($clase_ticket ==1 or $clase_ticket ==2 or $clase_ticket ==3 ){
 				$moneda=$row['signo_moneda'];
-				if($row['nombre_pago']=="EFECTIVO"){
+				if($row['idformapago']=="4"){
 				$suma_cantidad=$suma_cantidad+$row['cantidad_total'];
 				$suma_totales=$suma_totales+$row['monto_total'];
 				}	
-				if($row['nombre_pago']=="IZIPAY"){
+				if($row['idformapago']=="5" or $row['idformapago']=="8"){
 					$suma_cantidad2=$suma_cantidad2+$row['cantidad_total'];
 					$suma_totales2=$suma_totales2+$row['monto_total'];
 				}
-				if($row['nombre_pago']=="TRANSFERENCIA"){
+				if($row['idformapago']=="7"){
 					$suma_cantidad3=$suma_cantidad3+$row['cantidad_total'];
 					$suma_totales3=$suma_totales3+$row['monto_total'];
 				}
@@ -293,15 +293,15 @@ $moneda='';
 			}
 			if ($clase_ticket ==5){
 				$moneda=$row['signo_moneda'];
-				if($row['nombre_pago']=="EFECTIVO"){
+				if($row['idformapago']=="4"){
 				$producto_cantidad=$producto_cantidad+$row['cantidad_total'];
 				$producto_totales=$producto_totales+$row['monto_total'];
 				}	
-				if($row['nombre_pago']=="IZIPAY"){
+				if($row['idformapago']=="5" or $row['idformapago']=="8"){
 					$producto_cantidad2=$producto_cantidad2+$row['cantidad_total'];
 					$producto_totales2=$producto_totales2+$row['monto_total'];
 				}
-				if($row['nombre_pago']=="TRANSFERENCIA"){
+				if($row['idformapago']=="7"){
 					$producto_cantidad3=$producto_cantidad3+$row['cantidad_total'];
 					$producto_totales3=$producto_totales3+$row['monto_total'];
 				}
