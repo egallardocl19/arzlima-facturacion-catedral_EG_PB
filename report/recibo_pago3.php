@@ -32,16 +32,17 @@ while ($row=$resultado->fetch_assoc()) {
 $resultado->close();  
 $con->next_result();
 
-                $consulta2="call recibo_ticket_agencia($id)";
-                $resultado2=$con->query($consulta2);
-                while ($row=$resultado2->fetch_assoc()) {
+$consulta2="call recibo_ticket_agencia($id)";
+$resultado2=$con->query($consulta2);
+while ($row=$resultado2->fetch_assoc()) {
                             
-                            $ruc = $row['ruc'];
-                            $agencia = $row['nombre'];
+        $ruc = $row['ruc'];
+        $agencia = $row['nombre'];
                         
-                    }	
-                $resultado2->close();  
-                $con->next_result();
+}	
+$resultado2->close();  
+$con->next_result();
+
 $consulta_detalle="call recibo_ticket_detalle($v1)";
 $resultado_detalle=$con->query($consulta_detalle);
 ?>
@@ -69,7 +70,9 @@ $resultado_detalle=$con->query($consulta_detalle);
   type="text/css" />
     <body  style="width:100%;"
       onload="imprimir();" >
-  
+<?php
+if (!$resultado_detalle||mysqli_num_rows($resultado_detalle)!=0){ 
+?>   
       <!-- <img src="../images/profiles/fondo.png"  alt=""  height="400" width="300" /> -->
     <div class="contenedor">
         <!-- <img src="../images/profiles/fondo.png?<?php echo rand()?>" height="1000" width="300"/> -->
@@ -190,7 +193,24 @@ $resultado_detalle=$con->query($consulta_detalle);
         </div>
         
     </div>
-
+    <?php
+}else{
+?>  
+<table border="1px" width ="100%" height ="10px" style="border-collapse:collapse; text-align:center;margin:auto">
+                <tr>
+                    <td>
+                    <div class="contenedor">
+                    <font  style="font-weight: bolder; font-family: Calibri" size="2">ERROR AL REGISTRAR EL TICKET POR PROBLEMA DE CONECTIVIDAD.</font></br></br>
+                    <font  style="font-weight: bolder; font-family: Calibri" size="2">SE RECOMIENDA ANULAR EL TICKET Y GENERAR UNO NUEVO.</font></br></br>
+                    <font  style="font-weight: bolder; font-family: Calibri" size="2">Nº TICKET: <?php echo $serie."-".$numero?></font>
+                    </div>
+                    </td>
+                   
+                </tr>
+                </table>
+<?php
+}
+?>  
 
 
     </body>
