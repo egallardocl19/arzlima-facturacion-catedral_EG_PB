@@ -42,11 +42,11 @@
         
          $aColumns = array('CONCAT(t.serie,"-",t.numero)','t.fecha','t.dni');//Columnas de busqueda  
          $sTable = "cobranza c, ticket t,formapago f";
-         $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=5 ";
+         $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago in(5,8) ";
 
          if ( $_GET['qqq'] != "" ) 
         {
-            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=5 and  (";
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago in(5,8) and  (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";
@@ -57,7 +57,7 @@
 
         if ( $_GET['qqq1'] != "" ) 
         {
-            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=5 and  (c.fecha='".$qqq1."' OR ";
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago in(5,8) and  (c.fecha='".$qqq1."' OR ";
             
             $sWhere = substr_replace( $sWhere, "", -3 );
             $sWhere .= ')';
@@ -65,7 +65,7 @@
 
         if ( $_GET['qqq'] != "" && $_GET['qqq1'] != "") 
         {
-            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago=5 and  c.fecha='".$qqq1."' and (";
+            $sWhere = "WHERE c.idticket=t.id and c.idformapago=f.id and c.idformapago in(5,8) and  c.fecha='".$qqq1."' and (";
             for ( $i=0 ; $i<count($aColumns) ; $i++ )
             {
                 $sWhere .= $aColumns[$i]." LIKE '%".$qqq."%' OR ";

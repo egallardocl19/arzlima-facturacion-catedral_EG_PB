@@ -32,7 +32,7 @@
     $Mes = date("m");  
     $forma_pago=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id=6");
     //$forma_pago2=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,7)");
-    $forma_pago3=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,5,7)");
+    $forma_pago3=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id<>6");
     
     $tipo_ticket=mysqli_query($con, "SELECT * FROM clase_ticket where id in (1,2,5) and idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
