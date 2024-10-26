@@ -26,13 +26,18 @@
 		$banco = $_POST["banco"];
 		$cuenta = $_POST["cuenta"];
 		$observaciones = $_POST["observaciones"];
-		
+		if (empty($_POST['idagencia'])){
+			$idagencia=0;
+		}else{
+			$idagencia=$_POST['idagencia'];
+		}
+
 		$user_id=$_SESSION['user_id'];  
 		$submod=$_SESSION['keytok0']; 
 		$fecha_add = date("Y-m-d");
 	
 		$mantenimiento_tabla =mysqli_query($con,"CALL mantenimiento_cobranza
-		($codigo,$valor_mantenimiento,'$fecha','$tipo_ticket',$tipo_moneda,$monto_total_ticket,'$fecha2',$tipo_pago,'$n_pago','$n_deposito','$banco','$cuenta','$observaciones',$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
+		($codigo,$valor_mantenimiento,'$fecha','$tipo_ticket',$tipo_moneda,$monto_total_ticket,'$fecha2',$tipo_pago,'$n_pago','$n_deposito','$banco','$cuenta','$observaciones',$idagencia,$submod,$user_id,'$fecha_add',@resultado,@resultado1);");
 		$resultado = mysqli_query($con,"SELECT @resultado AS result,@resultado1 AS result1");
 		
 		while($row = $resultado->fetch_assoc())

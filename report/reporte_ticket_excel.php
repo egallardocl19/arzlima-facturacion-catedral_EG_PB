@@ -83,6 +83,7 @@
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>RUC</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>AGENCIA</th>
 						<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
+					
 					</tr>
 				<tbody>
 		";
@@ -92,7 +93,7 @@
 			<thead>
 				<tr style='height:40px;'>
 					
-					<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='11'>REPORTE DE TICKET - ".$nombre_clase."</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF' colspan='12'>REPORTE DE TICKET - ".$nombre_clase."</th>
 					
 				</tr>
 				<tr >
@@ -107,6 +108,7 @@
 					<th bgcolor='#1262EE' style='color:#FFFFFF'>TIPO PAGO</th>
 					<th bgcolor='#1262EE' style='color:#FFFFFF'>N REFERENCIA</th>
 					<th bgcolor='#1262EE' style='color:#FFFFFF'>CAJERO</th>
+					<th bgcolor='#1262EE' style='color:#FFFFFF'>CLIENTE</th>
 				</tr>
 			<tbody>
 	";
@@ -196,6 +198,7 @@
 									<td>".utf8_decode($fetch['nombre_pago'])."</td>
 									<td>".utf8_decode($fetch['n_referencia'])."</td>
 									<td>".utf8_decode($fetch['cajero'])."</td>
+									<td>".utf8_decode($fetch['nombre'])."</td>
 					
 								</tr>
 								";

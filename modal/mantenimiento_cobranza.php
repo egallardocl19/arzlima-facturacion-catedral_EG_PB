@@ -53,7 +53,7 @@
                                 
                                 <div class="col-md-2 col-sm-2 col-xs-12 form-group">
                                
-                                        <button id="buscar" type="button" class="btn btn-primary" onclick="buscarcobranza()">Buscar</button> 
+                                        <button id="buscar" type="button" class="btn btn-primary" onclick="buscarcobranza()">Busqueda</button> 
                                 </div>
                             </div>
 
@@ -90,7 +90,24 @@
                                 
 
                             </div>
+                            
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" id="cobra3">
+                                    <div class="form-group" >
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12"  style="color:red"><i class="fa fa-university" aria-hidden="true"></i> Agencia:</label>
+                                        
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
 
+                                        <select  class="form-control" id="idagencia" name="idagencia" data-size="5" style="max-width: 100%!important;" >
+                                        <option value="">-- Seleccionar Agencia--</option> 
+                                            <?php foreach($agencia as $p):?>
+                                                <option value="<?php echo $p['id']; ?>"><?php echo $p['dni_ruc']." - ".$p['nombre'];  ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        
+                                        </div>
+                                        
+                                    </div>
+                                </div>
                              
                             
                             
@@ -179,7 +196,7 @@
                         <div class="ln_solid"></div>
                         <div id="result"></div>
                         <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                         <button id="save_data" type="submit" class="btn btn-success"></button>
                                        
@@ -222,6 +239,7 @@
                         $("#idticket option:selected").each(function () {
                             condicion = $(this).val();
                             caso = "2";
+
                             $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: 0}, function(data){
                              var res = data.split("-");    
                             $("#dni").val(res[0]);  
@@ -245,7 +263,33 @@
                             
                            
                             $("#monto_total_ticket").val(0);  
+                            condicion_tipo = $(this).val();
+                            if (condicion_tipo == 3){
+                                document.getElementById("cobra3").style.display = "block"; 
+                                $('#idagencia').val(0).addClass("selectpicker").selectpicker('refresh');     
+                            }else{
+                                document.getElementById("cobra3").style.display = "none";
+                                $('#idagencia').val(0).addClass("selectpicker").selectpicker('refresh');       
+                            }
+                                                    
+                        });
+                    })
+                });    
 
+                document.getElementById('save_data').addEventListener('click', function(){
+                    document.getElementById("save_data").style.display = "none";
+                }); 
+                
+                document.getElementById('nuevo').addEventListener('click', function(){
+                    document.getElementById("save_data").style.display = "block";
+                }); 
+
+                $(document).ready(function(){
+                    $("#idagencia").change(function () {
+                        $("#idagencia option:selected").each(function () {
+                            
+                           
+                            $("#monto_total_ticket").val(0);  
                            
                                                     
                         });

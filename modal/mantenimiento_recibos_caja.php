@@ -499,8 +499,8 @@
                                     </div>
                                 </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group<?php echo $tamaniocampo ?>">
-                                         <div class="form-group" >
-                                             <label class="control-label col-md-1 col-sm-1 col-xs-12"> Guia:</label>
+                                        <div class="form-group" >
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12"> Guia:</label>
                                         
                                             <div class="col-md-7 col-sm-7 col-xs-12">
 

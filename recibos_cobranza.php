@@ -34,9 +34,9 @@
     //$forma_pago2=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id in (4,7)");
     $forma_pago3=mysqli_query($con, "SELECT * FROM formapago where idestado_dato=1 and id<>6");
     
-    $tipo_ticket=mysqli_query($con, "SELECT * FROM clase_ticket where id in (1,2,5) and idestado_dato=1");
+    $tipo_ticket=mysqli_query($con, "SELECT * FROM clase_ticket where id in (1,2,3,5) and idestado_dato=1");
     $moneda=mysqli_query($con, "SELECT * FROM tipo_moneda");
-             
+    $agencia=mysqli_query($con, "SELECT id,dni_ruc,nombre FROM agencia where idestado_dato=1");
     //PERMISOS
       $submenu =mysqli_query($con,"CALL submenu('$id','0','$key1');");
       if (!$submenu||mysqli_num_rows($submenu)!=0){
@@ -337,7 +337,9 @@
 
        function limpiarFormulario() {
         document.getElementById("add").reset();
+        document.getElementById("cobra3").style.display = "none";
         $('#idticket').val(0).addClass("selectpicker").selectpicker('refresh'); 
+        $('#idagencia').val(0).addClass("selectpicker").selectpicker('refresh'); 
         $('#tipo_pago').val(4).addClass("selectpicker").selectpicker('refresh');                 
         $("#result").hide(); 
         condicion = 1;
@@ -352,13 +354,18 @@
 
         function buscarcobranza() {
                      
-        condicion=$("#fecha").val(); 
+        condicion=$("#fecha").val();  
         condicion2=$("#tipo_ticket").val(); 
-                            caso = "6";
-                            $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: condicion2}, function(data){
-                                $("#monto_total_ticket").val(data);      
-                                    
-                            });   
+        if(condicion2==3){
+           condicion2=$("#idagencia").val(); 
+           caso = "7";
+        }else{
+           condicion2=$("#tipo_ticket").val(); 
+           caso = "6";
+        }
+        $.post("includes/getRecibo_val.php", { caso: caso, condicion: condicion, condicion2: condicion2}, function(data){
+        $("#monto_total_ticket").val(data);      
+        });   
         }
 
                 
@@ -380,6 +387,7 @@
             document.getElementById('agregar').addEventListener('click', function(){
             document.getElementById("cobra").style.display = "block";
             document.getElementById("cobra2").style.display = "none";
+            document.getElementById("cobra3").style.display = "none";
             var titulo = '<?=$titulo?>';
             document.getElementById('myModalLabel').innerHTML= '<strong><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar '+titulo+'</strong>';
             
