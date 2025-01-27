@@ -385,6 +385,78 @@
                         <?php 
                         }
                         ?>
+                        <?php 
+                          if ( $key1==76){
+
+                          ?>
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2><?php echo $titulo; ?> :  </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                    </div>
+                                        <!-- form search -->
+                                        <form class="form-horizontal" role="form" id="category_expence"   onsubmit="return false;">
+                                            <!--<div class="form-group">-->
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group"> 
+
+                                                    <label for="qqqqq" class="control-label col-md-1 col-sm-2 col-xs-12">Busqueda </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                        <input type="text" class="form-control" id="qqqqq" name="qqqqq" placeholder="N° Recibo - N° Pago" ><!--//onkeyup='load(1);'-->
+                                                    </div>
+
+                                                    <label  for="qqqqq1" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-calendar" aria-hidden="true"></i> Periodo:<span class="required"></span>
+                                                    </label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+                                                    <input type="date" id="qqqqq1" name="qqqqq1" class="form-control" value="<?php echo $fechahoy ?>" >
+                                                    </div>
+                                                  
+                                                    <label  for="qqqqq2" class="control-label col-md-1 col-sm-2 col-xs-12"><i class="fa fa-bars" aria-hidden="true"></i> Estado:</label>
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">
+
+                                                        <select class="form-control selectpicker" data-show-subtext="true" data-live-search="true"  id="qqqqq2" name="qqqqq2" data-size="5" style="max-width: 100%!important;" >
+                                                        <option value="">Seleccionar Estado</option>  
+                                                        <?php foreach($estado_recibo as $p):?>
+                                                            <option value="<?php echo $p['id']; ?>"><?php echo $p['nombre']; ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>	
+                                                        </select>
+                                                    
+                                                    </div>
+                                                
+                                                    <div class="col-md-2 col-sm-4 col-xs-12">                                                   
+                                                            <button type="button" class="btn btn-warning" onclick='load5(1);'>
+                                                                <span class="glyphicon glyphicon-search" ></span> Buscar</button>
+                                                                 <span id="loader"></span> 
+                                                             
+                                                             
+                                                        </div>
+                                                        
+                                                </div>
+                                   
+                                                
+                                            </div>
+                                        </form> 
+                                        
+                                                                <!-- end form search -->
+                                        <div class="x_content">
+                                            <div class="table-responsive">
+                                                <!-- ajax -->
+                                                <div id="resultados5"></div><!--Carga los datos ajax -->
+                                                <div class='outer_div5'></div><!-- Carga los datos ajax -->
+                                                <!-- /ajax -->
+                                            </div>
+                                        </div>                            
+                                                               
+                            </div> 
+                        </div>
+                        <?php 
+                        }
+                        ?>
                         
                 </div>
             </div>

@@ -3,6 +3,7 @@ $(document).ready(function(){
 	load2(1);
 	load3(1);
 	load4(1);
+	load5(1);
 });
 
 function load(page){
@@ -82,7 +83,24 @@ function load4(page){
 }
 
 
+function load5(page){
+	var qqqqq= $("#qqqqq").val();
+	var qqqqq1= $("#qqqqq1").val();
+	var qqqqq2= $("#qqqqq2").val();
+	
+	$("#loader").fadeIn('slow');
+	$.ajax({
+		url:'./ajax/recibos5.php?action=ajax&page='+page+'&qqqqq='+qqqqq+'&qqqqq1='+qqqqq1+'&qqqqq2='+qqqqq2,
+		beforeSend: function(objeto){
+			$('#loader').html('<img src="./images/ajax-loader.gif"> Cargando...');
+		},
+		success:function(data){
+			$(".outer_div5").html(data).fadeIn('slow');
+			$('#loader').html('');
+		}
+	})
 
+}
 
 
 function eliminar (id)

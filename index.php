@@ -123,6 +123,11 @@ include "config/config.php";
                                     <br> Para soporte de la web contactar al Correo: <a style="color: #0000ff; text-decoration: underline;" 
                                     target="_blank" href="#">soporte@arzobispadodelima.org</a></p>
                             </div>
+                            <div class="mb-4 mb-md-0 text-center">  <!--4-5  -->
+                                <a href="index.php" class="d-block auth-logo">
+                                    <img src="images/profiles/Escudo-Cardenal.png" alt="" height="100"> 
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

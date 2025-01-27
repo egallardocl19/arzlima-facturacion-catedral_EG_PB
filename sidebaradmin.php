@@ -18,7 +18,7 @@
                     $TicketData9=mysqli_query($con, "select * from ticket where idclase_ticket=3 and fecha='$fechahoy'");
                     $TicketData10=mysqli_query($con, "select * from ticket where idclase_ticket=4 and fecha='$fechahoy'");
                     $TicketData11=mysqli_query($con, "select * from ticket where idclase_ticket=5 and fecha='$fechahoy'");
-
+                    $TicketData12=mysqli_query($con, "select * from ticket where idclase_ticket=6 and fecha='$fechahoy'");
                     
                     $menu =mysqli_query($con,"CALL menu('$id');");
                     

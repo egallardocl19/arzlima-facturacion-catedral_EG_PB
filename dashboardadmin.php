@@ -148,6 +148,37 @@
                             }
                             $con->next_result();
                             ?> 
+                             <?php 
+                            $submenu =mysqli_query($con,"CALL submenu('$id','0','76');");
+                            if (!$submenu||mysqli_num_rows($submenu)!=0){
+                            $submenu->close();
+                            $con->next_result();
+                                $permisos =mysqli_query($con,"CALL permisos('$id','76','0');");
+                                
+                                if (!$permisos||mysqli_num_rows($permisos)!=0){
+                                
+                                    while ($row_sub=$permisos->fetch_assoc()) { 
+                                        $idsubmodulo= $row_sub['idsubmodulo'];
+                                        
+                                    }
+                                    $ruta_envio='recibos.php?key1='.$idsubmodulo;
+                                    
+                            ?>
+                           
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats" style="background-image: url('images/profiles/fonbo10.png'); width:100%;" >
+                                <div class="icon"><a href="<?php echo  $ruta_envio?>"><i class="fa fa-ticket"></i></a></div>
+                                <a href="<?php echo  $ruta_envio?>"><div class="count"><?php echo mysqli_num_rows($TicketData12) ?></div></a>
+                                <a href="<?php echo  $ruta_envio?>" style="font-size:25px;"><i class="fa fa-bookmark"></i> Ticket Online</a>
+                                </div>
+                            </div>
+                            <?php 
+                                }
+                                $permisos->close(); 
+                                $con->next_result(); 
+                            }
+                            $con->next_result();
+                            ?> 
                             <?php 
                             $submenu =mysqli_query($con,"CALL submenu('$id','0','64');");
                             if (!$submenu||mysqli_num_rows($submenu)!=0){
