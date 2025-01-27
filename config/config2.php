@@ -4,6 +4,7 @@ class Conexion
 {
    private $conection = null;
 
+
    public function getConexion()
    {
 
@@ -15,7 +16,7 @@ class Conexion
     	define('DBHOST', 'arzovvm2020dbmysql.mysql.database.azure.com');//DB_HOST:  generalmente suele ser "127.0.0.1"
         define('DBUSER', 'uservmdbmysql@arzovvm2020dbmysql');//Usuario de tu base de datos
         define('DBPASS', '01*V1NfJMSaV');//Contraseña del usuario de la base de datos
-        define('DBNAME', 'syscatedral2');//Nombre de la base de datos
+        define('DBNAME', 'syscatedral');//Nombre de la base de datos
        
 
         try {
@@ -39,6 +40,8 @@ class Conexion
             
         }
     }
+
+  
 }
    
 ?>
