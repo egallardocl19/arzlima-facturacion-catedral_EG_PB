@@ -24,7 +24,7 @@
 		$name=mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 		$lastname=mysqli_real_escape_string($con,(strip_tags($_POST["lastname"],ENT_QUOTES)));
 		$email=$_POST["email"];
-		$password=mysqli_real_escape_string($con,(strip_tags(sha1(md5($_POST["password"])),ENT_QUOTES)));
+		$password=$_POST["password"];
 		$estado=$_POST['estado'];
 		$end_name=$name." ".$lastname;
 		$username=$_POST["username"];
@@ -39,6 +39,9 @@
 		
 		$user_id=$_SESSION['user_id'];
 
+	
+
+
 
 		//SCRIPT GENERAR CODIGO DE TABLA INTERNET
 		$consulta_codigo =("SELECT codigo+1 codigo FROM user where id=(select max(id) from user)");
@@ -50,19 +53,39 @@
 		//SCRIPT PARA VALIDAR DATOS SI YA ESTAN REGISTRADOS
 		$sqlvalidarregistro =mysqli_query($con, "select * from user where email='$email' or username='$username'");
 
-		if (!$sqlvalidarregistro|| mysqli_num_rows($sqlvalidarregistro)==0){
-			
 
-			$sql="INSERT INTO user (codigo,username,nombre,email,password,profile_pic, idestado, created_at,dni,celular,ruc,razonsocial,direccion,profile_pictwo,idroles) 
-			VALUES ('$codigo_usuario','$username','$end_name','$email','$password','$profile_pic',$estado,'$created_at','$dni','$celular','$ruc','$razon','$direccion','$profile_pictwo',2)";
-			$query_new_insert = mysqli_query($con,$sql);
+			if (!$sqlvalidarregistro|| mysqli_num_rows($sqlvalidarregistro)==0){
 			
-				if ($query_new_insert){
-					$messages[] = "El usuario ha sido ingresado satisfactoriamente.";
-					//$sql2="INSERT INTO recibos_encuadre values(0,'6','1','89','45','45','45','45','25','35','60','50','10','35',(select codigo from user where email='$email'),'IMPRESORA',1,10)";
-					//$query_new_insert = mysqli_query($con,$sql2);
-				} else{
-					$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
+				if(strlen($password) < 6){
+					$errors [] = "La clave debe tener al menos 6 caracteres";
+					
+				 }else if(strlen($password) > 16){
+					$errors [] = "La clave no puede tener más de 16 caracteres";
+					
+				 }else if(!preg_match('`[a-z]`',$password)){
+					$errors [] = "La clave debe tener al menos una letra minúscula";
+					
+				 }else if(!preg_match('`[A-Z]`',$password)){
+					$errors [] = "La clave debe tener al menos una letra mayúscula";
+					
+				 }else if(!preg_match('`[0-9]`',$password)){
+					$errors [] = "La clave debe tener al menos un caracter numérico";
+					
+				 }else{
+			
+				$password=mysqli_real_escape_string($con,(strip_tags(sha1(md5($password)),ENT_QUOTES)));
+
+				$sql="INSERT INTO user (codigo,username,nombre,email,password,profile_pic, idestado, created_at,dni,celular,ruc,razonsocial,direccion,profile_pictwo,idroles) 
+				VALUES ('$codigo_usuario','$username','$end_name','$email','$password','$profile_pic',$estado,'$created_at','$dni','$celular','$ruc','$razon','$direccion','$profile_pictwo',2)";
+				$query_new_insert = mysqli_query($con,$sql);
+				
+					if ($query_new_insert){
+						$messages[] = "El usuario ha sido ingresado satisfactoriamente.";
+						//$sql2="INSERT INTO recibos_encuadre values(0,'6','1','89','45','45','45','45','25','35','60','50','10','35',(select codigo from user where email='$email'),'IMPRESORA',1,10)";
+						//$query_new_insert = mysqli_query($con,$sql2);
+					} else{
+						$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
+					}
 				}
 			}else{
 				$errors []= "El Email o Username ya se encuentra Registrado.";
