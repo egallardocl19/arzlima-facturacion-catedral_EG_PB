@@ -1,5 +1,6 @@
 report/resultado.png
 config
+config/
 config/*
 config/index.php
 config/config.php
