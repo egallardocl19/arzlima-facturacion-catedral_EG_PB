@@ -1,9 +1,3 @@
 report/resultado.png
-config
-config/
 config/*
-config/index.php
-config/config.php
-config/config2.php
-config/configreport.php
-
+!config/config.php
