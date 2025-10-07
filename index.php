@@ -83,7 +83,7 @@ include "config/config.php";
                                     <h5 class="mb-0">Bienvenido!</h5>
                                     <p class="text-muted mt-2">Inicia sesión para continuar al Sistema SIGAC</p>
                                 </div>
-                                <form method="post" action="action/login.php">
+                                <form method="post" action="/action/login.php">
                                     <div class="form-floating form-floating-custom mb-4">
                                         <input type="text" class="form-control" name="email" placeholder="Enter User Name">
                                         <label for="input-username">Username</label>
@@ -230,5 +230,6 @@ include "config/config.php";
 
 
 </body>
+
 
 </html>
