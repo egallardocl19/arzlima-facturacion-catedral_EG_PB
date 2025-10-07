@@ -4,10 +4,9 @@ session_start();
 
 include "config/config.php";
 
-    if (isset($_SESSION['user_id']) && $_SESSION!==null) {
-      
-	   header("location: dashboardadmin.php");
-    }
+if (isset($_SESSION['user_id']) && $_SESSION!==null) {
+        header("location: dashboardadmin.php");
+}
 
 ?>
 <!--  position login -->
