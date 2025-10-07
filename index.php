@@ -4,39 +4,8 @@ session_start();
 
 include "config/config.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['token']) && $_POST['token'] !== '') {
-        $email = mysqli_real_escape_string($con, (strip_tags($_POST["email"], ENT_QUOTES)));
-        $password = sha1(md5(mysqli_real_escape_string($con, (strip_tags($_POST["password"], ENT_QUOTES)))));
-
-        $query = mysqli_query($con, "CALL session_login('$email','$password');");
-
-        if ($query && mysqli_num_rows($query) > 0) {
-                if ($row = mysqli_fetch_array($query)) {
-                        $_SESSION['user_id'] = $row['id'];
-                        mysqli_free_result($query);
-                        while (mysqli_more_results($con) && mysqli_next_result($con)) {
-                                // Clear any additional results from the stored procedure call.
-                        }
-                        header('Location: dashboardadmin.php');
-                        exit();
-                }
-        }
-
-        if ($query) {
-                mysqli_free_result($query);
-                while (mysqli_more_results($con) && mysqli_next_result($con)) {
-                        // Clear any additional results before reusing the connection.
-                }
-        }
-
-        $invalid = sha1(md5("contrasena y email invalido"));
-        header("Location: index.php?invalid=$invalid");
-        exit();
-}
-
-if (isset($_SESSION['user_id']) && $_SESSION !== null) {
+if (isset($_SESSION['user_id']) && $_SESSION!==null) {
         header("location: dashboardadmin.php");
-        exit();
 }
 
 ?>
@@ -113,7 +82,7 @@ if (isset($_SESSION['user_id']) && $_SESSION !== null) {
                                     <h5 class="mb-0">Bienvenido!</h5>
                                     <p class="text-muted mt-2">Inicia sesión para continuar al Sistema SIGAC</p>
                                 </div>
-                                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+                                <form method="post" action="action/login.php">
                                     <div class="form-floating form-floating-custom mb-4">
                                         <input type="text" class="form-control" name="email" placeholder="Enter User Name">
                                         <label for="input-username">Username</label>
